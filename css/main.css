@@ -1,0 +1,110 @@
+/* 전역 설정 (간단히 main.css 상단에 합쳐서 작성했습니다) */
+:root {
+    --color-bg: #0f172a;       /* 다크 네이비 배경 */
+    --color-text: #f8fafc;     /* 밝은 회색 텍스트 */
+    --color-primary: #3b82f6;  /* 포인트 파란색 */
+    --color-card: #1e293b;     /* 카드 배경색 */
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    line-height: 1.6;
+}
+
+/* 네비게이션 */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: rgba(15, 23, 42, 0.9);
+    position: sticky;
+    top: 0;
+}
+
+.nav-links a {
+    color: var(--color-text);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+/* 공통 섹션 설정 */
+section {
+    padding: 80px 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+/* Hero (소개) 영역 */
+.hero-container {
+    text-align: center;
+    padding: 150px 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+/* 버튼 스타일 */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-secondary {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* 프로젝트 카드 그리드 */
+.projects-grid, .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card, .skill-category {
+    background-color: var(--color-card);
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* 마우스 올렸을 때 살짝 떠오르는 효과 */
+}
+
+.project-tag {
+    background-color: var(--color-primary);
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+}
