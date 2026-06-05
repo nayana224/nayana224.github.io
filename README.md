@@ -1,45 +1,45 @@
-# 🤖 이인표 | 로보틱스 엔지니어 포트폴리오
+# 🤖 Inpyo Lee | Robotics Engineer Portfolio
 
-로보틱스 엔지니어(Computer Vision 및 Robot Control 지향) 이인표의 개인 포트폴리오 웹사이트입니다.  
-현대적이고 세련된 다크 테마 디자인과 함께, 사용자의 시선을 이끄는 인터랙티브 요소(마우스 포인터 트래킹 빛무리, 스크롤 진행 표시 바 등)가 적용되었습니다.
+This is the personal portfolio website of Inpyo Lee, a Robotics Engineer specializing in Computer Vision and Robot Control.  
+The website features a modern, premium dark-themed interface integrated with interactive design elements such as mouse pointer glow tracking and a scroll progress indicator.
 
 ---
 
-## 🌐 접속 방법
+## 🌐 How to Access
 
-### 1. 온라인 접속 (GitHub Pages 배포 완료 시)
-본 저장소는 GitHub Pages(`nayana224.github.io`) 전용 저장소입니다. 배포가 완료되면 다음 주소를 통해 직접 접속하실 수 있습니다.
+### 1. Online Access (Hosted on GitHub Pages)
+This repository is hosted on GitHub Pages (`nayana224.github.io`). Once code changes are pushed to GitHub, you can access the live website at:
 👉 **URL:** [https://nayana224.github.io](https://nayana224.github.io)
 
-### 2. 로컬(내 컴퓨터)에서 접속 및 확인
-별도의 웹 빌드 과정이나 로컬 서버 실행 없이, 아래의 방법으로 간편하게 미리 볼 수 있습니다.
-- 이 저장소를 클론(Clone)하거나 다운로드합니다.
-- 저장소 내의 [index.html](./index.html) 파일을 마우스 더블 클릭하여 기본 웹 브라우저(Chrome, Edge, Safari 등)에서 실행합니다.
+### 2. Local Preview (On Your Machine)
+You can view the website locally without setting up any build processes or local servers:
+- Clone or download this repository.
+- Double-click the [index.html](./index.html) file to open it in any modern web browser (e.g., Chrome, Edge, Safari, Firefox).
 
 ---
 
-## 🚀 GitHub Pages 배포 방법 (업데이트 반영)
+## 🚀 How to Deploy Updates
 
-코드 수정 사항을 온라인 실시간 웹사이트에 배포하려면 터미널(Git Bash, Command Prompt 등)에서 아래 명령어를 실행하여 변경 사항을 깃허브에 푸시합니다.
+To deploy your updates to the live GitHub Pages site, commit and push your changes to the remote repository using the following Git commands:
 
 ```bash
-# 1. 수정된 파일 스테이징
+# 1. Stage the modified files
 git add .
 
-# 2. 커밋 메시지 작성
-git commit -m "feat: 포트폴리오 프리미엄 리디자인 및 모달 기능 반영"
+# 2. Commit the changes
+git commit -m "feat: redesign portfolio and implement project detail modals"
 
-# 3. 메인 브랜치로 푸시
+# 3. Push to the main branch
 git push origin main
 ```
-*주: 기본 브랜치명이 `master`인 경우 `git push origin master`를 입력해 주세요.*
+*Note: If your default branch is named `master`, use `git push origin master` instead.*
 
 ---
 
-## 🎨 주요 디자인 및 기능 특징
+## 🎨 Key Features & Design Highlights
 
-- **하이테크 네온 다크 테마**: HSL 기반의 정밀하게 선별된 딥 네이비 배경과 네온 블루, 퍼플 액센트 컬러를 매치했습니다.
-- **마우스 트래킹 빛무리 효과**: 사용자의 마우스가 움직일 때 마우스 포인터를 잔잔하고 부드러운 네온 시안 빛무리가 따라다니며 시각적 흥미를 높입니다.
-- **핵심 ➡️ 상세(Modal) 탐색 구조**: 첫 화면에는 프로젝트의 핵심 목표와 핵심 성과(Bullet points)만을 직관적으로 노출하며, `상세 분석 보기` 클릭 시 글라스모피즘 스타일의 모달창이 열려 심층 아키텍처 및 문제 해결 과정(Troubleshooting)과 코드 블록을 보여줍니다.
-- **스크롤 인터랙션**: 페이지를 내릴 때 상단에 스크롤 진행 상황을 알려주는 프로그레스 바가 움직이며, 상단 내비게이션 바는 글라스모피즘(흐림 처리) 스타일로 부드럽게 전환됩니다.
-- **완벽한 반응형 웹**: 데스크톱 모니터뿐만 아니라 모바일, 태블릿 기기에서도 레이아웃 깨짐 없이 최적화된 폰트 크기와 정렬을 제공합니다.
+- **Premium HSL Tech Palette**: Tailored deep-navy background HSL values paired with neon-cyan and electric-purple accents to represent circuits and sensors.
+- **Interactive Mouse Glow**: A soft radial glow follows the user's mouse pointer across the screen, adding a dynamic and reactive feel.
+- **Core-to-Detail Layout**: High-level project information (objectives, duration, role, and main tech badges) is displayed on cards. Clicking the card opens a glassmorphic modal containing detailed system architectures, roles, and technical troubleshooting (complete with code/firmware snippets).
+- **Smooth Scroll & Progress Indicator**: Features a custom scroll progress indicator at the top of the viewport and a sticky navigation header that transitions to a blurred glassmorphism state upon scrolling.
+- **Fully Responsive**: Optimized for desktop, tablet, and mobile displays with fluid scaling and clean alignments.
