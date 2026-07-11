@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Inpyo Lee — M.S. student in Robotics and AI. ROS 2, robot learning, mobile robotics, and manipulation.">
+    <meta name="description" content="Inpyo Lee — Robotics and AI master's student focused on ROS 2 system integration, manipulation, and robot learning.">
     <title>Inpyo Lee | Robotics & AI</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/main.css">
@@ -14,13 +14,13 @@
     <div class="scroll-progress" id="scroll-bar"></div>
 
     <header id="header-nav" class="header-nav">
-        <div class="nav-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">Inpyo.dev</div>
+        <div class="nav-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">Inpyo Lee</div>
         <div class="nav-area">
             <nav class="nav-links" aria-label="Primary navigation">
                 <a href="#section-about">About</a>
                 <a href="#section-skills">Skills</a>
                 <a href="#section-projects">Projects</a>
-                <a href="#section-research">Research</a>
+                <a href="#section-background">Background</a>
                 <a href="#section-notes">Notes</a>
             </nav>
             <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Change theme">
@@ -32,45 +32,33 @@
 
     <main id="main-content">
         <section id="section-hero" class="hero-container">
-            <div class="hero-tag">ROS 2 · Robot Learning · Robotic Systems</div>
-            <p class="hero-eyebrow">M.S. Student in Robotics and AI</p>
-            <h1 class="hero-title">Hi, I'm<br><span>Inpyo Lee</span>.</h1>
+            <div class="hero-tag">ROS 2 · Robotic Manipulation · Robot Learning</div>
+            <h1 class="hero-title"><span>Inpyo Lee</span></h1>
+            <p class="hero-eyebrow">M.S. Student in AI Engineering · Robotics Systems Developer</p>
             <p class="hero-description">
-                I develop ROS 2-based robotic systems that connect hardware, perception, planning, and control.
-                My current interests include <strong>robot learning</strong>, <strong>robotic manipulation</strong>, and
-                <strong>Vision-Language-Action models</strong>.
+                I build robotic systems that connect sensing, perception, planning, control, and user interfaces.
+                My current work extends this systems background toward <strong>robot learning</strong> and
+                <strong>Vision-Language-Action</strong> research.
             </p>
             <div class="hero-links">
-                <a href="#section-projects" class="btn btn-primary">View Projects</a>
+                <a href="#section-projects" class="btn btn-primary">Selected Projects</a>
                 <a href="https://github.com/nayana224" target="_blank" rel="noreferrer" class="btn btn-secondary">GitHub</a>
                 <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer" class="btn btn-secondary">Technical Notes</a>
             </div>
             <div class="hero-stats" aria-label="Core experience">
-                <div><strong>ROS 2</strong><span>System Integration</span></div>
-                <div><strong>Mobile + Arm</strong><span>Robot Platforms</span></div>
-                <div><strong>Sim + Real</strong><span>Development Workflow</span></div>
+                <div><strong>ROS 2 Integration</strong><span>Hardware to application layer</span></div>
+                <div><strong>Mobile + Manipulator</strong><span>Two robot system domains</span></div>
+                <div><strong>Perception to Action</strong><span>RGB-D, planning, and control</span></div>
             </div>
         </section>
 
         <section id="section-about">
-            <span class="section-tag">About Me</span>
-            <h2 class="section-title">What I <span>Work On</span></h2>
+            <span class="section-tag">Profile</span>
+            <h2 class="section-title">Engineering <span>Focus</span></h2>
             <div class="about-grid">
-                <article class="about-card">
-                    <span class="card-index">01</span>
-                    <h3>Focus</h3>
-                    <p>ROS 2-based robot systems, robot learning, and reliable integration from sensors to physical action.</p>
-                </article>
-                <article class="about-card">
-                    <span class="card-index">02</span>
-                    <h3>Experience</h3>
-                    <p>Mobile robots, robotic manipulators, embedded hardware, simulation, and user-facing robot interfaces.</p>
-                </article>
-                <article class="about-card">
-                    <span class="card-index">03</span>
-                    <h3>Current Direction</h3>
-                    <p>Vision-Language-Action, learning-based manipulation, hand-eye calibration, and sim-to-real workflows.</p>
-                </article>
+                <article class="about-card"><span class="card-index">01</span><h3>System Integration</h3><p>Integrating sensors, motor interfaces, ROS 2 middleware, autonomous functions, and GUIs into maintainable robotic systems.</p></article>
+                <article class="about-card"><span class="card-index">02</span><h3>Robotic Manipulation</h3><p>Connecting RGB-D perception, 3D coordinate estimation, tf2, and MoveIt 2 to physical pick-and-place actions.</p></article>
+                <article class="about-card"><span class="card-index">03</span><h3>Research Direction</h3><p>Exploring robot learning and VLA methods for robots that understand visual context and language instructions.</p></article>
             </div>
         </section>
 
@@ -78,126 +66,115 @@
             <span class="section-tag">Capabilities</span>
             <h2 class="section-title">Technical <span>Stack</span></h2>
             <div class="skills-grid">
-                <article class="skill-card">
-                    <h3>Programming</h3>
-                    <div class="skill-list">
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="">C</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="">C++</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
-                        <span class="skill-item skill-item-text"><b>V</b>Verilog</span>
-                    </div>
-                </article>
-                <article class="skill-card">
-                    <h3>AI & Vision</h3>
-                    <div class="skill-list">
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="">PyTorch</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="">OpenCV</span>
-                        <span class="skill-item skill-item-text"><b>CV</b>Computer Vision</span>
-                    </div>
-                </article>
-                <article class="skill-card">
-                    <h3>Robotics</h3>
-                    <div class="skill-list">
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg" alt="">ROS 2</span>
-                        <span class="skill-item skill-item-text"><b>M2</b>MoveIt 2</span>
-                        <span class="skill-item skill-item-text"><b>N2</b>Nav2</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nvidia/nvidia-original.svg" alt="">Isaac Sim</span>
-                    </div>
-                </article>
-                <article class="skill-card">
-                    <h3>Embedded & FPGA</h3>
-                    <div class="skill-list">
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/embeddedc/embeddedc-original.svg" alt="">STM32</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" alt="">Raspberry Pi</span>
-                        <span class="skill-item skill-item-text"><b>FP</b>FPGA</span>
-                        <span class="skill-item skill-item-text"><b>AMD</b>Vivado</span>
-                    </div>
-                </article>
-                <article class="skill-card">
-                    <h3>Development Tools</h3>
-                    <div class="skill-list">
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="">Ubuntu</span>
-                        <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original.svg" alt="">Anaconda</span>
-                    </div>
-                </article>
+                <article class="skill-card"><h3>Programming</h3><div class="skill-list">
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="">C</span>
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="">C++</span>
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</span>
+                    <span class="skill-item skill-item-text"><b>V</b>Verilog</span>
+                </div></article>
+                <article class="skill-card"><h3>AI & Vision</h3><div class="skill-list">
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="">PyTorch</span>
+                    <span class="skill-item skill-item-text"><b>CV</b>OpenCV</span>
+                    <span class="skill-item skill-item-text"><b>Y</b>YOLO</span>
+                    <span class="skill-item skill-item-text"><b>RGB</b>RGB-D Vision</span>
+                </div></article>
+                <article class="skill-card"><h3>Robotics</h3><div class="skill-list">
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg" alt="">ROS 2</span>
+                    <span class="skill-item skill-item-text"><b>M2</b>MoveIt 2</span>
+                    <span class="skill-item skill-item-text"><b>N2</b>Nav2</span>
+                    <span class="skill-item skill-item-text"><b>IS</b>Isaac Sim</span>
+                    <span class="skill-item skill-item-text"><b>TF</b>tf2</span>
+                </div></article>
+                <article class="skill-card"><h3>Embedded & FPGA</h3><div class="skill-list">
+                    <span class="skill-item skill-item-text"><b>ST</b>STM32</span>
+                    <span class="skill-item skill-item-text"><b>FP</b>FPGA</span>
+                    <span class="skill-item skill-item-text"><b>AMD</b>Vivado</span>
+                    <span class="skill-item skill-item-text"><b>485</b>RS485</span>
+                </div></article>
+                <article class="skill-card"><h3>Development Tools</h3><div class="skill-list">
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</span>
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">Docker</span>
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="">Ubuntu</span>
+                    <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original.svg" alt="">Anaconda</span>
+                    <span class="skill-item skill-item-text"><b>Qt</b>PyQt5</span>
+                </div></article>
             </div>
         </section>
 
         <section id="section-projects">
             <span class="section-tag">Selected Work</span>
-            <h2 class="section-title">Featured <span>Projects</span></h2>
-            <div class="projects-grid">
+            <h2 class="section-title">Project <span>Experience</span></h2>
+            <div class="projects-grid projects-grid-three">
                 <article class="project-card">
-                    <div class="project-visual visual-mobile"><span>ROS 2</span><i></i><i></i><i></i></div>
-                    <div class="project-card-top">
-                        <div class="project-card-header"><span class="project-category">Mobile Robotics</span><a href="https://github.com/nayana224/mdbot" target="_blank" rel="noreferrer" class="project-link-icon">Repository ↗</a></div>
-                        <h3 class="project-title">ROS 2 Mobile Robot System</h3>
-                        <p class="project-summary">A mobile robot platform integrating hardware drivers, sensors, autonomous navigation, operating modes, and a user interface.</p>
-                        <div class="project-role"><span>My Role</span><p>System architecture, ROS 2 integration, hardware interfaces, GUI, and package documentation.</p></div>
-                        <ul class="project-highlights"><li>Integrated URDF, sensors, and motor interfaces</li><li>Applied Nav2 navigation and state management</li><li>Structured packages for maintainable development</li></ul>
-                    </div>
-                    <div><div class="project-tags"><span class="project-tag">ROS 2</span><span class="project-tag">Nav2</span><span class="project-tag">Python</span><span class="project-tag">C++</span></div><button class="project-more-btn" data-project="mobile-robot">Project Details →</button></div>
+                    <div class="project-visual visual-twin"><span>Digital Twin</span><i></i><i></i><i></i></div>
+                    <div class="project-card-top"><div class="project-card-header"><span class="project-category">2025 Hanium</span></div>
+                    <h3 class="project-title">QR-Based Digital Twin Logistics System</h3>
+                    <p class="project-summary">A logistics automation system combining QR recognition, ROS 2 robot-arm control, conveyor hardware, and a Unity digital twin.</p>
+                    <div class="project-role"><span>Contribution</span><p>Implemented Unity-to-hardware synchronization and the control flow from QR recognition to pick-and-place.</p></div>
+                    <ul class="project-highlights"><li>Built UDP communication between Unity and ROS 2</li><li>Coordinated QR, conveyor, sensor, and robot-arm timing</li><li>Reflected physical system state in the digital twin</li></ul></div>
+                    <div><div class="project-tags"><span class="project-tag">ROS 2</span><span class="project-tag">MoveIt 2</span><span class="project-tag">Unity</span><span class="project-tag">YOLO</span></div><button class="project-more-btn" data-project="digital-twin">Project Details →</button></div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-visual visual-arm"><span>UR5e</span><i></i><i></i><i></i></div>
-                    <div class="project-card-top">
-                        <div class="project-card-header"><span class="project-category">Manipulation & Simulation</span><a href="https://github.com/nayana224/ur_isaac_ws" target="_blank" rel="noreferrer" class="project-link-icon">Repository ↗</a></div>
-                        <h3 class="project-title">UR5e, Isaac Sim & MoveIt 2</h3>
-                        <p class="project-summary">A development environment connecting a UR5e manipulator in Isaac Sim with ROS 2 and MoveIt 2.</p>
-                        <div class="project-role"><span>My Role</span><p>Simulation setup, ROS 2 Bridge configuration, joint interfaces, and MoveIt 2 integration.</p></div>
-                        <ul class="project-highlights"><li>Configured joint states and joint commands</li><li>Integrated UR5e simulation with MoveIt 2 workflows</li><li>Prepared calibration and manipulation experiments</li></ul>
-                    </div>
-                    <div><div class="project-tags"><span class="project-tag">Isaac Sim</span><span class="project-tag">MoveIt 2</span><span class="project-tag">UR5e</span><span class="project-tag">ROS 2</span></div><button class="project-more-btn" data-project="ur-isaac">Project Details →</button></div>
+                    <div class="project-visual visual-arm"><span>RGB-D P&P</span><i></i><i></i><i></i></div>
+                    <div class="project-card-top"><div class="project-card-header"><span class="project-category">Personal Research Project</span></div>
+                    <h3 class="project-title">RGB-D Robot Arm Pick-and-Place</h3>
+                    <p class="project-summary">A perception-to-action pipeline using RealSense D435, YOLO segmentation, 3D position estimation, tf2, and MoveIt 2.</p>
+                    <div class="project-role"><span>Contribution</span><p>Developed the full pipeline from RGB-D acquisition and segmentation to coordinate transforms and robot execution.</p></div>
+                    <ul class="project-highlights"><li>Estimated 3D object positions from masks and depth</li><li>Validated camera-to-robot transforms with tf2 and RViz2</li><li>Connected perception results to MoveIt 2 actions</li></ul></div>
+                    <div><div class="project-tags"><span class="project-tag">RealSense</span><span class="project-tag">YOLOv11</span><span class="project-tag">tf2</span><span class="project-tag">MoveIt 2</span></div><button class="project-more-btn" data-project="rgbd-arm">Project Details →</button></div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-visual visual-mobile"><span>Mobile Robot</span><i></i><i></i><i></i></div>
+                    <div class="project-card-top"><div class="project-card-header"><span class="project-category">Capstone Design</span><a href="https://github.com/nayana224/mdbot" target="_blank" rel="noreferrer" class="project-link-icon">Repository ↗</a></div>
+                    <h3 class="project-title">Autonomous Following & Towing Robot</h3>
+                    <p class="project-summary">A ROS 2 mobile robot supporting LiDAR-based worker following, path recording, repeated navigation, towing, and GUI operation.</p>
+                    <div class="project-role"><span>Contribution</span><p>Led system integration across motor communication, URDF, ros2_control, SLAM, Nav2, mode management, and GUI.</p></div>
+                    <ul class="project-highlights"><li>Integrated RS485 motor control and robot hardware</li><li>Separated GUI commands from robot execution with mode_manager</li><li>Improved process shutdown using staged signal handling</li></ul></div>
+                    <div><div class="project-tags"><span class="project-tag">ROS 2</span><span class="project-tag">Nav2</span><span class="project-tag">SLAM</span><span class="project-tag">PyQt5</span></div><button class="project-more-btn" data-project="mobile-robot">Project Details →</button></div>
                 </article>
             </div>
         </section>
 
-        <section id="section-research">
-            <span class="section-tag">Research Interests</span>
-            <h2 class="section-title">Current <span>Direction</span></h2>
-            <div class="research-grid">
-                <article><span>01</span><h3>Robot Learning</h3><p>Learning representations and policies that connect multimodal perception with robot behavior.</p></article>
-                <article><span>02</span><h3>Robotic Manipulation</h3><p>Perception, planning, calibration, and control for robust manipulation in real environments.</p></article>
-                <article><span>03</span><h3>Vision-Language-Action</h3><p>Studying models that interpret visual and language context to generate meaningful robot actions.</p></article>
+        <section id="section-background">
+            <span class="section-tag">Background</span>
+            <h2 class="section-title">Awards & <span>Activities</span></h2>
+            <div class="background-grid">
+                <div class="background-column"><h3>Awards</h3>
+                    <article class="background-item"><span>2026</span><div><strong>Silver Prize</strong><p>5th Intelligent Robot Technology Application Idea Competition</p></div></article>
+                    <article class="background-item"><span>2025</span><div><strong>Encouragement Award</strong><p>Hanium Dream-Up Competition</p></div></article>
+                    <article class="background-item"><span>2021</span><div><strong>3rd Place</strong><p>University President's Robot Programming Competition</p></div></article>
+                </div>
+                <div class="background-column"><h3>Research · Leadership · Teaching</h3>
+                    <article class="background-item"><span>2024–</span><div><strong>Undergraduate Researcher, IRC Lab</strong><p>ROS 2 manipulation, RGB-D pick-and-place, and mobile robotics projects</p></div></article>
+                    <article class="background-item"><span>2025–26</span><div><strong>Education Lead, MCC / CIR</strong><p>Planned seminars and mentored projects in circuits, embedded systems, STM32, FPGA, and ROS 2</p></div></article>
+                    <article class="background-item"><span>2026</span><div><strong>Teaching Assistant</strong><p>Microcomputer and FPGA laboratory instruction, materials, and environment setup</p></div></article>
+                </div>
             </div>
         </section>
 
         <section id="section-notes">
             <span class="section-tag">Technical Notes</span>
             <h2 class="section-title">Study & <span>Engineering Logs</span></h2>
-            <p class="section-lead">I document concepts, implementation decisions, debugging processes, and lessons from building robotic systems.</p>
+            <p class="section-lead">Notes on concepts, architecture decisions, debugging, and lessons learned while building robotic systems.</p>
             <div class="notes-grid">
-                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>ROS 2</span><h3>Robot Software</h3><p>Nodes, topics, launch systems, Nav2, MoveIt 2, and system architecture.</p><b>Read notes ↗</b></a>
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>ROS 2</span><h3>Robot Software</h3><p>Nodes, interfaces, package architecture, Nav2, MoveIt 2, and system integration.</p><b>Read notes ↗</b></a>
                 <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Robot Learning</span><h3>AI & Mathematics</h3><p>PyTorch, computer vision, linear algebra, calibration, and paper reviews.</p><b>Read notes ↗</b></a>
-                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Engineering</span><h3>Build & Debug</h3><p>Ubuntu, Docker, Jetson, simulation environments, and hardware troubleshooting.</p><b>Read notes ↗</b></a>
-            </div>
-        </section>
-
-        <section id="section-experience">
-            <span class="section-tag">Background</span>
-            <h2 class="section-title">Experience & <span>Education</span></h2>
-            <div class="timeline">
-                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-info"><span class="timeline-period">PRESENT</span><h3 class="timeline-title">M.S. Student in AI Engineering</h3><span class="timeline-org">Robotics and Intelligent Systems</span></div><p class="timeline-desc">Studying robot learning and Vision-Language-Action models while developing ROS 2-based robotic systems.</p></div>
-                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-info"><span class="timeline-period">PROJECT EXPERIENCE</span><h3 class="timeline-title">Robot System Integration</h3><span class="timeline-org">Mobile Robots & Manipulators</span></div><p class="timeline-desc">Integrated hardware, sensors, middleware, planning, control, and interfaces across autonomous robot projects.</p></div>
-                <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-info"><span class="timeline-period">FOUNDATION</span><h3 class="timeline-title">Mechatronics & Embedded Systems</h3><span class="timeline-org">Robotics Engineering Background</span></div><p class="timeline-desc">Built foundations in control, firmware, FPGA design, computer vision, and robotic system development.</p></div>
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Engineering</span><h3>Build & Debug</h3><p>Ubuntu, Docker, Jetson, simulation, embedded hardware, and troubleshooting.</p><b>Read notes ↗</b></a>
             </div>
         </section>
     </main>
 
-    <footer class="footer-container">
-        <p class="footer-cta">Building robots, documenting the process.</p>
-        <div class="footer-socials"><a href="https://github.com/nayana224" target="_blank" rel="noreferrer" class="footer-social-link">GitHub</a><a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer" class="footer-social-link">Velog</a><a href="mailto:inpyoi1304@gmail.com" class="footer-social-link">Email</a></div>
-        <p class="footer-copyright">© 2026 Inpyo Lee</p>
-    </footer>
+    <footer class="footer-container"><p class="footer-cta">Robotics systems, research, and engineering notes.</p><div class="footer-socials"><a href="https://github.com/nayana224" target="_blank" rel="noreferrer" class="footer-social-link">GitHub</a><a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer" class="footer-social-link">Velog</a><a href="mailto:inpyoi1304@gmail.com" class="footer-social-link">Email</a></div><p class="footer-copyright">© 2026 Inpyo Lee</p></footer>
 
     <div class="modal-container" id="project-modal"><div class="modal-content"><button class="modal-close-btn" id="modal-close" aria-label="Close modal">×</button><div class="modal-body" id="modal-body-content"></div></div></div>
-    <div id="project-templates" hidden>
-        <div id="template-mobile-robot"><div class="modal-header"><span class="project-category">Mobile Robotics</span><h3 class="modal-project-title">ROS 2 Mobile Robot System</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">My Role</h4><p class="modal-meta-value">System integration, package architecture, hardware interfaces, GUI integration, and documentation</p><h4 class="modal-meta-title">Tech Stack</h4><p class="modal-meta-value">ROS 2, Nav2, Python, C++, URDF</p><h4 class="modal-meta-title">Repository</h4><p class="modal-meta-value"><a href="https://github.com/nayana224/mdbot" target="_blank" rel="noreferrer">github.com/nayana224/mdbot ↗</a></p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">Overview</h4><p class="modal-detail-text">An integrated mobile robot system that connects low-level hardware, sensors, ROS 2 middleware, autonomous navigation, operating modes, and a user interface.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Focus</h4><p class="modal-detail-text">The main challenge was not a single algorithm, but coordinating multiple packages and interfaces into a predictable system. The project emphasizes clear package boundaries, state transitions, safety-oriented operation, and maintainable documentation.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Outcome</h4><p class="modal-detail-text">A reusable ROS 2 workspace structure for continued development of autonomous navigation, worker-following, and robot operation workflows.</p></div></div></div></div>
-        <div id="template-ur-isaac"><div class="modal-header"><span class="project-category">Manipulation & Simulation</span><h3 class="modal-project-title">UR5e, Isaac Sim & MoveIt 2</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">My Role</h4><p class="modal-meta-value">Simulation environment setup, ROS 2 Bridge, joint interfaces, and MoveIt 2 integration</p><h4 class="modal-meta-title">Tech Stack</h4><p class="modal-meta-value">Isaac Sim, ROS 2 Humble, MoveIt 2, UR5e, Python</p><h4 class="modal-meta-title">Repository</h4><p class="modal-meta-value"><a href="https://github.com/nayana224/ur_isaac_ws" target="_blank" rel="noreferrer">github.com/nayana224/ur_isaac_ws ↗</a></p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">Overview</h4><p class="modal-detail-text">A simulation and control environment for connecting a UR5e model in Isaac Sim to ROS 2 and MoveIt 2.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Focus</h4><p class="modal-detail-text">Configured robot description assets, articulation behavior, ROS 2 joint-state publishing, joint-command subscription, and motion-planning workflows.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Next Step</h4><p class="modal-detail-text">Extend the environment toward hand-eye calibration, perception-guided manipulation, and reproducible simulation-to-real experiments.</p></div></div></div></div>
+    <div id="project-templates" style="display:none;">
+        <div id="template-digital-twin"><div class="modal-header"><span class="project-category">Digital Twin Logistics</span><h3 class="modal-project-title">QR-Based Digital Twin Logistics System</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">Period</h4><p class="modal-meta-value">Apr 2025 – Oct 2025</p><h4 class="modal-meta-title">Type</h4><p class="modal-meta-value">Team project · Hanium competition</p><h4 class="modal-meta-title">Stack</h4><p class="modal-meta-value">Python, C#, C++, ROS 2, MoveIt 2, YOLO, Unity</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">System</h4><p class="modal-detail-text">QR information was queued, conveyor arrival was detected by an ultrasonic sensor, and the robot arm executed destination-specific pick-and-place while Unity visualized system state.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">The main challenge was coordinating communication delay and execution order across perception, conveyor control, manipulation, and simulation. A UDP-based state exchange and explicit control sequence were used to synchronize the physical system and digital twin.</p></div></div></div></div>
+        <div id="template-rgbd-arm"><div class="modal-header"><span class="project-category">Robotic Manipulation</span><h3 class="modal-project-title">RGB-D Robot Arm Pick-and-Place</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">Period</h4><p class="modal-meta-value">Jul 2025 – Feb 2026</p><h4 class="modal-meta-title">Type</h4><p class="modal-meta-value">Personal project · IRC Lab seminar</p><h4 class="modal-meta-title">Stack</h4><p class="modal-meta-value">ROS 2, Python, RealSense D435, YOLOv11 Segmentation, tf2, MoveIt 2</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">Pipeline</h4><p class="modal-detail-text">RGB-D input → segmentation mask → depth-based 3D estimation → camera-to-robot transform → MoveIt 2 target pose and pick-and-place.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">The project moved from AprilTag-based estimation to markerless segmentation. Depth noise and coordinate-frame validation were handled through mask-based sampling, tf2, and RViz2 verification.</p></div></div></div></div>
+        <div id="template-mobile-robot"><div class="modal-header"><span class="project-category">Mobile Robotics</span><h3 class="modal-project-title">Autonomous Following & Towing Robot</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">Period</h4><p class="modal-meta-value">Sep 2025 – Jun 2026</p><h4 class="modal-meta-title">Role</h4><p class="modal-meta-value">System integration</p><h4 class="modal-meta-title">Stack</h4><p class="modal-meta-value">ROS 2, RPLiDAR S2, ros2_control, SLAM, Nav2, PyQt5, RS485</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">System</h4><p class="modal-detail-text">The robot supports worker following, path recording, repeated autonomous navigation, cart towing, status monitoring, and fine manual control through a GUI.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">Functional code was reorganized into hardware, tracking, path, navigation, GUI, and mode-management layers. A staged SIGINT → SIGTERM → SIGKILL shutdown strategy reduced process conflicts during mode transitions.</p></div></div></div></div>
     </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
