@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inpyo Lee | Robotics Engineer Portfolio</title>
+    <title>Inpyo Lee | Robotics & AI</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-    <!-- Mouse follow neon glow background effect -->
     <div id="glow-bg"></div>
-
-    <!-- Scroll progress indicator bar -->
     <div class="scroll-progress" id="scroll-bar"></div>
 
-    <!-- Navigation Header -->
     <header id="header-nav" class="header-nav">
         <div class="nav-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">Inpyo.dev</div>
         <nav class="nav-links">
@@ -23,55 +18,52 @@
             <a href="#section-skills">Skills</a>
             <a href="#section-projects">Projects</a>
             <a href="#section-experience">Experience</a>
+            <a href="https://velog.io/@tickets_for_2/series" target="_blank">Notes</a>
         </nav>
     </header>
 
     <main id="main-content">
-        <!-- 1. Hero Section -->
         <section id="section-hero" class="hero-container">
-            <div class="hero-tag">Computer Vision x Robot Control</div>
-            <h1 class="hero-title">👋 Hi, I'm<br>Robotics Engineer <span>Inpyo Lee</span>.</h1>
+            <div class="hero-tag">ROS 2 · Robot Learning · Robotic Systems</div>
+            <h1 class="hero-title">Hi, I'm<br><span>Inpyo Lee</span>.</h1>
             <p class="hero-description">
-                I am passionate about bridging the gap between Computer Vision (AI) and Hardware Control. 
-                My focus lies in deploying real-time artificial intelligence onto physical systems, ensuring robust and reliable control using <strong>ROS2</strong> and embedded environments.
+                I am a master's student working on ROS 2-based robotic systems, including mobile robots and robotic manipulators.
+                My current interests include <strong>robot learning</strong>, <strong>robotic manipulation</strong>, and
+                <strong>Vision-Language-Action models</strong>.
             </p>
             <div class="hero-links">
                 <a href="mailto:inpyoi1304@gmail.com" class="btn btn-primary">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Email Me
+                    Email
                 </a>
                 <a href="https://github.com/nayana224" target="_blank" class="btn btn-secondary">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                     GitHub
                 </a>
-                <a href="https://velog.io/@tickets_for_2/posts" target="_blank" class="btn btn-secondary">
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" class="btn btn-secondary">
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    Velog Blog
+                    Technical Notes
                 </a>
             </div>
         </section>
 
-        <!-- 2. About Me Section -->
         <section id="section-about">
             <span class="section-tag">About Me</span>
-            <h2 class="section-title">Research & Development Philosophy</h2>
+            <h2 class="section-title">Robotics System <span>Integration</span></h2>
             <div class="skill-card" style="margin-bottom: 24px; padding: 40px;">
                 <p style="color: var(--color-text-sub); font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px; word-break: keep-all;">
-                    Robotics is an exciting discipline where virtual code comes to life as physical motion. 
-                    I look beyond simulations to build robust hardware systems, integrating various **embedded control boards (STM32, FPGA)** and sensors to address real-world noise and time delays.
+                    My experience covers the integration of hardware interfaces, sensors, ROS 2 middleware, planning, control, and user interfaces for real robotic systems.
                 </p>
                 <p style="color: var(--color-text-sub); font-size: 1.05rem; line-height: 1.8; word-break: keep-all;">
-                    Furthermore, I am tackling **end-to-end AI robotics** pipelines where robots can perceive their surroundings in real-time 3D, and intelligently compute trajectories and motor controls based on visual inputs.
+                    I am extending this systems background toward learning-based robotics, with a focus on connecting perception and action in mobile robots and manipulators.
                 </p>
             </div>
         </section>
 
-        <!-- 3. Skills Section -->
         <section id="section-skills">
             <span class="section-tag">Capabilities</span>
-            <h2 class="section-title">Technical <span>Tech Stack</span></h2>
+            <h2 class="section-title">Technical <span>Stack</span></h2>
             <div class="skills-grid">
-                <!-- Programming Languages -->
                 <div class="skill-card">
                     <h3>Programming Languages</h3>
                     <div class="skill-list">
@@ -81,314 +73,219 @@
                         <span class="skill-badge">Verilog</span>
                     </div>
                 </div>
-                <!-- AI & Computer Vision -->
                 <div class="skill-card">
                     <h3>AI & Computer Vision</h3>
                     <div class="skill-list">
                         <span class="skill-badge">PyTorch</span>
                         <span class="skill-badge">OpenCV</span>
-                        <span class="skill-badge">Intel OpenVINO</span>
+                        <span class="skill-badge">Computer Vision</span>
                     </div>
                 </div>
-                <!-- Robotics & Hardware -->
                 <div class="skill-card">
-                    <h3>Robotics & Hardware</h3>
+                    <h3>Robotics</h3>
                     <div class="skill-list">
-                        <span class="skill-badge">ROS2</span>
-                        <span class="skill-badge">MoveIt2</span>
+                        <span class="skill-badge">ROS 2</span>
+                        <span class="skill-badge">MoveIt 2</span>
                         <span class="skill-badge">Nav2</span>
-                        <span class="skill-badge">STM32 (HAL/LL)</span>
-                        <span class="skill-badge">Vivado (FPGA)</span>
+                        <span class="skill-badge">Isaac Sim</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Embedded & Hardware</h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">STM32</span>
+                        <span class="skill-badge">Raspberry Pi</span>
+                        <span class="skill-badge">FPGA</span>
+                        <span class="skill-badge">Vivado</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools</h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">Git</span>
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">Ubuntu</span>
+                        <span class="skill-badge">Anaconda</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Projects Section -->
         <section id="section-projects">
             <span class="section-tag">Works</span>
             <h2 class="section-title">Featured <span>Projects</span></h2>
             <div class="projects-grid">
-                
-                <!-- Project 1: In-Wheel Motor Drive System -->
                 <article class="project-card">
                     <div class="project-card-top">
                         <div class="project-card-header">
-                            <span class="project-category">Hardware & Control</span>
+                            <span class="project-category">Mobile Robotics</span>
                             <div class="project-links">
-                                <a href="https://github.com/nayana224" target="_blank" class="project-link-icon" title="GitHub">
+                                <a href="https://github.com/nayana224/mdbot" target="_blank" class="project-link-icon" title="GitHub">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                                 </a>
                             </div>
                         </div>
-                        <h3 class="project-title">In-Wheel Motor Drive System</h3>
-                        <p class="project-summary">MD400T motor driver & dual MDH250 in-wheel motor control interface. Designed dual-safety hardware shutdown circuits integrating MRE-RR1R emergency button.</p>
+                        <h3 class="project-title">ROS 2 Mobile Robot System</h3>
+                        <p class="project-summary">A ROS 2-based mobile robot platform integrating hardware drivers, sensors, autonomous navigation, operation modes, and a user interface.</p>
                         <ul class="project-highlights">
-                            <li>Integrated MD400T & MDH250 driver-motor speed control</li>
-                            <li>Designed physical safety circuit using MRE-RR1R button</li>
-                            <li>Enabled CAN bus feedback monitoring (velocity, current)</li>
+                            <li>Integrated robot hardware, URDF, sensors, and motor interfaces</li>
+                            <li>Applied Nav2-based autonomous navigation and system state management</li>
+                            <li>Structured packages and documentation for maintainable development</li>
                         </ul>
                     </div>
                     <div>
                         <div class="project-tags">
-                            <span class="project-tag">C++</span>
-                            <span class="project-tag">STM32</span>
-                            <span class="project-tag">CAN Bus</span>
-                            <span class="project-tag">Hardware</span>
-                        </div>
-                        <button class="project-more-btn" data-project="motor-driver">
-                            Detailed Analysis
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Project 2: Vision-based Object Detection -->
-                <article class="project-card">
-                    <div class="project-card-top">
-                        <div class="project-card-header">
-                            <span class="project-category">Computer Vision & AI</span>
-                            <div class="project-links">
-                                <a href="https://github.com/nayana224" target="_blank" class="project-link-icon" title="GitHub">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">Vision-based Object Detection</h3>
-                        <p class="project-summary">OpenCV & PyTorch real-time object detection pipeline. Optimizations for Edge devices with Intel OpenVINO.</p>
-                        <ul class="project-highlights">
-                            <li>Trained lightweight object detection models using PyTorch</li>
-                            <li>OpenCV pipeline for real-time preprocessing & noise filtering</li>
-                            <li>Accelerated inference by 2.4x with Intel OpenVINO</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="project-tags">
+                            <span class="project-tag">ROS 2</span>
+                            <span class="project-tag">Nav2</span>
                             <span class="project-tag">Python</span>
-                            <span class="project-tag">PyTorch</span>
-                            <span class="project-tag">OpenCV</span>
-                            <span class="project-tag">OpenVINO</span>
+                            <span class="project-tag">C++</span>
                         </div>
-                        <button class="project-more-btn" data-project="vision-detection">
-                            Detailed Analysis
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                        </button>
+                        <button class="project-more-btn" data-project="mobile-robot">Project Details</button>
                     </div>
                 </article>
 
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <div class="project-card-header">
+                            <span class="project-category">Manipulation & Simulation</span>
+                            <div class="project-links">
+                                <a href="https://github.com/nayana224/ur_isaac_ws" target="_blank" class="project-link-icon" title="GitHub">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">UR5e, Isaac Sim & MoveIt 2</h3>
+                        <p class="project-summary">A development environment for connecting a UR5e manipulator in Isaac Sim with ROS 2 and MoveIt 2.</p>
+                        <ul class="project-highlights">
+                            <li>Configured ROS 2 Bridge, joint states, and joint commands</li>
+                            <li>Integrated UR5e simulation with MoveIt 2 workflows</li>
+                            <li>Prepared a foundation for manipulation and calibration experiments</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="project-tags">
+                            <span class="project-tag">Isaac Sim</span>
+                            <span class="project-tag">MoveIt 2</span>
+                            <span class="project-tag">UR5e</span>
+                            <span class="project-tag">ROS 2</span>
+                        </div>
+                        <button class="project-more-btn" data-project="ur-isaac">Project Details</button>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- 5. Experience Section -->
         <section id="section-experience">
             <span class="section-tag">Journey</span>
-            <h2 class="section-title">Timeline <span>Experience</span></h2>
+            <h2 class="section-title">Experience & <span>Direction</span></h2>
             <div class="timeline">
-                
-                <!-- Timeline 1 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-info">
-                        <span class="timeline-period">2025 - PRESENT</span>
-                        <h3 class="timeline-title">Embedded Circuits & Firmware Design</h3>
-                        <span class="timeline-org">Independent & Team Projects</span>
+                        <span class="timeline-period">PRESENT</span>
+                        <h3 class="timeline-title">M.S. Student in AI Engineering</h3>
+                        <span class="timeline-org">Robotics and Intelligent Systems</span>
                     </div>
-                    <p class="timeline-desc">Developing control interfaces for AGV platforms integrating MD400T drivers, safety systems, and verifying functional hardware setups.</p>
+                    <p class="timeline-desc">Studying robot learning and Vision-Language-Action models while building on a background in ROS 2-based robotic systems.</p>
                 </div>
-
-                <!-- Timeline 2 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-info">
-                        <span class="timeline-period">2024</span>
-                        <h3 class="timeline-title">Real-Time Vision & Inference Optimization</h3>
-                        <span class="timeline-org">Computer Vision Projects</span>
+                        <span class="timeline-period">PROJECT EXPERIENCE</span>
+                        <h3 class="timeline-title">Robot System Integration</h3>
+                        <span class="timeline-org">Mobile Robots & Manipulators</span>
                     </div>
-                    <p class="timeline-desc">Optimizing deep learning bottlenecks on Edge devices through hardware acceleration (OpenVINO) and multi-threaded asynchronous video processing pipelines.</p>
+                    <p class="timeline-desc">Integrated hardware, sensors, middleware, planning, control, and interfaces across autonomous mobile robot and manipulation projects.</p>
                 </div>
-
-                <!-- Timeline 3 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-info">
-                        <span class="timeline-period">2023 - PRESENT</span>
-                        <h3 class="timeline-title">B.S. in Robotics Engineering</h3>
-                        <span class="timeline-org">Undergraduate Studies</span>
+                        <span class="timeline-period">FOUNDATION</span>
+                        <h3 class="timeline-title">Mechatronics & Embedded Systems</h3>
+                        <span class="timeline-org">Control, Firmware, FPGA</span>
                     </div>
-                    <p class="timeline-desc">Building a strong theoretical foundation in control theory, robot dynamics, embedded systems, and computer architecture from a systems engineering perspective.</p>
+                    <p class="timeline-desc">Built a systems foundation through C/C++, STM32, Verilog, Vivado, control, electronics, and computer architecture.</p>
                 </div>
-
             </div>
         </section>
     </main>
 
-    <!-- 6. Footer Section -->
     <footer class="footer-container">
         <div class="footer-socials">
             <a href="https://github.com/nayana224" target="_blank" class="footer-social-link" title="GitHub">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             </a>
-            <a href="https://velog.io/@tickets_for_2/posts" target="_blank" class="footer-social-link" title="Velog Blog">
+            <a href="https://velog.io/@tickets_for_2/series" target="_blank" class="footer-social-link" title="Technical Notes">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             </a>
             <a href="mailto:inpyoi1304@gmail.com" class="footer-social-link" title="Email">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </a>
         </div>
-        <p class="footer-copyright">© 2026 Inpyo Lee. All rights reserved.</p>
+        <p class="footer-copyright">© 2026 Inpyo Lee.</p>
     </footer>
 
-    <!-- 7. Project Detail Modal Container -->
     <div class="modal-container" id="project-modal">
         <div class="modal-content">
-            <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-            <div class="modal-body" id="modal-body-content">
-                <!-- Swapped dynamically by JS -->
-            </div>
+            <button class="modal-close-btn" id="modal-close" aria-label="Close modal">×</button>
+            <div class="modal-body" id="modal-body-content"></div>
         </div>
     </div>
 
-    <!-- Templates for detail modals (Hidden by default) -->
     <div id="project-templates" style="display: none;">
-        
-        <!-- Template 1: Motor Driver Control System -->
-        <div id="template-motor-driver">
+        <div id="template-mobile-robot">
             <div class="modal-header">
-                <span class="project-category">Hardware & Control</span>
-                <h3 class="modal-project-title">In-Wheel Motor Drive System</h3>
+                <span class="project-category">Mobile Robotics</span>
+                <h3 class="modal-project-title">ROS 2 Mobile Robot System</h3>
             </div>
             <div class="modal-grid">
-                <!-- Left Sidebar (Meta info) -->
                 <div class="modal-sidebar-card">
-                    <h4 class="modal-meta-title">Project Period</h4>
-                    <p class="modal-meta-value">Jan 2025 - Mar 2025 (3 Months)</p>
-                    
-                    <h4 class="modal-meta-title">My Role</h4>
-                    <p class="modal-meta-value">Designed safety circuit board and sole developer of STM32 firmware</p>
-                    
+                    <h4 class="modal-meta-title">Role</h4>
+                    <p class="modal-meta-value">System integration and software architecture</p>
                     <h4 class="modal-meta-title">Tech Stack</h4>
-                    <p class="modal-meta-value">C++, STM32(HAL), CAN Bus, KiCad (PCB Design)</p>
-
-                    <h4 class="modal-meta-title">Main Devices</h4>
-                    <p class="modal-meta-value">MD400T Driver, MDH250 In-Wheel Motors, MRE-RR1R E-Stop Switch</p>
+                    <p class="modal-meta-value">ROS 2, Nav2, Python, C++, URDF</p>
+                    <h4 class="modal-meta-title">Repository</h4>
+                    <p class="modal-meta-value"><a href="https://github.com/nayana224/mdbot" target="_blank">github.com/nayana224/mdbot</a></p>
                 </div>
-                <!-- Right Main Content (In-depth analysis) -->
                 <div>
                     <div class="modal-detail-section">
-                        <h4 class="modal-detail-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg>
-                            Project Overview
-                        </h4>
-                        <p class="modal-detail-text">
-                            Developed a control interface for a dual **MDH250 high-torque in-wheel motor** platform (commonly used in mobile robots/AGVs) driven by an **MD400T 2-axis motor driver**, utilizing an STM32 MCU via **CAN bus** communication to monitor and synchronize velocities in real-time.
-                        </p>
+                        <h4 class="modal-detail-title">Project Overview</h4>
+                        <p class="modal-detail-text">Development and restructuring of a ROS 2 mobile robot system that combines hardware drivers, sensors, navigation, mode management, and operator-facing functionality.</p>
                     </div>
-
                     <div class="modal-detail-section">
-                        <h4 class="modal-detail-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            Dual-Channel Safety Circuit Design
-                        </h4>
-                        <p class="modal-detail-text">
-                            To prevent accidents from firmware/hardware malfunctions, I designed an emergency stop circuit integrating a physical **MRE-RR1R emergency switch**. Aside from software stop flags, triggering the E-Stop instantly cuts the main power relays and cuts off the STO (Safe Torque Off) terminal directly at the hardware layer, ensuring absolute safety.
-                        </p>
-                    </div>
-
-                    <div class="modal-detail-section">
-                        <h4 class="modal-detail-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                            Troubleshooting
-                        </h4>
-                        <p class="modal-detail-text">
-                            <strong>Problem:</strong> Sudden braking or downhill travel generated high back-EMF, causing spikes in the main DC link voltage. This triggered Over-Voltage faults on the motor controller and reset the CPU.<br><br>
-                            <strong>Solution:</strong> 
-                            1. Added a high-capacity bypass capacitor bank and reverse-current protection diodes to the power entry stage of the circuit board.<br>
-                            2. Implemented an S-Curve acceleration and deceleration profile in the STM32 firmware to mitigate torque and back-EMF spikes by 40% during transitions.
-                        </p>
-                        <div class="modal-code-block">
-<span class="comment">// Schema for calculating smooth S-curve velocity targets to prevent back-EMF spikes</span>
-<span class="keyword">float</span> <span class="string">calculate_s_curve</span>(<span class="keyword">float</span> current, <span class="keyword">float</span> target, <span class="keyword">float</span> dt) {
-    <span class="keyword">float</span> error = target - current;
-    <span class="keyword">float</span> jerk_limit = <span class="string">8.0f</span>; <span class="comment">// Jerk limit to prevent sudden torque spikes</span>
-    <span class="comment">// ... 2nd-derivative velocity profile computation ...</span>
-    <span class="keyword">return</span> current + computed_step_val;
-}</div>
+                        <h4 class="modal-detail-title">Key Focus</h4>
+                        <p class="modal-detail-text">Clear package boundaries, reliable state transitions, maintainable launch/configuration structure, and practical debugging on real hardware.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Template 2: Vision-based Object Detection -->
-        <div id="template-vision-detection">
+        <div id="template-ur-isaac">
             <div class="modal-header">
-                <span class="project-category">Computer Vision & AI</span>
-                <h3 class="modal-project-title">Vision-based Object Detection</h3>
+                <span class="project-category">Manipulation & Simulation</span>
+                <h3 class="modal-project-title">UR5e, Isaac Sim & MoveIt 2</h3>
             </div>
             <div class="modal-grid">
-                <!-- Left Sidebar (Meta info) -->
                 <div class="modal-sidebar-card">
-                    <h4 class="modal-meta-title">Project Period</h4>
-                    <p class="modal-meta-value">Aug 2024 - Nov 2024 (4 Months)</p>
-                    
-                    <h4 class="modal-meta-title">My Role</h4>
-                    <p class="modal-meta-value">Data acquisition, AI model training, optimization and pipeline implementation</p>
-                    
+                    <h4 class="modal-meta-title">Role</h4>
+                    <p class="modal-meta-value">Simulation and ROS 2 integration</p>
                     <h4 class="modal-meta-title">Tech Stack</h4>
-                    <p class="modal-meta-value">Python, PyTorch, OpenCV, Intel OpenVINO, C++ (inference engine)</p>
-
-                    <h4 class="modal-meta-title">Target Hardware</h4>
-                    <p class="modal-meta-value">Intel x86 Embedded CPU Cores, Web Camera</p>
+                    <p class="modal-meta-value">Isaac Sim, ROS 2, MoveIt 2, UR5e, Python</p>
+                    <h4 class="modal-meta-title">Repository</h4>
+                    <p class="modal-meta-value"><a href="https://github.com/nayana224/ur_isaac_ws" target="_blank">github.com/nayana224/ur_isaac_ws</a></p>
                 </div>
-                <!-- Right Main Content (In-depth analysis) -->
                 <div>
                     <div class="modal-detail-section">
-                        <h4 class="modal-detail-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                            Project Overview
-                        </h4>
-                        <p class="modal-detail-text">
-                            Built a real-time multi-object detection pipeline based on camera streams, enabling mobile robots to detect and localize obstacles in their surrounding environment.
-                        </p>
+                        <h4 class="modal-detail-title">Project Overview</h4>
+                        <p class="modal-detail-text">A workspace for connecting a simulated UR5e manipulator to ROS 2 and MoveIt 2 through joint-state publishing and joint-command interfaces.</p>
                     </div>
-
                     <div class="modal-detail-section">
-                        <h4 class="modal-detail-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                            Intel OpenVINO Edge Acceleration
-                        </h4>
-                        <p class="modal-detail-text">
-                            Mobile robots operating under battery power often lack heavy desktop GPUs. To run deep learning models efficiently, I exported the trained PyTorch models to **OpenVINO IR format** and applied **FP16 quantization**, accelerating the frame rate (FPS) by **2.4x** on low-power Intel CPU cores with less than 1% loss in detection accuracy.
-                        </p>
-                    </div>
-
-                    <div class="modal-detail-section">
-                        <h4 class="modal-detail-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                            Troubleshooting
-                        </h4>
-                        <p class="modal-detail-text">
-                            <strong>Problem:</strong> Running high-resolution image preprocessing (denoising, resizing) and model inference on a single thread caused severe CPU bottlenecks. This created a frame buffer backlog, causing visual latency to accumulate to over 0.5 seconds.<br><br>
-                            <strong>Solution:</strong>
-                            Redesigned the code into a multi-threaded **Asynchronous Pipeline**. Built a thread-safe frame queue: a dedicated capture thread feeds input frames into the queue, while the inference thread asynchronously pops and feeds them to the OpenVINO accelerator. This decoupled architecture eliminated frame drops and ensured a stable 30 FPS.
-                        </p>
-                        <div class="modal-code-block">
-<span class="comment"># Multithreaded async inference queue pipeline structure</span>
-<span class="keyword">import</span> threading, queue
-
-<span class="keyword">def</span> <span class="string">inference_worker</span>(frame_queue, result_queue):
-    <span class="keyword">while</span> True:
-        frame = frame_queue.get() <span class="comment"># Fetch preprocessed frame from capture thread</span>
-        <span class="keyword">if</span> frame <span class="keyword">is</span> None: <span class="keyword">break</span>
-        result = openvino_compiled_model.async_infer(frame) <span class="comment"># Asynchronous inference</span>
-        result_queue.put(result)
-</div>
+                        <h4 class="modal-detail-title">Current Direction</h4>
+                        <p class="modal-detail-text">Extending the environment toward smooth trajectory execution, manipulation experiments, and robot-camera calibration workflows.</p>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script src="js/main.js"></script>
