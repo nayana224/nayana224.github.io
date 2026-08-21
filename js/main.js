@@ -1,6 +1,9 @@
 /** Portfolio interactions: theme, navigation, scroll effects, glow, skill icons, and project modals. */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const heroEyebrow = document.querySelector('.hero-eyebrow');
+    if (heroEyebrow) heroEyebrow.textContent = 'Robotics Engineer / Researcher';
+
     initTheme();
     initSkillIcons();
     initSmoothScroll();
