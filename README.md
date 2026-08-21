@@ -1,45 +1,93 @@
-# 🤖 Inpyo Lee | Robotics Engineer Portfolio
+# Inpyo Lee — Robotics Engineer / Researcher
 
-This is the personal portfolio website of Inpyo Lee, a Robotics Engineer specializing in Computer Vision and Robot Control.  
-The website features a modern, premium dark-themed interface integrated with interactive design elements such as mouse pointer glow tracking and a scroll progress indicator.
+Personal website for robotics projects, research interests, engineering experience, and technical notes.
 
----
+**Live site:** [https://nayana224.github.io](https://nayana224.github.io)
 
-## 🌐 How to Access
+## Overview
 
-### 1. Online Access (Hosted on GitHub Pages)
-This repository is hosted on GitHub Pages (`nayana224.github.io`). Once code changes are pushed to GitHub, you can access the live website at:
-👉 **URL:** [https://nayana224.github.io](https://nayana224.github.io)
+The site is designed as a minimal academic and engineering portfolio rather than a conventional developer landing page.
 
-### 2. Local Preview (On Your Machine)
-You can view the website locally without setting up any build processes or local servers:
-- Clone or download this repository.
-- Double-click the [index.html](./index.html) file to open it in any modern web browser (e.g., Chrome, Edge, Safari, Firefox).
+Main topics include:
 
----
+- Robotic manipulation
+- RGB-D perception
+- ROS 2 system integration
+- Robot learning
+- Engineering and research notes
 
-## 🚀 How to Deploy Updates
+## Selected Work
 
-To deploy your updates to the live GitHub Pages site, commit and push your changes to the remote repository using the following Git commands:
+The website currently highlights projects such as:
+
+- QR-Based Digital Twin Logistics System
+- RGB-D Robot Arm Pick-and-Place
+- Autonomous Following & Towing Robot
+
+Each project summarizes the system, contribution, technical stack, and key engineering challenges.
+
+## Repository Structure
+
+```text
+.
+├── index.html
+├── css/
+│   ├── variables.css
+│   ├── main.css
+│   ├── enhancements.css
+│   └── reset.css
+├── js/
+│   ├── main.js
+│   └── config.js
+└── README.md
+```
+
+- `index.html`: page content and project details
+- `css/main.css`: base layout and component styles
+- `css/enhancements.css`: current academic-style visual overrides
+- `css/variables.css`: shared design variables
+- `js/main.js`: theme switching, navigation, and project modal interactions
+
+## Local Preview
+
+Clone the repository and run a small local HTTP server:
 
 ```bash
-# 1. Stage the modified files
-git add .
-
-# 2. Commit the changes
-git commit -m "feat: redesign portfolio and implement project detail modals"
-
-# 3. Push to the main branch
-git push origin main
+git clone https://github.com/nayana224/nayana224.github.io.git
+cd nayana224.github.io
+python3 -m http.server 8000
 ```
-*Note: If your default branch is named `master`, use `git push origin master` instead.*
 
----
+Then open:
 
-## 🎨 Key Features & Design Highlights
+```text
+http://localhost:8000
+```
 
-- **Premium HSL Tech Palette**: Tailored deep-navy background HSL values paired with neon-cyan and electric-purple accents to represent circuits and sensors.
-- **Interactive Mouse Glow**: A soft radial glow follows the user's mouse pointer across the screen, adding a dynamic and reactive feel.
-- **Core-to-Detail Layout**: High-level project information (objectives, duration, role, and main tech badges) is displayed on cards. Clicking the card opens a glassmorphic modal containing detailed system architectures, roles, and technical troubleshooting (complete with code/firmware snippets).
-- **Smooth Scroll & Progress Indicator**: Features a custom scroll progress indicator at the top of the viewport and a sticky navigation header that transitions to a blurred glassmorphism state upon scrolling.
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile displays with fluid scaling and clean alignments.
+No build step or external framework is required.
+
+## Deployment
+
+GitHub Pages serves the website from the `main` branch.
+
+After changes are reviewed and merged into `main`, the live site is updated through GitHub Pages.
+
+For local work:
+
+```bash
+git pull origin main
+```
+
+Then edit the relevant HTML, CSS, or JavaScript files and preview them locally before publishing.
+
+## Design Direction
+
+The current design follows a restrained **Minimal Academic / Robotics Lab Notebook** style:
+
+- typography and spacing over decorative cards
+- neutral dark/light themes
+- minimal gradients and visual effects
+- project-first information hierarchy
+- responsive desktop and mobile layouts
+
+The goal is to keep the website focused on actual robotics work, technical decisions, and research direction.
