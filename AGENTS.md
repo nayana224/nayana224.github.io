@@ -151,3 +151,13 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Institution labels switch to Korean names in KO mode where appropriate.
 - Language control is a compact rounded segmented control: EN / 한국어, with one active pill.
 - Avoid flags for language selection.
+
+
+## Outside Research
+- Current personal interests to show: reading, playing Overwatch, and software development.
+- Keep this section concise and secondary to the research profile.
+
+## Notes design discussion
+- Preferred direction: an internal research notebook/blog rather than a generic card-heavy blog.
+- Notes index should prioritize readability, categories, dates, short summaries, and a calm academic visual hierarchy.
+- Individual notes should support long-form Markdown reading, code blocks, figures, tables, equations, and section navigation when useful.
