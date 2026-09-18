@@ -28,9 +28,10 @@ header {
 .profile { text-align:center; }
 .profile-image {
   width:220px;
-  height:220px;
-  object-fit:cover;
-  object-position:center 43%;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 16px;
   border-radius:4px;
 }
 .contact { color:#777; }
@@ -153,7 +154,8 @@ td { text-align:left; padding:10px; border-bottom:1px solid #e5e5e5; vertical-al
 }
 
 
-/* Personal interaction language */
+
+/* Profile and section refinements */
 .email-text {
   margin-top:-8px;
   color:#777;
@@ -161,47 +163,17 @@ td { text-align:left; padding:10px; border-bottom:1px solid #e5e5e5; vertical-al
   letter-spacing:.01em;
 }
 
-.detail-toggle {
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-  padding:12px 0;
-  margin-top:14px;
-  border:0;
+.other-experience {
+  margin-top:28px;
+  padding-top:20px;
   border-top:1px solid #e5e5e5;
-  border-bottom:1px solid #e5e5e5;
-  background:transparent;
-  color:#393939;
-  font:inherit;
-  font-weight:500;
-  text-align:left;
-  cursor:pointer;
 }
 
-.detail-toggle:hover {
-  color:#069;
+.other-experience h2 {
+  margin-bottom:12px;
+  font-size:18px;
 }
 
-.toggle-mark {
-  min-width:20px;
-  color:#999;
-  font-size:20px;
-  font-weight:300;
-  line-height:1;
-  text-align:center;
-}
-
-.detail-content {
-  display:none;
-  padding:14px 0 2px;
-}
-
-.detail-content.is-open {
-  display:block;
-}
-
-.detail-content ul {
-  margin-bottom:8px;
+.other-experience ul {
+  margin-bottom:0;
 }
