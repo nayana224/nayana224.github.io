@@ -116,3 +116,72 @@ td { text-align:left; padding:10px; border-bottom:1px solid #e5e5e5; vertical-al
   td { display:block; width:100%; padding:10px 0; border:0; }
   .research-table tr { display:block; border-bottom:1px solid #e5e5e5; padding:10px 0; }
 }
+
+
+/* Profile and content refinement */
+.role {
+  margin-bottom:4px;
+  color:#333;
+  font-weight:500;
+}
+
+.affiliation {
+  margin-bottom:16px;
+}
+
+.profile-meta {
+  padding:12px 0;
+  margin:0 0 16px;
+  border-top:1px solid #e5e5e5;
+  border-bottom:1px solid #e5e5e5;
+}
+
+.profile-meta p {
+  margin:4px 0;
+  font-size:12px;
+  line-height:1.55;
+}
+
+.path-list {
+  margin:0 0 28px;
+  border-top:1px solid #e5e5e5;
+}
+
+.path-item {
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:12px;
+  padding:16px 0;
+  border-bottom:1px solid #e5e5e5;
+}
+
+.path-index {
+  color:#999;
+  font-size:12px;
+  font-weight:600;
+}
+
+.path-item p {
+  margin:5px 0 4px;
+}
+
+.path-item small {
+  color:#777;
+}
+
+.interest-list li {
+  margin-bottom:9px;
+}
+
+.research-statement {
+  margin-top:22px;
+  padding-left:14px;
+  border-left:3px solid #39c;
+  color:#555;
+  font-style:italic;
+}
+
+.work-text > span {
+  color:#777;
+  font-size:12px;
+}
