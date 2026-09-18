@@ -39,3 +39,9 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - A reusable post/card schema suitable for ChatGPT output.
 - A mobile-friendly feed and readable detail view.
 - A structure that can later be populated by simple files without rewriting the portfolio.
+
+
+## Implementation status
+- Branch: `feat/ai-research-briefing`
+- Implementing a dedicated `/briefing/` feed and a portfolio entry point.
+- Current phase is UI/data-contract validation only; automated publishing remains out of scope.
