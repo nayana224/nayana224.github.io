@@ -11,10 +11,10 @@ title: Notes
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Notes | Inpyo Lee</title>
-  <meta name="description" content="Inpyo Lee's research notebook: papers, deep learning, robotics, and implementation notes.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-4' | relative_url }}">
+  <meta name="description" content="Inpyo Lee's research notebook: papers, study notes, implementations, project logs, and future research briefings.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-5' | relative_url }}">
 </head>
-<body class="notes-page">
+<body class="notes-page" data-notes-lang="ko">
   <div class="notes-shell">
     <header class="notes-topbar">
       <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
@@ -32,50 +32,148 @@ title: Notes
     <section class="notes-hero">
       <p class="notes-eyebrow">RESEARCH NOTEBOOK</p>
       <h1>Notes</h1>
-      <p class="notes-lead lang-ko">논문을 읽고, 구현하고, 로봇을 만들면서 배운 내용을 정리합니다.</p>
-      <p class="notes-lead lang-en">Notes from papers, implementations, and hands-on robotics work.</p>
+      <p class="notes-lead lang-ko">논문, 공부 기록, 구현과 프로젝트에서 배운 내용을 한 곳에 정리합니다.</p>
+      <p class="notes-lead lang-en">A personal knowledge base for papers, study notes, implementations, and project logs.</p>
     </section>
 
-    <nav class="notes-categories" aria-label="Note categories">
-      <span class="category-chip active"><span class="lang-ko">전체</span><span class="lang-en">All</span></span>
-      <span class="category-chip">Papers</span>
-      <span class="category-chip">Deep Learning</span>
-      <span class="category-chip">Robotics</span>
-      <span class="category-chip">Implementation</span>
-    </nav>
+    <div class="notebook-mode" role="tablist" aria-label="Notebook section">
+      <button type="button" class="mode-tab active" data-mode="library" aria-selected="true">
+        <span class="lang-ko">라이브러리</span><span class="lang-en">Library</span>
+      </button>
+      <button type="button" class="mode-tab" data-mode="briefing" aria-selected="false">
+        <span>Briefing</span>
+      </button>
+    </div>
 
-    <main class="notes-list">
-      {% assign sorted_notes = site.notes | sort: "date" | reverse %}
-      {% for note in sorted_notes %}
-      <article class="notes-entry">
-        <div class="notes-entry-meta">
-          {% if note.date %}<time>{{ note.date | date: "%Y.%m.%d" }}</time>{% endif %}
-          {% if note.category %}
-          <span class="notes-category">
-            <span class="lang-ko">{{ note.category_ko | default: note.category }}</span>
-            <span class="lang-en">{{ note.category_en | default: note.category }}</span>
-          </span>
-          {% endif %}
+    <div class="notebook-workspace">
+      <aside class="notebook-sidebar" aria-label="Notebook folders">
+        <div class="sidebar-group library-nav">
+          <p class="sidebar-heading"><span class="lang-ko">라이브러리</span><span class="lang-en">Library</span></p>
+
+          <button class="folder-item active" type="button" data-filter="all">
+            <span class="folder-label"><span class="folder-glyph">⌂</span><span class="lang-ko">전체 노트</span><span class="lang-en">All Notes</span></span>
+            <span class="folder-count">{{ site.notes | size }}</span>
+          </button>
+
+          <button class="folder-item" type="button" data-filter="papers">
+            <span class="folder-label"><span class="folder-glyph">▾</span><span class="lang-ko">논문</span><span class="lang-en">Papers</span></span>
+            <span class="folder-count">4</span>
+          </button>
+
+          <div class="folder-children">
+            <button class="folder-item child" type="button" data-filter="topic:Computer Vision">
+              <span class="folder-label"><span class="folder-branch">└</span><span class="lang-ko">컴퓨터 비전</span><span class="lang-en">Computer Vision</span></span>
+              <span class="folder-count">3</span>
+            </button>
+            <button class="folder-item child" type="button" data-filter="topic:Transformer">
+              <span class="folder-label"><span class="folder-branch">└</span>Transformer</span>
+              <span class="folder-count">1</span>
+            </button>
+          </div>
+
+          <button class="folder-item" type="button" data-filter="study">
+            <span class="folder-label"><span class="folder-glyph">›</span><span class="lang-ko">공부 노트</span><span class="lang-en">Study Notes</span></span>
+          </button>
+          <button class="folder-item" type="button" data-filter="implementation">
+            <span class="folder-label"><span class="folder-glyph">›</span><span class="lang-ko">구현 기록</span><span class="lang-en">Implementations</span></span>
+          </button>
+          <button class="folder-item" type="button" data-filter="projects">
+            <span class="folder-label"><span class="folder-glyph">›</span><span class="lang-ko">프로젝트 로그</span><span class="lang-en">Project Logs</span></span>
+          </button>
         </div>
 
-        <h2>
-          <a href="{{ note.url | relative_url }}">
-            <span class="lang-ko">{{ note.title_ko | default: note.title }}</span>
-            <span class="lang-en">{{ note.title_en | default: note.title }}</span>
-          </a>
-        </h2>
+        <div class="sidebar-group briefing-nav">
+          <p class="sidebar-heading">Briefing</p>
+          <button class="folder-item" type="button" data-briefing="ai-robotics">
+            <span class="folder-label"><span class="folder-glyph">›</span><span class="lang-ko">AI & Robotics</span><span class="lang-en">AI & Robotics</span></span>
+          </button>
+          <button class="folder-item" type="button" data-briefing="research">
+            <span class="folder-label"><span class="folder-glyph">›</span><span class="lang-ko">Research Papers</span><span class="lang-en">Research Papers</span></span>
+          </button>
+        </div>
+      </aside>
 
-        {% if note.summary %}
-        <p class="notes-summary lang-ko">{{ note.summary_ko | default: note.summary }}</p>
-        <p class="notes-summary lang-en">{{ note.summary_en | default: note.summary }}</p>
-        {% endif %}
+      <main class="notebook-content">
+        <section id="library-panel" class="mode-panel active">
+          <div class="content-heading">
+            <div>
+              <p class="content-kicker"><span class="lang-ko">라이브러리</span><span class="lang-en">Library</span></p>
+              <h2 id="library-title"><span class="lang-ko">전체 노트</span><span class="lang-en">All Notes</span></h2>
+            </div>
+            <span class="content-count" id="visible-count">{{ site.notes | size }}</span>
+          </div>
 
-        <a class="notes-read" href="{{ note.url | relative_url }}">
-          <span class="lang-ko">노트 읽기 →</span><span class="lang-en">Read note →</span>
-        </a>
-      </article>
-      {% endfor %}
-    </main>
+          <div class="notes-list" id="notes-list">
+            {% assign sorted_notes = site.notes | sort: "date" | reverse %}
+            {% for note in sorted_notes %}
+            <article class="notes-entry"
+              data-library-type="{{ note.library_type | default: 'study' }}"
+              data-topic="{{ note.topic | default: '' }}">
+              <div class="notes-entry-meta">
+                {% if note.date %}<time>{{ note.date | date: "%Y.%m.%d" }}</time>{% endif %}
+                <span class="notes-path">
+                  <span class="lang-ko">{{ note.category_ko | default: note.category }}</span>
+                  <span class="lang-en">{{ note.category_en | default: note.category }}</span>
+                  {% if note.topic %}
+                  <span class="meta-slash">/</span>
+                  <span class="lang-ko">{{ note.topic_ko | default: note.topic }}</span>
+                  <span class="lang-en">{{ note.topic_en | default: note.topic }}</span>
+                  {% endif %}
+                </span>
+              </div>
+
+              <h3>
+                <a href="{{ note.url | relative_url }}">
+                  <span class="lang-ko">{{ note.title_ko | default: note.title }}</span>
+                  <span class="lang-en">{{ note.title_en | default: note.title }}</span>
+                </a>
+              </h3>
+
+              {% if note.summary %}
+              <p class="notes-summary lang-ko">{{ note.summary_ko | default: note.summary }}</p>
+              <p class="notes-summary lang-en">{{ note.summary_en | default: note.summary }}</p>
+              {% endif %}
+
+              <a class="notes-read" href="{{ note.url | relative_url }}">
+                <span class="lang-ko">노트 읽기 →</span><span class="lang-en">Read note →</span>
+              </a>
+            </article>
+            {% endfor %}
+          </div>
+
+          <div class="empty-state" id="empty-library" hidden>
+            <p class="empty-icon">＋</p>
+            <strong class="lang-ko">아직 이 폴더에 노트가 없습니다.</strong>
+            <strong class="lang-en">No notes in this folder yet.</strong>
+            <p class="lang-ko">Notion이나 Obsidian에서 정리한 내용을 앞으로 이곳에 추가할 예정입니다.</p>
+            <p class="lang-en">More notes from Notion and Obsidian will be added here over time.</p>
+          </div>
+        </section>
+
+        <section id="briefing-panel" class="mode-panel">
+          <div class="content-heading">
+            <div>
+              <p class="content-kicker">Briefing</p>
+              <h2 id="briefing-title">AI & Robotics</h2>
+            </div>
+            <span class="briefing-status">COMING SOON</span>
+          </div>
+
+          <div class="briefing-placeholder">
+            <p class="briefing-label">AUTOMATED RESEARCH BRIEF</p>
+            <h3 class="lang-ko">자동 Research Briefing을 위한 자리입니다.</h3>
+            <h3 class="lang-en">Reserved for automated research briefings.</h3>
+            <p class="lang-ko">추후 GPT 자동화를 연결하면 AI, Robotics, 논문 업데이트를 날짜별 Markdown으로 생성해 이곳에 쌓이도록 할 예정입니다.</p>
+            <p class="lang-en">Later, GPT automation can publish dated Markdown briefings covering AI, robotics, and research-paper updates here.</p>
+            <div class="briefing-example">
+              <span>2026.09.xx</span>
+              <strong>AI & Robotics Daily Brief</strong>
+              <small>Sources · summary · what to watch</small>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <footer class="notes-footer">
       <span>Inpyo Lee · Robotics & AI</span>
@@ -85,28 +183,119 @@ title: Notes
   <script>
     (function () {
       var lang = localStorage.getItem('notes-lang') || 'ko';
-      var buttons = document.querySelectorAll('.notes-language-switcher button');
+      var langButtons = document.querySelectorAll('.notes-language-switcher button');
+      var modeButtons = document.querySelectorAll('.mode-tab');
+      var folderButtons = document.querySelectorAll('.folder-item[data-filter]');
+      var briefingButtons = document.querySelectorAll('.folder-item[data-briefing]');
+      var notes = Array.prototype.slice.call(document.querySelectorAll('.notes-entry'));
+      var libraryPanel = document.getElementById('library-panel');
+      var briefingPanel = document.getElementById('briefing-panel');
+      var emptyLibrary = document.getElementById('empty-library');
+      var visibleCount = document.getElementById('visible-count');
+      var libraryTitle = document.getElementById('library-title');
+      var briefingTitle = document.getElementById('briefing-title');
+
+      var titles = {
+        all: { ko: '전체 노트', en: 'All Notes' },
+        papers: { ko: '논문', en: 'Papers' },
+        'topic:Computer Vision': { ko: '컴퓨터 비전', en: 'Computer Vision' },
+        'topic:Transformer': { ko: 'Transformer', en: 'Transformer' },
+        study: { ko: '공부 노트', en: 'Study Notes' },
+        implementation: { ko: '구현 기록', en: 'Implementations' },
+        projects: { ko: '프로젝트 로그', en: 'Project Logs' }
+      };
 
       function applyLanguage(nextLang) {
         lang = nextLang;
         document.documentElement.lang = lang;
-        localStorage.setItem('notes-lang', lang);
         document.body.setAttribute('data-notes-lang', lang);
+        localStorage.setItem('notes-lang', lang);
 
-        buttons.forEach(function (button) {
+        langButtons.forEach(function (button) {
           var selected = button.getAttribute('data-lang') === lang;
           button.classList.toggle('active', selected);
           button.setAttribute('aria-pressed', String(selected));
         });
+
+        var activeFilter = document.querySelector('.folder-item[data-filter].active');
+        if (activeFilter) updateLibraryTitle(activeFilter.getAttribute('data-filter'));
       }
 
-      buttons.forEach(function (button) {
+      function setMode(mode) {
+        var isLibrary = mode === 'library';
+        libraryPanel.classList.toggle('active', isLibrary);
+        briefingPanel.classList.toggle('active', !isLibrary);
+        document.querySelector('.library-nav').classList.toggle('sidebar-muted', !isLibrary);
+        document.querySelector('.briefing-nav').classList.toggle('sidebar-muted', isLibrary);
+
+        modeButtons.forEach(function (button) {
+          var active = button.getAttribute('data-mode') === mode;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-selected', String(active));
+        });
+      }
+
+      function updateLibraryTitle(filter) {
+        var t = titles[filter] || titles.all;
+        libraryTitle.textContent = lang === 'ko' ? t.ko : t.en;
+      }
+
+      function filterNotes(filter) {
+        var count = 0;
+        notes.forEach(function (note) {
+          var show = false;
+          if (filter === 'all') show = true;
+          else if (filter.indexOf('topic:') === 0) {
+            show = note.getAttribute('data-topic') === filter.slice(6);
+          } else {
+            show = note.getAttribute('data-library-type') === filter;
+          }
+          note.hidden = !show;
+          if (show) count += 1;
+        });
+
+        visibleCount.textContent = String(count);
+        emptyLibrary.hidden = count !== 0;
+        updateLibraryTitle(filter);
+
+        folderButtons.forEach(function (button) {
+          button.classList.toggle('active', button.getAttribute('data-filter') === filter);
+        });
+
+        setMode('library');
+      }
+
+      langButtons.forEach(function (button) {
         button.addEventListener('click', function () {
           applyLanguage(button.getAttribute('data-lang'));
         });
       });
 
+      modeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setMode(button.getAttribute('data-mode'));
+        });
+      });
+
+      folderButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          filterNotes(button.getAttribute('data-filter'));
+        });
+      });
+
+      briefingButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          briefingButtons.forEach(function (b) { b.classList.remove('active'); });
+          button.classList.add('active');
+          briefingTitle.textContent = button.getAttribute('data-briefing') === 'research'
+            ? 'Research Papers'
+            : 'AI & Robotics';
+          setMode('briefing');
+        });
+      });
+
       applyLanguage(lang);
+      filterNotes('all');
     })();
   </script>
 </body>
