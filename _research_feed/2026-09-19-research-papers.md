@@ -52,11 +52,8 @@ VLA를 실제 robot에 적용하는 관점에서는 단일 architecture보다 �
 
 ## Sources
 
-- How to Better Train VLAs: Lessons Learned From the REAL-I Challenge at ICRA 2026  
-  https://arxiv.org/abs/2609.13679
+- [How to Better Train VLAs: Lessons Learned From the REAL-I Challenge at ICRA 2026](https://arxiv.org/abs/2609.13679)
 
-- Efficient Vision-Language-Action Management and Serving for Robot Factories  
-  https://arxiv.org/abs/2609.12075
+- [Efficient Vision-Language-Action Management and Serving for Robot Factories](https://arxiv.org/abs/2609.12075)
 
-- Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack  
-  https://arxiv.org/abs/2606.14409
+- [Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack](https://arxiv.org/abs/2606.14409)
