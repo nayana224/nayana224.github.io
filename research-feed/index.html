@@ -1,0 +1,126 @@
+---
+layout: null
+title: Research Feed
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Research Feed | Inpyo Lee</title>
+  <meta name="description" content="Curated AI, robotics, and research paper updates for Inpyo Lee.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-8' | relative_url }}">
+</head>
+<body class="notes-page feed-page" data-notes-lang="en">
+  <div class="notes-shell">
+    <header class="notes-topbar">
+      <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
+      <div class="notes-actions">
+        <a href="/notes/?v=20260919-8">Notes</a>
+        <a href="{{ '/' | relative_url }}">
+          <span class="ui-ko">홈으로</span><span class="ui-en">Home</span>
+        </a>
+        <div class="notes-language-switcher" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
+          <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="notes-hero feed-hero">
+      <p class="notes-eyebrow">CURATED RESEARCH UPDATES</p>
+      <h1>Research Feed</h1>
+      <p class="notes-lead">
+        <span class="ui-en">A curated stream of AI, robotics, and research-paper updates. Automation will be connected after the UI is finalized.</span>
+        <span class="ui-ko">AI, Robotics, 주요 논문 업데이트를 모아보는 공간입니다. UI를 확정한 뒤 자동화를 연결할 예정입니다.</span>
+      </p>
+    </section>
+
+    <div class="notebook-workspace feed-workspace">
+      <aside class="notebook-sidebar" aria-label="Research Feed channels">
+        <div class="sidebar-group">
+          <p class="sidebar-heading">RESEARCH FEED</p>
+          <button class="folder-item active" type="button" data-feed="ai-robotics">
+            <span class="folder-label"><span class="folder-glyph">›</span>AI & Robotics</span>
+          </button>
+          <button class="folder-item" type="button" data-feed="research-papers">
+            <span class="folder-label"><span class="folder-glyph">›</span>Research Papers</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="notebook-content">
+        <div class="content-heading">
+          <div>
+            <p class="content-kicker">RESEARCH FEED</p>
+            <h2 id="feed-title">AI & Robotics</h2>
+          </div>
+          <span class="briefing-status">COMING SOON</span>
+        </div>
+
+        <div class="briefing-placeholder">
+          <p class="briefing-label">AUTOMATED RESEARCH FEED</p>
+          <h3>
+            <span class="ui-en">Designed for daily AI and robotics updates.</span>
+            <span class="ui-ko">AI와 Robotics 업데이트를 자동으로 모으기 위한 공간입니다.</span>
+          </h3>
+          <p>
+            <span class="ui-en">Once automation is connected, dated Markdown entries will appear here with sources, concise summaries, and items worth watching.</span>
+            <span class="ui-ko">자동화를 연결하면 출처, 핵심 요약, 주목할 내용을 포함한 날짜별 Markdown 글이 이곳에 쌓입니다.</span>
+          </p>
+
+          <div class="briefing-example">
+            <span>2026.09.xx</span>
+            <strong id="feed-example-title">AI & Robotics Daily Update</strong>
+            <small>Sources · summary · what to watch</small>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="notes-footer"><span>Inpyo Lee · Robotics & AI</span></footer>
+  </div>
+
+  <script>
+    (function () {
+      var lang = localStorage.getItem('feed-ui-lang') || 'en';
+      var langButtons = document.querySelectorAll('.notes-language-switcher button');
+      var feedButtons = document.querySelectorAll('.folder-item[data-feed]');
+      var feedTitle = document.getElementById('feed-title');
+      var exampleTitle = document.getElementById('feed-example-title');
+
+      function applyLanguage(nextLang) {
+        lang = nextLang;
+        localStorage.setItem('feed-ui-lang', lang);
+        document.body.setAttribute('data-notes-lang', lang);
+        document.documentElement.lang = lang;
+
+        langButtons.forEach(function (button) {
+          var active = button.getAttribute('data-lang') === lang;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+      }
+
+      langButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyLanguage(button.getAttribute('data-lang'));
+        });
+      });
+
+      feedButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          feedButtons.forEach(function (b) { b.classList.remove('active'); });
+          button.classList.add('active');
+          var papers = button.getAttribute('data-feed') === 'research-papers';
+          feedTitle.textContent = papers ? 'Research Papers' : 'AI & Robotics';
+          exampleTitle.textContent = papers ? 'Research Papers Weekly Update' : 'AI & Robotics Daily Update';
+        });
+      });
+
+      applyLanguage(lang);
+    })();
+  </script>
+</body>
+</html>
