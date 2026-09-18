@@ -473,3 +473,47 @@ html[data-theme="light"] {
     gap:16px;
   }
 }
+
+
+.briefing-mobile-nav {
+  display:none;
+  position:relative;
+}
+.briefing-mobile-nav summary {
+  list-style:none;
+  cursor:pointer;
+  color:var(--sub);
+  font:600 .68rem var(--font-mono);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.briefing-mobile-nav summary::-webkit-details-marker { display:none; }
+.briefing-mobile-nav[open] > div {
+  position:absolute;
+  right:0;
+  top:28px;
+  min-width:180px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  background:var(--page-bg);
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  z-index:30;
+}
+.briefing-mobile-nav a {
+  display:block;
+  padding:10px 0;
+  color:var(--text);
+  text-decoration:none;
+  font:600 .7rem var(--font-mono);
+  border-bottom:1px solid var(--line);
+}
+.briefing-mobile-nav a:last-child { border-bottom:0; }
+
+@media (max-width:760px) {
+  .briefing-nav-actions > a {
+    display:none;
+  }
+  .briefing-mobile-nav {
+    display:block;
+  }
+}
