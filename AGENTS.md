@@ -112,3 +112,12 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - At <=720 CSS px: stack the profile above the content.
 - Project tables become vertical cards at <=520 CSS px.
 - Avoid fixed image heights; preserve intrinsic aspect ratios.
+
+
+## Sidebar / logo correction
+- Desktop sidebar must not have its own scrollbar.
+- Keep the left profile sticky and fit its content within the viewport using compact responsive spacing and a viewport-aware profile image.
+- Only the main page/document should scroll on desktop.
+- Keep EN / KO at the bottom of the left profile by using flex layout with `margin-top:auto`.
+- Institution logos are small affiliation badges, not hero graphics: KITECH 26x26px, TUK 28x28px.
+- Increment the stylesheet query version after layout fixes to avoid stale browser cache.
