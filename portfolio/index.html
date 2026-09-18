@@ -71,7 +71,7 @@
             <span class="section-tag">소개</span>
             <h2 class="section-title">집중하고 있는 <span>문제</span></h2>
             <div class="about-grid">
-                <article class="about-card"><span class="card-index">01</span><h3>System Integration</h3><p>sensor, motor interface, ROS 2 middleware, autonomous function, GUI를 하나의 유지보수 가능한 robotic system으로 통합합니다.</p></article>
+                <article class="about-card"><span class="card-index">01</span><h3>시스템 Integration</h3><p>sensor, motor interface, ROS 2 middleware, autonomous function, GUI를 하나의 유지보수 가능한 robotic system으로 통합합니다.</p></article>
                 <article class="about-card"><span class="card-index">02</span><h3>Robotic Manipulation</h3><p>RGB-D perception, 3D coordinate estimation, coordinate transform, MoveIt 2를 실제 pick-and-place 동작으로 연결합니다.</p></article>
                 <article class="about-card"><span class="card-index">03</span><h3>연구 방향</h3><p>visual context와 language instruction을 이해하고 행동으로 연결하는 Robot Learning, VLA 방법을 탐구합니다.</p></article>
             </div>
@@ -121,10 +121,10 @@
                 <article class="project-card">
                     <div class="project-visual visual-twin"><span>Digital Twin</span><i></i><i></i><i></i></div>
                     <div class="project-card-top"><div class="project-card-header"><span class="project-category">2025 Hanium</span></div>
-                    <h3 class="project-title">QR-Based Digital Twin Logistics System</h3>
-                    <p class="project-summary">A logistics automation system combining QR recognition, ROS 2 robot-arm control, conveyor hardware, and a Unity digital twin.</p>
-                    <div class="project-role"><span>담당</span><p>Implemented Unity-to-hardware synchronization and the control flow from QR recognition to pick-and-place.</p></div>
-                    <ul class="project-highlights"><li>Built UDP communication between Unity and ROS 2</li><li>Coordinated QR, conveyor, sensor, and robot-arm timing</li><li>Reflected physical system state in the digital twin</li></ul></div>
+                    <h3 class="project-title">QR-Based Digital Twin Logistics 시스템</h3>
+                    <p class="project-summary">QR recognition, ROS 2 robot-arm control, conveyor hardware, Unity digital twin을 결합한 물류 자동화 시스템입니다.</p>
+                    <div class="project-role"><span>담당</span><p>Unity와 실제 hardware의 상태 동기화, QR recognition부터 pick-and-place까지의 control flow를 구현했습니다.</p></div>
+                    <ul class="project-highlights"><li>Unity와 ROS 2 사이 UDP communication 구현</li><li>QR, conveyor, sensor, robot-arm의 동작 timing 조정</li><li>실제 system state를 digital twin에 반영</li></ul></div>
                     <div><div class="project-tags"><span class="project-tag">ROS 2</span><span class="project-tag">MoveIt 2</span><span class="project-tag">Unity</span><span class="project-tag">YOLO</span></div><button class="project-more-btn" data-project="digital-twin">자세히 보기 →</button></div>
                 </article>
 
@@ -132,9 +132,9 @@
                     <div class="project-visual visual-arm"><span>RGB-D P&amp;P</span><i></i><i></i><i></i></div>
                     <div class="project-card-top"><div class="project-card-header"><span class="project-category">개인 연구 프로젝트</span></div>
                     <h3 class="project-title">RGB-D Robot Arm Pick-and-Place</h3>
-                    <p class="project-summary">A perception-to-action pipeline using RealSense D435, YOLO segmentation, 3D position estimation, coordinate transforms, and MoveIt 2.</p>
-                    <div class="project-role"><span>담당</span><p>Developed the full pipeline from RGB-D acquisition and segmentation to coordinate transforms and robot execution.</p></div>
-                    <ul class="project-highlights"><li>Estimated 3D object positions from masks and depth</li><li>Validated camera-to-robot transforms with tf2 and RViz2</li><li>Connected perception results to MoveIt 2 actions</li></ul></div>
+                    <p class="project-summary">RealSense D435, YOLO segmentation, 3D position estimation, coordinate transform, MoveIt 2를 연결한 perception-to-action pipeline입니다.</p>
+                    <div class="project-role"><span>담당</span><p>RGB-D acquisition과 segmentation부터 coordinate transform, robot execution까지 전체 pipeline을 구현했습니다.</p></div>
+                    <ul class="project-highlights"><li>mask와 depth를 이용해 object의 3D position 추정</li><li>tf2와 RViz2로 camera-to-robot transform 검증</li><li>perception 결과를 MoveIt 2 action으로 연결</li></ul></div>
                     <div><div class="project-tags"><span class="project-tag">RealSense</span><span class="project-tag">YOLOv11</span><span class="project-tag">tf2</span><span class="project-tag">MoveIt 2</span></div><button class="project-more-btn" data-project="rgbd-arm">자세히 보기 →</button></div>
                 </article>
 
@@ -142,9 +142,9 @@
                     <div class="project-visual visual-mobile"><span>Mobile Robot</span><i></i><i></i><i></i></div>
                     <div class="project-card-top"><div class="project-card-header"><span class="project-category">Capstone Design</span><a href="https://github.com/nayana224/mdbot" target="_blank" rel="noreferrer" class="project-link-icon">Repository ↗</a></div>
                     <h3 class="project-title">Autonomous Following &amp; Towing Robot</h3>
-                    <p class="project-summary">A ROS 2 mobile robot supporting LiDAR-based worker following, path recording, repeated navigation, towing, and GUI operation.</p>
-                    <div class="project-role"><span>담당</span><p>Led system integration across motor communication, URDF, ros2_control, SLAM, Nav2, mode management, and GUI.</p></div>
-                    <ul class="project-highlights"><li>Integrated RS485 motor control and robot hardware</li><li>Separated GUI commands from robot execution with mode_manager</li><li>Improved process shutdown using staged signal handling</li></ul></div>
+                    <p class="project-summary">LiDAR 기반 worker following, path recording, 반복 navigation, towing, GUI operation을 지원하는 ROS 2 mobile robot입니다.</p>
+                    <div class="project-role"><span>담당</span><p>motor communication, URDF, ros2_control, SLAM, Nav2, mode management, GUI 전반의 system integration을 담당했습니다.</p></div>
+                    <ul class="project-highlights"><li>RS485 motor control과 robot hardware 통합</li><li>mode_manager로 GUI command와 robot execution 분리</li><li>단계적 signal handling으로 process shutdown 개선</li></ul></div>
                     <div><div class="project-tags"><span class="project-tag">ROS 2</span><span class="project-tag">Nav2</span><span class="project-tag">SLAM</span><span class="project-tag">PyQt5</span></div><button class="project-more-btn" data-project="mobile-robot">자세히 보기 →</button></div>
                 </article>
             </div>
@@ -187,14 +187,14 @@
             <h2 class="section-title">수상 · <span>활동</span></h2>
             <div class="background-grid">
                 <div class="background-column"><h3>수상</h3>
-                    <article class="background-item"><span>2026</span><div><strong>Silver Prize</strong><p>5th Intelligent Robot Technology Application Idea Competition</p></div></article>
-                    <article class="background-item"><span>2025</span><div><strong>Encouragement Award</strong><p>Hanium Dream-Up Competition</p></div></article>
-                    <article class="background-item"><span>2021</span><div><strong>3rd Place</strong><p>University President's Robot Programming Competition</p></div></article>
+                    <article class="background-item"><span>2026</span><div><strong>은상</strong><p>제5회 지능형 로봇기술 활용 아이디어 경진대회</p></div></article>
+                    <article class="background-item"><span>2025</span><div><strong>장려상</strong><p>한이음 드림업 공모전</p></div></article>
+                    <article class="background-item"><span>2021</span><div><strong>3위</strong><p>총장배 Robot Programming 경진대회</p></div></article>
                 </div>
                 <div class="background-column"><h3>연구 · 리더십 · 교육</h3>
-                    <article class="background-item"><span>2024–</span><div><strong>Undergraduate Researcher, IRC Lab</strong><p>ROS 2 manipulation, RGB-D pick-and-place, and mobile robotics projects</p></div></article>
-                    <article class="background-item"><span>2025–26</span><div><strong>Education Lead, MCC / CIR</strong><p>Planned seminars and mentored projects in circuits, embedded systems, STM32, FPGA, and ROS 2</p></div></article>
-                    <article class="background-item"><span>2026</span><div><strong>Teaching Assistant</strong><p>Microcomputer and FPGA laboratory instruction, materials, and environment setup</p></div></article>
+                    <article class="background-item"><span>2024–</span><div><strong>IRC Lab 학부연구생</strong><p>ROS 2 manipulation, RGB-D pick-and-place, mobile robotics 프로젝트 수행</p></div></article>
+                    <article class="background-item"><span>2025–26</span><div><strong>MCC / CIR 교육 담당</strong><p>회로, embedded system, STM32, FPGA, ROS 2 세미나 기획 및 프로젝트 멘토링</p></div></article>
+                    <article class="background-item"><span>2026</span><div><strong>Teaching Assistant</strong><p>Microcomputer 및 FPGA 실습 수업 지원, 자료 제작, 환경 구성</p></div></article>
                 </div>
             </div>
         </section>
@@ -204,9 +204,9 @@
             <h2 class="section-title">만들고 공부하며 <span>남긴 기록</span></h2>
             <p class="section-lead">직접 만든 것, 읽은 논문, 그리고 두 번은 이해해야 했던 문제들을 정리합니다.</p>
             <div class="notes-grid">
-                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>ROS 2</span><h3>Robot Software</h3><p>Nodes, interfaces, package architecture, Nav2, MoveIt 2, and system integration.</p><b>노트 보기 ↗</b></a>
-                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Robot Learning</span><h3>AI &amp; Mathematics</h3><p>PyTorch, computer vision, linear algebra, calibration, and paper reviews.</p><b>노트 보기 ↗</b></a>
-                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Engineering</span><h3>Build &amp; Debug</h3><p>Ubuntu, Docker, Jetson, simulation, embedded hardware, and troubleshooting.</p><b>노트 보기 ↗</b></a>
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>ROS 2</span><h3>Robot Software</h3><p>node, interface, package architecture, Nav2, MoveIt 2, system integration 기록.</p><b>노트 보기 ↗</b></a>
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Robot Learning</span><h3>AI &amp; Mathematics</h3><p>PyTorch, computer vision, linear algebra, calibration, 논문 리뷰 기록.</p><b>노트 보기 ↗</b></a>
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Engineering</span><h3>Build &amp; Debug</h3><p>Ubuntu, Docker, Jetson, simulation, embedded hardware, troubleshooting 기록.</p><b>노트 보기 ↗</b></a>
             </div>
         </section>
     </main>
@@ -215,9 +215,9 @@
 
     <div class="modal-container" id="project-modal"><div class="modal-content"><button class="modal-close-btn" id="modal-close" aria-label="Close modal">×</button><div class="modal-body" id="modal-body-content"></div></div></div>
     <div id="project-templates" style="display:none;">
-        <div id="template-digital-twin"><div class="modal-header"><span class="project-category">Digital Twin Logistics</span><h3 class="modal-project-title">QR-Based Digital Twin Logistics System</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">Period</h4><p class="modal-meta-value">Apr 2025 – Oct 2025</p><h4 class="modal-meta-title">Type</h4><p class="modal-meta-value">Team project · Hanium competition</p><h4 class="modal-meta-title">Stack</h4><p class="modal-meta-value">Python, C#, C++, ROS 2, MoveIt 2, YOLO, Unity</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">System</h4><p class="modal-detail-text">QR information was queued, conveyor arrival was detected by an ultrasonic sensor, and the robot arm executed destination-specific pick-and-place while Unity visualized system state.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">The main challenge was coordinating communication delay and execution order across perception, conveyor control, manipulation, and simulation. A UDP-based state exchange and explicit control sequence were used to synchronize the physical system and digital twin.</p></div></div></div></div>
-        <div id="template-rgbd-arm"><div class="modal-header"><span class="project-category">Robotic Manipulation</span><h3 class="modal-project-title">RGB-D Robot Arm Pick-and-Place</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">Period</h4><p class="modal-meta-value">Jul 2025 – Feb 2026</p><h4 class="modal-meta-title">Type</h4><p class="modal-meta-value">Personal project · IRC Lab seminar</p><h4 class="modal-meta-title">Stack</h4><p class="modal-meta-value">ROS 2, Python, RealSense D435, YOLOv11 Segmentation, tf2, MoveIt 2</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">Pipeline</h4><p class="modal-detail-text">RGB-D input → segmentation mask → depth-based 3D estimation → camera-to-robot transform → MoveIt 2 target pose and pick-and-place.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">The project moved from AprilTag-based estimation to markerless segmentation. Depth noise and coordinate-frame validation were handled through mask-based sampling, tf2, and RViz2 verification.</p></div></div></div></div>
-        <div id="template-mobile-robot"><div class="modal-header"><span class="project-category">Mobile Robotics</span><h3 class="modal-project-title">Autonomous Following &amp; Towing Robot</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">Period</h4><p class="modal-meta-value">Sep 2025 – Jun 2026</p><h4 class="modal-meta-title">Role</h4><p class="modal-meta-value">System integration</p><h4 class="modal-meta-title">Stack</h4><p class="modal-meta-value">ROS 2, RPLiDAR S2, ros2_control, SLAM, Nav2, PyQt5, RS485</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">System</h4><p class="modal-detail-text">The robot supports worker following, path recording, repeated autonomous navigation, cart towing, status monitoring, and fine manual control through a GUI.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">Functional code was reorganized into hardware, tracking, path, navigation, GUI, and mode-management layers. A staged SIGINT → SIGTERM → SIGKILL shutdown strategy reduced process conflicts during mode transitions.</p></div></div></div></div>
+        <div id="template-digital-twin"><div class="modal-header"><span class="project-category">Digital Twin Logistics</span><h3 class="modal-project-title">QR-Based Digital Twin Logistics 시스템</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">기간</h4><p class="modal-meta-value">Apr 2025 – Oct 2025</p><h4 class="modal-meta-title">유형</h4><p class="modal-meta-value">팀 프로젝트 · 한이음 공모전</p><h4 class="modal-meta-title">기술 스택</h4><p class="modal-meta-value">Python, C#, C++, ROS 2, MoveIt 2, YOLO, Unity</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">시스템</h4><p class="modal-detail-text">QR 정보를 queue에 저장하고 ultrasonic sensor로 conveyor 도착을 감지한 뒤, robot arm이 목적지별 pick-and-place를 수행하도록 구성했습니다. Unity는 전체 system state를 visualizing했습니다.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">핵심 과제는 perception, conveyor control, manipulation, simulation 사이의 communication delay와 실행 순서를 맞추는 것이었습니다. UDP 기반 state exchange와 명시적인 control sequence로 실제 시스템과 digital twin을 동기화했습니다.</p></div></div></div></div>
+        <div id="template-rgbd-arm"><div class="modal-header"><span class="project-category">Robotic Manipulation</span><h3 class="modal-project-title">RGB-D Robot Arm Pick-and-Place</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">기간</h4><p class="modal-meta-value">Jul 2025 – Feb 2026</p><h4 class="modal-meta-title">유형</h4><p class="modal-meta-value">개인 프로젝트 · IRC Lab 세미나</p><h4 class="modal-meta-title">기술 스택</h4><p class="modal-meta-value">ROS 2, Python, RealSense D435, YOLOv11 Segmentation, tf2, MoveIt 2</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">Pipeline</h4><p class="modal-detail-text">RGB-D input → segmentation mask → depth 기반 3D estimation → camera-to-robot transform → MoveIt 2 target pose → pick-and-place</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">초기 AprilTag 기반 estimation에서 markerless segmentation 방식으로 확장했습니다. Depth noise와 coordinate frame 검증은 mask 기반 sampling, tf2, RViz2를 이용해 처리했습니다.</p></div></div></div></div>
+        <div id="template-mobile-robot"><div class="modal-header"><span class="project-category">Mobile Robotics</span><h3 class="modal-project-title">Autonomous Following &amp; Towing Robot</h3></div><div class="modal-grid"><div class="modal-sidebar-card"><h4 class="modal-meta-title">기간</h4><p class="modal-meta-value">Sep 2025 – Jun 2026</p><h4 class="modal-meta-title">역할</h4><p class="modal-meta-value">시스템 integration</p><h4 class="modal-meta-title">기술 스택</h4><p class="modal-meta-value">ROS 2, RPLiDAR S2, ros2_control, SLAM, Nav2, PyQt5, RS485</p></div><div><div class="modal-detail-section"><h4 class="modal-detail-title">시스템</h4><p class="modal-detail-text">robot은 worker following, path recording, 반복 autonomous navigation, cart towing, 상태 monitoring, GUI 기반 fine manual control을 지원합니다.</p></div><div class="modal-detail-section"><h4 class="modal-detail-title">Engineering Challenge</h4><p class="modal-detail-text">기존 기능 코드를 hardware, tracking, path, navigation, GUI, mode-management layer로 재구성했습니다. SIGINT → SIGTERM → SIGKILL 단계의 shutdown strategy로 mode 전환 시 process conflict를 줄였습니다.</p></div></div></div></div>
     </div>
 
     <script src="../js/main.js"></script>
