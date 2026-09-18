@@ -1,0 +1,15 @@
+title: Inpyo Lee
+description: Robotics & AI notes
+markdown: kramdown
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
