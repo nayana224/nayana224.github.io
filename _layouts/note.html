@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{ page.title }} | Inpyo Lee</title>
+  <link rel="stylesheet" href="{{ '/stylesheets/styles.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css' | relative_url }}">
+</head>
+<body>
+  <div class="note-shell">
+    <header class="note-header">
+      <a href="{{ '/' | relative_url }}">← Home</a>
+      <a href="{{ '/notes/' | relative_url }}">All Notes</a>
+    </header>
+
+    <article class="note-article">
+      <div class="note-meta">
+        {% if page.date %}<time>{{ page.date | date: "%Y.%m.%d" }}</time>{% endif %}
+        {% if page.category %}<span>{{ page.category }}</span>{% endif %}
+      </div>
+
+      <h1>{{ page.title }}</h1>
+
+      {% if page.summary %}
+      <p class="note-summary">{{ page.summary }}</p>
+      {% endif %}
+
+      <div class="note-content">
+        {{ content }}
+      </div>
+    </article>
+  </div>
+</body>
+</html>
