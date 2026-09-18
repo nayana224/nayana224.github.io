@@ -122,7 +122,7 @@ function renderFeed() {
 function initTheme() {
   const root = document.documentElement;
   const saved = localStorage.getItem('theme');
-  if (saved) root.dataset.theme = saved;
+  root.dataset.theme = saved || 'light';
 
   byId('theme-toggle').addEventListener('click', () => {
     root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
