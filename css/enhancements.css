@@ -12,13 +12,13 @@ html[data-theme="light"] { color-scheme: light; }
 }
 
 html[data-theme="light"] {
-    --academic-bg: #f5f4ef;
-    --academic-surface: #efeee8;
-    --academic-text: #20221e;
-    --academic-sub: #555a51;
-    --academic-muted: #7c8177;
-    --academic-line: #d7d7cf;
-    --academic-accent: #526a48;
+    --academic-bg: #f0eee7;
+    --academic-surface: #e8e5dc;
+    --academic-text: #242621;
+    --academic-sub: #5d6259;
+    --academic-muted: #858a80;
+    --academic-line: #d2d0c7;
+    --academic-accent: #5d7353;
 }
 
 body {
