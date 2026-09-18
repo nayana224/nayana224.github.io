@@ -148,7 +148,7 @@ function renderFeed() {
 
     const sources = item.sources?.length
       ? '<div class="entry-links"><span class="entry-links-label">' + ui[state.lang].sources + '</span>' + item.sources.map((s) =>
-          '<a href="' + s.url + '" target="_blank" rel="noreferrer">' + (s.label?.[state.lang] || s.label || 'Source') + ' ↗</a>'
+          '<a class="source-link" href="' + s.url + '" target="_blank" rel="noreferrer"><span>' + (s.label?.[state.lang] || s.label || 'Source') + ' ↗</span><small>' + s.url + '</small></a>'
         ).join('') + '</div>'
       : '';
 
