@@ -712,3 +712,97 @@ footer {
     .project-visual { height: 220px; }
     .background-item { grid-template-columns: 64px 1fr; }
 }
+
+
+/* AI & Research Briefing preview */
+.briefing-preview-section {
+    display: grid;
+    gap: 42px;
+}
+
+.briefing-preview-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.briefing-preview-head .section-lead {
+    max-width: 700px;
+}
+
+.briefing-view-all,
+.briefing-preview-item a {
+    color: var(--academic-text);
+    font-size: .82rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--academic-muted);
+    padding-bottom: 3px;
+    white-space: nowrap;
+}
+
+.briefing-view-all:hover,
+.briefing-preview-item a:hover {
+    color: var(--academic-accent);
+    border-color: var(--academic-accent);
+}
+
+.briefing-preview-list {
+    border-top: 1px solid var(--academic-line);
+}
+
+.briefing-preview-item {
+    display: grid;
+    grid-template-columns: 170px minmax(220px, 1fr) minmax(280px, 1.25fr) auto;
+    gap: 28px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--academic-line);
+}
+
+.briefing-preview-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--academic-muted);
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.briefing-preview-meta span:first-child {
+    color: var(--academic-accent);
+}
+
+.briefing-preview-item h3 {
+    margin: 0;
+    color: var(--academic-text);
+    font-size: 1.08rem;
+    line-height: 1.45;
+    letter-spacing: -.02em;
+}
+
+.briefing-preview-item p {
+    margin: 0;
+    color: var(--academic-sub);
+    font-size: .92rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+    .briefing-preview-head {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .briefing-preview-item {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .briefing-preview-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
