@@ -62,3 +62,12 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Default visual theme is warm light, not pure white.
 - Use a soft ivory/off-white background with restrained contrast.
 - Dark theme remains available as an explicit user toggle.
+
+
+## Modern Research Archive direction
+- Treat the site as a personal research archive rather than a conventional portfolio or generic blog.
+- Homepage hierarchy: identity -> current research focus -> selected work -> briefing -> notes/archive.
+- Briefing should feel like a research feed, not a dashboard.
+- Use warm off-white as the default background; avoid pure white.
+- Prefer sans-serif editorial hierarchy, mono metadata, thin rules, flat lists, and restrained accent color.
+- Minimize decorative cards, gradients, and SaaS-style UI patterns.
