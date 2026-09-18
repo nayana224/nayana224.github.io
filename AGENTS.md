@@ -56,3 +56,9 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Reduce card-heavy presentation in favor of strong typography, generous whitespace, thin rules, list-based content, and mono metadata.
 - Keep the portfolio identity primary; Briefing remains a dedicated research/news surface.
 - Reuse the existing static HTML/CSS/JS architecture and preserve bilingual Briefing behavior.
+
+
+## Theme default
+- Default visual theme is warm light, not pure white.
+- Use a soft ivory/off-white background with restrained contrast.
+- Dark theme remains available as an explicit user toggle.
