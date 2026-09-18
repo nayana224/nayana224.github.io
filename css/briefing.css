@@ -139,3 +139,24 @@ html[data-theme="light"] .theme-moon { display:inline; }
   .entry-sections { grid-template-columns:1fr; gap:18px; }
   .briefing-footer { flex-direction:column; }
 }
+
+.language-toggle {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding-left:2px;
+  color:var(--muted);
+  font:500 .68rem var(--font-mono);
+}
+.language-button {
+  border:0;
+  padding:0;
+  background:transparent;
+  color:var(--muted);
+  font:500 .68rem var(--font-mono);
+  cursor:pointer;
+}
+.language-button:hover,
+.language-button.active {
+  color:var(--accent);
+}
