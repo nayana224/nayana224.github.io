@@ -1,6 +1,7 @@
 title: Inpyo Lee
 description: Robotics & AI notes
 markdown: kramdown
+timezone: Asia/Seoul
 
 collections:
   notes:
