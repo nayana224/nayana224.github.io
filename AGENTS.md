@@ -103,3 +103,9 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Use `source_type: primary` only for first-party announcements, original papers, official docs, or original repositories.
 - Preview/demo entries must remain explicitly labeled as preview and must not imply source verification.
 - The UI must expose published time, verification status, source type, and source links when present.
+
+
+## Live briefing content phase
+- Preview entries have been replaced with verified recent AI/robotics items backed by primary sources.
+- Do not invent publication times when a source exposes only a publication date; show date-only in that case.
+- Initial real feed prioritizes OpenAI and NVIDIA items with direct relevance to agents, robotics simulation, edge inference, and reliability.
