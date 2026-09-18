@@ -49,3 +49,10 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 
 ## Branch policy
 - Always apply requested repository changes directly to `main` unless the user explicitly asks for another branch or PR.
+
+
+## Current design revision
+- Direction: Editorial Research Journal with subtle Lab Notebook details.
+- Reduce card-heavy presentation in favor of strong typography, generous whitespace, thin rules, list-based content, and mono metadata.
+- Keep the portfolio identity primary; Briefing remains a dedicated research/news surface.
+- Reuse the existing static HTML/CSS/JS architecture and preserve bilingual Briefing behavior.
