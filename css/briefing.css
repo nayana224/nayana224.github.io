@@ -160,3 +160,148 @@ html[data-theme="light"] .theme-moon { display:inline; }
 .language-button.active {
   color:var(--accent);
 }
+
+
+/* Editorial feed refinement */
+:root {
+  --editorial-serif: Georgia, "Times New Roman", serif;
+}
+
+.briefing-nav {
+  min-height: 82px;
+}
+
+.briefing-logo {
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.briefing-hero {
+  padding: 112px 0 82px;
+}
+
+.briefing-hero h1 {
+  max-width: 960px;
+  margin-top: 22px;
+  margin-bottom: 30px;
+  font-family: var(--editorial-serif);
+  font-size: clamp(3.4rem, 8.5vw, 7.2rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.06em;
+}
+
+.briefing-hero>p {
+  max-width: 670px;
+  font-size: 1rem;
+  line-height: 1.82;
+}
+
+.research-radar {
+  margin-top: 54px;
+  padding-top: 20px;
+  grid-template-columns: 160px 1fr;
+}
+
+.research-radar b {
+  font-weight: 400;
+}
+
+.feed-controls {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  background: color-mix(in srgb, var(--page-bg) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.filter-list {
+  gap: 20px;
+}
+
+.filter-button {
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  padding: 5px 0;
+  background: transparent;
+  font-size: .7rem;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+
+.filter-button:hover,
+.filter-button.active {
+  background: transparent;
+  border-color: var(--accent);
+}
+
+.briefing-entry {
+  grid-template-columns: 110px minmax(0,1fr);
+  gap: 46px;
+  padding: 52px 0 58px;
+}
+
+.entry-index {
+  padding-top: 2px;
+}
+
+.entry-index strong {
+  margin-bottom: 4px;
+  font-size: .68rem;
+  letter-spacing: .1em;
+}
+
+.briefing-entry h2 {
+  max-width: 900px;
+  margin: 18px 0 18px;
+  font-family: var(--editorial-serif);
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -.045em;
+}
+
+.entry-summary {
+  max-width: 760px;
+  font-size: 1rem;
+  line-height: 1.82;
+}
+
+.entry-sections {
+  max-width: 900px;
+  gap: 42px;
+  margin-top: 38px;
+}
+
+.entry-block {
+  padding-top: 18px;
+}
+
+.entry-block h3 {
+  letter-spacing: .1em;
+}
+
+.entry-block p {
+  line-height: 1.82;
+}
+
+@media (max-width:760px) {
+  .briefing-hero {
+    padding: 82px 0 58px;
+  }
+
+  .briefing-hero h1 {
+    font-size: clamp(3.5rem, 17vw, 5.7rem);
+  }
+
+  .feed-controls {
+    position: static;
+  }
+
+  .briefing-entry {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 38px 0 42px;
+  }
+}
