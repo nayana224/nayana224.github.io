@@ -207,3 +207,12 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
   - AI & Robotics
   - Research Papers
 - Keep human-authored Library notes visually and semantically separate from future automated Briefing content.
+
+
+## Notes language and folder behavior
+- Notes is Korean-only. Do not show a Korean/English language switch on the Notes index or individual note pages.
+- Keep established technical terms in English where natural inside Korean notes.
+- Sidebar folders should behave like a lightweight file browser.
+- Parent folders with children can collapse and expand with a caret (› / ▾).
+- Current Papers children: Computer Vision and Transformer.
+- Preserve the Library / Briefing split.
