@@ -121,3 +121,10 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Keep EN / KO at the bottom of the left profile by using flex layout with `margin-top:auto`.
 - Institution logos are small affiliation badges, not hero graphics: KITECH 26x26px, TUK 28x28px.
 - Increment the stylesheet query version after layout fixes to avoid stale browser cache.
+
+
+## Content planning phase
+- Keep the current responsive layout stable while refining content.
+- Treat the homepage as a concise research profile, not a full CV.
+- Prioritize: current role and trajectory, research interests, representative projects, recent activity, notes/publications, then personal interests.
+- Avoid overstating VLM/VLA expertise; describe current study and transition accurately.
