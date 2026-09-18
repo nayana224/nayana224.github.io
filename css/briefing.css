@@ -618,3 +618,17 @@ html[data-theme="dark"] {
   --line:#2E3943;
   --accent:#7FA6C2;
 }
+
+
+.source-link {
+  display:grid;
+  gap:4px;
+}
+.source-link small {
+  max-width:100%;
+  color:var(--muted);
+  font:500 .62rem var(--font-mono);
+  line-height:1.45;
+  overflow-wrap:anywhere;
+  text-transform:none;
+}
