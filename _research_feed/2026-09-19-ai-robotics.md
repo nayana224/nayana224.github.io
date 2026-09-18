@@ -46,11 +46,8 @@ AI researcher에게 agent는 이제 단순 code completion 도구가 아니라 *
 
 ## Sources
 
-- Google DeepMind — Gemini Robotics 2  
-  https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/
+- [Google DeepMind — Gemini Robotics 2](https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/)
 
-- OpenAI — Introducing the Agents API  
-  https://openai.com/index/introducing-the-agents-api/
+- [OpenAI — Introducing the Agents API](https://openai.com/index/introducing-the-agents-api/)
 
-- OpenAI — Research acceleration: The view inside OpenAI  
-  https://openai.com/index/research-acceleration-view-inside-openai/
+- [OpenAI — Research acceleration: The view inside OpenAI](https://openai.com/index/research-acceleration-view-inside-openai/)
