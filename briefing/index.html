@@ -12,8 +12,13 @@
   <header class="briefing-nav">
     <a class="briefing-logo" href="../">Inpyo.dev</a>
     <div class="briefing-nav-actions">
-      <a href="../">Portfolio</a>
+      <a href="../" data-i18n="nav.portfolio">Portfolio</a>
       <a class="active" href="./">Briefing</a>
+      <div class="language-toggle" aria-label="Language selector">
+        <button type="button" class="language-button" data-lang="ko">KO</button>
+        <span>/</span>
+        <button type="button" class="language-button" data-lang="en">EN</button>
+      </div>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme">
         <span class="theme-sun" aria-hidden="true">☀</span>
         <span class="theme-moon" aria-hidden="true">☾</span>
@@ -23,12 +28,12 @@
 
   <main class="briefing-shell">
     <section class="briefing-hero">
-      <div class="briefing-kicker">AI &amp; Research Briefing</div>
-      <h1>Things worth tracking in<br>AI, robotics, and robot learning.</h1>
-      <p>Short, high-signal notes on what changed, why it matters, and how it connects to my research.</p>
+      <div class="briefing-kicker" data-i18n="hero.kicker">AI &amp; Research Briefing</div>
+      <h1 data-i18n-html="hero.title">Things worth tracking in<br>AI, robotics, and robot learning.</h1>
+      <p data-i18n="hero.description">Short, high-signal notes on what changed, why it matters, and how it connects to my research.</p>
 
       <div class="research-radar">
-        <span>Currently watching</span>
+        <span data-i18n="radar.label">Currently watching</span>
         <div>
           <b>LLM Agents</b><b>VLM</b><b>Robot Learning</b><b>VLA</b><b>Manipulation</b><b>Isaac Lab</b>
         </div>
@@ -37,18 +42,18 @@
 
     <section class="feed-controls" aria-label="Briefing filters">
       <div id="filter-list" class="filter-list"></div>
-      <p class="preview-note">Preview feed · sample content for UI validation</p>
+      <p class="preview-note" data-i18n="feed.preview">Preview feed · sample content for UI validation</p>
     </section>
 
     <section>
       <div id="briefing-feed" class="briefing-feed" aria-live="polite"></div>
-      <div id="feed-empty" class="feed-empty" hidden>No briefings in this category yet.</div>
+      <div id="feed-empty" class="feed-empty" hidden><span data-i18n="feed.empty">No briefings in this category yet.</span></div>
     </section>
   </main>
 
   <footer class="briefing-footer">
     <span>Inpyo Lee · Robotics &amp; AI</span>
-    <a href="../">Back to portfolio →</a>
+    <a href="../" data-i18n="footer.back">Back to portfolio →</a>
   </footer>
 
   <script src="briefing.js"></script>
