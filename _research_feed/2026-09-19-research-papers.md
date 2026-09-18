@@ -1,103 +1,62 @@
 ---
 layout: feed_note
-title: "Research Papers Update — VLA Scaling, Lifelong Learning, Real-Robot Deployment"
-date: 2026-09-19
+title: "Research Papers Update — VLA Training, Serving, Real-World Stack"
+date: 2026-09-19 00:35:00 +0900
 channel: research-papers
 channel_label: Research Papers
-summary: "VLA 연구에서 지금 눈여겨볼 세 가지 축: 대규모 data scaling, lifelong adaptation, 실제 robot deployment의 system-level 문제."
+summary: "최근 VLA 연구에서 눈여겨볼 세 축: fixed-data training, latency-aware serving, end-to-end real-world robot learning stack."
 ---
 
-**한 줄 요약:** 최근 VLA 연구를 보면 **scale, continual adaptation, real-world deployment** 세 축이 점점 더 중요해지고 있다.
+**한 줄 핵심:** 최근 VLA 논문들을 묶어 보면 architecture 하나보다 **data를 어떻게 쓰는지, 실제 robot에서 어떻게 serve하는지, 전체 learning stack을 어떻게 구성하는지**가 점점 중요해지고 있다.
 
-## 1. Xiaomi-Robotics-1 — 100K+ hours real-world trajectories로 VLA scaling
+## 1. REAL-I Challenge — 같은 demonstration budget에서도 학습 방식이 중요하다
 
-Xiaomi Robotics는 **100,000시간이 넘는 real-world manipulation trajectory**를 활용한 VLA model을 공개했다.
+How to Better Train VLAs: Lessons Learned From the REAL-I Challenge at ICRA 2026은 fixed demonstration budget에서 robot policy를 어떻게 더 잘 학습시킬 수 있는지를 실제 challenge 결과로 분석한다.
 
-이 연구의 핵심은 단순히 dataset이 크다는 점보다, scale이 실제 robot performance로 이어지는지를 확인했다는 데 있다.
+참가팀들은 pretrained VLA와 imitation policy를 사용했지만, 성능 차이는 단순 model 선택뿐 아니라 다음 요소에서도 크게 나타났다.
 
-주요 특징:
+- data curation
+- staged adaptation
+- checkpoint selection
+- action-space design
+- deployment environment adaptation
 
-- 대규모 real-world trajectory pre-training
-- natural language auto-labeling pipeline
-- pre-training → post-training 2-stage recipe
-- unseen environment에서 zero/few-shot adaptation
-- downstream dexterous task에 data-efficient fine-tuning
-
-### Why it matters
-
-LLM/VLM에서 확인된 scaling law가 robotics에서도 어느 정도 성립하는지 보는 대표적인 흐름이다.
-
-특히 robot learning에서는 data collection 비용이 매우 크기 때문에,  
-**어떤 data를 얼마나 모아야 generalization이 생기는가**가 핵심 연구 문제가 된다.
-
-## 2. LifelongVLA — 새로운 task를 배우면서 이전 skill을 잊지 않기
-
-LifelongVLA는 VLA의 continual/lifelong learning 문제를 다룬다.
-
-robot이 deployment 이후 계속 새로운 task를 배워야 한다면 두 가지가 동시에 필요하다.
-
-- **plasticity**: 새로운 task를 잘 배워야 함
-- **stability**: 기존 task를 잊지 않아야 함
-
-이 논문은 이를 위해:
-
-- short-term / long-term adaptation을 나누는 dual-timescale LoRA
-- task-aware gating
-- memory-efficient replay
-
-를 사용한다.
+특히 offline action-prediction metric이 실제 closed-loop 성공률을 충분히 예측하지 못한다는 점도 강조한다.
 
 ### Why it matters
 
-실제 robot은 한 번 학습하고 끝나는 system이 아니다.
+VLA 실험을 할 때 “loss가 낮다”와 “robot이 task를 성공한다”는 같은 말이 아니다.  
+실제 deployment에서는 **data quality와 closed-loop evaluation**이 훨씬 중요할 수 있다.
 
-공장, 실험실, 가정처럼 환경과 task가 계속 바뀌는 곳에서는  
-**continual adaptation이 없는 VLA는 deployment 단계에서 한계가 생길 수밖에 없다.**
+## 2. Robion — VLA도 serving system이 필요하다
 
-## 3. VLA on a real UR5 platform — model보다 pipeline이 문제일 수 있다
+Efficient Vision-Language-Action Management and Serving for Robot Factories는 여러 robot과 여러 VLA model을 GPU server에서 동시에 serve하는 문제를 다룬다.
 
-UR5e 실제 robot에서 OpenVLA 계열을 fine-tuning하고 deployment한 연구는 매우 실용적인 포인트를 보여준다.
-
-offline metric이 좋아도 실제 closed-loop robot에서는 불안정할 수 있으며, 그 원인이 단순한 model capacity가 아닐 수 있다는 것이다.
-
-논문이 강조하는 system-level 요소:
-
-- action representation
-- coordinate frame convention
-- temporal alignment
-- image preprocessing consistency
-- dataset coverage
-- control interface
+VLA inference는 latency constraint가 강하고, VLM stage와 action generation stage의 계산 특성도 다르다. 이 논문은 GPU resource scheduling과 model placement를 조정해서 여러 robot request를 SLO 안에서 처리하는 system을 제안한다.
 
 ### Why it matters
 
-이건 실제 robotics를 해본 사람에게 특히 중요한 메시지다.
+VLA를 실제 현장에 배포하려면 model accuracy만으로 끝나지 않는다.
 
-VLA를 실제 robot에 올릴 때는:
+**latency, GPU scheduling, multi-robot load, reliability**까지 포함한 serving problem이 robotics에서도 중요해지고 있다는 의미다.
 
-**model → action → coordinate → controller → physical robot**
+## 3. Hy-Embodied-0.5-VLA — model이 아니라 전체 robot learning stack을 본다
 
-전체 pipeline이 정확히 맞아야 한다.
+Hy-Embodied-0.5-VLA는 data collection부터 model design, continued pre-training, supervised fine-tuning, RL post-training, real-world deployment까지 **full robot learning stack**을 하나의 system으로 다룬다.
 
-즉 VLA deployment는 단순 ML problem이 아니라 **robot system integration problem**이기도 하다.
+### Why it matters
 
-## 정리
+VLA를 실제 robot에 적용하는 관점에서는 단일 architecture보다 전체 pipeline을 보는 것이 더 현실적이다.
 
-세 논문은 서로 다른 문제를 다루지만 연결하면 다음과 같다.
-
-1. **Scale** — 더 많은 real-world data로 generalization 확대
-2. **Adaptation** — deployment 이후 새로운 skill을 계속 학습
-3. **Integration** — 실제 robot에서 data-model-control pipeline을 안정화
-
-현재 VLA 연구를 공부할 때는 architecture만 보지 말고 이 세 축을 같이 보면 전체 흐름을 잡기 좋다.
+특히 지금처럼 robotics system integration 경험에서 learning-based robotics로 넘어갈 때는 이 관점이 중요하다.
 
 ## Sources
 
-- Xiaomi-Robotics-1  
-  https://arxiv.org/abs/2607.15330
+- How to Better Train VLAs: Lessons Learned From the REAL-I Challenge at ICRA 2026  
+  https://arxiv.org/abs/2609.13679
 
-- LifelongVLA  
-  https://arxiv.org/abs/2607.14852
+- Efficient Vision-Language-Action Management and Serving for Robot Factories  
+  https://arxiv.org/abs/2609.12075
 
-- Vision-Language-Action Models: Experimental Insights from a Real-World UR5 Platform  
-  https://arxiv.org/abs/2606.30456
+- Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack  
+  https://arxiv.org/abs/2606.14409
