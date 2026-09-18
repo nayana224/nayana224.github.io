@@ -517,3 +517,49 @@ html[data-theme="light"] {
     display:block;
   }
 }
+
+
+.entry-provenance {
+  margin:22px 0 24px;
+  padding:14px 0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.entry-provenance div {
+  display:grid;
+  gap:5px;
+}
+.entry-provenance span,
+.entry-links-label {
+  color:var(--muted);
+  font:600 .62rem var(--font-mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.entry-provenance strong {
+  color:var(--sub);
+  font-size:.78rem;
+  font-weight:600;
+}
+.entry-provenance .is-verified {
+  color:var(--accent);
+}
+.entry-provenance .is-preview {
+  color:var(--muted);
+}
+.entry-links {
+  align-items:center;
+}
+.entry-links-label {
+  margin-right:4px;
+}
+
+@media (max-width:760px) {
+  .entry-provenance {
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+}
