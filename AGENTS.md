@@ -186,3 +186,24 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - All links that navigate to the Notes index must use the canonical absolute path `/notes/?v=20260919-4` during the current cache-sensitive development phase.
 - This includes homepage Notes links and note-layout links such as Notes, All Notes, and Back to Notes.
 - Avoid mixed relative Notes URLs that can resolve differently depending on the current page path.
+
+
+## Notes information architecture
+- Notes uses a two-part information architecture: Library and Briefing.
+- Library top-level folders:
+  - Papers
+  - Study Notes
+  - Implementations
+  - Project Logs
+- Papers use topic metadata rather than deeper physical folders. Current topics:
+  - Computer Vision
+  - Transformer
+  - Future: VLM/VLA, Robot Learning
+- Current imported paper mapping:
+  - ResNet, U-Net, DeepLabV3+ -> Papers / Computer Vision
+  - Attention Is All You Need -> Papers / Transformer
+- Briefing UI is reserved for future automation and currently contains no generated content.
+- Planned Briefing channels:
+  - AI & Robotics
+  - Research Papers
+- Keep human-authored Library notes visually and semantically separate from future automated Briefing content.
