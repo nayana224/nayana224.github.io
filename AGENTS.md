@@ -279,3 +279,22 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - The right-side top-level heading text must match those sidebar labels.
 - My Path, Research Interests, Recent Activity, and Outside Research are About subsections, not top-level navigation items.
 - Sidebar links should target in-page anchors for these five homepage sections.
+
+
+## Research Feed automation contract
+- Research Feed is backed by the Jekyll collection `research_feed`.
+- Automated posts are Markdown files under `_research_feed/`.
+- Required front matter:
+  - layout: feed_note
+  - title
+  - date
+  - channel: ai-robotics or research-papers
+  - channel_label: AI & Robotics or Research Papers
+  - summary
+- Feed articles use a concise structure:
+  1. one-line takeaway
+  2. 3-5 key changes
+  3. Why it matters
+  4. Sources
+- Use @choi.openai Threads posts as discovery/context when useful, but verify factual claims against primary sources whenever possible.
+- Do not copy @choi.openai's wording or exact voice; use only high-level editorial traits such as a strong takeaway, practical implications, and concise structure.
