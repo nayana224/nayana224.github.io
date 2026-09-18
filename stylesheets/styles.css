@@ -503,3 +503,35 @@ td {
     margin-top:18px;
   }
 }
+
+
+/* Homepage top-level / sidebar alignment */
+.top-level-section {
+  scroll-margin-top:28px;
+}
+
+.subsection-title {
+  margin-top:34px;
+  margin-bottom:16px;
+  font-size:clamp(18px,1.55vw,22px);
+  color:#393939;
+}
+
+.about-extra-sections {
+  margin-bottom:38px;
+}
+
+.about-subsection {
+  margin-top:34px;
+}
+
+.about-subsection .recent-list {
+  margin-bottom:0;
+}
+
+#projects,
+#research-feed,
+#notes,
+#publications {
+  margin-top:44px;
+}
