@@ -35,8 +35,8 @@
         <p class="social-links">
           <a href="https://github.com/nayana224" target="_blank" rel="noreferrer">GitHub</a>
           <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer">Velog</a>
-          <a href="mailto:inpyoi1304@gmail.com">Email</a>
         </p>
+        <p class="email-text">inpyoi1304@gmail.com</p>
 
         <nav>
           <h2><a href="#about">About</a></h2>
@@ -165,10 +165,10 @@
           </tr>
         </table>
 
-        <button type="button" class="collapsible">
-          <u>Other Experience</u><span class="triangle-down"></span>
+        <button type="button" class="detail-toggle" aria-expanded="false">
+          <span>Other Experience</span><span class="toggle-mark" aria-hidden="true">+</span>
         </button>
-        <div class="content">
+        <div class="detail-content">
           <ul>
             <li>KITECH robotics / simulation work</li>
             <li>VLM task monitoring experiments</li>
@@ -221,14 +221,15 @@
 
   <script src="javascripts/scale.fix.js"></script>
   <script>
-    document.querySelectorAll('.collapsible').forEach(function(button) {
+    document.querySelectorAll('.detail-toggle').forEach(function(button) {
       button.addEventListener('click', function() {
-        this.classList.toggle('active');
         var content = this.nextElementSibling;
-        var triangle = this.querySelector('span');
-        var open = content.style.display === 'block';
-        content.style.display = open ? 'none' : 'block';
-        triangle.className = open ? 'triangle-down' : 'triangle-up';
+        var mark = this.querySelector('.toggle-mark');
+        var open = this.getAttribute('aria-expanded') === 'true';
+
+        this.setAttribute('aria-expanded', String(!open));
+        content.classList.toggle('is-open', !open);
+        mark.textContent = open ? '+' : '−';
       });
     });
   </script>
