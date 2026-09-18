@@ -64,3 +64,11 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 ## Asset update
 - Profile image is stored as a normal repository asset at `images/profile.jpg`.
 - Avoid embedding profile/project images as base64 data URIs in HTML.
+
+
+## Notes / blog direction
+- Remove Velog as a primary site dependency.
+- The site now owns its long-form writing through a GitHub Pages Jekyll Notes collection.
+- Add new long-form notes as Markdown under `_notes/`.
+- Keep `Other Experience` permanently visible; do not hide short lists behind disclosure/toggle controls.
+- Profile image must preserve its original aspect ratio using `height:auto`; do not crop it with fixed-height cover behavior.
