@@ -143,3 +143,11 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Notes links to the internal Markdown/Jekyll blog.
 - Papers & Publications remains intentionally lightweight until real publication/reading content is added.
 - Outside Research stays short and personal.
+
+
+## Complete bilingual homepage
+- Every user-facing homepage label, explanatory sentence, Recent Activity item, Other Experience item, and project title/subtitle should participate in EN/KO switching.
+- Official technical terms may remain in English in Korean mode when that is clearer (ROS 2, MoveIt 2, PyTorch, VLM, VLA, Robot Learning, etc.).
+- Institution labels switch to Korean names in KO mode where appropriate.
+- Language control is a compact rounded segmented control: EN / 한국어, with one active pill.
+- Avoid flags for language selection.
