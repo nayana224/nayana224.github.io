@@ -1,12 +1,30 @@
 {
-  "filters": [
-    "All",
-    "AI",
-    "Robotics",
-    "Vision",
-    "Papers",
-    "Simulation"
-  ],
+  "filters": {
+    "ko": [
+      "전체",
+      "AI",
+      "로보틱스",
+      "비전",
+      "논문",
+      "시뮬레이션"
+    ],
+    "en": [
+      "All",
+      "AI",
+      "Robotics",
+      "Vision",
+      "Papers",
+      "Simulation"
+    ]
+  },
+  "filterMap": {
+    "All": "All",
+    "AI": "AI",
+    "Robotics": "Robotics",
+    "Vision": "Vision",
+    "Papers": "Papers",
+    "Simulation": "Simulation"
+  },
   "items": [
     {
       "id": "preview-agent",
@@ -16,10 +34,18 @@
         "LLM",
         "Agent"
       ],
-      "title": "From chat models to tool-using agents",
-      "summary": "The important shift is no longer only model quality. Planning, tool selection, state, memory, and long-running execution are becoming part of the practical system design.",
-      "why_it_matters": "Agent systems expose a new engineering layer between a language model and the real task environment. Reliability depends on orchestration, observable state, tool contracts, and failure handling.",
-      "research_connection": "For robot task planning, this maps naturally to a high-level planner that selects perception and manipulation primitives instead of directly controlling low-level motion.",
+      "ko": {
+        "title": "채팅 모델에서 도구를 사용하는 에이전트로",
+        "summary": "중요한 변화는 이제 모델 성능만이 아닙니다. 계획, 도구 선택, 상태 관리, 메모리, 장시간 작업 실행까지 실제 시스템 설계의 일부가 되고 있습니다.",
+        "why_it_matters": "에이전트 시스템은 언어 모델과 실제 작업 환경 사이에 새로운 엔지니어링 계층을 만듭니다. 신뢰성은 오케스트레이션, 상태 관찰, 도구 계약, 실패 처리에 크게 좌우됩니다.",
+        "research_connection": "로봇 작업 계획 관점에서는 LLM이 저수준 제어를 직접 수행하기보다 perception·manipulation primitive를 선택하는 high-level planner 구조와 자연스럽게 연결됩니다."
+      },
+      "en": {
+        "title": "From chat models to tool-using agents",
+        "summary": "The important shift is no longer only model quality. Planning, tool selection, state, memory, and long-running execution are becoming part of the practical system design.",
+        "why_it_matters": "Agent systems expose a new engineering layer between a language model and the real task environment. Reliability depends on orchestration, observable state, tool contracts, and failure handling.",
+        "research_connection": "For robot task planning, this maps naturally to a high-level planner that selects perception and manipulation primitives instead of directly controlling low-level motion."
+      },
       "sources": []
     },
     {
@@ -30,10 +56,18 @@
         "VLA",
         "Robot Learning"
       ],
-      "title": "Why VLA systems matter for robot learning",
-      "summary": "Vision-Language-Action models are a useful lens for tracking systems that connect visual context and language instructions to robot actions.",
-      "why_it_matters": "They push robotics beyond isolated perception or planning modules and force us to think about how semantic understanding reaches the action space.",
-      "research_connection": "This is directly relevant to separating VLM-based scene understanding from LLM-based high-level planning and later connecting both to manipulation skills.",
+      "ko": {
+        "title": "VLA 시스템이 로봇 학습에서 중요한 이유",
+        "summary": "Vision-Language-Action 모델은 시각적 맥락과 언어 지시를 로봇 행동으로 연결하는 시스템을 추적하기 위한 중요한 관점입니다.",
+        "why_it_matters": "VLA는 로보틱스를 독립된 perception이나 planning 모듈 수준에서 벗어나게 하고, 의미 이해가 실제 action space까지 어떻게 전달되는지를 고민하게 합니다.",
+        "research_connection": "VLM 기반 장면 이해와 LLM 기반 high-level planning을 분리하고, 이후 이를 manipulation skill과 연결하는 현재 연구 방향과 직접 관련됩니다."
+      },
+      "en": {
+        "title": "Why VLA systems matter for robot learning",
+        "summary": "Vision-Language-Action models are a useful lens for tracking systems that connect visual context and language instructions to robot actions.",
+        "why_it_matters": "They push robotics beyond isolated perception or planning modules and force us to think about how semantic understanding reaches the action space.",
+        "research_connection": "This is directly relevant to separating VLM-based scene understanding from LLM-based high-level planning and later connecting both to manipulation skills."
+      },
       "sources": []
     },
     {
@@ -44,10 +78,18 @@
         "Isaac Sim",
         "Isaac Lab"
       ],
-      "title": "What to watch in Isaac Sim and Isaac Lab",
-      "summary": "Simulation quality matters less as a demo and more as a reproducible environment for policy learning, synthetic data, domain randomization, and robot evaluation.",
-      "why_it_matters": "The practical question is whether the simulation stack supports the sensors, robot assets, training loop, and deployment path required by a real project.",
-      "research_connection": "This is especially relevant when validating a robotics pipeline on available hardware before scaling experiments to newer GPUs or a different deployment machine.",
+      "ko": {
+        "title": "Isaac Sim과 Isaac Lab에서 무엇을 봐야 하는가",
+        "summary": "시뮬레이션은 단순한 데모보다 정책 학습, synthetic data, domain randomization, 로봇 평가를 위한 재현 가능한 환경으로서 더 중요합니다.",
+        "why_it_matters": "실무적으로는 시뮬레이션 스택이 실제 프로젝트에 필요한 센서, 로봇 asset, 학습 루프, 배포 경로를 지원하는지가 핵심입니다.",
+        "research_connection": "보유 중인 GPU와 개발 환경에서 로봇 파이프라인을 검증한 뒤 더 높은 사양의 시스템으로 확장하려는 연구 흐름과 특히 밀접합니다."
+      },
+      "en": {
+        "title": "What to watch in Isaac Sim and Isaac Lab",
+        "summary": "Simulation quality matters less as a demo and more as a reproducible environment for policy learning, synthetic data, domain randomization, and robot evaluation.",
+        "why_it_matters": "The practical question is whether the simulation stack supports the sensors, robot assets, training loop, and deployment path required by a real project.",
+        "research_connection": "This is especially relevant when validating a robotics pipeline on available hardware before scaling experiments to newer GPUs or a different deployment machine."
+      },
       "sources": []
     },
     {
@@ -58,10 +100,18 @@
         "VLM",
         "Perception"
       ],
-      "title": "VLMs are becoming an interface between perception and reasoning",
-      "summary": "Instead of treating visual models only as detectors or segmenters, current multimodal systems can represent scene context in a form that downstream reasoning systems can use.",
-      "why_it_matters": "That changes the role of perception from producing only coordinates or class labels to producing task-relevant semantic context.",
-      "research_connection": "For manipulation tasks, this creates a design choice: what should remain deterministic perception and what should be delegated to a VLM.",
+      "ko": {
+        "title": "VLM은 perception과 reasoning 사이의 인터페이스가 되고 있다",
+        "summary": "시각 모델을 detector나 segmenter로만 보는 대신, 최신 multimodal 시스템은 장면 맥락을 downstream reasoning이 활용할 수 있는 형태로 표현합니다.",
+        "why_it_matters": "이는 perception의 역할을 좌표나 class label만 생성하는 단계에서 task-relevant semantic context를 제공하는 단계로 확장합니다.",
+        "research_connection": "Manipulation에서는 어떤 부분을 deterministic perception으로 유지하고 어떤 부분을 VLM에 맡길지라는 설계 판단과 직접 연결됩니다."
+      },
+      "en": {
+        "title": "VLMs are becoming an interface between perception and reasoning",
+        "summary": "Instead of treating visual models only as detectors or segmenters, current multimodal systems can represent scene context in a form that downstream reasoning systems can use.",
+        "why_it_matters": "That changes the role of perception from producing only coordinates or class labels to producing task-relevant semantic context.",
+        "research_connection": "For manipulation tasks, this creates a design choice: what should remain deterministic perception and what should be delegated to a VLM."
+      },
       "sources": []
     },
     {
@@ -72,10 +122,18 @@
         "Reading",
         "Method"
       ],
-      "title": "A paper is worth tracking when it changes the design question",
-      "summary": "The useful unit of reading is not every implementation detail. It is the problem, why the method was chosen, what assumption it changes, and what evidence supports the claim.",
-      "why_it_matters": "This makes a daily research feed useful for deciding what deserves deeper reading instead of turning it into another unread backlog.",
-      "research_connection": "The feed should surface papers that affect current work in LLM agents, VLMs, robot learning, manipulation, and simulation.",
+      "ko": {
+        "title": "좋은 논문 피드는 설계 질문을 바꾸는 논문을 보여줘야 한다",
+        "summary": "모든 구현 세부사항을 읽는 것이 중요한 것은 아닙니다. 문제, 왜 그 방법을 택했는지, 어떤 가정을 바꾸는지, 어떤 근거로 주장을 뒷받침하는지가 핵심입니다.",
+        "why_it_matters": "이 기준이 있어야 Daily Research Feed가 읽지 않는 논문 목록이 아니라, 깊게 읽을 논문을 고르는 도구가 됩니다.",
+        "research_connection": "LLM Agent, VLM, Robot Learning, Manipulation, Simulation처럼 현재 연구에 직접 영향을 주는 논문을 우선적으로 걸러내는 기준으로 사용할 수 있습니다."
+      },
+      "en": {
+        "title": "A paper is worth tracking when it changes the design question",
+        "summary": "The useful unit of reading is not every implementation detail. It is the problem, why the method was chosen, what assumption it changes, and what evidence supports the claim.",
+        "why_it_matters": "This makes a daily research feed useful for deciding what deserves deeper reading instead of turning it into another unread backlog.",
+        "research_connection": "The feed should surface papers that affect current work in LLM agents, VLMs, robot learning, manipulation, and simulation."
+      },
       "sources": []
     }
   ]
