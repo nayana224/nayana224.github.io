@@ -17,12 +17,17 @@
         <div class="nav-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">INPYO / ARCHIVE</div>
         <div class="nav-area">
             <nav class="nav-links" aria-label="Primary navigation">
-                <a href="#section-projects">Work</a>
-                <a href="#section-about">Research</a>
-                <a href="briefing/">Briefing</a>
-                <a href="#section-notes">Notes</a>
-                <a href="#section-background">Archive</a>
+                <a href="#section-about" data-i18n="nav.about">About</a>
+                <a href="#section-projects" data-i18n="nav.work">Work</a>
+                <a href="briefing/" data-i18n="nav.writing">Writing</a>
+                <a href="#section-notes" data-i18n="nav.notes">Notes</a>
+                <a href="#section-background" data-i18n="nav.archive">Archive</a>
             </nav>
+            <div class="site-language-toggle" aria-label="Language selector">
+                <button type="button" class="site-language-button" data-lang="ko">KO</button>
+                <span>/</span>
+                <button type="button" class="site-language-button" data-lang="en">EN</button>
+            </div>
             <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Change theme">
                 <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
                 <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -32,23 +37,23 @@
 
     <main id="main-content">
         <section id="section-hero" class="hero-container">
-            <div class="hero-tag">ROS 2 · Robotic Manipulation · Robot Learning</div>
+            <div class="hero-tag" data-i18n="hero.tag">ROS 2 · Robotic Manipulation · Robot Learning</div>
             <h1 class="hero-title"><span>Inpyo Lee</span></h1>
-            <p class="hero-eyebrow">M.S. Student in AI Engineering · Robotics Systems Developer</p>
-            <p class="hero-description">
-                I build robotic systems that connect sensing, perception, planning, control, and user interfaces.
-                My current work extends this systems background toward <strong>robot learning</strong> and
-                <strong>Vision-Language-Action</strong> research.
+            <p class="hero-eyebrow" data-i18n="hero.eyebrow">Robotics engineer, researcher, and occasional writer.</p>
+            <p class="hero-description" data-i18n-html="hero.description">
+                I build robots, study how learning changes robotics, and write down the ideas worth keeping.
+                This site is my personal space for <strong>projects</strong>, <strong>research notes</strong>,
+                and a small <strong>AI &amp; robotics briefing</strong>.
             </p>
             <div class="hero-archive-meta">
-                <div><span>Current focus</span><strong>Robot Learning · VLA · LLM Agents</strong></div>
-                <div><span>Working across</span><strong>Perception · Planning · Manipulation</strong></div>
-                <div><span>Archive</span><strong>Projects · Briefings · Research Notes</strong></div>
+                <div><span data-i18n="meta.focus">Current focus</span><strong>Robot Learning · VLA · LLM Agents</strong></div>
+                <div><span data-i18n="meta.across">Working across</span><strong>Perception · Planning · Manipulation</strong></div>
+                <div><span data-i18n="meta.archive">Archive</span><strong>Projects · Briefings · Research Notes</strong></div>
             </div>
             <div class="hero-links">
-                <a href="#section-projects" class="btn btn-primary">Selected Work</a>
+                <a href="#section-projects" class="btn btn-primary" data-i18n="hero.work">Selected Work</a>
                 <a href="https://github.com/nayana224" target="_blank" rel="noreferrer" class="btn btn-secondary">GitHub</a>
-                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer" class="btn btn-secondary">Technical Notes</a>
+                <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer" class="btn btn-secondary" data-i18n="hero.notes">Technical Notes</a>
             </div>
             <div class="hero-stats" aria-label="Core experience">
                 <div><strong>ROS 2 Integration</strong><span>Hardware to application layer</span></div>
@@ -58,8 +63,8 @@
         </section>
 
         <section id="section-about">
-            <span class="section-tag">Profile</span>
-            <h2 class="section-title">Engineering <span>Focus</span></h2>
+            <span class="section-tag" data-i18n="about.tag">Profile</span>
+            <h2 class="section-title" data-i18n-html="about.title">Engineering <span>Focus</span></h2>
             <div class="about-grid">
                 <article class="about-card"><span class="card-index">01</span><h3>System Integration</h3><p>Integrating sensors, motor interfaces, ROS 2 middleware, autonomous functions, and GUIs into maintainable robotic systems.</p></article>
                 <article class="about-card"><span class="card-index">02</span><h3>Robotic Manipulation</h3><p>Connecting RGB-D perception, 3D coordinate estimation, coordinate transforms, and MoveIt 2 to physical pick-and-place actions.</p></article>
@@ -68,8 +73,8 @@
         </section>
 
         <section id="section-skills">
-            <span class="section-tag">Capabilities</span>
-            <h2 class="section-title">Technical <span>Stack</span></h2>
+            <span class="section-tag" data-i18n="skills.tag">Capabilities</span>
+            <h2 class="section-title" data-i18n-html="skills.title">Technical <span>Stack</span></h2>
             <div class="skills-grid">
                 <article class="skill-card"><h3>Programming</h3><div class="skill-list">
                     <span class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C logo">C</span>
@@ -105,8 +110,8 @@
         </section>
 
         <section id="section-projects">
-            <span class="section-tag">Selected Work</span>
-            <h2 class="section-title">Project <span>Experience</span></h2>
+            <span class="section-tag" data-i18n="projects.tag">Selected Work</span>
+            <h2 class="section-title" data-i18n-html="projects.title">Project <span>Experience</span></h2>
             <div class="projects-grid projects-grid-three">
                 <article class="project-card">
                     <div class="project-visual visual-twin"><span>Digital Twin</span><i></i><i></i><i></i></div>
@@ -144,11 +149,11 @@
         <section id="section-briefing" class="briefing-preview-section">
             <div class="briefing-preview-head">
                 <div>
-                    <span class="section-tag">AI &amp; Research Briefing</span>
-                    <h2 class="section-title">Research <span>Radar</span></h2>
-                    <p class="section-lead">Short, high-signal notes on AI, robotics, vision, and papers worth tracking — with a focus on why they matter for my research.</p>
+                    <span class="section-tag" data-i18n="briefing.tag">Latest Writing</span>
+                    <h2 class="section-title" data-i18n-html="briefing.title">Recent <span>briefings &amp; notes</span></h2>
+                    <p class="section-lead" data-i18n="briefing.lead">Short posts on AI and robotics: what changed, what is worth reading, and what connects back to my work.</p>
                 </div>
-                <a class="briefing-view-all" href="briefing/">View all briefings →</a>
+                <a class="briefing-view-all" href="briefing/"><span data-i18n="briefing.viewall">View all writing →</span></a>
             </div>
             <div class="briefing-preview-list">
                 <article class="briefing-preview-item">
@@ -173,8 +178,8 @@
         </section>
 
         <section id="section-background">
-            <span class="section-tag">Background</span>
-            <h2 class="section-title">Awards &amp; <span>Activities</span></h2>
+            <span class="section-tag" data-i18n="background.tag">Background</span>
+            <h2 class="section-title" data-i18n-html="background.title">Awards &amp; <span>Activities</span></h2>
             <div class="background-grid">
                 <div class="background-column"><h3>Awards</h3>
                     <article class="background-item"><span>2026</span><div><strong>Silver Prize</strong><p>5th Intelligent Robot Technology Application Idea Competition</p></div></article>
@@ -190,9 +195,9 @@
         </section>
 
         <section id="section-notes">
-            <span class="section-tag">Technical Notes</span>
-            <h2 class="section-title">Study &amp; <span>Engineering Logs</span></h2>
-            <p class="section-lead">Notes on concepts, architecture decisions, debugging, and lessons learned while building robotic systems.</p>
+            <span class="section-tag" data-i18n="notes.tag">Notes &amp; Writing</span>
+            <h2 class="section-title" data-i18n-html="notes.title">Notes from <span>building &amp; studying</span></h2>
+            <p class="section-lead" data-i18n="notes.lead">Notes on things I built, papers I read, and problems I had to understand twice.</p>
             <div class="notes-grid">
                 <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>ROS 2</span><h3>Robot Software</h3><p>Nodes, interfaces, package architecture, Nav2, MoveIt 2, and system integration.</p><b>Read notes ↗</b></a>
                 <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer"><span>Robot Learning</span><h3>AI &amp; Mathematics</h3><p>PyTorch, computer vision, linear algebra, calibration, and paper reviews.</p><b>Read notes ↗</b></a>
@@ -211,5 +216,6 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/site-i18n.js"></script>
 </body>
 </html>
