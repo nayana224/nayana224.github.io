@@ -9,8 +9,8 @@ title: Research Feed
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Research Feed | Inpyo Lee</title>
-  <meta name="description" content="Curated AI, robotics, and research paper updates for Inpyo Lee.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-9' | relative_url }}">
+  <meta name="description" content="Curated AI, robotics, and research-paper updates for Inpyo Lee.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-10' | relative_url }}">
 </head>
 <body class="notes-page feed-page" data-notes-lang="en">
   <div class="notes-shell">
@@ -32,8 +32,8 @@ title: Research Feed
       <p class="notes-eyebrow">CURATED RESEARCH UPDATES</p>
       <h1>Research Feed</h1>
       <p class="notes-lead">
-        <span class="ui-en">A curated stream of AI, robotics, and research-paper updates. Automation will be connected after the UI is finalized.</span>
-        <span class="ui-ko">AI, Robotics, 주요 논문 업데이트를 모아보는 공간입니다. UI를 확정한 뒤 자동화를 연결할 예정입니다.</span>
+        <span class="ui-en">Short, source-backed updates on AI, robotics, and research papers.</span>
+        <span class="ui-ko">AI, Robotics, 주요 논문 소식을 출처와 함께 짧게 정리합니다.</span>
       </p>
     </section>
 
@@ -43,9 +43,11 @@ title: Research Feed
           <p class="sidebar-heading">RESEARCH FEED</p>
           <button class="folder-item active" type="button" data-feed="ai-robotics">
             <span class="folder-label"><span class="folder-glyph">›</span>AI & Robotics</span>
+            <span class="folder-count" data-count="ai-robotics"></span>
           </button>
           <button class="folder-item" type="button" data-feed="research-papers">
             <span class="folder-label"><span class="folder-glyph">›</span>Research Papers</span>
+            <span class="folder-count" data-count="research-papers"></span>
           </button>
         </div>
       </aside>
@@ -56,25 +58,36 @@ title: Research Feed
             <p class="content-kicker">RESEARCH FEED</p>
             <h2 id="feed-title">AI & Robotics</h2>
           </div>
-          <span class="briefing-status">COMING SOON</span>
+          <span class="content-count" id="feed-count">0</span>
         </div>
 
-        <div class="briefing-placeholder">
-          <p class="briefing-label">AUTOMATED RESEARCH FEED</p>
-          <h3>
-            <span class="ui-en">Designed for daily AI and robotics updates.</span>
-            <span class="ui-ko">AI와 Robotics 업데이트를 자동으로 모으기 위한 공간입니다.</span>
-          </h3>
-          <p>
-            <span class="ui-en">Once automation is connected, dated Markdown entries will appear here with sources, concise summaries, and items worth watching.</span>
-            <span class="ui-ko">자동화를 연결하면 출처, 핵심 요약, 주목할 내용을 포함한 날짜별 Markdown 글이 이곳에 쌓입니다.</span>
-          </p>
+        <div class="feed-list" id="feed-list">
+          {% assign sorted_feed = site.research_feed | sort: "date" | reverse %}
+          {% for item in sorted_feed %}
+          <article class="feed-entry" data-channel="{{ item.channel | default: 'ai-robotics' }}">
+            <div class="notes-entry-meta">
+              {% if item.date %}<time>{{ item.date | date: "%Y.%m.%d" }}</time>{% endif %}
+              <span class="notes-path">{{ item.channel_label | default: item.channel }}</span>
+            </div>
+            <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+            {% if item.summary %}<p class="notes-summary">{{ item.summary }}</p>{% endif %}
+            <a class="notes-read" href="{{ item.url | relative_url }}">
+              <span class="ui-en">Read update →</span><span class="ui-ko">업데이트 읽기 →</span>
+            </a>
+          </article>
+          {% endfor %}
+        </div>
 
-          <div class="briefing-example">
-            <span>2026.09.xx</span>
-            <strong id="feed-example-title">AI & Robotics Daily Update</strong>
-            <small>Sources · summary · what to watch</small>
-          </div>
+        <div class="empty-state feed-empty" id="feed-empty" hidden>
+          <p class="empty-icon">＋</p>
+          <strong>
+            <span class="ui-en">No updates in this channel yet.</span>
+            <span class="ui-ko">아직 이 채널에 업데이트가 없습니다.</span>
+          </strong>
+          <p>
+            <span class="ui-en">Scheduled automation will publish source-backed updates here.</span>
+            <span class="ui-ko">예약 자동화가 출처를 확인한 업데이트를 이곳에 게시합니다.</span>
+          </p>
         </div>
       </main>
     </div>
@@ -87,8 +100,10 @@ title: Research Feed
       var lang = localStorage.getItem('notes-ui-lang') || 'en';
       var langButtons = document.querySelectorAll('.notes-language-switcher button');
       var feedButtons = document.querySelectorAll('.folder-item[data-feed]');
+      var entries = Array.prototype.slice.call(document.querySelectorAll('.feed-entry'));
       var feedTitle = document.getElementById('feed-title');
-      var exampleTitle = document.getElementById('feed-example-title');
+      var feedCount = document.getElementById('feed-count');
+      var feedEmpty = document.getElementById('feed-empty');
 
       function applyLanguage(nextLang) {
         lang = nextLang;
@@ -103,6 +118,31 @@ title: Research Feed
         });
       }
 
+      function selectChannel(channel) {
+        var count = 0;
+        entries.forEach(function (entry) {
+          var show = entry.getAttribute('data-channel') === channel;
+          entry.hidden = !show;
+          if (show) count += 1;
+        });
+
+        feedButtons.forEach(function (button) {
+          button.classList.toggle('active', button.getAttribute('data-feed') === channel);
+        });
+
+        feedTitle.textContent = channel === 'research-papers' ? 'Research Papers' : 'AI & Robotics';
+        feedCount.textContent = String(count);
+        feedEmpty.hidden = count !== 0;
+      }
+
+      ['ai-robotics','research-papers'].forEach(function (channel) {
+        var count = entries.filter(function (entry) {
+          return entry.getAttribute('data-channel') === channel;
+        }).length;
+        var counter = document.querySelector('[data-count="' + channel + '"]');
+        if (counter) counter.textContent = String(count);
+      });
+
       langButtons.forEach(function (button) {
         button.addEventListener('click', function () {
           applyLanguage(button.getAttribute('data-lang'));
@@ -111,15 +151,12 @@ title: Research Feed
 
       feedButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-          feedButtons.forEach(function (b) { b.classList.remove('active'); });
-          button.classList.add('active');
-          var papers = button.getAttribute('data-feed') === 'research-papers';
-          feedTitle.textContent = papers ? 'Research Papers' : 'AI & Robotics';
-          exampleTitle.textContent = papers ? 'Research Papers Weekly Update' : 'AI & Robotics Daily Update';
+          selectChannel(button.getAttribute('data-feed'));
         });
       });
 
       applyLanguage(lang);
+      selectChannel('ai-robotics');
     })();
   </script>
 </body>
