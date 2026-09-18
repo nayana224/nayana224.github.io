@@ -925,3 +925,25 @@ body[data-notes-lang="en"] .ui-en {
     min-height:32px;
   }
 }
+
+
+/* Automated Research Feed entries */
+.feed-entry {
+  padding:28px 0 30px;
+  border-bottom:1px solid var(--line);
+}
+
+.feed-entry[hidden] {
+  display:none;
+}
+
+.feed-entry h3 {
+  margin:0 0 9px;
+  font-size:clamp(20px,3vw,24px);
+  line-height:1.3;
+  letter-spacing:-.02em;
+}
+
+.feed-empty {
+  padding-top:54px;
+}
