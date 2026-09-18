@@ -312,3 +312,10 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Jekyll site timezone is Asia/Seoul.
 - Research Feed front matter dates must include an explicit Asia/Seoul offset, e.g. 2026-09-19 08:00:00 +0900.
 - Do not use date-only front matter for Research Feed because GitHub Pages builds may treat same-day Korea posts as future documents under UTC.
+
+
+## Research Feed links
+- All external sources in Research Feed posts must be rendered as clickable Markdown hyperlinks, never as bare URLs.
+- Preferred source format: `[Source / article title](https://...)`.
+- When a specific paper, release, or official document is mentioned in the body and linking it improves navigation, link the title directly.
+- Scheduled Research Feed automation must follow the same hyperlink rule for every new post.
