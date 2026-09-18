@@ -146,3 +146,11 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Left panel contains the user's illustrated avatar, name, role, short tagline, and direct links to Portfolio, News, Velog, GitHub, and Email.
 - Right panel contains About me, Core Responsibilities, Selected Projects, Research Interests, Latest Briefing, and Background.
 - Preserve original content and assets; reproduce only the high-level visual structure, not third-party source code or imagery.
+
+
+## Joshua Haustein-style reset
+- Homepage is intentionally reset to a very minimal academic personal-site structure inspired by Joshua Haustein's public website.
+- Reproduce the information architecture and visual simplicity only; do not copy third-party text, source code, or media assets.
+- Current homepage sections: About Me, Publications, Project Videos, Contact.
+- Placeholder content is acceptable for now; the user plans to refill content later.
+- Keep direct links to GitHub, Velog, and AI & Research News in Contact.
