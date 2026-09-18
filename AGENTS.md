@@ -180,3 +180,9 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 ## Notes cache handling
 - When making major Notes redesigns, bump the query version on links to /notes/ and on notes.css.
 - Keep no-cache meta tags on notes/index.html to reduce stale browser rendering during active development.
+
+
+## Notes link routing
+- All links that navigate to the Notes index must use the canonical absolute path `/notes/?v=20260919-4` during the current cache-sensitive development phase.
+- This includes homepage Notes links and note-layout links such as Notes, All Notes, and Back to Notes.
+- Avoid mixed relative Notes URLs that can resolve differently depending on the current page path.
