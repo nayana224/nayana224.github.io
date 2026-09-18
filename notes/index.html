@@ -1,0 +1,40 @@
+---
+layout: null
+title: Notes
+---
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Notes | Inpyo Lee</title>
+  <link rel="stylesheet" href="{{ '/stylesheets/styles.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css' | relative_url }}">
+</head>
+<body>
+  <div class="notes-shell">
+    <header class="notes-top">
+      <a href="{{ '/' | relative_url }}">← Inpyo Lee</a>
+    </header>
+
+    <section class="notes-intro">
+      <h1>Notes</h1>
+      <p>논문, Deep Learning, Robotics 구현 과정에서 배운 내용을 기록합니다.</p>
+    </section>
+
+    <main class="notes-list">
+      {% assign sorted_notes = site.notes | sort: "date" | reverse %}
+      {% for note in sorted_notes %}
+      <article class="notes-entry">
+        <div class="notes-entry-meta">
+          {% if note.date %}<time>{{ note.date | date: "%Y.%m.%d" }}</time>{% endif %}
+          {% if note.category %}<span>{{ note.category }}</span>{% endif %}
+        </div>
+        <h2><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h2>
+        {% if note.summary %}<p>{{ note.summary }}</p>{% endif %}
+      </article>
+      {% endfor %}
+    </main>
+  </div>
+</body>
+</html>
