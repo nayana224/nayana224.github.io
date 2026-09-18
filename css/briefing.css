@@ -305,3 +305,171 @@ html[data-theme="light"] .theme-moon { display:inline; }
     padding: 38px 0 42px;
   }
 }
+
+
+/* Modern Research Archive briefing v3 */
+html[data-theme="light"] {
+  --page-bg:#ece9e1;
+  --surface:#f4f1e9;
+  --text:#1f221e;
+  --sub:#61665d;
+  --muted:#8b9086;
+  --line:#cbc8bf;
+  --accent:#536b4c;
+}
+
+.briefing-nav,
+.briefing-shell,
+.briefing-footer {
+  width:min(1180px,calc(100% - 64px));
+}
+
+.briefing-nav {
+  min-height:82px;
+}
+
+.briefing-logo {
+  font-size:.74rem;
+  letter-spacing:.14em;
+}
+
+.briefing-nav-actions>a,
+.language-button {
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.055em;
+}
+
+.briefing-shell {
+  display:grid;
+  grid-template-columns:170px minmax(0,1fr);
+  column-gap:54px;
+}
+
+.briefing-hero {
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:170px minmax(0,1fr);
+  column-gap:54px;
+  padding:88px 0 72px;
+}
+
+.briefing-kicker {
+  grid-column:1;
+  padding-top:10px;
+  line-height:1.7;
+}
+
+.briefing-hero h1,
+.briefing-hero>p,
+.research-radar {
+  grid-column:2;
+}
+
+.briefing-hero h1 {
+  margin:0;
+  max-width:940px;
+  font-family:var(--font-sans);
+  font-size:clamp(4.2rem,8.3vw,7.4rem);
+  font-weight:600;
+  line-height:.87;
+  letter-spacing:-.065em;
+}
+
+.briefing-hero>p {
+  margin-top:28px;
+  max-width:720px;
+}
+
+.research-radar {
+  margin-top:44px;
+}
+
+.feed-controls {
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:170px minmax(0,1fr);
+  column-gap:54px;
+  padding:18px 0;
+}
+
+.filter-list {
+  grid-column:2;
+}
+
+.preview-note {
+  grid-column:2;
+  margin-top:10px;
+}
+
+.briefing-shell > section:last-child {
+  grid-column:1 / -1;
+}
+
+.briefing-entry {
+  grid-template-columns:170px minmax(0,1fr);
+  gap:54px;
+  padding:38px 0 46px;
+}
+
+.entry-index {
+  border-top:1px solid var(--line);
+  padding-top:10px;
+}
+
+.entry-meta {
+  margin-top:1px;
+}
+
+.briefing-entry h2 {
+  margin:14px 0 16px;
+  font-family:var(--font-sans);
+  font-size:clamp(1.8rem,3.6vw,3rem);
+  font-weight:600;
+  line-height:1.06;
+}
+
+.entry-summary {
+  max-width:780px;
+}
+
+.entry-sections {
+  max-width:920px;
+  margin-top:30px;
+}
+
+@media (max-width:760px) {
+  .briefing-nav,
+  .briefing-shell,
+  .briefing-footer {
+    width:min(100% - 28px,1180px);
+  }
+
+  .briefing-shell,
+  .briefing-hero,
+  .feed-controls {
+    grid-template-columns:1fr;
+  }
+
+  .briefing-kicker,
+  .briefing-hero h1,
+  .briefing-hero>p,
+  .research-radar,
+  .filter-list,
+  .preview-note {
+    grid-column:1;
+  }
+
+  .briefing-kicker {
+    margin-bottom:20px;
+  }
+
+  .briefing-hero h1 {
+    font-size:clamp(3.4rem,16vw,5.6rem);
+  }
+
+  .briefing-entry {
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+}
