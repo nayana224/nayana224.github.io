@@ -806,3 +806,245 @@ footer {
         flex-wrap: wrap;
     }
 }
+
+
+/* Editorial Research Journal v2 */
+:root {
+    --editorial-serif: Georgia, "Times New Roman", serif;
+}
+
+body {
+    font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.header-nav {
+    padding-top: 28px;
+    padding-bottom: 18px;
+}
+
+.nav-logo {
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.hero-container {
+    min-height: 68vh;
+    padding-top: 128px;
+    padding-bottom: 110px;
+}
+
+.hero-title {
+    max-width: 980px;
+    font-family: var(--editorial-serif);
+    font-size: clamp(4.6rem, 10vw, 8.8rem);
+    font-weight: 400;
+    line-height: .84;
+    letter-spacing: -.065em;
+}
+
+.hero-eyebrow {
+    margin-top: 34px;
+    letter-spacing: .035em;
+}
+
+.hero-description {
+    max-width: 720px;
+    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+    line-height: 1.82;
+}
+
+section {
+    padding-block: 112px;
+}
+
+.section-title {
+    margin-top: 16px;
+    margin-bottom: 54px;
+    font-family: var(--editorial-serif);
+    font-size: clamp(2.8rem, 6vw, 5.4rem);
+    font-weight: 400;
+    line-height: .94;
+    letter-spacing: -.055em;
+}
+
+.section-lead {
+    font-size: .98rem;
+    line-height: 1.8;
+}
+
+.about-grid,
+.research-grid,
+.notes-grid {
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid var(--academic-line);
+}
+
+.about-card,
+.research-grid article,
+.notes-grid a {
+    display: grid;
+    grid-template-columns: 70px minmax(190px, .72fr) minmax(0, 1.28fr);
+    gap: 28px;
+    align-items: start;
+    min-height: 0;
+    padding: 28px 0 30px;
+    border-right: 0;
+    border-bottom: 1px solid var(--academic-line);
+    text-decoration: none;
+}
+
+.about-card + .about-card,
+.research-grid article + article,
+.notes-grid a + a {
+    padding-left: 0;
+}
+
+.about-card:last-child,
+.research-grid article:last-child,
+.notes-grid a:last-child {
+    border-bottom: 0;
+}
+
+.about-card h3,
+.research-grid h3,
+.notes-grid h3 {
+    margin: 0;
+    font-family: var(--editorial-serif);
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -.025em;
+}
+
+.about-card p,
+.research-grid p,
+.notes-grid p {
+    margin: 0;
+    max-width: 680px;
+    font-size: .94rem;
+    line-height: 1.78;
+}
+
+.notes-grid a > b {
+    grid-column: 3;
+    margin-top: 4px;
+    color: var(--academic-muted);
+    font: 500 .72rem var(--font-mono);
+}
+
+.skills-grid {
+    grid-template-columns: 1fr;
+}
+
+.skill-card,
+.skill-card + .skill-card {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 28px;
+    align-items: start;
+    padding: 25px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--academic-line);
+}
+
+.skill-card:last-child {
+    border-bottom: 0;
+}
+
+.skill-card h3 {
+    margin: 2px 0 0;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .74rem;
+}
+
+.skill-list {
+    gap: 8px 18px;
+}
+
+.project-card {
+    grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+    column-gap: 64px;
+    padding: 54px 0 58px;
+}
+
+.project-card h3 {
+    font-family: var(--editorial-serif);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -.04em;
+}
+
+.project-visual {
+    height: 220px;
+    background: transparent;
+}
+
+.background-item {
+    border-radius: 0;
+}
+
+.briefing-preview-head {
+    align-items: end;
+}
+
+.briefing-preview-item {
+    grid-template-columns: 130px minmax(260px, .95fr) minmax(300px, 1.2fr) auto;
+    padding: 31px 0;
+}
+
+.briefing-preview-item h3 {
+    font-family: var(--editorial-serif);
+    font-size: 1.38rem;
+    font-weight: 400;
+    line-height: 1.22;
+}
+
+.footer-container {
+    border-top: 1px solid var(--academic-line);
+}
+
+@media (max-width: 860px) {
+    .hero-title {
+        font-size: clamp(4rem, 18vw, 6.2rem);
+    }
+
+    section {
+        padding-block: 82px;
+    }
+
+    .about-card,
+    .research-grid article,
+    .notes-grid a {
+        grid-template-columns: 44px 1fr;
+        gap: 12px 18px;
+    }
+
+    .about-card p,
+    .research-grid p,
+    .notes-grid p,
+    .notes-grid a > b {
+        grid-column: 2;
+    }
+
+    .skill-card,
+    .skill-card + .skill-card {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .project-visual {
+        grid-row: auto;
+        height: 190px;
+    }
+
+    .briefing-preview-item {
+        grid-template-columns: 1fr;
+    }
+}
