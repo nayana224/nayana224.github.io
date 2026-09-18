@@ -1,10 +1,3 @@
-const root=document.documentElement;
-root.dataset.theme=localStorage.getItem('theme')||'light';
-document.getElementById('theme-toggle')?.addEventListener('click',()=>{
-  root.dataset.theme=root.dataset.theme==='light'?'dark':'light';
-  localStorage.setItem('theme',root.dataset.theme);
-});
-
 async function loadLatest(){
   try{
     const response=await fetch('data/briefings.json',{cache:'no-store'});
