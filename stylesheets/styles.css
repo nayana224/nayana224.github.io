@@ -89,28 +89,12 @@ small {
 
 header {
   position:sticky;
-  top:clamp(12px,3vh,28px);
-  max-height:calc(100dvh - clamp(24px,6vh,56px));
+  top:clamp(10px,2vh,22px);
   min-width:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding:4px 8px 14px 0;
-  scrollbar-width:thin;
-  scrollbar-color:#d7d7d7 transparent;
+  height:calc(100dvh - clamp(20px,4vh,44px));
+  overflow:visible;
+  padding:0;
   -webkit-font-smoothing:subpixel-antialiased;
-}
-
-header::-webkit-scrollbar {
-  width:4px;
-}
-
-header::-webkit-scrollbar-thumb {
-  background:#d7d7d7;
-  border-radius:999px;
-}
-
-header::-webkit-scrollbar-track {
-  background:transparent;
 }
 
 section {
@@ -123,19 +107,24 @@ section {
 /* Profile */
 .profile {
   width:100%;
+  height:100%;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
   text-align:center;
 }
 
 .profile > h1 {
-  margin-bottom:clamp(12px,2vh,18px);
+  margin-bottom:clamp(8px,1.2vh,13px);
 }
 
 .profile-image {
-  width:clamp(150px,18vw,205px);
+  width:clamp(138px,16vw,190px);
+  max-height:clamp(138px,24vh,190px);
   height:auto;
   object-fit:contain;
   display:block;
-  margin:0 auto clamp(10px,1.5vh,14px);
+  margin:0 auto clamp(7px,1.1vh,11px);
   border-radius:4px;
 }
 
@@ -150,8 +139,8 @@ section {
 }
 
 .profile-meta {
-  padding:clamp(8px,1.4vh,12px) 0;
-  margin:0 0 clamp(10px,1.4vh,14px);
+  padding:clamp(6px,1vh,9px) 0;
+  margin:0 0 clamp(7px,1vh,10px);
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
 }
@@ -178,8 +167,8 @@ section {
 }
 
 .profile nav h2 {
-  margin:clamp(6px,1vh,10px) 0;
-  font-size:clamp(17px,1.45vw,21px);
+  margin:clamp(4px,.65vh,7px) 0;
+  font-size:clamp(16px,1.3vw,20px);
 }
 
 .profile nav h2 a {
@@ -188,7 +177,7 @@ section {
 }
 
 .profile .view {
-  margin:14px 0 8px;
+  margin:8px 0 4px;
 }
 
 /* Institution logos */
@@ -207,14 +196,18 @@ section {
 }
 
 .kitech-logo {
-  height:clamp(18px,1.5vw,22px);
-  max-width:86px;
+  width:26px;
+  height:26px;
+  max-width:26px;
+  max-height:26px;
   object-fit:contain;
 }
 
 .tuk-logo {
-  height:clamp(17px,1.4vw,20px);
-  max-width:92px;
+  width:28px;
+  height:28px;
+  max-width:28px;
+  max-height:28px;
   object-fit:contain;
 }
 
@@ -224,16 +217,13 @@ section {
 
 /* Language */
 .language-switcher {
-  position:sticky;
-  bottom:0;
-  z-index:2;
   display:flex;
   justify-content:center;
   align-items:center;
   gap:6px;
-  margin-top:16px;
-  padding:10px 0 4px;
-  background:linear-gradient(to bottom,rgba(255,255,255,.88),#fff 35%);
+  margin-top:auto;
+  padding:8px 0 2px;
+  background:#fff;
   font-size:12px;
 }
 
@@ -362,7 +352,8 @@ td {
   }
 
   .profile-image {
-    width:clamp(145px,21vw,180px);
+    width:clamp(135px,19vw,170px);
+    max-height:170px;
   }
 }
 
@@ -376,7 +367,7 @@ td {
 
   header {
     position:static;
-    max-height:none;
+    height:auto;
     overflow:visible;
     padding:0;
     margin-bottom:34px;
@@ -392,7 +383,7 @@ td {
   }
 
   .language-switcher {
-    position:static;
+    margin-top:18px;
     background:none;
   }
 
