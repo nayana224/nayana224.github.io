@@ -5,8 +5,8 @@ html { color-scheme: dark; }
 }
 html[data-theme="light"] {
   color-scheme: light;
-  --page-bg:#f5f4ef; --surface:#efeee8; --text:#20221e; --sub:#555a51;
-  --muted:#7c8177; --line:#d7d7cf; --accent:#526a48;
+  --page-bg:#f0eee7; --surface:#e8e5dc; --text:#242621; --sub:#5d6259;
+  --muted:#858a80; --line:#d2d0c7; --accent:#5d7353;
 }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
