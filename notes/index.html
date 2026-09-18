@@ -12,14 +12,14 @@ title: Notes
   <meta http-equiv="Expires" content="0">
   <title>Notes | Inpyo Lee</title>
   <meta name="description" content="Inpyo Lee's personal knowledge library for papers, study notes, implementations, and project logs.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-8' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-9' | relative_url }}">
 </head>
 <body class="notes-page" data-notes-lang="ko">
   <div class="notes-shell">
     <header class="notes-topbar">
       <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
       <div class="notes-actions">
-        <a href="/research-feed/?v=20260919-1" class="notes-home">
+        <a href="/research-feed/?v=20260919-2" class="notes-home">
           <span class="ui-ko">Research Feed</span><span class="ui-en">Research Feed</span>
         </a>
         <a href="{{ '/' | relative_url }}" class="notes-home">
@@ -154,7 +154,6 @@ title: Notes
       var lang = localStorage.getItem('notes-ui-lang') || 'ko';
       var langButtons = document.querySelectorAll('.notes-language-switcher button');
       var folderButtons = document.querySelectorAll('.folder-item[data-filter]');
-      var folderToggles = document.querySelectorAll('[data-folder-toggle]');
       var notes = Array.prototype.slice.call(document.querySelectorAll('.notes-entry'));
       var emptyLibrary = document.getElementById('empty-library');
       var visibleCount = document.getElementById('visible-count');
@@ -193,11 +192,18 @@ title: Notes
 
       function filterNotes(filter) {
         var count = 0;
+
         notes.forEach(function (note) {
           var show = false;
-          if (filter === 'all') show = true;
-          else if (filter.indexOf('topic:') === 0) show = note.getAttribute('data-topic') === filter.slice(6);
-          else show = note.getAttribute('data-library-type') === filter;
+
+          if (filter === 'all') {
+            show = true;
+          } else if (filter.indexOf('topic:') === 0) {
+            show = note.getAttribute('data-topic') === filter.slice(6);
+          } else {
+            show = note.getAttribute('data-library-type') === filter;
+          }
+
           note.hidden = !show;
           if (show) count += 1;
         });
@@ -213,10 +219,15 @@ title: Notes
 
       function toggleFolder(button) {
         var folder = button.getAttribute('data-folder-toggle');
+        if (!folder) return;
+
         var children = document.querySelector('[data-folder-children="' + folder + '"]');
+        if (!children) return;
+
         var expanded = button.getAttribute('aria-expanded') === 'true';
         button.setAttribute('aria-expanded', String(!expanded));
         children.hidden = expanded;
+
         var caret = button.querySelector('.folder-caret');
         if (caret) caret.textContent = expanded ? '›' : '▾';
       }
@@ -230,18 +241,11 @@ title: Notes
       folderButtons.forEach(function (button) {
         button.addEventListener('click', function () {
           filterNotes(button.getAttribute('data-filter'));
-        });
-      });
 
-      folderToggles.forEach(function (button) {
-        var caret = button.querySelector('.folder-caret');
-        if (caret) {
-          caret.addEventListener('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
+          if (button.hasAttribute('data-folder-toggle')) {
             toggleFolder(button);
-          });
-        }
+          }
+        });
       });
 
       applyLanguage(lang);
