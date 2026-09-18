@@ -175,3 +175,8 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 ## README
 - Keep README minimal and English-only.
 - README should contain only a short repository/site description and a direct link to the deployed GitHub Pages site.
+
+
+## Notes cache handling
+- When making major Notes redesigns, bump the query version on links to /notes/ and on notes.css.
+- Keep no-cache meta tags on notes/index.html to reduce stale browser rendering during active development.
