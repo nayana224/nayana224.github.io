@@ -319,3 +319,13 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Preferred source format: `[Source / article title](https://...)`.
 - When a specific paper, release, or official document is mentioned in the body and linking it improves navigation, link the title directly.
 - Scheduled Research Feed automation must follow the same hyperlink rule for every new post.
+
+
+## Research Feed editorial style
+- Use a fast, concrete, hook-first editorial structure inspired by public short-form AI explainers, without copying any creator's distinctive wording.
+- First 1-3 sentences should state the concrete change and why it matters.
+- Prefer short paragraphs and direct transitions over report-like prose.
+- For multi-item updates, use numbered thread-like sections such as 1/, 2/, 3/.
+- Avoid a repeated standalone "Why it matters" heading for every item; weave implications into the paragraph immediately after the factual update.
+- Close with a short "what to watch" synthesis.
+- Prefer concrete facts, numbers, product changes, and workflow implications over abstract trend statements.
