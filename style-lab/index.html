@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="mineral">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Lab | Inpyo Lee</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/style-lab.css?v=20260919-1">
+</head>
+<body>
+  <header class="lab-nav">
+    <a href="../" class="lab-brand">INPYO / STYLE LAB</a>
+    <a href="../briefing/">실제 News 보기 ↗</a>
+  </header>
+
+  <main class="lab-shell">
+    <section class="lab-intro">
+      <span>Experimental</span>
+      <h1>읽기 편한 비율과<br>나에게 맞는 색을 비교합니다.</h1>
+      <p>운영 페이지에 바로 적용하기 전에, 한국어 headline과 본문이 실제로 어떻게 보이는지 비교하는 임시 페이지입니다.</p>
+    </section>
+
+    <section class="lab-section">
+      <div class="section-head">
+        <span>01 / Typography</span>
+        <div>
+          <h2>한국어 기준 타이포 크기 비교</h2>
+          <p>같은 문장을 3가지 scale로 비교합니다. 가장 큰 제목이 꼭 가장 읽기 좋은 제목은 아닙니다.</p>
+        </div>
+      </div>
+
+      <div class="type-grid">
+        <article class="type-sample type-large">
+          <span>Large · 72px max</span>
+          <h3>AI와 Robotics에서<br>놓치지 말아야 할 변화</h3>
+          <p>시각적 임팩트가 크지만, 한국어에서는 화면 점유율이 빠르게 커집니다.</p>
+        </article>
+        <article class="type-sample type-medium recommended">
+          <span>Medium · 56px max · Recommended</span>
+          <h3>AI와 Robotics에서<br>놓치지 말아야 할 변화</h3>
+          <p>브랜드 존재감과 읽기 흐름 사이의 균형이 가장 안정적입니다.</p>
+        </article>
+        <article class="type-sample type-compact">
+          <span>Compact · 44px max</span>
+          <h3>AI와 Robotics에서<br>놓치지 말아야 할 변화</h3>
+          <p>뉴스/블로그 성격은 강해지지만, 첫 화면의 개성은 조금 줄어듭니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <div class="section-head">
+        <span>02 / Theme</span>
+        <div>
+          <h2>같은 화면, 다른 색상 시스템</h2>
+          <p>아래 버튼을 눌러 페이지 전체 테마를 바꿔볼 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="theme-switcher" role="group" aria-label="Theme preview">
+        <button class="theme-chip active" data-theme-value="mineral">01 Mineral Blue</button>
+        <button class="theme-chip" data-theme-value="cobalt">02 Ink + Cobalt</button>
+        <button class="theme-chip" data-theme-value="copper">03 Graphite + Copper</button>
+        <button class="theme-chip" data-theme-value="violet">04 Mist + Violet</button>
+      </div>
+
+      <div class="palette-grid">
+        <article>
+          <span>01</span><strong>Mineral Blue</strong><p>차가운 blue-gray. 연구/engineering 느낌이 가장 안정적.</p>
+        </article>
+        <article>
+          <span>02</span><strong>Ink + Cobalt</strong><p>더 현대적이고 digital product 같은 인상.</p>
+        </article>
+        <article>
+          <span>03</span><strong>Graphite + Copper</strong><p>기계/산업 디자인의 온도감이 있어 개인성이 강함.</p>
+        </article>
+        <article>
+          <span>04</span><strong>Mist + Violet</strong><p>AI 연구 성격을 조금 더 드러내는 muted violet.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="lab-section">
+      <div class="section-head">
+        <span>03 / Reading</span>
+        <div>
+          <h2>실제 News 카드 비율</h2>
+          <p>본문은 제목보다 오래 읽는 영역이므로 폭과 line-height를 더 보수적으로 잡습니다.</p>
+        </div>
+      </div>
+
+      <article class="news-preview">
+        <div class="news-meta">
+          <span>AI · Agent</span>
+          <time>2026.09.16</time>
+        </div>
+        <h3>OpenAI가 model misalignment 사례 공개 framework를 발표했다</h3>
+        <p class="summary">Agent가 더 오래 실행되고 더 많은 tool을 사용하게 될수록 단순 정확도보다 권한 경계, 행동 추적, failure logging, 사후 분석이 중요해집니다.</p>
+        <div class="reading-grid">
+          <div><span>왜 중요한가</span><p>장시간 Agent system에서는 orchestration과 state trace가 시스템 신뢰성에 직접 영향을 줍니다.</p></div>
+          <div><span>내 연구와의 연결</span><p>LLM 기반 high-level planner의 failure handling과 logging 구조를 설계할 때 참고할 수 있습니다.</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="lab-section">
+      <div class="section-head">
+        <span>04 / Proposed scale</span>
+        <div>
+          <h2>제가 추천하는 운영 기준</h2>
+          <p>Hero만 크게 만드는 대신 전체 hierarchy를 일정한 ratio로 유지합니다.</p>
+        </div>
+      </div>
+      <div class="scale-table">
+        <div><span>Hero</span><strong>48–56px</strong><small>1.08–1.15 line-height</small></div>
+        <div><span>Section title</span><strong>32–40px</strong><small>1.15–1.25</small></div>
+        <div><span>News title</span><strong>26–34px</strong><small>1.25–1.35</small></div>
+        <div><span>Body</span><strong>16–18px</strong><small>1.65–1.8</small></div>
+        <div><span>Meta</span><strong>12–13px</strong><small>mono / semibold</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lab-footer">
+    <span>Temporary design comparison page</span>
+    <a href="../">Home으로 돌아가기 →</a>
+  </footer>
+
+  <script src="../js/style-lab.js?v=20260919-1"></script>
+</body>
+</html>
