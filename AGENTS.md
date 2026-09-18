@@ -101,3 +101,14 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Use `images/kitech-logo.png` beside the KITECH affiliation.
 - Use `images/tuk-logo.svg` beside Tech University of Korea.
 - Keep both logos visually secondary to the profile text, aligned by height rather than fixed width.
+
+
+## Responsive / zoom behavior
+- Do not tune the site for a single Chrome zoom percentage.
+- Use a fluid CSS Grid layout with minmax/clamp rather than fixed 860/270/500px layout widths.
+- Browser zoom should naturally change the effective CSS viewport and trigger responsive breakpoints.
+- Desktop: two-column profile + content layout.
+- Medium widths: columns and profile image shrink fluidly.
+- At <=720 CSS px: stack the profile above the content.
+- Project tables become vertical cards at <=520 CSS px.
+- Avoid fixed image heights; preserve intrinsic aspect ratios.
