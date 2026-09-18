@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -15,15 +15,15 @@
         <h1>Inpyo Lee</h1>
         <img class="profile-image" src="images/profile.jpg" alt="Inpyo Lee">
 
-        <p class="role">Robotics & AI Research Intern</p>
+        <p class="role" data-en="Robotics & AI Research Intern" data-ko="Robotics & AI 연구 인턴">Robotics & AI Research Intern</p>
         <p class="affiliation">
           <a href="https://eng.kitech.re.kr/" target="_blank" rel="noreferrer">KITECH</a>
         </p>
 
         <div class="profile-meta">
           <p>
-            B.S. in Mechatronics Engineering<br>
-            Minor in Intelligent Robotics
+            <span data-en="B.S. in Mechatronics Engineering" data-ko="메카트로닉스공학 학사">B.S. in Mechatronics Engineering</span><br>
+            <span data-en="Minor in Intelligent Robotics" data-ko="지능형로봇전공 부전공">Minor in Intelligent Robotics</span>
           </p>
           <p>
             <a href="https://www.tukorea.ac.kr/intro/index.html" target="_blank" rel="noreferrer">
@@ -39,33 +39,35 @@
         <p class="email-text">inpyoi1304@gmail.com</p>
 
         <nav>
-          <h2><a href="#about">About</a></h2>
-          <h2><a href="#projects">Projects</a></h2>
-          <h2><a href="#news">News</a></h2>
-          <h2><a href="./notes/">Notes</a></h2>
-          <h2><a href="./publications.html">Publications</a></h2>
+          <h2><a href="#about" data-en="About" data-ko="소개">About</a></h2>
+          <h2><a href="#projects" data-en="Projects" data-ko="프로젝트">Projects</a></h2>
+          <h2><a href="#news" data-en="News" data-ko="소식">News</a></h2>
+          <h2><a href="./notes/" data-en="Notes" data-ko="노트">Notes</a></h2>
+          <h2><a href="./publications.html" data-en="Publications" data-ko="논문">Publications</a></h2>
         </nav>
 
         <p class="view"><small>Robotics · VLM · VLA · Robot Learning</small></p>
+
+        <div class="language-switcher" aria-label="Language">
+          <button type="button" data-lang="en" class="active">EN</button>
+          <span>/</span>
+          <button type="button" data-lang="ko">KO</button>
+        </div>
       </div>
     </header>
 
     <section>
       <div id="about">
-        <h1>About Me</h1>
-        <p>
-          ROS 2 기반 robotic system integration과 manipulation 경험을 바탕으로,
-          현재 <a href="https://eng.kitech.re.kr/" target="_blank" rel="noreferrer">KITECH</a>에서
-          Robotics & AI 관련 연구 인턴을 하고 있습니다.
+        <h1 data-en="About Me" data-ko="소개">About Me</h1>
+        <p data-en="Building on my experience in ROS 2-based robotic system integration and manipulation, I am currently working as a Robotics & AI Research Intern at KITECH." data-ko="ROS 2 기반 robotic system integration과 manipulation 경험을 바탕으로, 현재 KITECH에서 Robotics & AI 관련 연구 인턴을 하고 있습니다.">
+          Building on my experience in ROS 2-based robotic system integration and manipulation, I am currently working as a Robotics & AI Research Intern at KITECH.
         </p>
-        <p>
-          최근에는 Deep Learning 기초를 다지면서
-          <strong>VLM</strong>, <strong>VLA</strong>, <strong>Robot Learning</strong>을 중심으로
-          perception과 language understanding을 robot action으로 연결하는 방법을 공부하고 있습니다.
+        <p data-en="I am currently strengthening my Deep Learning foundations while studying VLM, VLA, and Robot Learning, with a focus on connecting perception and language understanding to robot action." data-ko="최근에는 Deep Learning 기초를 다지면서 VLM, VLA, Robot Learning을 중심으로 perception과 language understanding을 robot action으로 연결하는 방법을 공부하고 있습니다.">
+          I am currently strengthening my Deep Learning foundations while studying VLM, VLA, and Robot Learning, with a focus on connecting perception and language understanding to robot action.
         </p>
       </div>
 
-      <h1>My Path</h1>
+      <h1 data-en="My Path" data-ko="My Path">My Path</h1>
       <div class="path-list">
         <div class="path-item">
           <span class="path-index">01</span>
@@ -100,7 +102,7 @@
         </div>
       </div>
 
-      <h1>Research Interests</h1>
+      <h1 data-en="Research Interests" data-ko="연구 관심 분야">Research Interests</h1>
       <ul class="interest-list">
         <li><strong>Vision-Language Models</strong> — visual information과 language understanding의 결합</li>
         <li><strong>Vision-Language-Action Models</strong> — multimodal understanding을 robot action으로 연결하는 방법</li>
@@ -117,7 +119,7 @@
       <br>
 
       <div id="projects">
-        <h1>Featured Projects</h1>
+        <h1 data-en="Featured Projects" data-ko="주요 프로젝트">Featured Projects</h1>
 
         <table class="research-table">
           <tr>
@@ -167,7 +169,7 @@
         </table>
 
         <div class="other-experience">
-          <h2>Other Experience</h2>
+          <h2 data-en="Other Experience" data-ko="기타 경험">Other Experience</h2>
           <ul>
             <li>KITECH robotics / simulation work</li>
             <li>VLM task monitoring experiments</li>
@@ -182,7 +184,7 @@
       <br><br>
 
       <div id="news">
-        <h1>News</h1>
+        <h1 data-en="News" data-ko="소식">News</h1>
         <p>최근 진행 중인 학습과 연구 활동을 짧게 기록합니다.</p>
         <ul>
           <li><strong>2026</strong> — KITECH Robotics & AI Research Intern</li>
@@ -191,7 +193,7 @@
         </ul>
       </div>
 
-      <h1>Notes</h1>
+      <h1 data-en="Notes" data-ko="노트">Notes</h1>
       <p>
         논문을 읽고, 구현하고, 시행착오를 겪으면서 배운 내용을
         이 사이트의 Markdown notes로 기록합니다.
@@ -203,14 +205,14 @@
       </ul>
       <p><a href="./notes/">Browse all Notes →</a></p>
 
-      <h1>Papers & Publications</h1>
+      <h1 data-en="Papers & Publications" data-ko="논문 및 출판물">Papers & Publications</h1>
       <p>
         현재는 학습 중인 주요 논문과 연구 방향을 정리하고 있습니다.
         실제 저자로 참여한 publication과 읽은 논문은 명확히 구분해서 관리할 예정입니다.
       </p>
       <p><a href="./publications.html">Publications page →</a></p>
 
-      <h1>Outside Research</h1>
+      <h1 data-en="Outside Research" data-ko="연구 밖의 관심사">Outside Research</h1>
       <p>
         로봇과 AI 밖에서는 animation, games, gadgets 같은 것들을 좋아합니다.
         특히 <strong>Keroro</strong>를 좋아해서, 이 홈페이지에도 나중에 작은 개인적인 요소를 조금씩 넣어볼 생각입니다.
@@ -219,5 +221,34 @@
   </div>
 
   <script src="javascripts/scale.fix.js"></script>
+  <script>
+    (function () {
+      var lang = localStorage.getItem('site-lang') || 'en';
+      var root = document.documentElement;
+      var buttons = document.querySelectorAll('.language-switcher button');
+
+      function applyLanguage(nextLang) {
+        lang = nextLang;
+        root.lang = lang;
+        localStorage.setItem('site-lang', lang);
+
+        document.querySelectorAll('[data-en][data-ko]').forEach(function (el) {
+          el.textContent = el.getAttribute('data-' + lang);
+        });
+
+        buttons.forEach(function (button) {
+          button.classList.toggle('active', button.getAttribute('data-lang') === lang);
+        });
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyLanguage(button.getAttribute('data-lang'));
+        });
+      });
+
+      applyLanguage(lang);
+    })();
+  </script>
 </body>
 </html>
