@@ -6,6 +6,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:name/
+  research_feed:
+    output: true
+    permalink: /research-feed/:name/
 
 defaults:
   - scope:
@@ -13,3 +16,8 @@ defaults:
       type: notes
     values:
       layout: note
+  - scope:
+      path: ""
+      type: research_feed
+    values:
+      layout: feed_note
