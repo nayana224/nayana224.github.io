@@ -131,3 +131,11 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Evaluate Korean readability separately from English because Korean headlines occupy more visual area at the same CSS size.
 - Use Style Lab to compare multiple palettes and a restrained headline scale against the current oversized hero treatment.
 - Do not expose experimental style controls in the production Home/Portfolio/Briefing navigation unless explicitly requested.
+
+
+## Current homepage direction
+- Root homepage now follows a classic robotics-researcher profile structure inspired by Tri Bien: avatar + concise intro, About, Core Focus, Selected Work, Current Interests, Latest Briefing, Background.
+- Research/background density takes cues from You Liang Tan, but content and visual styling remain original.
+- The uploaded personal illustration is used as the homepage avatar instead of a formal ID photo.
+- Keep the homepage Korean-first while preserving established technical terms in English.
+- Prefer simple readable hierarchy over oversized editorial typography.
