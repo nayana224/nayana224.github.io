@@ -82,3 +82,16 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 
 ## README
 - README should document the current personal site purpose, directory structure, Markdown Notes workflow, basic deployment flow, and image asset policy.
+
+
+## Language
+- Default site language is English.
+- Korean is available through an EN / KO switch at the bottom of the fixed left profile panel.
+- Store the user's language choice in localStorage under `site-lang`.
+- Prefer English as the canonical/default content for profile and research sections.
+- Preserve technical terms in English in both languages where natural.
+
+## Institution logos
+- Institution logos should be stored as normal image assets under `images/`.
+- Recommended filenames: `images/kitech-logo.png` and `images/tuk-logo.png`.
+- Do not embed institution logos as base64 data URIs.
