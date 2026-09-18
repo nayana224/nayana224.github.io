@@ -72,3 +72,13 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Add new long-form notes as Markdown under `_notes/`.
 - Keep `Other Experience` permanently visible; do not hide short lists behind disclosure/toggle controls.
 - Profile image must preserve its original aspect ratio using `height:auto`; do not crop it with fixed-height cover behavior.
+
+
+## Layout viewport handling
+- On desktop, the fixed left profile column must remain usable on short-height viewports.
+- Keep the profile header fixed, but make the header itself vertically scrollable with a subtle scrollbar.
+- Preserve the profile image aspect ratio and use a compact desktop width around 205px.
+- On <=960px layouts, return the header to normal document flow and disable the fixed-column scrolling behavior.
+
+## README
+- README should document the current personal site purpose, directory structure, Markdown Notes workflow, basic deployment flow, and image asset policy.
