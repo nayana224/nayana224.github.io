@@ -128,3 +128,18 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Treat the homepage as a concise research profile, not a full CV.
 - Prioritize: current role and trajectory, research interests, representative projects, recent activity, notes/publications, then personal interests.
 - Avoid overstating VLM/VLA expertise; describe current study and transition accurately.
+
+
+## Homepage content finalized for current stage
+- About Me explains: current KITECH internship, Tech University of Korea background, ROS 2 autonomous/mobile robotics and manipulation experience, current Deep Learning study, and transition toward VLM/VLA/Robot Learning.
+- My Path: Mechatronics -> Robotics Systems -> Robot System Integration -> Learning for Robotics.
+- Research Interests: VLM, VLA, Robot Learning, Robotic Manipulation, Embodied AI.
+- Featured Projects are limited to three representative projects.
+- Project image asset paths are:
+  - images/projects/rgbd-pick-and-place.jpg
+  - images/projects/autonomous-following-robot.jpg
+  - images/projects/digital-twin-logistics.jpg
+- News is renamed to Recent Activity.
+- Notes links to the internal Markdown/Jekyll blog.
+- Papers & Publications remains intentionally lightweight until real publication/reading content is added.
+- Outside Research stays short and personal.

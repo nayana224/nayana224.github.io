@@ -453,3 +453,39 @@ td {
     max-width:none;
   }
 }
+
+
+/* Content revision: project images and recent activity */
+.project-image {
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 9;
+  min-height:0;
+  object-fit:cover;
+  border:1px solid var(--line);
+  background:#f3f3f3;
+}
+
+.recent-list {
+  margin-bottom:34px;
+  border-top:1px solid var(--line);
+}
+
+.recent-item {
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.recent-item strong {
+  display:block;
+  margin-bottom:4px;
+}
+
+.recent-item p {
+  margin:0;
+  color:#666;
+}
+
+.section-link-block {
+  margin-top:34px;
+}
