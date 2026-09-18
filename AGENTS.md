@@ -251,3 +251,14 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
   - Implementations
   - Project Logs
 - The All Notes caret collapses/expands the entire folder tree.
+
+
+## Unified interaction rules
+- Folder/sidebar rows are full-row interactive controls.
+- Clicking a parent folder row both selects its filter and toggles its child folder visibility.
+- Clicking a leaf folder row selects its filter.
+- Research Feed channel rows use the same full-row hover/active/focus behavior.
+- Topbar Home / Notes / Research Feed links use compact pill-like navigation styling.
+- All keyboard-focusable controls must have a visible focus state.
+- Notes and Research Feed share the same UI language preference key: notes-ui-lang.
+- Keep control height, padding, hover, active, and focus behavior visually consistent across Notes and Research Feed.
