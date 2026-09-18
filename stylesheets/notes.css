@@ -831,3 +831,97 @@ body[data-notes-lang="en"] .ui-en {
     display:none;
   }
 }
+
+
+/* Unified interactive controls */
+:where(.folder-item, .notes-language-switcher button, .notes-actions a) {
+  -webkit-tap-highlight-color:transparent;
+}
+
+.notes-actions a {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  color:var(--muted);
+  line-height:1;
+  transition:background .14s ease,color .14s ease,box-shadow .14s ease;
+}
+
+.notes-actions a:hover {
+  background:#eef0f1;
+  color:var(--ink);
+}
+
+.notes-actions a:focus-visible,
+.folder-item:focus-visible,
+.notes-language-switcher button:focus-visible {
+  outline:2px solid rgba(47,111,159,.34);
+  outline-offset:2px;
+}
+
+.folder-item {
+  min-height:34px;
+  transition:background .14s ease,color .14s ease,transform .06s ease;
+}
+
+.folder-item:active {
+  transform:translateY(1px);
+}
+
+.folder-item.active .folder-glyph,
+.folder-item.active .folder-branch {
+  color:#6f7377;
+}
+
+.folder-parent .folder-caret {
+  display:inline-grid;
+  place-items:center;
+  width:14px;
+  height:14px;
+  border-radius:4px;
+  transition:background .14s ease,color .14s ease;
+}
+
+.folder-parent:hover .folder-caret {
+  background:#e3e5e7;
+  color:#4f5357;
+}
+
+.folder-item[aria-expanded="false"] .folder-caret {
+  color:#8b8f93;
+}
+
+.notes-language-switcher button {
+  min-height:26px;
+  transition:background .14s ease,color .14s ease,box-shadow .14s ease;
+}
+
+.feed-page .folder-item,
+.notes-page .folder-item {
+  user-select:none;
+}
+
+/* Keep nested hierarchy visually aligned */
+.root-folder-children > .folder-item,
+.root-folder-children > .folder-tree > .folder-item {
+  min-height:34px;
+}
+
+@media(max-width:720px) {
+  .notes-actions {
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .notes-actions a {
+    min-height:28px;
+    padding:0 9px;
+  }
+
+  .folder-item {
+    min-height:32px;
+  }
+}
