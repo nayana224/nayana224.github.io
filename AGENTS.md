@@ -216,3 +216,17 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Parent folders with children can collapse and expand with a caret (› / ▾).
 - Current Papers children: Computer Vision and Transformer.
 - Preserve the Library / Briefing split.
+
+
+## Notes UI language vs document language
+- Notes UI supports Korean / English switching again.
+- The language switch affects interface chrome only: navigation, folder labels, empty states, mode labels, and similar UI text.
+- Note documents remain in their original language and must not be dynamically translated or swapped by the UI language control.
+- Note titles, summaries, and bodies should render from the canonical document content as written.
+- Category/topic labels may switch language because they are navigation metadata.
+
+## Research Feed naming/order
+- Rename the former Briefing area to Research Feed.
+- Display Research Feed before Library in top-level navigation and sidebar order.
+- Keep Library as the default active view until Research Feed has real automated content.
+- Current Research Feed channels: AI & Robotics, Research Papers.
