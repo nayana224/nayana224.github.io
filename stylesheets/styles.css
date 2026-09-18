@@ -246,3 +246,37 @@ td { text-align:left; padding:10px; border-bottom:1px solid #e5e5e5; vertical-al
     height:auto;
   }
 }
+
+
+/* Language switcher */
+.language-switcher {
+  position:sticky;
+  bottom:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  margin-top:18px;
+  padding:10px 0 4px;
+  background:#fff;
+  font-size:12px;
+}
+
+.language-switcher button {
+  border:0;
+  padding:2px 3px;
+  background:transparent;
+  color:#999;
+  font:inherit;
+  cursor:pointer;
+}
+
+.language-switcher button:hover,
+.language-switcher button.active {
+  color:#222;
+  font-weight:600;
+}
+
+.language-switcher span {
+  color:#ccc;
+}
