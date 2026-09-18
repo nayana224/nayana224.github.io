@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>{{ page.title }} | Inpyo Lee</title>
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-4' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-5' | relative_url }}">
 </head>
 <body class="note-page">
   <div class="note-shell">
     <header class="notes-topbar">
-      <a class="notes-brand" href="/notes/?v=20260919-4">Notes</a>
+      <a class="notes-brand" href="/notes/?v=20260919-5">Notes</a>
       <div class="notes-actions">
-        <a href="/notes/?v=20260919-4">
+        <a href="/notes/?v=20260919-5">
           <span class="lang-ko">전체 노트</span><span class="lang-en">All Notes</span>
         </a>
         <div class="notes-language-switcher" role="group" aria-label="Language">
@@ -28,6 +28,12 @@
         <span>
           <span class="lang-ko">{{ page.category_ko | default: page.category }}</span>
           <span class="lang-en">{{ page.category_en | default: page.category }}</span>
+        </span>
+        {% endif %}
+        {% if page.topic %}
+        <span>
+          <span class="lang-ko">{{ page.topic_ko | default: page.topic }}</span>
+          <span class="lang-en">{{ page.topic_en | default: page.topic }}</span>
         </span>
         {% endif %}
       </div>
@@ -55,7 +61,7 @@
       </div>
 
       <nav class="note-bottom-nav">
-        <a href="/notes/?v=20260919-4">
+        <a href="/notes/?v=20260919-5">
           <span class="lang-ko">← Notes로 돌아가기</span>
           <span class="lang-en">← Back to Notes</span>
         </a>
