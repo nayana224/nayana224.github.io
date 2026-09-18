@@ -230,3 +230,24 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Display Research Feed before Library in top-level navigation and sidebar order.
 - Keep Library as the default active view until Research Feed has real automated content.
 - Current Research Feed channels: AI & Robotics, Research Papers.
+
+
+## Research Feed separation
+- Research Feed is a standalone top-level page, separate from Notes.
+- Homepage navigation order should prioritize Research Feed before Notes.
+- Homepage includes a Research Feed entry section before Recent Activity.
+- Research Feed route: /research-feed/
+- Initial channels: AI & Robotics, Research Papers.
+- Keep Research Feed automation disabled until the user approves the UI.
+
+## Notes root hierarchy
+- Notes no longer uses a Library top-level tab.
+- All Notes is the root expandable folder.
+- Under All Notes:
+  - Papers
+    - Computer Vision
+    - Transformer
+  - Study Notes
+  - Implementations
+  - Project Logs
+- The All Notes caret collapses/expands the entire folder tree.
