@@ -18,6 +18,7 @@
       <a href="https://github.com/nayana224" target="_blank" rel="noreferrer">GitHub</a>
     </nav>
     <div class="home-actions">
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
       <div class="home-language-toggle" aria-label="Language selector">
         <button type="button" class="home-language-button" data-lang="ko">KO</button>
         <span>/</span>
@@ -26,6 +27,12 @@
       <button id="theme-toggle" class="home-theme-toggle" type="button" aria-label="Switch theme">◐</button>
     </div>
   </header>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden>
+    <a href="portfolio/" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="briefing/" data-i18n="nav.news">News</a>
+    <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer">Velog ↗</a>
+    <a href="https://github.com/nayana224" target="_blank" rel="noreferrer">GitHub ↗</a>
+  </nav>
 
   <main class="home-shell">
     <section class="home-hero">
@@ -86,6 +93,34 @@
             <p data-i18n="cards.github.desc">프로젝트 코드, 실습 저장소, 공개 작업 기록.</p>
           </div>
           <div class="directory-arrow">↗</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-latest" aria-labelledby="latest-title">
+      <div>
+        <span class="directory-kicker" data-i18n="latest.kicker">Latest</span>
+        <h2 id="latest-title" data-i18n="latest.title">최근 업데이트</h2>
+      </div>
+      <div class="latest-grid">
+        <a class="latest-card" id="latest-news-link" href="briefing/">
+          <div class="latest-card-top">
+            <span class="latest-source" data-i18n="latest.news">AI & Research News</span>
+            <time id="latest-news-date">—</time>
+          </div>
+          <h3 id="latest-news-title" data-i18n="latest.loading">최근 브리핑 불러오는 중…</h3>
+          <p id="latest-news-summary"></p>
+          <span class="latest-read" data-i18n="latest.readNews">브리핑 읽기 →</span>
+        </a>
+
+        <a class="latest-card" href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer">
+          <div class="latest-card-top">
+            <span class="latest-source">Velog</span>
+            <span data-i18n="latest.external">External blog</span>
+          </div>
+          <h3 data-i18n="latest.velogTitle">공부하고 구현하며 남긴 긴 글</h3>
+          <p data-i18n="latest.velogDesc">논문 학습, ROS 2, 구현과 디버깅처럼 브리핑보다 오래 남길 내용을 Velog에 정리합니다.</p>
+          <span class="latest-read" data-i18n="latest.readVelog">Velog에서 보기 ↗</span>
         </a>
       </div>
     </section>
