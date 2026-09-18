@@ -1430,3 +1430,155 @@ section::before {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Personal Blog contrast refinement */
+html[data-theme="light"] {
+    --archive-bg: #ebe8df;
+    --archive-paper: #f2efe7;
+    --archive-ink: #171915;
+    --archive-sub: #474c44;
+    --archive-muted: #6e746a;
+    --archive-line: #bdbab0;
+    --archive-accent: #395b35;
+}
+
+body {
+    color: var(--academic-text);
+}
+
+.nav-logo {
+    color: var(--academic-accent);
+}
+
+.nav-links a {
+    color: var(--academic-sub);
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--academic-text);
+}
+
+.site-language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--academic-muted);
+    font: 600 .67rem var(--font-mono);
+    letter-spacing: .05em;
+}
+
+.site-language-button {
+    border: 0;
+    padding: 2px 0;
+    background: transparent;
+    color: var(--academic-muted);
+    font: 600 .67rem var(--font-mono);
+    cursor: pointer;
+}
+
+.site-language-button:hover,
+.site-language-button.active {
+    color: var(--academic-accent);
+}
+
+.hero-eyebrow {
+    color: var(--academic-text);
+    font-weight: 600;
+}
+
+.hero-description {
+    color: var(--academic-sub);
+}
+
+.hero-description strong {
+    color: var(--academic-text);
+    font-weight: 650;
+}
+
+.hero-archive-meta span,
+.section-tag,
+.card-index,
+.background-item > span,
+.briefing-preview-meta {
+    color: var(--academic-accent);
+    font-weight: 600;
+}
+
+.hero-archive-meta strong,
+.about-card p,
+.research-grid p,
+.notes-grid p,
+.project-card p,
+.project-card li,
+.background-item p,
+.briefing-preview-item p,
+.section-lead {
+    color: var(--academic-sub);
+}
+
+.section-title,
+.about-card h3,
+.project-card h3,
+.notes-grid h3,
+.briefing-preview-item h3 {
+    color: var(--academic-text);
+}
+
+.btn,
+.briefing-view-all,
+.briefing-preview-item a {
+    color: var(--academic-text);
+    border-color: var(--academic-muted);
+}
+
+/* Make the home page read more like a personal blog index */
+#section-briefing {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--academic-surface) 72%, transparent), transparent);
+    margin-inline: -28px;
+    padding-inline: calc(224px + 28px) 28px;
+}
+
+.briefing-preview-list {
+    border-top-color: var(--academic-line);
+}
+
+.briefing-preview-item {
+    transition: padding-left .18s ease;
+}
+
+.briefing-preview-item:hover {
+    padding-left: 10px;
+}
+
+.briefing-preview-item h3::after {
+    content: " ↗";
+    color: var(--academic-muted);
+    font-family: var(--font-mono);
+    font-size: .72em;
+    font-weight: 400;
+}
+
+.notes-grid a {
+    transition: background .18s ease, padding-left .18s ease;
+}
+
+.notes-grid a:hover {
+    background: color-mix(in srgb, var(--academic-surface) 58%, transparent);
+    padding-left: 10px;
+}
+
+@media (max-width: 900px) {
+    .site-language-toggle {
+        margin-left: auto;
+    }
+
+    #section-briefing {
+        margin-inline: 0;
+        padding-inline: 0;
+        background: transparent;
+    }
+}
