@@ -9,7 +9,7 @@ const ui = {
     'hero.title': 'AI, 로보틱스, 로봇 학습에서<br>놓치지 말아야 할 변화.',
     'hero.description': '무엇이 바뀌었는지, 왜 중요한지, 그리고 내 연구와 어떻게 연결되는지를 짧고 밀도 있게 정리합니다.',
     'radar.label': '현재 주목 분야',
-    'feed.preview': '프리뷰 피드 · UI 검증용 샘플 콘텐츠',
+    'feed.preview': '최근 검증 피드 · 1차 출처 우선',
     'feed.empty': '이 카테고리에는 아직 브리핑이 없습니다.',
     'footer.back': '포트폴리오로 돌아가기 →',
     'why': '왜 중요한가',
@@ -30,7 +30,7 @@ const ui = {
     'hero.title': 'Things worth tracking in<br>AI, robotics, and robot learning.',
     'hero.description': 'Short, high-signal notes on what changed, why it matters, and how it connects to my research.',
     'radar.label': 'Currently watching',
-    'feed.preview': 'Preview feed · sample content for UI validation',
+    'feed.preview': 'Recent verified feed · primary sources preferred',
     'feed.empty': 'No briefings in this category yet.',
     'footer.back': 'Back to portfolio →',
     'why': 'Why it matters',
@@ -49,8 +49,16 @@ const ui = {
 
 function formatPublished(value) {
   if (!value) return '';
-  const date = new Date(value);
   const locale = state.lang === 'ko' ? 'ko-KR' : 'en';
+
+  if (!value.includes('T')) {
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
+    }).format(new Date(value + 'T00:00:00'));
+  }
+
   return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'short',
@@ -59,7 +67,7 @@ function formatPublished(value) {
     minute: '2-digit',
     timeZone: 'Asia/Seoul',
     timeZoneName: 'short'
-  }).format(date);
+  }).format(new Date(value));
 }
 
 function verificationLabel(value) {
