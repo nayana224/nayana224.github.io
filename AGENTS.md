@@ -71,3 +71,9 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Use warm off-white as the default background; avoid pure white.
 - Prefer sans-serif editorial hierarchy, mono metadata, thin rules, flat lists, and restrained accent color.
 - Minimize decorative cards, gradients, and SaaS-style UI patterns.
+
+
+## Personal blog refinement
+- Homepage must expose KO/EN language switching, synchronized with Briefing language preference.
+- Warm light remains default, but body copy and metadata need stronger contrast than the previous archive palette.
+- The homepage should feel like a personal research blog first, with latest writing and notes visibly integrated into the archive.
