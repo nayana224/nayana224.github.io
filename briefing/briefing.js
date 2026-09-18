@@ -6,7 +6,7 @@ const ui = {
   ko: {
     'nav.portfolio': '포트폴리오',
     'hero.kicker': 'AI & Research Briefing',
-    'hero.title': 'AI, 로보틱스, 로봇 학습에서<br>놓치지 말아야 할 변화.',
+    'hero.title': 'AI와 Robotics에서<br>놓치지 말아야 할 변화.',
     'hero.description': '무엇이 바뀌었는지, 왜 중요한지, 그리고 내 연구와 어떻게 연결되는지를 짧고 밀도 있게 정리합니다.',
     'radar.label': '현재 주목 분야',
     'feed.preview': '최근 검증 피드 · 1차 출처 우선',
