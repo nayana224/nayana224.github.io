@@ -10,14 +10,14 @@ title: Research Feed
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Research Feed | Inpyo Lee</title>
   <meta name="description" content="Curated AI, robotics, and research paper updates for Inpyo Lee.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-8' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-9' | relative_url }}">
 </head>
 <body class="notes-page feed-page" data-notes-lang="en">
   <div class="notes-shell">
     <header class="notes-topbar">
       <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
       <div class="notes-actions">
-        <a href="/notes/?v=20260919-8">Notes</a>
+        <a href="/notes/?v=20260919-9">Notes</a>
         <a href="{{ '/' | relative_url }}">
           <span class="ui-ko">홈으로</span><span class="ui-en">Home</span>
         </a>
@@ -84,7 +84,7 @@ title: Research Feed
 
   <script>
     (function () {
-      var lang = localStorage.getItem('feed-ui-lang') || 'en';
+      var lang = localStorage.getItem('notes-ui-lang') || 'en';
       var langButtons = document.querySelectorAll('.notes-language-switcher button');
       var feedButtons = document.querySelectorAll('.folder-item[data-feed]');
       var feedTitle = document.getElementById('feed-title');
@@ -92,7 +92,7 @@ title: Research Feed
 
       function applyLanguage(nextLang) {
         lang = nextLang;
-        localStorage.setItem('feed-ui-lang', lang);
+        localStorage.setItem('notes-ui-lang', lang);
         document.body.setAttribute('data-notes-lang', lang);
         document.documentElement.lang = lang;
 
