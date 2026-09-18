@@ -124,3 +124,10 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - News item titles should stay around 27–42px, while body copy stays around 16–18px.
 - Prefer word-break: keep-all and balanced wrapping for Korean headlines.
 - The Blue Graphite palette should be visibly cool blue-gray, not beige.
+
+
+## Style Lab task
+- Add a temporary /style-lab/ page for comparing typography scales and theme palettes before changing production UI again.
+- Evaluate Korean readability separately from English because Korean headlines occupy more visual area at the same CSS size.
+- Use Style Lab to compare multiple palettes and a restrained headline scale against the current oversized hero treatment.
+- Do not expose experimental style controls in the production Home/Portfolio/Briefing navigation unless explicitly requested.
