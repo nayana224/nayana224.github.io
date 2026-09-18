@@ -298,3 +298,11 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
   4. Sources
 - Use @choi.openai Threads posts as discovery/context when useful, but verify factual claims against primary sources whenever possible.
 - Do not copy @choi.openai's wording or exact voice; use only high-level editorial traits such as a strong takeaway, practical implications, and concise structure.
+
+
+## Initial Research Feed seed
+- Initial manually seeded posts:
+  - 2026-09-19 AI & Robotics update
+  - 2026-09-19 Research Papers update
+- Seed posts establish the editorial baseline for scheduled automation.
+- Korean prose is preferred for feed documents, with established technical terms kept in English.
