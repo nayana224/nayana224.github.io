@@ -262,3 +262,8 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - All keyboard-focusable controls must have a visible focus state.
 - Notes and Research Feed share the same UI language preference key: notes-ui-lang.
 - Keep control height, padding, hover, active, and focus behavior visually consistent across Notes and Research Feed.
+
+
+## Homepage navigation order
+- Left profile navigation order: About, Projects, Recent, Research Feed, Notes, Publications.
+- Research Feed is a standalone top-level destination beside Notes, not nested inside Notes.
