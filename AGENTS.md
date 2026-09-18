@@ -1,0 +1,41 @@
+# AGENTS.md
+
+## Project
+Personal GitHub Pages site for Inpyo Lee.
+
+## Current task
+Design an AI / research briefing experience that can later accept ChatGPT-generated daily posts.
+
+## Goal
+Add a compact, high-signal briefing surface inspired by short-form AI trend posts, while keeping the existing academic robotics portfolio identity.
+
+## Invariants
+- Keep the site usable as a robotics / AI research portfolio.
+- Preserve the current static HTML/CSS/JS deployment model unless a later task explicitly changes it.
+- Do not introduce Codex-based content generation or publishing.
+- ChatGPT is the intended source for future scheduled briefing generation.
+- Existing About, Skills, Projects, Background, and Notes content must remain intact unless explicitly redesigned.
+- Support both dark and light themes.
+
+## Content direction
+- Short, dense AI trend briefs: what changed, why it matters, and source links.
+- Research-focused additions should prioritize LLM/agents, VLM/vision, robotics, embodied/physical AI, robot learning, Isaac Sim/Lab, and relevant papers.
+- Prefer primary sources for claims when available.
+- Avoid turning the site into a generic news portal.
+
+## UI direction under evaluation
+- Maintain the Minimal Academic / Robotics Lab Notebook visual language.
+- Prefer editorial feed / research notebook layouts over dashboard-style metric cards.
+- Each briefing item should expose date, category, title, concise summary, relevance/interpretation, and original source.
+- Separate transient daily briefs from durable portfolio/project content.
+
+## Non-goals for this task
+- No automated publishing pipeline yet.
+- No migration to React, Next.js, Jekyll, or another framework yet.
+- No live scraping or backend service yet.
+
+## Acceptance criteria for the design phase
+- A clear location for the briefing feature in site navigation.
+- A reusable post/card schema suitable for ChatGPT output.
+- A mobile-friendly feed and readable detail view.
+- A structure that can later be populated by simple files without rewriting the portfolio.
