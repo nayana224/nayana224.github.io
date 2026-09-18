@@ -116,3 +116,11 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Keep established technical terms in English when Korean translation would reduce clarity, including LLM, VLM, VLA, Agent, Robot Learning, ROS 2, MoveIt 2, Isaac Sim, Isaac Lab, Benchmark, inference, orchestration, and similar terms.
 - Default light palette is Cool Mineral / Blue Graphite rather than beige/olive.
 - Source links in Briefing must expose the actual verified URL, not only a human-readable label.
+
+
+## Typography ratio
+- Korean briefing hero headlines should remain within two lines on desktop.
+- Target hero headline size: clamp around 48–77px on desktop, with ~1.08 line-height.
+- News item titles should stay around 27–42px, while body copy stays around 16–18px.
+- Prefer word-break: keep-all and balanced wrapping for Korean headlines.
+- The Blue Graphite palette should be visibly cool blue-gray, not beige.
