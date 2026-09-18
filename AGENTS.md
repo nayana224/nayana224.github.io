@@ -109,3 +109,10 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Preview entries have been replaced with verified recent AI/robotics items backed by primary sources.
 - Do not invent publication times when a source exposes only a publication date; show date-only in that case.
 - Initial real feed prioritizes OpenAI and NVIDIA items with direct relevance to agents, robotics simulation, edge inference, and reliability.
+
+
+## Language and color policy
+- Default user-facing language is Korean across Home, Portfolio, and Briefing.
+- Keep established technical terms in English when Korean translation would reduce clarity, including LLM, VLM, VLA, Agent, Robot Learning, ROS 2, MoveIt 2, Isaac Sim, Isaac Lab, Benchmark, inference, orchestration, and similar terms.
+- Default light palette is Cool Mineral / Blue Graphite rather than beige/olive.
+- Source links in Briefing must expose the actual verified URL, not only a human-readable label.
