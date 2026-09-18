@@ -46,7 +46,11 @@
         "why_it_matters": "Agent systems expose a new engineering layer between a language model and the real task environment. Reliability depends on orchestration, observable state, tool contracts, and failure handling.",
         "research_connection": "For robot task planning, this maps naturally to a high-level planner that selects perception and manipulation primitives instead of directly controlling low-level motion."
       },
-      "sources": []
+      "sources": [],
+      "published_at": "2026-09-18T08:00:00+09:00",
+      "verification": "preview",
+      "source_type": "none",
+      "source_count": 0
     },
     {
       "id": "preview-vla",
@@ -68,7 +72,11 @@
         "why_it_matters": "They push robotics beyond isolated perception or planning modules and force us to think about how semantic understanding reaches the action space.",
         "research_connection": "This is directly relevant to separating VLM-based scene understanding from LLM-based high-level planning and later connecting both to manipulation skills."
       },
-      "sources": []
+      "sources": [],
+      "published_at": "2026-09-18T08:00:00+09:00",
+      "verification": "preview",
+      "source_type": "none",
+      "source_count": 0
     },
     {
       "id": "preview-isaac",
@@ -90,7 +98,11 @@
         "why_it_matters": "The practical question is whether the simulation stack supports the sensors, robot assets, training loop, and deployment path required by a real project.",
         "research_connection": "This is especially relevant when validating a robotics pipeline on available hardware before scaling experiments to newer GPUs or a different deployment machine."
       },
-      "sources": []
+      "sources": [],
+      "published_at": "2026-09-18T08:00:00+09:00",
+      "verification": "preview",
+      "source_type": "none",
+      "source_count": 0
     },
     {
       "id": "preview-vlm",
@@ -112,7 +124,11 @@
         "why_it_matters": "That changes the role of perception from producing only coordinates or class labels to producing task-relevant semantic context.",
         "research_connection": "For manipulation tasks, this creates a design choice: what should remain deterministic perception and what should be delegated to a VLM."
       },
-      "sources": []
+      "sources": [],
+      "published_at": "2026-09-17T08:00:00+09:00",
+      "verification": "preview",
+      "source_type": "none",
+      "source_count": 0
     },
     {
       "id": "preview-paper",
@@ -134,7 +150,11 @@
         "why_it_matters": "This makes a daily research feed useful for deciding what deserves deeper reading instead of turning it into another unread backlog.",
         "research_connection": "The feed should surface papers that affect current work in LLM agents, VLMs, robot learning, manipulation, and simulation."
       },
-      "sources": []
+      "sources": [],
+      "published_at": "2026-09-17T08:00:00+09:00",
+      "verification": "preview",
+      "source_type": "none",
+      "source_count": 0
     }
   ]
 }
