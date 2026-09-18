@@ -13,7 +13,16 @@ const ui = {
     'feed.empty': '이 카테고리에는 아직 브리핑이 없습니다.',
     'footer.back': '포트폴리오로 돌아가기 →',
     'why': '왜 중요한가',
-    'research': '내 연구와의 연결'
+    'research': '내 연구와의 연결',
+    'published': '게시',
+    'status': '상태',
+    'sourceType': '출처 유형',
+    'sources': '출처',
+    'verified': '검증됨',
+    'preview': '프리뷰 샘플',
+    'primary': '1차 출처',
+    'secondary': '2차 출처',
+    'none': '출처 없음'
   },
   en: {
     'nav.portfolio': 'Portfolio',
@@ -25,9 +34,44 @@ const ui = {
     'feed.empty': 'No briefings in this category yet.',
     'footer.back': 'Back to portfolio →',
     'why': 'Why it matters',
-    'research': 'Research connection'
+    'research': 'Research connection',
+    'published': 'Published',
+    'status': 'Status',
+    'sourceType': 'Source type',
+    'sources': 'Sources',
+    'verified': 'Verified',
+    'preview': 'Preview sample',
+    'primary': 'Primary source',
+    'secondary': 'Secondary source',
+    'none': 'No source'
   }
 };
+
+function formatPublished(value) {
+  if (!value) return '';
+  const date = new Date(value);
+  const locale = state.lang === 'ko' ? 'ko-KR' : 'en';
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Asia/Seoul',
+    timeZoneName: 'short'
+  }).format(date);
+}
+
+function verificationLabel(value) {
+  if (value === 'verified') return ui[state.lang].verified;
+  return ui[state.lang].preview;
+}
+
+function sourceTypeLabel(value) {
+  if (value === 'primary') return ui[state.lang].primary;
+  if (value === 'secondary') return ui[state.lang].secondary;
+  return ui[state.lang].none;
+}
 
 function formatDate(date) {
   const locale = state.lang === 'ko' ? 'ko-KR' : 'en';
@@ -95,10 +139,17 @@ function renderFeed() {
     article.className = 'briefing-entry';
 
     const sources = item.sources?.length
-      ? '<div class="entry-links">' + item.sources.map((s) =>
+      ? '<div class="entry-links"><span class="entry-links-label">' + ui[state.lang].sources + '</span>' + item.sources.map((s) =>
           '<a href="' + s.url + '" target="_blank" rel="noreferrer">' + (s.label?.[state.lang] || s.label || 'Source') + ' ↗</a>'
         ).join('') + '</div>'
       : '';
+
+    const provenance =
+      '<div class="entry-provenance">' +
+        '<div><span>' + ui[state.lang].published + '</span><strong>' + formatPublished(item.published_at) + '</strong></div>' +
+        '<div><span>' + ui[state.lang].status + '</span><strong class="' + (item.verification === 'verified' ? 'is-verified' : 'is-preview') + '">' + verificationLabel(item.verification) + '</strong></div>' +
+        '<div><span>' + ui[state.lang].sourceType + '</span><strong>' + sourceTypeLabel(item.source_type) + '</strong></div>' +
+      '</div>';
 
     article.innerHTML =
       '<div class="entry-index"><strong>' + String(index + 1).padStart(2, '0') + '</strong>' +
@@ -107,6 +158,7 @@ function renderFeed() {
         '<div class="entry-meta"><span class="category">' + categoryLabel(item.category) + '</span>' +
         item.tags.map((tag) => '<span>' + tag + '</span>').join('') + '</div>' +
         '<h2>' + text.title + '</h2>' +
+        provenance +
         '<p class="entry-summary">' + text.summary + '</p>' +
         '<div class="entry-sections">' +
           '<div class="entry-block"><h3>' + ui[state.lang].why + '</h3><p>' + text.why_it_matters + '</p></div>' +
