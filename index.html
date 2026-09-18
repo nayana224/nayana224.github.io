@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <title>Inpyo Lee | Robotics & AI</title>
-  <link rel="stylesheet" href="stylesheets/styles.css?v=20260919-6">
+  <link rel="stylesheet" href="stylesheets/styles.css?v=20260919-7">
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="Inpyo Lee - Robotics & AI Research Intern at KITECH">
 </head>
@@ -41,10 +41,9 @@
         <nav>
           <h2><a href="#about" data-en="About" data-ko="소개">About</a></h2>
           <h2><a href="#projects" data-en="Projects" data-ko="프로젝트">Projects</a></h2>
-          <h2><a href="#recent" data-en="Recent" data-ko="최근 활동">Recent</a></h2>
-          <h2><a href="/research-feed/?v=20260919-3" data-en="Research Feed" data-ko="리서치 피드">Research Feed</a></h2>
-          <h2><a href="/notes/?v=20260919-9" data-en="Notes" data-ko="노트">Notes</a></h2>
-          <h2><a href="./publications.html" data-en="Publications" data-ko="논문">Publications</a></h2>
+          <h2><a href="#research-feed" data-en="Research Feed" data-ko="리서치 피드">Research Feed</a></h2>
+          <h2><a href="#notes" data-en="Notes" data-ko="노트">Notes</a></h2>
+          <h2><a href="#publications" data-en="Publications" data-ko="논문">Publications</a></h2>
         </nav>
 
         <p class="view"><small>Robotics · VLM · VLA · Robot Learning</small></p>
@@ -57,13 +56,13 @@
     </header>
 
     <section>
-      <div id="about">
-        <h1 data-en="About Me" data-ko="소개">About Me</h1>
+      <div id="about" class="top-level-section">
+        <h1 data-en="About" data-ko="소개">About</h1>
         <p data-en="I am currently a Robotics & AI Research Intern at KITECH. I studied Mechatronics Engineering with a minor in Intelligent Robotics at Tech University of Korea, and have gained hands-on experience through ROS 2-based autonomous mobile robot and robotic manipulation projects." data-ko="현재 KITECH에서 Robotics & AI Research Intern으로 근무하고 있습니다. Tech University of Korea에서 메카트로닉스공학을 전공하고 지능형로봇전공을 부전공했으며, ROS 2 기반 자율주행 로봇과 robotic manipulation 프로젝트를 통해 실제 로봇 시스템을 설계하고 통합하는 경험을 쌓았습니다.">I am currently a Robotics & AI Research Intern at KITECH. I studied Mechatronics Engineering with a minor in Intelligent Robotics at Tech University of Korea, and have gained hands-on experience through ROS 2-based autonomous mobile robot and robotic manipulation projects.</p>
         <p data-en="I am currently strengthening my foundations in Deep Learning and expanding my interests toward VLM, VLA, Robot Learning, and learning-based intelligent robotic systems." data-ko="현재는 Deep Learning 기초를 다지고 있으며, 앞으로 VLM, VLA, Robot Learning과 같은 learning-based intelligent robotics 분야로 관심 영역을 확장하고 있습니다.">I am currently strengthening my foundations in Deep Learning and expanding my interests toward VLM, VLA, Robot Learning, and learning-based intelligent robotic systems.</p>
       </div>
 
-      <h1 data-en="My Path" data-ko="성장 과정">My Path</h1>
+      <h2 class="subsection-title" data-en="My Path" data-ko="성장 과정">My Path</h2>
       <div class="path-list">
         <div class="path-item">
           <span class="path-index">01</span>
@@ -99,7 +98,7 @@
         </div>
       </div>
 
-      <h1 data-en="Research Interests" data-ko="연구 관심 분야">Research Interests</h1>
+      <h2 class="subsection-title" data-en="Research Interests" data-ko="연구 관심 분야">Research Interests</h2>
       <ul class="interest-list">
         <li><strong>Vision-Language Models</strong> — <span data-en="multimodal understanding of visual information and language" data-ko="visual information과 language를 함께 이해하는 multimodal learning">multimodal understanding of visual information and language</span></li>
         <li><strong>Vision-Language-Action Models</strong> — <span data-en="connecting multimodal understanding to robotic action" data-ko="multimodal understanding을 실제 robot action으로 연결하는 방법">connecting multimodal understanding to robotic action</span></li>
@@ -112,8 +111,37 @@
 
       <br>
 
-      <div id="projects">
-        <h1 data-en="Featured Projects" data-ko="주요 프로젝트">Featured Projects</h1>
+      <div class="about-extra-sections">
+      <div class="about-subsection" id="recent">
+        <h2 class="subsection-title" data-en="Recent Activity" data-ko="최근 활동">Recent Activity</h2>
+        <div class="recent-list">
+          <article class="recent-item">
+            <strong data-en="2026 — KITECH Robotics & AI Research Intern" data-ko="2026 — KITECH Robotics & AI 연구 인턴">2026 — KITECH Robotics & AI Research Intern</strong>
+            <p data-en="Working on robotics and AI-related research and experiments." data-ko="Robotics와 AI 관련 연구 및 실험을 진행하고 있습니다.">Working on robotics and AI-related research and experiments.</p>
+          </article>
+          <article class="recent-item">
+            <strong data-en="2026 — Deep Learning Foundations" data-ko="2026 — Deep Learning 기초 학습">2026 — Deep Learning Foundations</strong>
+            <p data-en="Building a stronger foundation through coursework, implementation, and paper reading." data-ko="강의, 구현, 논문 읽기를 통해 Deep Learning 기초를 다지고 있습니다.">Building a stronger foundation through coursework, implementation, and paper reading.</p>
+          </article>
+          <article class="recent-item">
+            <strong data-en="2026 — VLM / VLA / Robot Learning" data-ko="2026 — VLM / VLA / Robot Learning 학습">2026 — VLM / VLA / Robot Learning</strong>
+            <p data-en="Studying multimodal models and learning-based approaches for robotic systems." data-ko="robotic system을 위한 multimodal model과 learning-based approach를 공부하고 있습니다.">Studying multimodal models and learning-based approaches for robotic systems.</p>
+          </article>
+          <article class="recent-item">
+            <strong data-en="2026 — Paper Reading & Implementation" data-ko="2026 — 논문 읽기 및 구현">2026 — Paper Reading & Implementation</strong>
+            <p data-en="Reading foundational papers and reproducing key ideas through PyTorch-based practice." data-ko="기초 논문을 읽고 핵심 아이디어를 PyTorch 실습으로 재현하며 학습하고 있습니다.">Reading foundational papers and reproducing key ideas through PyTorch-based practice.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="about-subsection">
+        <h2 class="subsection-title" data-en="Outside Research" data-ko="연구 밖의 관심사">Outside Research</h2>
+        <p data-en="Outside robotics and AI, I enjoy reading, playing Overwatch, and building things through software development." data-ko="Robotics와 AI 밖에서는 책 읽기, Overwatch 게임, 그리고 개발하는 것을 좋아합니다.">Outside robotics and AI, I enjoy reading, playing Overwatch, and building things through software development.</p>
+      </div>
+      </div>
+
+      <div id="projects" class="top-level-section">
+        <h1 data-en="Projects" data-ko="프로젝트">Projects</h1>
 
         <table class="research-table">
           <tr>
@@ -168,7 +196,7 @@
 
       <br><br>
 
-      <div id="research-feed" class="section-link-block">
+      <div id="research-feed" class="section-link-block top-level-section">
         <h1 data-en="Research Feed" data-ko="리서치 피드">Research Feed</h1>
         <p data-en="A separate feed for curated AI, robotics, and research-paper updates. Automation will be connected after the interface is finalized." data-ko="AI, Robotics, 주요 논문 업데이트를 따로 모아보는 공간입니다. UI를 확정한 뒤 자동화를 연결할 예정입니다.">A separate feed for curated AI, robotics, and research-paper updates. Automation will be connected after the interface is finalized.</p>
         <p><a href="/research-feed/?v=20260919-2" data-en="Open Research Feed →" data-ko="Research Feed 보기 →">Open Research Feed →</a></p>
@@ -176,44 +204,18 @@
 
       <br>
 
-      <div id="recent">
-        <h1 data-en="Recent Activity" data-ko="최근 활동">Recent Activity</h1>
-        <div class="recent-list">
-          <article class="recent-item">
-            <strong data-en="2026 — KITECH Robotics & AI Research Intern" data-ko="2026 — KITECH Robotics & AI 연구 인턴">2026 — KITECH Robotics & AI Research Intern</strong>
-            <p data-en="Working on robotics and AI-related research and experiments." data-ko="Robotics와 AI 관련 연구 및 실험을 진행하고 있습니다.">Working on robotics and AI-related research and experiments.</p>
-          </article>
-          <article class="recent-item">
-            <strong data-en="2026 — Deep Learning Foundations" data-ko="2026 — Deep Learning 기초 학습">2026 — Deep Learning Foundations</strong>
-            <p data-en="Building a stronger foundation through coursework, implementation, and paper reading." data-ko="강의, 구현, 논문 읽기를 통해 Deep Learning 기초를 다지고 있습니다.">Building a stronger foundation through coursework, implementation, and paper reading.</p>
-          </article>
-          <article class="recent-item">
-            <strong data-en="2026 — VLM / VLA / Robot Learning" data-ko="2026 — VLM / VLA / Robot Learning 학습">2026 — VLM / VLA / Robot Learning</strong>
-            <p data-en="Studying multimodal models and learning-based approaches for robotic systems." data-ko="robotic system을 위한 multimodal model과 learning-based approach를 공부하고 있습니다.">Studying multimodal models and learning-based approaches for robotic systems.</p>
-          </article>
-          <article class="recent-item">
-            <strong data-en="2026 — Paper Reading & Implementation" data-ko="2026 — 논문 읽기 및 구현">2026 — Paper Reading & Implementation</strong>
-            <p data-en="Reading foundational papers and reproducing key ideas through PyTorch-based practice." data-ko="기초 논문을 읽고 핵심 아이디어를 PyTorch 실습으로 재현하며 학습하고 있습니다.">Reading foundational papers and reproducing key ideas through PyTorch-based practice.</p>
-          </article>
-        </div>
-      </div>
-
-      <div class="section-link-block">
+      <div id="notes" class="section-link-block top-level-section">
         <h1 data-en="Notes" data-ko="노트">Notes</h1>
         <p data-en="I write about what I learn from papers, implementations, robotics projects, and debugging." data-ko="논문을 읽고 구현하며, robotics 프로젝트와 debugging 과정에서 배운 내용을 이 사이트에 기록합니다.">I write about what I learn from papers, implementations, robotics projects, and debugging.</p>
         <p><a href="/notes/?v=20260919-9" data-en="Browse Notes →" data-ko="Notes 보기 →">Browse Notes →</a></p>
       </div>
 
-      <div class="section-link-block">
-        <h1 data-en="Papers & Publications" data-ko="논문 및 출판물">Papers & Publications</h1>
+      <div id="publications" class="section-link-block top-level-section">
+        <h1 data-en="Publications" data-ko="논문">Publications</h1>
         <p data-en="Publications and selected research papers will be added here as my research progresses." data-ko="연구가 진행됨에 따라 실제 publication과 공부한 주요 논문을 구분해 정리할 예정입니다.">Publications and selected research papers will be added here as my research progresses.</p>
         <p><a href="./publications.html" data-en="Publications page →" data-ko="Publications 페이지 →">Publications page →</a></p>
       </div>
 
-      <div class="section-link-block">
-        <h1 data-en="Outside Research" data-ko="연구 밖의 관심사">Outside Research</h1>
-        <p data-en="Outside robotics and AI, I enjoy reading, playing Overwatch, and building things through software development." data-ko="Robotics와 AI 밖에서는 책 읽기, Overwatch 게임, 그리고 개발하는 것을 좋아합니다.">Outside robotics and AI, I enjoy reading, playing Overwatch, and building things through software development.</p>
-      </div>
     </section>
   </div>
 
