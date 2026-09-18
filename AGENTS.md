@@ -267,3 +267,15 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 ## Homepage navigation order
 - Left profile navigation order: About, Projects, Recent, Research Feed, Notes, Publications.
 - Research Feed is a standalone top-level destination beside Notes, not nested inside Notes.
+
+
+## Homepage top-level navigation mapping
+- Sidebar navigation and homepage top-level sections must map 1:1 in the same order:
+  1. About
+  2. Projects
+  3. Research Feed
+  4. Notes
+  5. Publications
+- The right-side top-level heading text must match those sidebar labels.
+- My Path, Research Interests, Recent Activity, and Outside Research are About subsections, not top-level navigation items.
+- Sidebar links should target in-page anchors for these five homepage sections.
