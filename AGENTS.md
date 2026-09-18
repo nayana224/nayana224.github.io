@@ -95,3 +95,11 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Portfolio is intentionally English-only. Do not show a KO/EN toggle there unless the entire portfolio body is translated.
 - Home and Briefing remain bilingual and share the saved language preference.
 - Mobile navigation must keep Portfolio / News / Velog / GitHub reachable on small screens.
+
+
+## Briefing provenance contract
+- Every briefing item must include `published_at`, `verification`, `source_type`, and `sources`.
+- Use `verification: verified` only after checking the underlying source.
+- Use `source_type: primary` only for first-party announcements, original papers, official docs, or original repositories.
+- Preview/demo entries must remain explicitly labeled as preview and must not imply source verification.
+- The UI must expose published time, verification status, source type, and source links when present.
