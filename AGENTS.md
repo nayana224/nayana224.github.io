@@ -161,3 +161,12 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Preferred direction: an internal research notebook/blog rather than a generic card-heavy blog.
 - Notes index should prioritize readability, categories, dates, short summaries, and a calm academic visual hierarchy.
 - Individual notes should support long-form Markdown reading, code blocks, figures, tables, equations, and section navigation when useful.
+
+
+## Notes / Research Notebook
+- Notes is Korean-first. Use a separate `notes-lang` localStorage setting with default `ko`.
+- Notes index and note chrome support Korean / English segmented switching.
+- Imported Notion research notes preserve the original Korean technical body unless a deliberate English translation is later added.
+- Imported notes may use bilingual front matter: title_ko/title_en, summary_ko/summary_en, category_ko/category_en.
+- Do not hotlink Notion's expiring signed image URLs. Replace them with placeholders and add permanent repository assets later.
+- Research Notebook styling: sparse list, date/category metadata, short summaries, comfortable long-form reading, code/table/math-friendly content.
