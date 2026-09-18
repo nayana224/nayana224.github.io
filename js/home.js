@@ -81,6 +81,7 @@ document.querySelectorAll('.home-language-button').forEach(btn=>btn.addEventList
   localStorage.setItem('site-lang',lang);
   localStorage.setItem('briefing-lang',lang);
   applyLanguage();
+  loadLatestBriefing();
 }));
 
 const root=document.documentElement;
