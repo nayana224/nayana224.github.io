@@ -95,3 +95,9 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Institution logos should be stored as normal image assets under `images/`.
 - Recommended filenames: `images/kitech-logo.png` and `images/tuk-logo.png`.
 - Do not embed institution logos as base64 data URIs.
+
+
+## Institution logo placement
+- Use `images/kitech-logo.png` beside the KITECH affiliation.
+- Use `images/tuk-logo.svg` beside Tech University of Korea.
+- Keep both logos visually secondary to the profile text, aligned by height rather than fixed width.
