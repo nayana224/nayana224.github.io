@@ -736,3 +736,52 @@ a:hover {
 .folder-parent {
   transition:background .14s ease,color .14s ease;
 }
+
+
+/* UI-only language switch for Notes */
+.ui-en {
+  display:none;
+}
+
+body[data-notes-lang="en"] .ui-ko {
+  display:none !important;
+}
+
+body[data-notes-lang="en"] .ui-en {
+  display:inline;
+}
+
+.notes-language-switcher {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  width:126px;
+  padding:3px;
+  border:1px solid #dedfe1;
+  border-radius:999px;
+  background:#eff0f1;
+  gap:2px;
+}
+
+.notes-language-switcher button {
+  border:0;
+  border-radius:999px;
+  padding:5px 8px;
+  background:transparent;
+  color:#85878a;
+  font:inherit;
+  line-height:1;
+  cursor:pointer;
+}
+
+.notes-language-switcher button.active {
+  background:var(--surface);
+  color:var(--ink);
+  font-weight:650;
+  box-shadow:0 1px 3px rgba(0,0,0,.09);
+}
+
+@media(max-width:620px) {
+  .notes-language-switcher {
+    width:118px;
+  }
+}
