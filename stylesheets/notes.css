@@ -1,0 +1,104 @@
+.notes-shell,.note-shell{
+  width:min(760px,calc(100% - 36px));
+  margin:0 auto;
+  padding:38px 0 72px;
+}
+
+.notes-top,.note-header{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:18px;
+  margin-bottom:42px;
+  border-bottom:1px solid #e5e5e5;
+  font-size:13px;
+}
+
+.notes-intro{
+  margin-bottom:42px;
+}
+
+.notes-intro h1,.note-article>h1{
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.notes-intro p,.note-summary{
+  color:#777;
+  font-size:15px;
+}
+
+.notes-entry{
+  padding:22px 0;
+  border-top:1px solid #e5e5e5;
+}
+
+.notes-entry:last-child{
+  border-bottom:1px solid #e5e5e5;
+}
+
+.notes-entry-meta,.note-meta{
+  display:flex;
+  gap:12px;
+  margin-bottom:8px;
+  color:#999;
+  font-size:12px;
+}
+
+.notes-entry h2{
+  margin:0 0 8px;
+  font-size:20px;
+}
+
+.notes-entry p{
+  margin:0;
+  color:#666;
+}
+
+.note-article{
+  max-width:720px;
+  margin:0 auto;
+}
+
+.note-content{
+  margin-top:34px;
+  font-size:16px;
+  line-height:1.8;
+}
+
+.note-content h2{
+  margin-top:38px;
+  font-size:23px;
+}
+
+.note-content h3{
+  margin-top:30px;
+}
+
+.note-content img{
+  display:block;
+  max-width:100%;
+  height:auto;
+  margin:24px auto;
+}
+
+.note-content pre{
+  overflow-x:auto;
+}
+
+.note-content blockquote{
+  margin:24px 0;
+  padding-left:18px;
+  border-left:3px solid #ddd;
+  color:#666;
+}
+
+@media(max-width:520px){
+  .notes-shell,.note-shell{
+    width:min(100% - 28px,760px);
+    padding-top:24px;
+  }
+  .notes-intro h1,.note-article>h1{
+    font-size:28px;
+  }
+}
