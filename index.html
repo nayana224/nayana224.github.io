@@ -34,7 +34,7 @@
 
         <p class="social-links">
           <a href="https://github.com/nayana224" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer">Velog</a>
+          <a href="./notes/">Notes</a>
         </p>
         <p class="email-text">inpyoi1304@gmail.com</p>
 
@@ -42,6 +42,7 @@
           <h2><a href="#about">About</a></h2>
           <h2><a href="#projects">Projects</a></h2>
           <h2><a href="#news">News</a></h2>
+          <h2><a href="./notes/">Notes</a></h2>
           <h2><a href="./publications.html">Publications</a></h2>
         </nav>
 
@@ -165,10 +166,8 @@
           </tr>
         </table>
 
-        <button type="button" class="detail-toggle" aria-expanded="false">
-          <span>Other Experience</span><span class="toggle-mark" aria-hidden="true">+</span>
-        </button>
-        <div class="detail-content">
+        <div class="other-experience">
+          <h2>Other Experience</h2>
           <ul>
             <li>KITECH robotics / simulation work</li>
             <li>VLM task monitoring experiments</li>
@@ -192,17 +191,17 @@
         </ul>
       </div>
 
-      <h1>Writing / Velog</h1>
+      <h1>Notes</h1>
       <p>
         논문을 읽고, 구현하고, 시행착오를 겪으면서 배운 내용을
-        <a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer">Velog</a>에 기록합니다.
+        이 사이트의 Markdown notes로 기록합니다.
       </p>
       <ul>
         <li>Deep Learning & paper study</li>
         <li>ROS 2 / Robotics</li>
         <li>Implementation & debugging notes</li>
       </ul>
-      <p><a href="https://velog.io/@tickets_for_2/series" target="_blank" rel="noreferrer">Read more on Velog →</a></p>
+      <p><a href="./notes/">Browse all Notes →</a></p>
 
       <h1>Papers & Publications</h1>
       <p>
@@ -220,18 +219,5 @@
   </div>
 
   <script src="javascripts/scale.fix.js"></script>
-  <script>
-    document.querySelectorAll('.detail-toggle').forEach(function(button) {
-      button.addEventListener('click', function() {
-        var content = this.nextElementSibling;
-        var mark = this.querySelector('.toggle-mark');
-        var open = this.getAttribute('aria-expanded') === 'true';
-
-        this.setAttribute('aria-expanded', String(!open));
-        content.classList.toggle('is-open', !open);
-        mark.textContent = open ? '+' : '−';
-      });
-    });
-  </script>
 </body>
 </html>
