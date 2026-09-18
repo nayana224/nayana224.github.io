@@ -59,3 +59,8 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Expandable secondary content uses a minimal custom `+ / −` disclosure control with thin dividers.
 - The current site should increasingly diverge visually from the reference while retaining the useful sparse academic information architecture.
 - GitHub/Velog links can remain text links for now. External brand icons are optional, not required assets.
+
+
+## Asset update
+- Profile image is stored as a normal repository asset at `images/profile.jpg`.
+- Avoid embedding profile/project images as base64 data URIs in HTML.
