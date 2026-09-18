@@ -77,3 +77,12 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Homepage must expose KO/EN language switching, synchronized with Briefing language preference.
 - Warm light remains default, but body copy and metadata need stronger contrast than the previous archive palette.
 - The homepage should feel like a personal research blog first, with latest writing and notes visibly integrated into the archive.
+
+
+## Site information architecture
+- Root `/` is the personal navigation hub, not the portfolio.
+- `/portfolio/` contains the full portfolio/research archive.
+- `/briefing/` contains AI & research news/briefings.
+- Velog remains the external personal blog and must be reachable from the hub and major page headers.
+- GitHub is also a first-class hub destination.
+- Cross-site navigation should make Home / Portfolio / News / Velog reachable without backtracking.
