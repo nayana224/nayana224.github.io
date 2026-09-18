@@ -86,3 +86,12 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - Velog remains the external personal blog and must be reachable from the hub and major page headers.
 - GitHub is also a first-class hub destination.
 - Cross-site navigation should make Home / Portfolio / News / Velog reachable without backtracking.
+
+
+## Current prioritized refinements
+- Home now includes a Latest section.
+- Latest AI/Research News is read dynamically from `data/briefings.json`.
+- Velog is represented as the long-form notes/blog destination; do not claim an exact latest Velog post unless it has been verified or synchronized.
+- Portfolio is intentionally English-only. Do not show a KO/EN toggle there unless the entire portfolio body is translated.
+- Home and Briefing remain bilingual and share the saved language preference.
+- Mobile navigation must keep Portfolio / News / Velog / GitHub reachable on small screens.
