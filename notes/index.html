@@ -8,19 +8,38 @@ title: Notes
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Notes | Inpyo Lee</title>
-  <link rel="stylesheet" href="{{ '/stylesheets/styles.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css' | relative_url }}">
+  <meta name="description" content="Inpyo Lee's research notebook: papers, deep learning, robotics, and implementation notes.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-2' | relative_url }}">
 </head>
-<body>
+<body class="notes-page">
   <div class="notes-shell">
-    <header class="notes-top">
-      <a href="{{ '/' | relative_url }}">← Inpyo Lee</a>
+    <header class="notes-topbar">
+      <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
+      <div class="notes-actions">
+        <a href="{{ '/' | relative_url }}" class="notes-home">
+          <span class="lang-ko">홈으로</span><span class="lang-en">Home</span>
+        </a>
+        <div class="notes-language-switcher" role="group" aria-label="Language">
+          <button type="button" data-lang="ko" class="active" aria-pressed="true">한국어</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
     </header>
 
-    <section class="notes-intro">
+    <section class="notes-hero">
+      <p class="notes-eyebrow">RESEARCH NOTEBOOK</p>
       <h1>Notes</h1>
-      <p>논문, Deep Learning, Robotics 구현 과정에서 배운 내용을 기록합니다.</p>
+      <p class="notes-lead lang-ko">논문을 읽고, 구현하고, 로봇을 만들면서 배운 내용을 정리합니다.</p>
+      <p class="notes-lead lang-en">Notes from papers, implementations, and hands-on robotics work.</p>
     </section>
+
+    <nav class="notes-categories" aria-label="Note categories">
+      <span class="category-chip active"><span class="lang-ko">전체</span><span class="lang-en">All</span></span>
+      <span class="category-chip">Papers</span>
+      <span class="category-chip">Deep Learning</span>
+      <span class="category-chip">Robotics</span>
+      <span class="category-chip">Implementation</span>
+    </nav>
 
     <main class="notes-list">
       {% assign sorted_notes = site.notes | sort: "date" | reverse %}
@@ -28,13 +47,64 @@ title: Notes
       <article class="notes-entry">
         <div class="notes-entry-meta">
           {% if note.date %}<time>{{ note.date | date: "%Y.%m.%d" }}</time>{% endif %}
-          {% if note.category %}<span>{{ note.category }}</span>{% endif %}
+          {% if note.category %}
+          <span class="notes-category">
+            <span class="lang-ko">{{ note.category_ko | default: note.category }}</span>
+            <span class="lang-en">{{ note.category_en | default: note.category }}</span>
+          </span>
+          {% endif %}
         </div>
-        <h2><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h2>
-        {% if note.summary %}<p>{{ note.summary }}</p>{% endif %}
+
+        <h2>
+          <a href="{{ note.url | relative_url }}">
+            <span class="lang-ko">{{ note.title_ko | default: note.title }}</span>
+            <span class="lang-en">{{ note.title_en | default: note.title }}</span>
+          </a>
+        </h2>
+
+        {% if note.summary %}
+        <p class="notes-summary lang-ko">{{ note.summary_ko | default: note.summary }}</p>
+        <p class="notes-summary lang-en">{{ note.summary_en | default: note.summary }}</p>
+        {% endif %}
+
+        <a class="notes-read" href="{{ note.url | relative_url }}">
+          <span class="lang-ko">노트 읽기 →</span><span class="lang-en">Read note →</span>
+        </a>
       </article>
       {% endfor %}
     </main>
+
+    <footer class="notes-footer">
+      <span>Inpyo Lee · Robotics & AI</span>
+    </footer>
   </div>
+
+  <script>
+    (function () {
+      var lang = localStorage.getItem('notes-lang') || 'ko';
+      var buttons = document.querySelectorAll('.notes-language-switcher button');
+
+      function applyLanguage(nextLang) {
+        lang = nextLang;
+        document.documentElement.lang = lang;
+        localStorage.setItem('notes-lang', lang);
+        document.body.setAttribute('data-notes-lang', lang);
+
+        buttons.forEach(function (button) {
+          var selected = button.getAttribute('data-lang') === lang;
+          button.classList.toggle('active', selected);
+          button.setAttribute('aria-pressed', String(selected));
+        });
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyLanguage(button.getAttribute('data-lang'));
+        });
+      });
+
+      applyLanguage(lang);
+    })();
+  </script>
 </body>
 </html>
