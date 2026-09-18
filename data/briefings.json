@@ -27,134 +27,146 @@
   },
   "items": [
     {
-      "id": "preview-agent",
-      "date": "2026-09-18",
+      "id": "openai-misalignment-framework-2026-09-16",
+      "date": "2026-09-16",
+      "published_at": "2026-09-16",
       "category": "AI",
       "tags": [
-        "LLM",
-        "Agent"
+        "Agent",
+        "Safety",
+        "Alignment"
       ],
+      "verification": "verified",
+      "source_type": "primary",
+      "source_count": 1,
       "ko": {
-        "title": "채팅 모델에서 도구를 사용하는 에이전트로",
-        "summary": "중요한 변화는 이제 모델 성능만이 아닙니다. 계획, 도구 선택, 상태 관리, 메모리, 장시간 작업 실행까지 실제 시스템 설계의 일부가 되고 있습니다.",
-        "why_it_matters": "에이전트 시스템은 언어 모델과 실제 작업 환경 사이에 새로운 엔지니어링 계층을 만듭니다. 신뢰성은 오케스트레이션, 상태 관찰, 도구 계약, 실패 처리에 크게 좌우됩니다.",
-        "research_connection": "로봇 작업 계획 관점에서는 LLM이 저수준 제어를 직접 수행하기보다 perception·manipulation primitive를 선택하는 high-level planner 구조와 자연스럽게 연결됩니다."
+        "title": "OpenAI가 모델 오정렬 사례 공개 프레임워크를 발표했다",
+        "summary": "OpenAI는 최근 6개월 동안 관찰한 예상 밖이거나 우려되는 모델 행동 사례 6건과 함께, 이런 오정렬 사례를 추적·조사·공개하기 위한 새로운 프레임워크를 공개했다.",
+        "why_it_matters": "에이전트가 더 오래 실행되고 더 많은 도구를 사용하게 될수록 단순 정확도보다 권한 경계, 행동 추적, 실패 기록, 사후 분석이 중요해진다. 이는 장시간 에이전트 시스템의 운영 설계 문제에 가깝다.",
+        "research_connection": "로봇 high-level planner에 LLM을 넣을 때도 잘못된 행동을 단순히 '추론 실패'로 처리하기보다, 어떤 상태와 도구 선택 때문에 문제가 생겼는지를 기록하고 재현할 수 있어야 한다. 향후 failure handling과 logging 설계에 직접 참고할 만하다."
       },
       "en": {
-        "title": "From chat models to tool-using agents",
-        "summary": "The important shift is no longer only model quality. Planning, tool selection, state, memory, and long-running execution are becoming part of the practical system design.",
-        "why_it_matters": "Agent systems expose a new engineering layer between a language model and the real task environment. Reliability depends on orchestration, observable state, tool contracts, and failure handling.",
-        "research_connection": "For robot task planning, this maps naturally to a high-level planner that selects perception and manipulation primitives instead of directly controlling low-level motion."
+        "title": "OpenAI publishes a framework for reporting model misalignment",
+        "summary": "OpenAI released a new framework for tracking, investigating, and disclosing model misalignment, alongside six reports of unexpected or concerning model behavior observed over the last six months.",
+        "why_it_matters": "As agents run longer and use more tools, reliability depends not only on task accuracy but also on authority boundaries, traceability, failure logging, and post-incident analysis.",
+        "research_connection": "For an LLM-based robot high-level planner, failures should be traceable to state, tool choice, and execution context rather than treated as generic reasoning errors. This is directly relevant to logging and failure-handling design."
       },
-      "sources": [],
-      "published_at": "2026-09-18T08:00:00+09:00",
-      "verification": "preview",
-      "source_type": "none",
-      "source_count": 0
+      "sources": [
+        {
+          "label": {
+            "ko": "OpenAI 공식 발표",
+            "en": "OpenAI official announcement"
+          },
+          "url": "https://openai.com/index/model-misalignment-reporting-framework/"
+        }
+      ]
     },
     {
-      "id": "preview-vla",
-      "date": "2026-09-18",
-      "category": "Robotics",
-      "tags": [
-        "VLA",
-        "Robot Learning"
-      ],
-      "ko": {
-        "title": "VLA 시스템이 로봇 학습에서 중요한 이유",
-        "summary": "Vision-Language-Action 모델은 시각적 맥락과 언어 지시를 로봇 행동으로 연결하는 시스템을 추적하기 위한 중요한 관점입니다.",
-        "why_it_matters": "VLA는 로보틱스를 독립된 perception이나 planning 모듈 수준에서 벗어나게 하고, 의미 이해가 실제 action space까지 어떻게 전달되는지를 고민하게 합니다.",
-        "research_connection": "VLM 기반 장면 이해와 LLM 기반 high-level planning을 분리하고, 이후 이를 manipulation skill과 연결하는 현재 연구 방향과 직접 관련됩니다."
-      },
-      "en": {
-        "title": "Why VLA systems matter for robot learning",
-        "summary": "Vision-Language-Action models are a useful lens for tracking systems that connect visual context and language instructions to robot actions.",
-        "why_it_matters": "They push robotics beyond isolated perception or planning modules and force us to think about how semantic understanding reaches the action space.",
-        "research_connection": "This is directly relevant to separating VLM-based scene understanding from LLM-based high-level planning and later connecting both to manipulation skills."
-      },
-      "sources": [],
-      "published_at": "2026-09-18T08:00:00+09:00",
-      "verification": "preview",
-      "source_type": "none",
-      "source_count": 0
-    },
-    {
-      "id": "preview-isaac",
-      "date": "2026-09-18",
+      "id": "nvidia-agentic-simready-scenes-2026-09-16",
+      "date": "2026-09-16",
+      "published_at": "2026-09-16",
       "category": "Simulation",
       "tags": [
         "Isaac Sim",
-        "Isaac Lab"
+        "Isaac Lab",
+        "Omniverse",
+        "Agent"
       ],
+      "verification": "verified",
+      "source_type": "primary",
+      "source_count": 1,
       "ko": {
-        "title": "Isaac Sim과 Isaac Lab에서 무엇을 봐야 하는가",
-        "summary": "시뮬레이션은 단순한 데모보다 정책 학습, synthetic data, domain randomization, 로봇 평가를 위한 재현 가능한 환경으로서 더 중요합니다.",
-        "why_it_matters": "실무적으로는 시뮬레이션 스택이 실제 프로젝트에 필요한 센서, 로봇 asset, 학습 루프, 배포 경로를 지원하는지가 핵심입니다.",
-        "research_connection": "보유 중인 GPU와 개발 환경에서 로봇 파이프라인을 검증한 뒤 더 높은 사양의 시스템으로 확장하려는 연구 흐름과 특히 밀접합니다."
+        "title": "NVIDIA는 AI 에이전트로 시뮬레이션용 3D 장면 준비를 자동화하는 흐름을 공개했다",
+        "summary": "NVIDIA는 Blender 장면을 검사하고 semantic label, sensor, collision, physics property 등을 추가한 뒤 SimReady 검증까지 수행해 Isaac Sim 또는 Isaac Lab에서 사용할 수 있는 OpenUSD 장면으로 만드는 agentic workflow를 소개했다.",
+        "why_it_matters": "로봇 학습에서 병목은 policy 학습만이 아니라 '학습 가능한 시뮬레이션 환경을 만드는 과정'에도 있다. NVIDIA의 흐름은 이 전처리 작업을 도구 기반 에이전트와 검증 단계로 구조화한다.",
+        "research_connection": "Isaac Sim/Isaac Lab 실험을 준비할 때 asset과 scene을 수동으로 정리하는 비용을 줄일 가능성이 있다. 특히 자동화의 핵심이 자유로운 생성보다 검사→수정→검증이라는 점은 로봇 시스템 설계에도 참고할 만하다."
       },
       "en": {
-        "title": "What to watch in Isaac Sim and Isaac Lab",
-        "summary": "Simulation quality matters less as a demo and more as a reproducible environment for policy learning, synthetic data, domain randomization, and robot evaluation.",
-        "why_it_matters": "The practical question is whether the simulation stack supports the sensors, robot assets, training loop, and deployment path required by a real project.",
-        "research_connection": "This is especially relevant when validating a robotics pipeline on available hardware before scaling experiments to newer GPUs or a different deployment machine."
+        "title": "NVIDIA shows an agentic workflow for preparing simulation-ready 3D scenes",
+        "summary": "NVIDIA described a workflow that inspects Blender scenes, adds semantic labels, sensors, collision and physics properties, and runs SimReady validation before handing an OpenUSD world to Isaac Sim or Isaac Lab.",
+        "why_it_matters": "In robot learning, the bottleneck is often not only policy training but preparing a world that is actually usable for simulation. The workflow turns that prep work into a tool-driven, validated agent pipeline.",
+        "research_connection": "For Isaac Sim and Isaac Lab experiments, this could reduce manual scene-preparation work. More importantly, the inspect → modify → validate pattern is a useful systems design pattern for robotics automation."
       },
-      "sources": [],
-      "published_at": "2026-09-18T08:00:00+09:00",
-      "verification": "preview",
-      "source_type": "none",
-      "source_count": 0
+      "sources": [
+        {
+          "label": {
+            "ko": "NVIDIA Technical Blog",
+            "en": "NVIDIA Technical Blog"
+          },
+          "url": "https://developer.nvidia.com/blog/how-to-use-ai-agents-to-prepare-3d-scenes-for-simulation/"
+        }
+      ]
     },
     {
-      "id": "preview-vlm",
-      "date": "2026-09-17",
-      "category": "Vision",
+      "id": "nvidia-edge-llm-jetson-thor-2026-09-16",
+      "date": "2026-09-16",
+      "published_at": "2026-09-16",
+      "category": "Robotics",
       "tags": [
-        "VLM",
-        "Perception"
+        "Jetson",
+        "Edge AI",
+        "Agent",
+        "Inference"
       ],
+      "verification": "verified",
+      "source_type": "primary",
+      "source_count": 1,
       "ko": {
-        "title": "VLM은 perception과 reasoning 사이의 인터페이스가 되고 있다",
-        "summary": "시각 모델을 detector나 segmenter로만 보는 대신, 최신 multimodal 시스템은 장면 맥락을 downstream reasoning이 활용할 수 있는 형태로 표현합니다.",
-        "why_it_matters": "이는 perception의 역할을 좌표나 class label만 생성하는 단계에서 task-relevant semantic context를 제공하는 단계로 확장합니다.",
-        "research_connection": "Manipulation에서는 어떤 부분을 deterministic perception으로 유지하고 어떤 부분을 VLM에 맡길지라는 설계 판단과 직접 연결됩니다."
+        "title": "Jetson AGX Thor에서 agentic LLM 추론이 MLPerf 기준 6.4배 빨라졌다",
+        "summary": "NVIDIA는 TensorRT Edge-LLM으로 Jetson AGX Thor 한 대에서 Qwen3.6-27B를 실행해 MLPerf Inference v6.1 Edge Agentic workload를 24분 36초에 완료했다고 밝혔다. llama.cpp 기준 실행보다 6.4배 빠른 결과다.",
+        "why_it_matters": "에이전트가 로봇 내부에서 직접 동작하려면 단일 응답 속도보다 긴 문맥, 반복 tool call, KV cache 재사용 같은 다단계 추론 특성이 중요하다. 이 벤치마크는 edge agent workload를 별도로 측정한다는 점이 의미 있다.",
+        "research_connection": "향후 로봇에서 LLM planner를 로컬로 돌릴지 cloud로 둘지 판단할 때 중요한 근거가 된다. 특히 Jetson 계열에서 high-level reasoning을 실제 제어 주기와 어떻게 분리할지 실험해볼 가치가 있다."
       },
       "en": {
-        "title": "VLMs are becoming an interface between perception and reasoning",
-        "summary": "Instead of treating visual models only as detectors or segmenters, current multimodal systems can represent scene context in a form that downstream reasoning systems can use.",
-        "why_it_matters": "That changes the role of perception from producing only coordinates or class labels to producing task-relevant semantic context.",
-        "research_connection": "For manipulation tasks, this creates a design choice: what should remain deterministic perception and what should be delegated to a VLM."
+        "title": "Agentic LLM inference runs 6.4× faster on Jetson AGX Thor in NVIDIA's MLPerf result",
+        "summary": "NVIDIA reports that TensorRT Edge-LLM ran Qwen3.6-27B on a single Jetson AGX Thor and completed the MLPerf Inference v6.1 Edge Agentic workload in 24 minutes 36 seconds, 6.4× faster than the llama.cpp reference run.",
+        "why_it_matters": "For on-robot agents, the important workload is not a single response but repeated tool calls, long context, and cache reuse across multi-step trajectories. This benchmark targets that agentic edge pattern directly.",
+        "research_connection": "This is relevant to deciding whether an LLM planner should run locally or in the cloud. It also motivates experiments separating slow high-level reasoning from faster robot control loops on Jetson-class hardware."
       },
-      "sources": [],
-      "published_at": "2026-09-17T08:00:00+09:00",
-      "verification": "preview",
-      "source_type": "none",
-      "source_count": 0
+      "sources": [
+        {
+          "label": {
+            "ko": "NVIDIA Technical Blog",
+            "en": "NVIDIA Technical Blog"
+          },
+          "url": "https://developer.nvidia.com/blog/tensorrt-edge-llm-completes-the-mlperf-edge-agentic-benchmark-6-4x-faster-on-jetson-agx-thor/"
+        }
+      ]
     },
     {
-      "id": "preview-paper",
-      "date": "2026-09-17",
-      "category": "Papers",
+      "id": "openai-agents-api-2026-09-10",
+      "date": "2026-09-10",
+      "published_at": "2026-09-10",
+      "category": "AI",
       "tags": [
-        "Reading",
-        "Method"
+        "Agent",
+        "API",
+        "Orchestration"
       ],
+      "verification": "verified",
+      "source_type": "primary",
+      "source_count": 1,
       "ko": {
-        "title": "좋은 논문 피드는 설계 질문을 바꾸는 논문을 보여줘야 한다",
-        "summary": "모든 구현 세부사항을 읽는 것이 중요한 것은 아닙니다. 문제, 왜 그 방법을 택했는지, 어떤 가정을 바꾸는지, 어떤 근거로 주장을 뒷받침하는지가 핵심입니다.",
-        "why_it_matters": "이 기준이 있어야 Daily Research Feed가 읽지 않는 논문 목록이 아니라, 깊게 읽을 논문을 고르는 도구가 됩니다.",
-        "research_connection": "LLM Agent, VLM, Robot Learning, Manipulation, Simulation처럼 현재 연구에 직접 영향을 주는 논문을 우선적으로 걸러내는 기준으로 사용할 수 있습니다."
+        "title": "OpenAI Agents API가 보여주는 장시간 에이전트의 핵심은 '모델'보다 하네스다",
+        "summary": "OpenAI는 장시간 실행되는 cloud agent를 위한 Agents API를 공개하며, context 관리, tool 사용, subagent coordination, 파일·코드 실행 환경, 중간 결과 저장 같은 실행 인프라를 핵심 요소로 강조했다.",
+        "why_it_matters": "에이전트 시스템을 만들 때 모델 하나를 고르는 것만으로는 부족하고, 상태·도구·작업 분해·재시도·중간 결과를 관리하는 orchestration layer가 시스템 성능을 크게 좌우한다는 점을 보여준다.",
+        "research_connection": "현재 LLM 파트를 설계할 때도 모델 선정 전에 input/output contract와 available primitive, state, failure handling을 먼저 정해야 한다는 근거가 된다. 실제 구현은 ChatGPT 기반으로 별도 설계하더라도 개념적 구조는 참고할 가치가 있다."
       },
       "en": {
-        "title": "A paper is worth tracking when it changes the design question",
-        "summary": "The useful unit of reading is not every implementation detail. It is the problem, why the method was chosen, what assumption it changes, and what evidence supports the claim.",
-        "why_it_matters": "This makes a daily research feed useful for deciding what deserves deeper reading instead of turning it into another unread backlog.",
-        "research_connection": "The feed should surface papers that affect current work in LLM agents, VLMs, robot learning, manipulation, and simulation."
+        "title": "OpenAI's Agents API highlights that long-running agents depend on the harness, not just the model",
+        "summary": "OpenAI introduced the Agents API for long-running cloud agents and emphasized context management, tool use, subagent coordination, execution environments, and intermediate state as core infrastructure.",
+        "why_it_matters": "Choosing a capable model is not enough for an agent system. The orchestration layer that manages state, tools, task decomposition, retries, and intermediate artifacts strongly shapes reliability.",
+        "research_connection": "For the LLM part of a robotics project, this supports defining the input/output contract, available primitives, state, and failure handling before model selection. The implementation can remain ChatGPT-based while still borrowing these architectural lessons."
       },
-      "sources": [],
-      "published_at": "2026-09-17T08:00:00+09:00",
-      "verification": "preview",
-      "source_type": "none",
-      "source_count": 0
+      "sources": [
+        {
+          "label": {
+            "ko": "OpenAI 공식 발표",
+            "en": "OpenAI official announcement"
+          },
+          "url": "https://openai.com/index/introducing-the-agents-api/"
+        }
+      ]
     }
   ]
 }
