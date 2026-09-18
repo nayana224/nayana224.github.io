@@ -785,3 +785,49 @@ body[data-notes-lang="en"] .ui-en {
     width:118px;
   }
 }
+
+
+/* Notes root folder hierarchy */
+.notes-only-workspace {
+  margin-top:8px;
+}
+
+.root-folder-children {
+  margin:2px 0 4px 8px;
+  padding-left:9px;
+  border-left:1px solid #e1e2e3;
+}
+
+.root-folder-children[hidden] {
+  display:none;
+}
+
+.root-child {
+  padding-left:3px;
+}
+
+.nested-folder {
+  margin-bottom:2px;
+}
+
+.feed-hero {
+  padding-bottom:46px;
+}
+
+.feed-workspace {
+  margin-top:8px;
+}
+
+@media(max-width:720px) {
+  .root-folder-children {
+    display:flex;
+    gap:4px;
+    margin:0;
+    padding:0;
+    border-left:0;
+  }
+
+  .root-folder-children[hidden] {
+    display:none;
+  }
+}
