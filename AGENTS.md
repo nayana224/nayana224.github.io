@@ -42,6 +42,10 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 
 
 ## Implementation status
-- Branch: `feat/ai-research-briefing`
+- Branch policy: make requested website changes directly on `main`.
 - Implementing a dedicated `/briefing/` feed and a portfolio entry point.
 - Current phase is UI/data-contract validation only; automated publishing remains out of scope.
+
+
+## Branch policy
+- Always apply requested repository changes directly to `main` unless the user explicitly asks for another branch or PR.
