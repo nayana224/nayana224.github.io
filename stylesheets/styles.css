@@ -280,3 +280,48 @@ td { text-align:left; padding:10px; border-bottom:1px solid #e5e5e5; vertical-al
 .language-switcher span {
   color:#ccc;
 }
+
+
+/* Institution logos */
+.institution-line {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+.institution-logo {
+  display:block;
+  width:auto;
+  flex:0 0 auto;
+}
+
+.kitech-logo {
+  height:22px;
+  max-width:86px;
+  object-fit:contain;
+}
+
+.tuk-logo {
+  height:20px;
+  max-width:92px;
+  object-fit:contain;
+}
+
+.school-line {
+  margin-top:6px !important;
+}
+
+@media print, screen and (max-width:480px) {
+  .institution-line {
+    gap:6px;
+  }
+
+  .kitech-logo {
+    height:20px;
+  }
+
+  .tuk-logo {
+    height:18px;
+  }
+}
