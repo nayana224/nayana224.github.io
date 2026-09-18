@@ -139,3 +139,10 @@ Add a compact, high-signal briefing surface inspired by short-form AI trend post
 - The uploaded personal illustration is used as the homepage avatar instead of a formal ID photo.
 - Keep the homepage Korean-first while preserving established technical terms in English.
 - Prefer simple readable hierarchy over oversized editorial typography.
+
+
+## Tri Knight-style split homepage
+- Root homepage uses a two-panel researcher profile layout: sticky full-height profile panel on the left, scrollable content panel on the right.
+- Left panel contains the user's illustrated avatar, name, role, short tagline, and direct links to Portfolio, News, Velog, GitHub, and Email.
+- Right panel contains About me, Core Responsibilities, Selected Projects, Research Interests, Latest Briefing, and Background.
+- Preserve original content and assets; reproduce only the high-level visual structure, not third-party source code or imagery.
