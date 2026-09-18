@@ -170,3 +170,8 @@ Use representative technologies rather than long tool lists. Prefer ROS 2, MoveI
 - Imported notes may use bilingual front matter: title_ko/title_en, summary_ko/summary_en, category_ko/category_en.
 - Do not hotlink Notion's expiring signed image URLs. Replace them with placeholders and add permanent repository assets later.
 - Research Notebook styling: sparse list, date/category metadata, short summaries, comfortable long-form reading, code/table/math-friendly content.
+
+
+## README
+- Keep README minimal and English-only.
+- README should contain only a short repository/site description and a direct link to the deployed GitHub Pages site.
