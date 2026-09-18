@@ -4,32 +4,91 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>{{ page.title }} | Inpyo Lee</title>
-  <link rel="stylesheet" href="{{ '/stylesheets/styles.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-2' | relative_url }}">
 </head>
-<body>
+<body class="note-page">
   <div class="note-shell">
-    <header class="note-header">
-      <a href="{{ '/' | relative_url }}">← Home</a>
-      <a href="{{ '/notes/' | relative_url }}">All Notes</a>
+    <header class="notes-topbar">
+      <a class="notes-brand" href="{{ '/notes/' | relative_url }}">Notes</a>
+      <div class="notes-actions">
+        <a href="{{ '/notes/' | relative_url }}">
+          <span class="lang-ko">전체 노트</span><span class="lang-en">All Notes</span>
+        </a>
+        <div class="notes-language-switcher" role="group" aria-label="Language">
+          <button type="button" data-lang="ko" class="active" aria-pressed="true">한국어</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
     </header>
 
     <article class="note-article">
       <div class="note-meta">
         {% if page.date %}<time>{{ page.date | date: "%Y.%m.%d" }}</time>{% endif %}
-        {% if page.category %}<span>{{ page.category }}</span>{% endif %}
+        {% if page.category %}
+        <span>
+          <span class="lang-ko">{{ page.category_ko | default: page.category }}</span>
+          <span class="lang-en">{{ page.category_en | default: page.category }}</span>
+        </span>
+        {% endif %}
       </div>
 
-      <h1>{{ page.title }}</h1>
+      <h1>
+        <span class="lang-ko">{{ page.title_ko | default: page.title }}</span>
+        <span class="lang-en">{{ page.title_en | default: page.title }}</span>
+      </h1>
 
       {% if page.summary %}
-      <p class="note-summary">{{ page.summary }}</p>
+      <p class="note-summary lang-ko">{{ page.summary_ko | default: page.summary }}</p>
+      <p class="note-summary lang-en">{{ page.summary_en | default: page.summary }}</p>
       {% endif %}
 
-      <div class="note-content">
+      {% if page.source_language == "ko" %}
+      <p class="translation-notice lang-en">
+        This note was imported from my Korean Notion research notes. The original technical content is preserved in Korean; a full English translation can be added later.
+      </p>
+      {% endif %}
+
+      <div class="note-divider"></div>
+
+      <div class="note-content" lang="ko">
         {{ content }}
       </div>
+
+      <nav class="note-bottom-nav">
+        <a href="{{ '/notes/' | relative_url }}">
+          <span class="lang-ko">← Notes로 돌아가기</span>
+          <span class="lang-en">← Back to Notes</span>
+        </a>
+      </nav>
     </article>
   </div>
+
+  <script>
+    (function () {
+      var lang = localStorage.getItem('notes-lang') || 'ko';
+      var buttons = document.querySelectorAll('.notes-language-switcher button');
+
+      function applyLanguage(nextLang) {
+        lang = nextLang;
+        document.documentElement.lang = lang;
+        localStorage.setItem('notes-lang', lang);
+        document.body.setAttribute('data-notes-lang', lang);
+
+        buttons.forEach(function (button) {
+          var selected = button.getAttribute('data-lang') === lang;
+          button.classList.toggle('active', selected);
+          button.setAttribute('aria-pressed', String(selected));
+        });
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyLanguage(button.getAttribute('data-lang'));
+        });
+      });
+
+      applyLanguage(lang);
+    })();
+  </script>
 </body>
 </html>
