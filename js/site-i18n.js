@@ -2,7 +2,7 @@ const siteI18n = {
   ko: {
     'nav.about':'소개',
     'nav.work':'작업',
-    'nav.writing':'글',
+    'nav.writing':'뉴스',
     'nav.notes':'노트',
     'nav.archive':'기록',
     'hero.tag':'ROS 2 · 로봇 매니퓰레이션 · 로봇 학습',
@@ -32,7 +32,7 @@ const siteI18n = {
   en: {
     'nav.about':'About',
     'nav.work':'Work',
-    'nav.writing':'Writing',
+    'nav.writing':'News',
     'nav.notes':'Notes',
     'nav.archive':'Archive',
     'hero.tag':'ROS 2 · Robotic Manipulation · Robot Learning',
