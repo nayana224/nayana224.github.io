@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{ page.title }} | Research Feed | Inpyo Lee</title>
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260919-10' | relative_url }}">
+</head>
+<body class="note-page feed-note-page" data-notes-lang="ko">
+  <div class="note-shell">
+    <header class="notes-topbar">
+      <a class="notes-brand" href="/research-feed/?v=20260919-3">Research Feed</a>
+      <div class="notes-actions">
+        <a href="/notes/?v=20260919-9">Notes</a>
+        <a href="/">Home</a>
+      </div>
+    </header>
+
+    <article class="note-article">
+      <div class="note-meta">
+        {% if page.date %}<time>{{ page.date | date: "%Y.%m.%d" }}</time>{% endif %}
+        {% if page.channel_label %}<span>{{ page.channel_label }}</span>{% endif %}
+      </div>
+
+      <h1>{{ page.title }}</h1>
+      {% if page.summary %}<p class="note-summary">{{ page.summary }}</p>{% endif %}
+
+      <div class="note-divider"></div>
+      <div class="note-content">
+        {{ content }}
+      </div>
+
+      <nav class="note-bottom-nav">
+        <a href="/research-feed/?v=20260919-3">← Research Feed</a>
+      </nav>
+    </article>
+  </div>
+</body>
+</html>
