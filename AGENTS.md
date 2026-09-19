@@ -18,9 +18,11 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Prefer numbers, product changes, research/workflow implications, and explicit caveats over abstract trend language.
 - All external sources must be clickable Markdown hyperlinks; never publish bare URLs.
 - Do not create a Research Papers post unless there are genuinely notable papers in the requested freshness window.
+- Hourly runs must avoid duplicate stories; update the same date/channel file rather than creating multiple same-day files.
 
 ## Research Feed run log
 - 2026-09-19 08:38 +0900: refreshed `_research_feed/2026-09-19-ai-robotics.md` with Anthropic internal AI-R&D measurements, Jetson Orin Nano 2 edge-AI performance, and Spirit AI real-world humanoid learning/deployment. No separate Research Papers post was added because the last-24-hour search did not surface a sufficiently strong primary-source paper update.
+- 2026-09-19 11:30 +0900: added Anthropic × Accenture embedded evaluation to the existing AI & Robotics daily file after confirming Anthropic's Sep 18 announcement. The partnership commits at least $1B from each company over five years and places independent evaluators inside Anthropic with employee-comparable access. No duplicate daily file was created.
 
 ## Site invariants
 - Keep Research Feed separate from Notes at `/research-feed/`.
