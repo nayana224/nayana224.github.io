@@ -18,6 +18,32 @@ source: Notion
 source_language: ko
 ---
 
+<!-- visual-summary:v1 -->
+<div class="note-callout note-callout-primary">
+  <strong>핵심 아이디어</strong>
+  <p>RNN의 순차 recurrence를 제거하고, <b>self-attention으로 token 사이 dependency를 직접 연결</b>해 sequence modeling을 병렬화한다.</p>
+</div>
+
+<div class="pipeline-row">
+  <div class="pipeline-node">Tokens</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Embedding + Position</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Multi-Head Attention</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Feed Forward</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Contextual Representation</div>
+</div>
+
+<div class="concept-grid">
+  <div class="concept-card"><h3>Q</h3><p>현재 token이 무엇을 찾고 싶은지 표현한다.</p></div>
+  <div class="concept-card"><h3>K</h3><p>각 token이 어떤 정보를 가지고 있는지 비교 기준을 제공한다.</p></div>
+  <div class="concept-card"><h3>V</h3><p>attention weight에 따라 실제로 전달될 정보를 담는다.</p></div>
+  <div class="concept-card"><h3>Multi-Head</h3><p>여러 projection 공간에서 서로 다른 관계를 병렬로 본다.</p></div>
+</div>
+
+
 왜 RNN/CNN을 버리고 attention만으로도 sequence modeling이 가능한가?
 ViT, SAM, DINOv2, ACT까지 이어지는 기반 논문이다.
 
