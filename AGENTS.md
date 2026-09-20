@@ -51,3 +51,4 @@ Apply requested website changes directly to `main` unless the user explicitly re
 
 ## Site change log
 - 2026-09-20: began homepage copy refinement to foreground proven robotics systems/manipulation experience, clarify the transition toward robot learning and multimodal robotics, remove duplicated interest labels, and align Research Feed/Publications copy with the site's current state.
+- 2026-09-20: removed the VLM Task Monitoring item from homepage Recent Activity at the user's request; keep project-specific experimental work out of the homepage summary unless explicitly promoted later.
