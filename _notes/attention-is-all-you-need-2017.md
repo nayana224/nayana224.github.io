@@ -18,6 +18,8 @@ source: Notion
 source_language: ko
 ---
 
+<p class="figure-note"><strong>Original paper:</strong> <a href="https://arxiv.org/abs/1706.03762">Vaswani et al., Attention Is All You Need (2017)</a></p>
+
 <!-- visual-summary:v1 -->
 <div class="note-callout note-callout-primary">
   <strong>핵심 아이디어</strong>
@@ -46,6 +48,25 @@ source_language: ko
 
 왜 RNN/CNN을 버리고 attention만으로도 sequence modeling이 가능한가?
 ViT, SAM, DINOv2, ACT까지 이어지는 기반 논문이다.
+
+
+<!-- paper-figure:transformer-overview -->
+<figure class="paper-figure">
+ <div class="paper-figure-frame"><div class="paper-figure-canvas">
+ <svg viewBox="0 0 760 355" role="img" aria-label="Transformer encoder decoder overview">
+  <defs><marker id="trA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+  <text x="24" y="28" class="fig-kicker">TRANSFORMER OVERVIEW</text>
+  <rect x="70" y="260" width="150" height="54" rx="3" class="fig-box"/><text x="145" y="287" class="fig-label">Input tokens</text>
+  <rect x="540" y="260" width="150" height="54" rx="3" class="fig-box"/><text x="615" y="287" class="fig-label">Output tokens</text>
+  <path d="M145 260 L145 214" class="fig-arrow" marker-end="url(#trA)"/><path d="M615 260 L615 214" class="fig-arrow" marker-end="url(#trA)"/>
+  <rect x="65" y="88" width="160" height="112" rx="3" class="fig-box-accent"/><text x="145" y="116" class="fig-label">Encoder × N</text><text x="145" y="145" class="fig-small">Self-Attention</text><text x="145" y="168" class="fig-small">Feed Forward</text>
+  <rect x="535" y="70" width="160" height="148" rx="3" class="fig-box-accent"/><text x="615" y="98" class="fig-label">Decoder × N</text><text x="615" y="128" class="fig-small">Masked Self-Attention</text><text x="615" y="151" class="fig-small">Cross-Attention</text><text x="615" y="174" class="fig-small">Feed Forward</text>
+  <path d="M225 144 L520 144" class="fig-arrow-accent" marker-end="url(#trA)"/>
+  <text x="374" y="130" class="fig-small">encoder representation → K, V</text>
+  <text x="372" y="328" class="fig-small">attention replaces recurrence; position information is added explicitly</text>
+ </svg></div></div>
+ <figcaption><strong>Figure 1.</strong> Transformer는 recurrence 없이 encoder-decoder를 attention 중심으로 구성하며, decoder는 encoder output을 cross-attention으로 참조한다. Adapted from Vaswani et al. (2017).</figcaption>
+</figure>
 
 ## Abstract
 기존의 대표적인 sequence transduction 모델들은 대부분 encoder와 decoder를 포함하는 복잡한 RNN 또는 CNN를 기반으로 한다. 성능이 좋은 모델들은 여기에 더해 attention mechanism을 사용하여 encoder와 decoder를 연결한다.
