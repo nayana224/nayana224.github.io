@@ -193,3 +193,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: verified the deployed GitHub Pages artifact directly. Visual HTML blocks were present, but Kramdown consumed single-backslash MathJax delimiters. Updated all math-bearing Notes to double-escaped source delimiters so rendered HTML preserves MathJax syntax.
 
 - 2026-09-21: refined visualization policy to combine explanatory cards with paper-style schematics. Paper/source URLs should be linked directly; original figures are reused only when licensing clearly permits, otherwise redraw with attribution. Research Feed may use one compact source-grounded schematic when it improves understanding.
+
+- 2026-09-21: rolled paper-style figures through the remaining public Notes and existing Research Feed entries: ResNet, U-Net, DeepLabV3+, Transformer, LLM Agent, Context/Context Window, Sep 19 AI/Robotics, and Sep 19 Research Papers. Paper notes now include direct original-paper links and independent redraws; explanatory cards remain where they help definitions/comparisons.
