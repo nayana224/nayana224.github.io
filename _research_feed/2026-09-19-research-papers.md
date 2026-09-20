@@ -13,6 +13,22 @@ summary: "최근 VLA 연구에서 반복해서 보이는 data quality, latency-a
 
 같은 model이라도 어떤 data로 학습하고, 얼마나 빠르게 serve하고, controller까지 어떻게 연결하는지가 성능을 갈라놓고 있습니다.
 
+<!-- feed-figure:vla-stack -->
+<figure class="paper-figure">
+ <div class="paper-figure-frame"><div class="paper-figure-canvas">
+ <svg viewBox="0 0 760 255" role="img" aria-label="VLA training serving deployment stack">
+  <defs><marker id="vlaA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+  <text x="24" y="28" class="fig-kicker">VLA REAL-WORLD STACK</text>
+  <rect x="42" y="82" width="176" height="78" rx="3" class="fig-box-accent"/><text x="130" y="107" class="fig-label">Training</text><text x="130" y="134" class="fig-small">data quality · adaptation</text>
+  <path d="M218 121 L286 121" class="fig-arrow" marker-end="url(#vlaA)"/>
+  <rect x="298" y="82" width="176" height="78" rx="3" class="fig-box"/><text x="386" y="107" class="fig-label">Serving</text><text x="386" y="134" class="fig-small">latency · GPU scheduling</text>
+  <path d="M474 121 L542 121" class="fig-arrow" marker-end="url(#vlaA)"/>
+  <rect x="554" y="82" width="164" height="78" rx="3" class="fig-box"/><text x="636" y="107" class="fig-label">Deployment</text><text x="636" y="134" class="fig-small">controller · robot · environment</text>
+  <text x="380" y="205" class="fig-small">Closed-loop success depends on the full stack, not offline model metrics alone.</text>
+ </svg></div></div>
+ <figcaption><strong>Figure 1.</strong> 최근 VLA 연구를 Training → Serving → Deployment의 full-stack 문제로 보면 세 논문의 공통점이 더 명확해진다. Source papers are linked below.</figcaption>
+</figure>
+
 ## 1/ Offline metric이 좋아도 robot은 실패할 수 있습니다
 
 REAL-I Challenge 분석에서는 fixed demonstration budget 안에서도 data curation, staged adaptation, checkpoint selection, action-space design에 따라 실제 성공률이 크게 달라졌습니다.
