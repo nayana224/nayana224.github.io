@@ -27,6 +27,13 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Channels: ai-robotics and research-papers.
 - Jekyll timezone is Asia/Seoul; feed dates must include +0900.
 - Use public @choi.openai Threads posts for discovery/context when useful, then verify factual claims against primary sources whenever possible.
+- Treat @choi.openai as an editorial reference for topic discovery and structural patterns, not as prose to imitate verbatim.
+- Target feed rhythm: concrete hook first, then the exact change/number/product, then one concise practical implication. Keep paragraphs short and avoid report-like exposition.
+- For a single strong story, prefer one focused short-form update. For multiple related stories, use `1/`, `2/`, `3/` thread-style sections.
+- Titles should communicate the change itself rather than generic labels such as daily roundup. Avoid forced sensationalism; one restrained emoji in the opening is optional when it genuinely fits.
+- Do not force a fixed `Why it matters` or `지금 봐야 할 포인트` section. Add synthesis only when it improves understanding.
+- Keep source verification rigorous even when the visible post is short: social posts are discovery signals, while primary sources support factual claims.
+- Broaden discovery beyond only frontier-model launches to useful AI workflow, coding-agent, robotics/Physical AI, open-source, benchmark, and deployment changes that a technical reader would plausibly want to know that day.
 - Never copy a creator's distinctive wording or exact voice.
 - Use a concrete hook in the first 1-3 sentences, short paragraphs, thread-like 1/ 2/ 3/ sections for multi-item updates, implications immediately after facts, and a short '지금 봐야 할 포인트' synthesis.
 - Prefer numbers, product changes, research/workflow implications, and explicit caveats over abstract trend language.
@@ -59,3 +66,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-20: approved visual hierarchy cleanup without changing project images: remove generic Recent Activity, move Projects directly after Research Interests, move Outside Research to the bottom, remove duplicate Notes link from the sidebar social row, soften sidebar navigation emphasis, and compact Research Feed / Notes / Publications on the homepage.
 
 - 2026-09-21: changed homepage Projects to a text-only presentation and added a single public GitHub profile link below the project list; project image assets may remain in the repository but are not rendered on the homepage.
+
+- 2026-09-21: Research Feed automation was re-enabled. Editorial direction was refined after reviewing public references to @choi.openai: shorter concrete hooks, denser factual payload, more frequent useful updates, optional numbered thread structure, and less report-style commentary while retaining primary-source verification.
