@@ -82,3 +82,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: Research Feed fallback policy updated: when ordinary fresh-source discovery yields nothing worth publishing, inspect recent @choi.openai topics for missed relevant items, then independently verify and reconstruct them before posting.
 
 - 2026-09-21: approved a public Concepts & Theory direction for Notes. Lab-internal and project-sensitive material is explicitly excluded; only standalone public-safe theory/concepts may be distilled from private Notion notes.
+
+- 2026-09-21: Notes navigation was simplified to Papers, Concepts & Theory, and Implementations; Project Logs was removed from the public Notes sidebar. Published the first public-safe concept article, `_notes/llm-agent-model-tools-state-loop.md`, distilled from private study notes with all lab-specific context removed.
