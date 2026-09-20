@@ -13,6 +13,22 @@ Claude가 Anthropic AI R&D 작업의 **26%에서 lead 역할**을 맡고 있습�
 
 AI가 연구 workflow 안으로 깊게 들어갈수록, evaluation도 같은 속도로 개발 loop 안에 들어오는 모습입니다.
 
+<!-- feed-figure:three-shifts -->
+<figure class="paper-figure">
+ <div class="paper-figure-frame"><div class="paper-figure-canvas">
+ <svg viewBox="0 0 760 280" role="img" aria-label="AI R&D evaluation and physical AI shifts">
+  <text x="24" y="28" class="fig-kicker">THREE SYSTEM-LEVEL SHIFTS</text>
+  <rect x="36" y="76" width="196" height="126" rx="3" class="fig-box-accent"/>
+  <text x="134" y="105" class="fig-label">AI in R&D</text><text x="134" y="135" class="fig-small">model as collaborator</text><text x="134" y="158" class="fig-small">→ lead role in some work</text>
+  <rect x="282" y="76" width="196" height="126" rx="3" class="fig-box"/>
+  <text x="380" y="105" class="fig-label">Embedded Evaluation</text><text x="380" y="135" class="fig-small">evaluation moves</text><text x="380" y="158" class="fig-small">inside development loop</text>
+  <rect x="528" y="76" width="196" height="126" rx="3" class="fig-box"/>
+  <text x="626" y="105" class="fig-label">Physical AI</text><text x="626" y="135" class="fig-small">edge compute +</text><text x="626" y="158" class="fig-small">real-world robot data</text>
+  <text x="380" y="238" class="fig-small">The common theme is system integration, not model capability alone.</text>
+ </svg></div></div>
+ <figcaption><strong>Figure 1.</strong> 9월 19일 업데이트의 공통점은 AI capability 자체보다 연구·평가·배포 loop 안으로 AI가 더 깊이 들어간다는 점이다. Sources are linked below.</figcaption>
+</figure>
+
 ## 1/ Claude가 AI를 만드는 과정에 직접 들어오고 있습니다
 
 Anthropic 내부 측정에서 Claude는 AI R&D의 **26%에서 lead**, 90%가 넘는 작업에서 collaborator로 참여했습니다.
