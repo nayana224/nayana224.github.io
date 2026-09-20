@@ -207,7 +207,7 @@ Xception backbone도 일반 CNN처럼 초반에는 spatial size를 줄이고 cha
 ## 4.1 Decoder Design Choices
 1. low-level feature의 channel을 얼마나 줄일까?
   low-level feature를 1x1 conv로 줄이는데, 8/16/32/48/64 channel을 비교한다. 결과는 48 channels가 78.21% mIoU로 가장 좋았고, 32도 비슷하게 좋았다. 
-  따라서 최종적으로 \[1x1, 48\]을 쓴다.
+  따라서 최종적으로 \\[1x1, 48\\]을 쓴다.
 2. decoder에 3x3 conv를 몇 개, 몇 channel로 둘까?
   concat 이후의 decoder convolution을 비교한다. 결과는 256개 필터를 2번 한 것이 최적이었다. 
 3. backbone의 어느 low-level feature를 가져올까?
