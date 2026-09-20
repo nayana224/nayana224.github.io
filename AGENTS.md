@@ -67,12 +67,12 @@ Apply requested website changes directly to `main` unless the user explicitly re
 ## Notes authoring / Notion import rules
 - Treat Notion as source material, not publish-ready Markdown. Never copy Notion math delimiters or HTML blindly into public Notes.
 - Public Notes math rendering uses MathJax in `_layouts/note.html`.
-- Canonical inline math syntax is `\\(...\\)`. Example: `\\(H(x)=F(x)+x\\)`.
-- Canonical display math syntax is `\\[...\\]` on its own block. Example:
+- Because Jekyll/Kramdown consumes one level of backslash escaping, canonical source syntax stored in `_notes/*.md` is `\\\\(...\\\\)` for inline math. The rendered HTML must contain `\\(...\\)` for MathJax.
+- Canonical display math source syntax is `\\\\[...\\\\]` on its own block so Jekyll renders `\\[...\\]` into HTML for MathJax. Example source:
   ```text
-  \\[
+  \\\\[
   \\operatorname{Attention}(Q,K,V)=\\operatorname{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}}\\right)V
-  \\]
+  \\\\]
   ```
 - Do not publish raw `$...# AGENTS.md
 
@@ -144,7 +144,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Preserve LaTeX commands such as `\\frac`, `\\sqrt`, `\\operatorname`, `\\text`, matrices, subscripts, and superscripts inside MathJax delimiters.
 - After importing or rewriting a Notion note, run a content audit before publishing:
   1. zero raw dollar-sign math delimiters remain,
-  2. `\\(` / `\\)` and `\\[` / `\\]` are balanced,
+  2. source `\\\\(` / `\\\\)` and `\\\\[` / `\\\\]` delimiters are balanced and survive the Jekyll build as `\\(` / `\\)` and `\\[` / `\\]`,
   3. no heading/list/table is accidentally inside display math,
   4. no temporary Notion image/file URL remains,
   5. no lab/private/project-sensitive term or context is exposed,
@@ -183,3 +183,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: completed the Notes visualization rollout: added reusable callout/card/flow/hierarchy/pipeline CSS, upgraded the LLM Agent article, added a separate Context vs Context Window concept article, and added visual summaries to ResNet, U-Net, DeepLabV3+, and Attention Is All You Need notes.
 
 - 2026-09-21: standardized Notes math rendering on MathJax using `\\(...\\)` and `\\[...\\]`; raw `$`/`$$` delimiters are forbidden in published Notes. Existing ResNet, U-Net, and Transformer math was normalized and the malformed Transformer attention blocks were repaired.
+
+- 2026-09-21: verified the deployed GitHub Pages artifact directly. Visual HTML blocks were present, but Kramdown consumed single-backslash MathJax delimiters. Updated all math-bearing Notes to double-escaped source delimiters so rendered HTML preserves MathJax syntax.
