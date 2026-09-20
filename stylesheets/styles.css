@@ -168,12 +168,19 @@ section {
 
 .profile nav h2 {
   margin:clamp(4px,.65vh,7px) 0;
-  font-size:clamp(16px,1.3vw,20px);
+  font-size:clamp(15px,1.15vw,17px);
+  font-weight:500;
 }
 
 .profile nav h2 a {
+  color:#4d4d4d;
+  text-decoration:none;
+}
+
+.profile nav h2 a:hover {
+  color:var(--link-hover);
   text-decoration:underline;
-  text-underline-offset:2px;
+  text-underline-offset:3px;
 }
 
 .profile .view {
@@ -288,7 +295,7 @@ section {
 }
 
 .research-statement {
-  margin-top:22px;
+  margin-top:0;
   padding-left:14px;
   border-left:3px solid var(--link);
   color:#555;
@@ -461,7 +468,7 @@ td {
 }
 
 
-/* Content revision: project images and recent activity */
+/* Homepage projects and destination links */
 .project-image {
   display:block;
   width:100%;
@@ -472,28 +479,41 @@ td {
   background:#f3f3f3;
 }
 
-.recent-list {
-  margin-bottom:34px;
+.explore-links {
+  margin-top:52px;
   border-top:1px solid var(--line);
 }
 
-.recent-item {
-  padding:14px 0;
+.explore-item {
+  display:grid;
+  grid-template-columns:minmax(120px,150px) minmax(0,1fr) auto;
+  gap:18px;
+  align-items:start;
+  padding:18px 0;
   border-bottom:1px solid var(--line);
 }
 
-.recent-item strong {
-  display:block;
-  margin-bottom:4px;
+.explore-item-heading h2 {
+  margin:0;
+  font-size:18px;
 }
 
-.recent-item p {
+.explore-item p {
   margin:0;
   color:#666;
 }
 
-.section-link-block {
-  margin-top:34px;
+.explore-link {
+  white-space:nowrap;
+  font-weight:500;
+}
+
+.outside-research {
+  margin-top:38px;
+}
+
+.outside-research .subsection-title {
+  margin-top:0;
 }
 
 
@@ -501,6 +521,12 @@ td {
   .language-switcher {
     width:132px;
     margin-top:18px;
+  }
+
+  .explore-item {
+    grid-template-columns:1fr;
+    gap:7px;
+    padding:16px 0;
   }
 }
 
@@ -517,21 +543,6 @@ td {
   color:#393939;
 }
 
-.about-extra-sections {
-  margin-bottom:38px;
-}
-
-.about-subsection {
-  margin-top:34px;
-}
-
-.about-subsection .recent-list {
-  margin-bottom:0;
-}
-
-#projects,
-#research-feed,
-#notes,
-#publications {
+#projects {
   margin-top:44px;
 }
