@@ -18,6 +18,30 @@ source: Notion
 source_language: ko
 ---
 
+<!-- visual-summary:v1 -->
+<div class="note-callout note-callout-primary">
+  <strong>핵심 아이디어</strong>
+  <p><b>ASPP의 multi-scale context</b>와 <b>encoder-decoder의 boundary recovery</b>를 결합해 semantic segmentation의 두 요구를 동시에 잡는다.</p>
+</div>
+
+<div class="compare-grid">
+  <div class="compare-card"><span class="concept-kicker">CONTEXT</span><h3>ASPP</h3><p>여러 atrous rate로 같은 feature를 서로 다른 receptive field에서 본다.</p></div>
+  <div class="compare-card"><span class="concept-kicker">DETAIL</span><h3>Decoder</h3><p>low-level spatial feature와 high-level semantic feature를 합쳐 boundary를 정교화한다.</p></div>
+</div>
+
+<div class="pipeline-row">
+  <div class="pipeline-node">Backbone</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Atrous Conv</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">ASPP</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Decoder + Low-level Feature</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Segmentation</div>
+</div>
+
+
 ## Summary
   ---
   1. **Problem**<br>semantic segmentation에서 강한 semantic context와 정확한 boundary를 동시에 얻기 어렵다.
