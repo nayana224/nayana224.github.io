@@ -27,6 +27,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Channels: ai-robotics and research-papers.
 - Jekyll timezone is Asia/Seoul; feed dates must include +0900.
 - Use public @choi.openai Threads posts for discovery/context when useful, then verify factual claims against primary sources whenever possible.
+- If ordinary primary-source discovery yields no publishable update, use recent public @choi.openai Threads posts as a fallback discovery queue: select an unduplicated relevant topic, independently verify it against primary/reliable sources, and rewrite it from scratch. Never use the Threads wording as the final factual source or imitate distinctive phrasing.
 - Treat @choi.openai as an editorial reference for topic discovery and structural patterns, not as prose to imitate verbatim.
 - Target feed rhythm: concrete hook first, then the exact change/number/product, then one concise practical implication. Keep paragraphs short and avoid report-like exposition.
 - For a single strong story, prefer one focused short-form update. For multiple related stories, use `1/`, `2/`, `3/` thread-style sections.
@@ -70,3 +71,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: changed homepage Projects to a text-only presentation and added a single public GitHub profile link below the project list; project image assets may remain in the repository but are not rendered on the homepage.
 
 - 2026-09-21: Research Feed automation was re-enabled. Editorial direction was refined after reviewing public references to @choi.openai: shorter concrete hooks, denser factual payload, more frequent useful updates, optional numbered thread structure, and less report-style commentary while retaining primary-source verification.
+
+- 2026-09-21: Research Feed fallback policy updated: when ordinary fresh-source discovery yields nothing worth publishing, inspect recent @choi.openai topics for missed relevant items, then independently verify and reconstruct them before posting.
