@@ -17,6 +17,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Homepage Research Feed copy must reflect that the feed automation is already active.
 - Preserve the sparse academic layout and top-level navigation while keeping the homepage information hierarchy compact.
 - Put Projects immediately after Research Interests; keep Outside Research near the end of the homepage.
+- Keep homepage Projects text-first: do not render project thumbnail images. Show project title, category, concise description, and stack, then link the section to the public GitHub profile rather than guessing private or ambiguous per-project repository URLs.
 - Group Research Feed, Notes, and Publications visually as compact destination rows while preserving their individual anchors and pages.
 
 ## Research Feed automation contract
@@ -56,3 +57,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-20: removed the VLM Task Monitoring item from homepage Recent Activity at the user's request; keep project-specific experimental work out of the homepage summary unless explicitly promoted later.
 
 - 2026-09-20: approved visual hierarchy cleanup without changing project images: remove generic Recent Activity, move Projects directly after Research Interests, move Outside Research to the bottom, remove duplicate Notes link from the sidebar social row, soften sidebar navigation emphasis, and compact Research Feed / Notes / Publications on the homepage.
+
+- 2026-09-21: changed homepage Projects to a text-only presentation and added a single public GitHub profile link below the project list; project image assets may remain in the repository but are not rendered on the homepage.
