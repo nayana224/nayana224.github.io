@@ -54,6 +54,13 @@ Apply requested website changes directly to `main` unless the user explicitly re
 
 - 2026-09-21 manual test run: searched fresh AI/Robotics and coding-agent updates, checked existing feed files for duplication, and published `_research_feed/2026-09-21-ai-robotics.md` covering Anthropic's redesigned Claude Code Projects beta. Primary confirmation came from Anthropic's current Projects help documentation; The Verge was used as secondary context. No separate Research Papers file was created.
 
+## Public notes / privacy policy
+- Public Notes may contain general concepts, theory, paper study, and broadly reusable technical explanations derived from the user's personal study notes.
+- Do not publish lab-internal work, unpublished research details, experiment settings/results, internal project architecture, private code/repositories, collaborator information, or other information that could reveal confidential lab activity.
+- When a Notion page mixes general theory with lab/project context, extract only the standalone public-safe concept and rewrite it independently; omit the lab/project context entirely.
+- Treat Notion as a private working notebook and GitHub Pages as a curated public knowledge base. Do not mirror Notion automatically.
+- Use the Notes library type `concept` for public concept/theory articles. Keep Papers for paper reading notes, Implementations for reproducible public implementation notes, and Project Logs only for explicitly approved public project content.
+
 ## Site invariants
 - Keep Research Feed separate from Notes at `/research-feed/`.
 - Keep homepage top-level navigation mapping: About, Projects, Research Feed, Notes, Publications.
@@ -73,3 +80,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: Research Feed automation was re-enabled. Editorial direction was refined after reviewing public references to @choi.openai: shorter concrete hooks, denser factual payload, more frequent useful updates, optional numbered thread structure, and less report-style commentary while retaining primary-source verification.
 
 - 2026-09-21: Research Feed fallback policy updated: when ordinary fresh-source discovery yields nothing worth publishing, inspect recent @choi.openai topics for missed relevant items, then independently verify and reconstruct them before posting.
+
+- 2026-09-21: approved a public Concepts & Theory direction for Notes. Lab-internal and project-sensitive material is explicitly excluded; only standalone public-safe theory/concepts may be distilled from private Notion notes.
