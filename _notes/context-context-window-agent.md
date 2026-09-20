@@ -31,6 +31,34 @@ source_language: ko
 
 ---
 
+
+<!-- paper-figure:context-pipeline -->
+<figure class="paper-figure">
+ <div class="paper-figure-frame"><div class="paper-figure-canvas">
+ <svg viewBox="0 0 760 310" role="img" aria-label="State context and context window relationship">
+  <defs><marker id="ctxA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+  <text x="24" y="28" class="fig-kicker">CONTEXT PIPELINE</text>
+  <rect x="36" y="88" width="160" height="116" rx="3" class="fig-box"/>
+  <text x="116" y="116" class="fig-label">State</text>
+  <text x="116" y="144" class="fig-small">repository · memory</text>
+  <text x="116" y="164" class="fig-small">logs · progress · tools</text>
+  <path d="M196 146 L285 146" class="fig-arrow" marker-end="url(#ctxA)"/>
+  <text x="242" y="132" class="fig-small">select</text>
+  <rect x="298" y="98" width="160" height="96" rx="3" class="fig-box-accent"/>
+  <text x="378" y="126" class="fig-label">Context</text>
+  <text x="378" y="153" class="fig-small">relevant model input</text>
+  <text x="378" y="174" class="fig-small">for this call</text>
+  <path d="M458 146 L548 146" class="fig-arrow" marker-end="url(#ctxA)"/>
+  <rect x="560" y="88" width="164" height="116" rx="3" class="fig-box"/>
+  <text x="642" y="116" class="fig-label">Context Window</text>
+  <text x="642" y="145" class="fig-small">capacity constraint</text>
+  <text x="642" y="166" class="fig-small">on model input</text>
+  <path d="M642 204 C642 268, 378 268, 378 194" class="fig-arrow-accent" marker-end="url(#ctxA)"/>
+  <text x="508" y="265" class="fig-small">tool results can refresh the next context</text>
+ </svg></div></div>
+ <figcaption><strong>Figure 1.</strong> State는 시스템이 가진 전체 정보이고, runtime은 그중 일부를 Context로 선택해 Context Window 안에서 LLM에 전달한다.</figcaption>
+</figure>
+
 ## 1. State는 시스템이 알고 있는 전체 현재 상태다
 
 예를 들어 coding agent가 repository를 수정하고 있다고 하자.
