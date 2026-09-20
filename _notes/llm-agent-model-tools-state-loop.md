@@ -45,6 +45,32 @@ Agent를 이해할 때 핵심은 model 자체보다 **model이 어떤 실행 환
 
 ---
 
+
+<!-- paper-figure:agent-runtime -->
+<figure class="paper-figure">
+ <div class="paper-figure-frame"><div class="paper-figure-canvas">
+ <svg viewBox="0 0 760 330" role="img" aria-label="LLM Agent runtime system diagram">
+  <defs><marker id="agA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+  <text x="24" y="28" class="fig-kicker">AGENT SYSTEM</text>
+  <rect x="40" y="125" width="120" height="58" rx="3" class="fig-box"/><text x="100" y="154" class="fig-label">User Goal</text>
+  <path d="M160 154 L225 154" class="fig-arrow" marker-end="url(#agA)"/>
+  <rect x="238" y="90" width="180" height="128" rx="3" class="fig-box-accent"/>
+  <text x="328" y="118" class="fig-label">Agent Runtime</text>
+  <text x="328" y="148" class="fig-small">context · permissions · loop</text>
+  <text x="328" y="176" class="fig-label">LLM</text>
+  <text x="328" y="198" class="fig-small">reason / decide</text>
+  <path d="M418 126 L520 78" class="fig-arrow" marker-end="url(#agA)"/>
+  <path d="M418 154 L520 154" class="fig-arrow" marker-end="url(#agA)"/>
+  <path d="M418 182 L520 230" class="fig-arrow" marker-end="url(#agA)"/>
+  <rect x="534" y="50" width="150" height="54" rx="3" class="fig-box"/><text x="609" y="78" class="fig-label">Tools</text>
+  <rect x="534" y="127" width="150" height="54" rx="3" class="fig-box"/><text x="609" y="155" class="fig-label">State</text>
+  <rect x="534" y="204" width="150" height="54" rx="3" class="fig-box"/><text x="609" y="232" class="fig-label">Environment</text>
+  <path d="M608 258 C608 304, 325 304, 325 218" class="fig-arrow-accent" marker-end="url(#agA)"/>
+  <text x="462" y="302" class="fig-small">observe result → update context → reason again</text>
+ </svg></div></div>
+ <figcaption><strong>Figure 1.</strong> Agent는 LLM 하나가 아니라 runtime, tools, state, environment를 feedback loop로 연결한 system으로 보는 편이 정확하다.</figcaption>
+</figure>
+
 ## 1. Agent를 구성하는 핵심 요소
 
 <div class="concept-grid">
