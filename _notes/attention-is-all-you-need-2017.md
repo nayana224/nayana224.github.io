@@ -215,14 +215,17 @@ y \rightarrow \text{Masked Self-Attention} \rightarrow \text{Add \& Norm} \right
 
 이 논문이 사용하는 attention은 Scaled Dot-Product Attention이다.
 입력은 다음과 같다. 
-- Query : $Q\[
+- Query : \(Q\)
 - Key : \(K\)
 - Value: \(V\)
 Query와 Key의 차원은 \(d_k\) 이고, Value의 차원은 \(d_v\) 이다.
+
 계산식은 다음과 같다.
-\]
-\operatorname{Attention}(Q,K,V)=\operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+
 \[
+\operatorname{Attention}(Q,K,V)=\operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\]
+
 ### 1) \(QK^T\)
 먼저 Query와 모든 Key 사이의 dot product를 계산한다.
 \]
@@ -323,12 +326,14 @@ head를 8개 쓴다고 계산량이 무조건 8배가 되는 구조는 아니다
 
 ## 3.2.3 Application in our Model
 ### 1) Encoder Self-Attention
-Encoder의 self-attention에서는 \(Q, K, V\) 가 전부 같은 곳, 즉 이전 encoder layer 출력에서 나온다.$
+Encoder의 self-attention에서는 \(Q, K, V\) 가 전부 같은 곳, 즉 이전 encoder layer 출력에서 나온다.
 그래서 각 입력 token은 encoder의 다른 모든 input token을 볼 수 있다.
 Ex) 입력이 \([I, study, math, hard]\) 라면 `"math"` 위치는 `"I"`, `"study"`, `"math"`, `"hard"` 전부를 참고할 수 있다.
-\]
-Q=K=V=encoder\ previous\ layer \ output
+
 \[
+Q=K=V=\text{encoder previous layer output}
+\]
+
 ### 2) Decoder Masked Self-Attention
 Decoder에서도 `self-attention을 쓰지만, 미래 token을 볼 수 없도록 mask를 건다.` (causal mask)
 Ex) 현재 세 번째 token을 예측하는 위치라면, \(1, 2, 3\) 위치는 볼 수 있지만 \(4, 5, …\) 는 볼 수 없다.
@@ -342,9 +347,11 @@ Ex) 현재 세 번째 token을 예측하는 위치라면, \(1, 2, 3\) 위치는 
 ### 3) Encoder-Decoder Attention
 이게 self-attention과 가장 다른 부분이다.
 여기서는 \(Q\) 는 decoder쪽에서 오고, \(K, V\) 는 encoder의 최종 출력에서 나온다.
+
+\[
+Q=\text{decoder representation}, \quad K,V=\text{encoder output}
 \]
-Q=\text{decoder representation},\\ \quad K,V=\text{encoder output}
-$$
+
 직관적으로 보면 decoder가 “내가 지금 다음 단어를 만들려고 하는데, 입력 문장에서 어떤 부분을 봐야하지?” 라고 묻는 구조다.
 <table>
 
