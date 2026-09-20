@@ -13,366 +13,219 @@ summary: "LLM과 Agent의 차이를 Model, Tools, Runtime, State, Context, Loop�
 source_language: ko
 ---
 
+<div class="note-callout note-callout-primary">
+  <strong>핵심 요약</strong>
+  <p>LLM은 추론을 담당하는 <b>model</b>이고, Agent는 그 model을 <b>tools, runtime, state, context, loop</b>와 연결해 목표를 수행하는 <b>system</b>이다.</p>
+</div>
+
+<div class="compare-grid">
+  <div class="compare-card">
+    <span class="concept-kicker">MODEL</span>
+    <h3>LLM</h3>
+    <ul>
+      <li>입력된 context를 바탕으로 추론</li>
+      <li>다음 출력 또는 tool call을 제안</li>
+      <li>그 자체가 외부 행동을 실행하는 것은 아님</li>
+    </ul>
+  </div>
+  <div class="compare-card">
+    <span class="concept-kicker">SYSTEM</span>
+    <h3>Agent</h3>
+    <ul>
+      <li>Model + Tools + Runtime + State + Loop</li>
+      <li>환경에서 정보를 얻고 실제 행동 수행</li>
+      <li>실행 결과를 반영하며 목표를 향해 반복</li>
+    </ul>
+  </div>
+</div>
+
 LLM을 사용한다고 해서 시스템이 자동으로 **Agent**가 되는 것은 아니다.
 
-LLM은 기본적으로 입력된 context를 바탕으로 다음 출력을 생성하는 **model**이다. 반면 Agent는 이 model을 중심으로 외부 도구를 사용하고, 실행 결과를 다시 관찰하고, 상태를 갱신하면서 목표를 향해 반복적으로 움직이는 **system**에 가깝다.
-
-개념적으로는 다음처럼 생각하면 이해하기 쉽다.
-
-```text
-LLM
-= reasoning / decision model
-
-Agent
-≈ Model
-+ Tools
-+ Runtime
-+ State
-+ Loop
-```
-
-여기서 중요한 점은 **Agent와 LLM을 같은 것으로 생각하지 않는 것**이다.
+Agent를 이해할 때 핵심은 model 자체보다 **model이 어떤 실행 환경과 연결되어 있는가**를 함께 보는 것이다.
 
 ---
 
-## 1. LLM은 Agent의 한 구성요소다
+## 1. Agent를 구성하는 핵심 요소
 
-LLM은 자연어를 이해하고, 계획을 세우고, 다음 행동을 선택하는 데 사용할 수 있다.
+<div class="concept-grid">
+  <div class="concept-card"><span class="concept-kicker">01</span><h3>Model</h3><p>추론, 계획, 다음 행동 선택을 담당한다.</p></div>
+  <div class="concept-card"><span class="concept-kicker">02</span><h3>Tools</h3><p>파일, 웹, API, 터미널 등 외부 환경과 상호작용한다.</p></div>
+  <div class="concept-card"><span class="concept-kicker">03</span><h3>State</h3><p>현재 작업과 환경의 상태를 시스템이 유지한다.</p></div>
+  <div class="concept-card"><span class="concept-kicker">04</span><h3>Loop</h3><p>관찰 → 판단 → 행동 → 결과 반영을 반복한다.</p></div>
+</div>
 
-하지만 LLM 자체가 파일을 수정하거나, 웹사이트를 클릭하거나, 터미널 명령을 실행하는 것은 아니다.
-
-실제 시스템에서는 보통 다음과 같은 구조가 필요하다.
-
-```text
-User
-  ↓
-Agent Runtime
-  ↓
-LLM
-  ↓
-Tool call request
-  ↓
-Agent Runtime
-  ↓
-Tool / API / Computer
-  ↓
-Result
-  ↓
-Agent Runtime
-  ↓
-LLM
-```
-
-즉 LLM이 “이 도구를 사용해야 한다”고 판단하면, **runtime 또는 harness**가 그 요청을 해석하고 권한을 확인한 뒤 실제 tool을 호출한다.
-
-그래서 Agent를 이해할 때 model만 보는 것보다 **model 주변의 실행 환경**을 같이 보는 것이 중요하다.
+여기에 실제 tool 실행을 연결하고 권한·환경을 관리하는 **Runtime / Harness**가 더해진다.
 
 ---
 
-## 2. Tools는 Agent가 환경에 개입하는 방법이다
+## 2. LLM이 Tool을 직접 실행하는 것은 아니다
 
-LLM만 있다면 모델은 텍스트를 생성하는 데 그친다.
+<div class="flow-diagram">
+  <div class="flow-step">User Request</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">Agent Runtime<small>context 구성 · 권한 · 실행환경 관리</small></div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">LLM<small>다음 행동 또는 tool call 결정</small></div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">Tool / API / Computer<small>실제 행동 수행</small></div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">Result / Observation</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">Runtime가 결과를 Context에 반영</div>
+  <div class="flow-loop">필요하면 다시 LLM을 호출하며 반복 ↺</div>
+</div>
 
-Agent에 tool이 연결되면 모델의 판단을 실제 행동으로 이어갈 수 있다.
+LLM이 “이 도구를 사용해야 한다”고 판단하면 runtime이 그 요청을 해석하고 실제 tool을 호출한다.
 
-예를 들어 coding agent라면 다음과 같은 tool을 가질 수 있다.
+Coding agent라면 예를 들어 <code>read_file()</code>, <code>edit_file()</code>, <code>search_code()</code>, <code>run_test()</code>, <code>run_terminal()</code> 같은 tool을 가질 수 있다.
 
-```text
-read_file()
-edit_file()
-search_code()
-run_test()
-run_terminal()
-git_diff()
-```
+Research agent라면 <code>search_web()</code>, <code>open_page()</code>, <code>read_document()</code>, <code>query_database()</code>처럼 구성이 달라질 수 있다.
 
-Research agent라면 구성은 달라진다.
-
-```text
-search_web()
-open_page()
-read_document()
-query_database()
-```
-
-중요한 것은 tool의 개수가 많다는 사실이 아니다.
-
-**현재 목표와 상태를 보고 어떤 tool을 언제 사용할지 결정할 수 있는가**가 Agent다운 동작을 만든다.
+중요한 것은 tool의 개수가 아니라 **현재 목표에 맞는 tool을 선택하고, 결과를 다시 다음 판단에 반영할 수 있는가**다.
 
 ---
 
-## 3. 핵심은 Loop다
+## 3. Agent의 핵심은 Loop다
 
-Agent를 단순한 “LLM + Tool”보다 더 잘 설명하는 요소가 **Loop**다.
+<div class="pipeline-row">
+  <div class="pipeline-node">Observe</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Reason / Plan</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Act</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Update State</div>
+</div>
 
-대표적인 흐름은 다음과 같다.
+<p class="note-legend">결과가 충분하지 않으면 다시 Observe 단계로 돌아간다.</p>
 
-```text
-Goal
-  ↓
-Observe
-  ↓
-Reason / Plan
-  ↓
-Act
-  ↓
-Observe result
-  ↓
-Update state
-  ↓
-다음 행동 결정
-  ↺
-```
-
-이를 단순한 pseudo code로 쓰면 다음과 비슷하다.
-
-```python
-while not finished:
-    observation = observe()
-    action = model.decide(observation)
-    result = execute(action)
-    update_state(result)
-```
-
-실제 시스템은 이것보다 훨씬 복잡할 수 있지만, 핵심 구조는 같다.
+실제 agent는 훨씬 복잡할 수 있지만, 기본 구조는 같다.
 
 **행동 → 결과 획득 → 새로운 정보 반영 → 다시 판단**이 반복된다.
 
-ReAct 역시 reasoning과 action을 번갈아 수행하면서 외부 환경에서 새로운 정보를 얻고 계획을 갱신하는 아이디어를 보여준다.
+---
+
+## 4. State와 Context는 다르다
+
+<div class="compare-grid">
+  <div class="compare-card">
+    <span class="concept-kicker">SYSTEM MEMORY</span>
+    <h3>State</h3>
+    <p>시스템이 현재 상황을 표현하고 유지하는 전체 정보다.</p>
+    <p><small>예: branch, 수정 파일, test 상태, 완료 작업, 권한</small></p>
+  </div>
+  <div class="compare-card">
+    <span class="concept-kicker">MODEL INPUT</span>
+    <h3>Context</h3>
+    <p>그중 이번 LLM 호출에 실제 입력으로 전달되는 정보다.</p>
+    <p><small>예: user request, 관련 파일, diff, terminal output, tool result</small></p>
+  </div>
+</div>
+
+즉 모든 state가 매번 model에게 들어가는 것은 아니다.
+
+Agent runtime은 state와 외부 환경에서 필요한 정보를 골라 **현재 판단에 필요한 context를 구성**한다.
 
 ---
 
-## 4. State와 Context는 같은 것이 아니다
+## 5. Context Window는 Context를 담을 수 있는 범위다
 
-처음에는 State와 Context를 비슷하게 생각하기 쉽지만 구분하는 편이 좋다.
-
-### State
-
-State는 **Agent 시스템이 현재 상황을 표현하고 있는 정보**다.
-
-예를 들면 coding agent에서는 다음이 state의 일부가 될 수 있다.
-
-```text
-현재 branch
-수정된 파일
-테스트 성공/실패 상태
-완료된 작업
-남아 있는 작업
-사용 가능한 권한
-```
-
-State는 시스템 내부 파일, 데이터베이스, memory, 실행 환경 등에 존재할 수 있다.
-
-### Context
-
-Context는 그중 **이번 LLM 호출에서 실제로 model에게 입력으로 전달된 정보**다.
-
-예를 들어 다음과 같은 정보가 한 번의 context에 포함될 수 있다.
-
-```text
-┌─────────────────────────┐
-│ System instructions     │
-├─────────────────────────┤
-│ User request            │
-├─────────────────────────┤
-│ Relevant source files   │
-├─────────────────────────┤
-│ Git diff                │
-├─────────────────────────┤
-│ Terminal output         │
-├─────────────────────────┤
-│ Previous tool results   │
-└─────────────────────────┘
-            ↓
-           LLM
-```
-
-즉 모든 state를 매번 model에게 전부 넣는 것은 아니다.
-
-Agent runtime은 필요한 정보를 찾아서 **현재 판단에 필요한 context를 구성**한다.
-
-이 때문에 agent system에서는 model 성능뿐 아니라 **context engineering**도 중요해진다.
-
----
-
-## 5. Context Window는 Context의 최대 작업 공간이다
+<div class="flow-diagram">
+  <div class="flow-step">User Request</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">관련 정보 탐색<small>source files · logs · tool results</small></div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">Context 구성</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">LLM 추론</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">정보가 부족한가?</div>
+  <div class="flow-loop">Yes → 추가 탐색 → Context 갱신 → 다시 추론 ↺</div>
+</div>
 
 Context window는 모델이 한 번의 추론 흐름에서 참고할 수 있는 token 범위다.
 
-Repository 전체, 모든 terminal log, 전체 대화 기록을 항상 넣을 수는 없다.
+그래서 큰 repository 전체나 모든 terminal log를 무조건 한 번에 넣는 것보다 **필요한 정보를 찾아가며 context를 갱신하는 구조**가 중요하다.
 
-그래서 agent는 보통 필요한 정보를 그때그때 가져온다.
-
-```text
-User request
-    ↓
-관련 파일 탐색
-    ↓
-필요한 부분 읽기
-    ↓
-Context에 추가
-    ↓
-LLM 판단
-    ↓
-정보가 부족한가?
-    ↓ Yes
-추가 탐색
-    ↓
-Context 갱신
-    ↺
-```
-
-이 관점으로 보면 agent의 tool 사용은 행동만을 위한 것이 아니다.
-
-**새로운 context를 획득하는 수단**이기도 하다.
+이 관점에서 tool은 행동 수단이면서 동시에 **새로운 context를 획득하는 수단**이기도 하다.
 
 ---
 
 ## 6. Planner와 Orchestrator는 역할이 다르다
 
-Agent를 공부할 때 자주 섞이는 개념이 Planner와 Orchestrator다.
+<div class="compare-grid">
+  <div class="compare-card">
+    <span class="concept-kicker">WHAT</span>
+    <h3>Planner</h3>
+    <p><b>무엇을 해야 하는가?</b>를 결정한다.</p>
+    <p>고수준 목표를 task로 분해하거나 다음 행동을 선택한다.</p>
+  </div>
+  <div class="compare-card">
+    <span class="concept-kicker">HOW / WHEN</span>
+    <h3>Orchestrator</h3>
+    <p><b>누구에게 언제 실행시킬 것인가?</b>를 관리한다.</p>
+    <p>작업 순서, worker 호출, 결과 수집을 조정한다.</p>
+  </div>
+</div>
 
-### Planner
+<div class="hierarchy-block">
+  <div class="hierarchy-level"><span class="hierarchy-label">Goal</span><strong>고수준 목표</strong><p>사용자가 원하는 최종 결과</p></div>
+  <div class="hierarchy-level"><span class="hierarchy-label">Planner</span><strong>Task decomposition</strong><p>목표를 실행 가능한 작업으로 분해</p></div>
+  <div class="hierarchy-level"><span class="hierarchy-label">Orchestrator</span><strong>Execution management</strong><p>정해진 작업을 순서대로 또는 병렬로 실행</p></div>
+</div>
 
-Planner는 **무엇을 해야 하는지**를 정한다.
-
-```text
-Goal
-  ↓
-Planner
-  ↓
-Task A
-Task B
-Task C
-```
-
-고수준 목표를 더 작은 작업으로 분해하거나 다음 행동을 결정한다.
-
-### Orchestrator
-
-Orchestrator는 **정해진 작업을 누구에게, 언제, 어떤 순서로 실행시킬지 관리**한다.
-
-```text
-Plan
-  ↓
-Orchestrator
-  ├─ Worker A 실행
-  ├─ Worker B 실행
-  ├─ 결과 수집
-  └─ 다음 단계 진행
-```
-
-두 역할을 하나의 LLM이 모두 수행할 수도 있고, 일부는 deterministic code가 담당할 수도 있다.
-
-따라서 “Agent니까 모든 것을 LLM에게 맡긴다”는 구조가 항상 좋은 것은 아니다.
+모든 단계를 LLM이 담당할 필요는 없다. 예측 가능한 부분은 deterministic code로 두고, 불확실성이 큰 부분만 LLM에게 맡기는 방식도 충분히 agentic할 수 있다.
 
 ---
 
-## 7. Workflow와 Agent도 구분할 필요가 있다
+## 7. Workflow와 Agent를 구분하자
 
-미리 정해진 순서를 그대로 실행하는 구조와, model이 실행 중 동적으로 다음 행동을 선택하는 구조는 다르다.
+<div class="compare-grid">
+  <div class="compare-card"><span class="concept-kicker">PREDEFINED</span><h3>Workflow</h3><p>A → B → C처럼 실행 경로가 대부분 미리 정해져 있다.</p></div>
+  <div class="compare-card"><span class="concept-kicker">DYNAMIC</span><h3>Agent</h3><p>실행 중 관찰 결과에 따라 model이 다음 행동과 tool 사용을 동적으로 선택한다.</p></div>
+</div>
 
-### Workflow
+Anthropic은 이 차이를 **predefined code path를 따르는 workflow**와 **LLM이 process와 tool usage를 동적으로 결정하는 agent**로 구분한다.
 
-```text
-A 실행
-↓
-B 실행
-↓
-C 실행
-```
-
-실행 경로가 대부분 미리 정의되어 있다.
-
-### Agent
-
-```text
-현재 상황 확인
-↓
-다음 행동 판단
-↓
-Tool 실행
-↓
-결과 확인
-↓
-필요하면 다른 경로 선택
-↺
-```
-
-Anthropic은 이 차이를 **predefined code path를 따르는 workflow**와 **LLM이 자신의 process와 tool usage를 동적으로 결정하는 agent**로 구분해 설명한다.
-
-실제 시스템에서는 둘을 섞는 경우가 많다.
-
-예측 가능한 부분은 code로 고정하고, 불확실성이 큰 부분에서만 LLM에게 판단을 맡길 수 있다.
+실제 시스템은 둘을 섞는 경우가 많다.
 
 ---
 
 ## 8. 예시: Coding Agent가 버그를 고치는 과정
 
-사용자가 다음과 같이 요청했다고 하자.
+<div class="hierarchy-block">
+  <div class="hierarchy-level"><span class="hierarchy-label">01</span><strong>Repository 구조 확인</strong><p>어디를 봐야 하는지 탐색한다.</p></div>
+  <div class="hierarchy-level"><span class="hierarchy-label">02</span><strong>관련 source / test / error log 수집</strong><p>판단에 필요한 context를 구성한다.</p></div>
+  <div class="hierarchy-level"><span class="hierarchy-label">03</span><strong>LLM이 수정 방법 판단</strong><p>어떤 파일을 어떻게 바꿀지 결정한다.</p></div>
+  <div class="hierarchy-level"><span class="hierarchy-label">04</span><strong>파일 수정 + test 실행</strong><p>tool이 실제 행동을 수행한다.</p></div>
+  <div class="hierarchy-level"><span class="hierarchy-label">05</span><strong>실패 결과를 다시 반영</strong><p>새 결과를 context에 추가하고 다시 추론한다.</p></div>
+</div>
 
-```text
-"이 repository에서 데이터 로딩 버그를 고쳐줘."
-```
-
-LLM에게 이 한 문장만 주면 충분하지 않다.
-
-Agent는 먼저 필요한 정보를 수집할 수 있다.
-
-```text
-1. repository 구조 확인
-2. 관련 파일 검색
-3. 오류 로그 확인
-4. 관련 source와 test 읽기
-5. LLM이 수정 방법 판단
-6. 파일 수정
-7. test 실행
-8. 실패하면 결과를 context에 추가
-9. 다시 수정
-10. test가 통과하면 종료
-```
-
-여기서 LLM은 중요한 reasoning component지만, 전체 작업은 다음이 함께 만들어낸 결과다.
-
-```text
-Model
-+ Repository context
-+ File tools
-+ Terminal
-+ Tests
-+ Runtime
-+ State
-+ Iterative loop
-```
-
-이 전체가 coding agent에 더 가깝다.
+<div class="concept-grid">
+  <div class="concept-card"><h3>Model</h3><p>reasoning</p></div>
+  <div class="concept-card"><h3>Repository Context</h3><p>source · tests · logs</p></div>
+  <div class="concept-card"><h3>Tools</h3><p>file · terminal · git</p></div>
+  <div class="concept-card"><h3>Runtime + Loop</h3><p>execute · observe · retry</p></div>
+</div>
 
 ---
 
 ## 9. Agent가 항상 정답은 아니다
 
-Agent는 유연하지만 비용도 있다.
+<div class="note-callout">
+  <strong>Agent를 쓰기 전에 볼 질문</strong>
+  <p>이 문제에 정말 <b>model-driven decision making</b>이 필요한가?</p>
+</div>
 
-Tool call이 반복되면 latency와 비용이 증가하고, 실행 경로가 동적으로 변하기 때문에 debugging과 evaluation도 어려워질 수 있다.
-
-그래서 작업이 다음처럼 완전히 정형화되어 있다면 일반 program이나 workflow가 더 적합할 수 있다.
-
-```text
-입력 검증
-→ 정해진 API 호출
-→ 결과 변환
-→ 저장
-```
+작업이 완전히 정형화되어 있다면 일반 program이나 workflow가 더 단순하고 안정적일 수 있다.
 
 반대로 다음과 같은 상황에서는 agent 구조의 가치가 커진다.
 
 - 필요한 subtask를 미리 모두 예측하기 어렵다.
 - 중간 결과에 따라 다음 행동이 달라진다.
-- 여러 tool 중 어떤 것을 사용할지 판단해야 한다.
+- 여러 tool 중 무엇을 사용할지 판단해야 한다.
 - 실패 원인을 보고 다른 접근으로 recovery해야 한다.
 - 실행 도중 새로운 정보를 탐색해야 한다.
-
-핵심은 **LLM을 쓰는 것 자체가 아니라, model-driven decision making이 실제로 필요한가**다.
 
 ---
 
@@ -382,20 +235,19 @@ Tool call이 반복되면 latency와 비용이 증가하고, 실행 경로가 �
 | --- | --- |
 | **LLM / Model** | 추론하고 다음 출력을 생성 |
 | **Tool** | 외부 정보를 얻거나 실제 행동을 수행 |
-| **Runtime / Harness** | model의 tool 요청을 실제 실행과 연결 |
+| **Runtime / Harness** | model의 요청을 실제 실행과 연결 |
 | **State** | 시스템이 유지하는 현재 상황 |
-| **Context** | 현재 LLM 호출에 실제로 전달되는 정보 |
+| **Context** | 현재 LLM 호출에 실제 전달되는 정보 |
 | **Context Window** | 한 번의 추론에서 참고할 수 있는 token 범위 |
 | **Planner** | 무엇을 해야 하는지 결정 |
-| **Orchestrator** | 작업의 실행 순서와 주체를 관리 |
+| **Orchestrator** | 작업 실행 순서와 주체를 관리 |
 | **Loop** | 관찰 → 판단 → 행동 → 결과 반영을 반복 |
 | **Agent** | 위 요소들을 묶어 목표를 달성하는 시스템 |
 
-한 문장으로 줄이면 다음과 같다.
-
-> **LLM은 Agent의 두뇌 역할을 할 수 있지만, Agent는 LLM보다 큰 시스템이다.**
-
-Agent를 공부할 때는 model architecture만 보는 것보다 **tool, runtime, state, context, feedback loop가 어떻게 연결되는지**를 함께 보는 것이 더 중요하다.
+<div class="note-callout note-callout-primary">
+  <strong>한 문장으로</strong>
+  <p><b>LLM은 Agent의 두뇌 역할을 할 수 있지만, Agent는 LLM보다 큰 시스템이다.</b></p>
+</div>
 
 ## References
 
