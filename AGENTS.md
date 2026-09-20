@@ -12,10 +12,12 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Lead with demonstrated experience before aspirational research interests.
 - Keep the core progression: Mechatronics → ROS 2 Robotics → System Integration & Manipulation → Learning for Robotics.
 - Group research interests into Robotic Manipulation, Robot Learning, and Multimodal Learning for Robotics instead of listing overlapping VLM/VLA/Embodied AI labels separately.
-- Recent Activity should use concrete ongoing work or study rather than repeat the About section.
+- Do not keep a generic Recent Activity block on the homepage; only reintroduce it later if there are concrete dated updates worth surfacing.
 - Keep authored publications and research outputs separate from papers studied in Notes.
 - Homepage Research Feed copy must reflect that the feed automation is already active.
-- Preserve the existing layout and navigation while refining copy unless a later task explicitly asks for a redesign.
+- Preserve the sparse academic layout and top-level navigation while keeping the homepage information hierarchy compact.
+- Put Projects immediately after Research Interests; keep Outside Research near the end of the homepage.
+- Group Research Feed, Notes, and Publications visually as compact destination rows while preserving their individual anchors and pages.
 
 ## Research Feed automation contract
 - Research Feed is backed by the Jekyll collection `research_feed`.
@@ -52,3 +54,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 ## Site change log
 - 2026-09-20: began homepage copy refinement to foreground proven robotics systems/manipulation experience, clarify the transition toward robot learning and multimodal robotics, remove duplicated interest labels, and align Research Feed/Publications copy with the site's current state.
 - 2026-09-20: removed the VLM Task Monitoring item from homepage Recent Activity at the user's request; keep project-specific experimental work out of the homepage summary unless explicitly promoted later.
+
+- 2026-09-20: approved visual hierarchy cleanup without changing project images: remove generic Recent Activity, move Projects directly after Research Interests, move Outside Research to the bottom, remove duplicate Notes link from the sidebar social row, soften sidebar navigation emphasis, and compact Research Feed / Notes / Publications on the homepage.
