@@ -39,6 +39,8 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Use a concrete hook in the first 1-3 sentences, short paragraphs, thread-like 1/ 2/ 3/ sections for multi-item updates, implications immediately after facts, and a short '지금 봐야 할 포인트' synthesis.
 - Prefer numbers, product changes, research/workflow implications, and explicit caveats over abstract trend language.
 - All external sources must be clickable Markdown hyperlinks; never publish bare URLs.
+- Research Feed may include at most one compact explanatory schematic per focused story when a visual materially improves comprehension. Build the schematic from verified facts in the linked primary source; do not copy a news graphic or social-media image merely for decoration.
+- Research Feed visuals should use the same paper-like block/arrow visual grammar as Notes, remain short enough for mobile, and include a caption plus source link. Prefer original redraws over rehosting third-party graphics unless reuse rights are explicit.
 - Do not create a Research Papers post unless there are genuinely notable papers in the requested freshness window.
 - Hourly runs must avoid duplicate stories; update the same date/channel file rather than creating multiple same-day files.
 
@@ -62,6 +64,10 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Use the Notes library type `concept` for public concept/theory articles. Keep Papers for paper reading notes and Implementations for reproducible public implementation notes. Do not expose a Project Logs category in public Notes.
 - Concept/theory notes should use reusable HTML/CSS visualization blocks when they materially improve comprehension: callouts for key takeaways, comparison cards for contrasts, concept cards for components, flow diagrams for process/agent loops, and hierarchy blocks for layered systems.
 - Keep visualizations semantic, lightweight, responsive, and compatible with the sparse academic Notes design. Prefer HTML/CSS over decorative images for conceptual diagrams, and never expose private lab/project details through diagrams.
+- Visual style should blend two layers: compact explanatory cards for definitions/comparisons and paper-like schematic figures for architecture, data flow, mechanisms, or equations. Do not force every concept into cards.
+- Paper-like figures should follow the visual grammar of the user's VLM seminar reference: restrained colors, rectangular modules, directional arrows, explicit input/output labels, short annotations, and a figure caption. Reuse only the visual grammar, never confidential lab content.
+- For paper-derived Notes, locate and link the original paper/project URL. Prefer independently redrawn schematics that explain the mechanism while citing the source. Reuse an original paper figure only when its license/reuse terms clearly permit it; otherwise do not rehost it.
+- When redrawing from a paper, use captions such as `Figure N. ... (adapted from <paper>)` and include the paper URL in References.
 
 
 ## Notes authoring / Notion import rules
@@ -185,3 +191,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: standardized Notes math rendering on MathJax using `\\(...\\)` and `\\[...\\]`; raw `$`/`$$` delimiters are forbidden in published Notes. Existing ResNet, U-Net, and Transformer math was normalized and the malformed Transformer attention blocks were repaired.
 
 - 2026-09-21: verified the deployed GitHub Pages artifact directly. Visual HTML blocks were present, but Kramdown consumed single-backslash MathJax delimiters. Updated all math-bearing Notes to double-escaped source delimiters so rendered HTML preserves MathJax syntax.
+
+- 2026-09-21: refined visualization policy to combine explanatory cards with paper-style schematics. Paper/source URLs should be linked directly; original figures are reused only when licensing clearly permits, otherwise redraw with attribution. Research Feed may use one compact source-grounded schematic when it improves understanding.
