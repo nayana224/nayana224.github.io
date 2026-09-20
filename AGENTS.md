@@ -51,6 +51,8 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-19 hourly run: checked fresh AI/Robotics news and primary-source domains again. Spirit AI and Anthropic × Accenture were already present in today's feed; OpenAI robotics hiring coverage lacked a new first-party announcement, while other surfaced DeepMind/NVIDIA items were older than the freshness window. No Research Feed file was modified.
 - 2026-09-19 newest hourly run: rechecked OpenAI, Anthropic, Google DeepMind, NVIDIA, arXiv VLA/robotics, and public @choi.openai discovery results. The only fresh primary-source hit was Anthropic × Accenture embedded evaluation, already recorded in today's feed; other results were older or duplicates. No `_research_feed/` file was modified.
 
+- 2026-09-21 manual test run: searched fresh AI/Robotics and coding-agent updates, checked existing feed files for duplication, and published `_research_feed/2026-09-21-ai-robotics.md` covering Anthropic's redesigned Claude Code Projects beta. Primary confirmation came from Anthropic's current Projects help documentation; The Verge was used as secondary context. No separate Research Papers file was created.
+
 ## Site invariants
 - Keep Research Feed separate from Notes at `/research-feed/`.
 - Keep homepage top-level navigation mapping: About, Projects, Research Feed, Notes, Publications.
