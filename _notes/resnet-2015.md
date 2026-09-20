@@ -18,6 +18,30 @@ source: Notion
 source_language: ko
 ---
 
+<!-- visual-summary:v1 -->
+<div class="note-callout note-callout-primary">
+  <strong>핵심 아이디어</strong>
+  <p>깊은 network가 identity mapping조차 학습하기 어려워지는 문제를, <b>H(x)를 직접 학습하는 대신 F(x)=H(x)-x를 학습</b>하도록 바꿔 optimization을 쉽게 만든다.</p>
+</div>
+
+<div class="compare-grid">
+  <div class="compare-card"><span class="concept-kicker">PLAIN</span><h3>H(x) 직접 학습</h3><p>여러 nonlinear layer가 원하는 mapping 전체를 만들어야 한다.</p></div>
+  <div class="compare-card"><span class="concept-kicker">RESIDUAL</span><h3>F(x) + x</h3><p>identity는 shortcut으로 주고 network는 필요한 변화량만 학습한다.</p></div>
+</div>
+
+<div class="pipeline-row">
+  <div class="pipeline-node">Input x</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">Residual branch F(x)</div>
+  <div class="pipeline-arrow">+</div>
+  <div class="pipeline-node">Shortcut x</div>
+  <div class="pipeline-arrow">→</div>
+  <div class="pipeline-node">H(x)</div>
+</div>
+
+<p class="note-legend">Degradation problem → residual formulation → identity shortcut이 이 논문의 핵심 흐름이다.</p>
+
+
 ## 1. Abstract
 1. Problem
   네트웤를 더 깊게 만들고 싶지만, 깊어질수록 학습하기 어려워진다. <br>특히, training error 자체가 안 좋아지더라.
