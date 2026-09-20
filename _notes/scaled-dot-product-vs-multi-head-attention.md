@@ -37,6 +37,43 @@ source_language: ko
 
 ---
 
+<!-- paper-figure:attention-overview -->
+<figure class="paper-figure">
+  <div class="paper-figure-frame">
+    <div class="paper-figure-canvas">
+      <svg viewBox="0 0 760 240" role="img" aria-label="Scaled Dot-Product Attention과 Multi-Head Attention의 관계">
+        <defs>
+          <marker id="pa1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#7d858c"></path>
+          </marker>
+        </defs>
+        <text x="24" y="28" class="fig-kicker">CORE RELATION</text>
+
+        <rect x="42" y="72" width="160" height="68" rx="3" class="fig-box"></rect>
+        <text x="122" y="98" class="fig-label">Q / K / V</text>
+        <text x="122" y="120" class="fig-small">projected inputs</text>
+
+        <path d="M202 106 L278 106" class="fig-arrow" marker-end="url(#pa1)"></path>
+
+        <rect x="290" y="58" width="210" height="96" rx="3" class="fig-box-accent"></rect>
+        <text x="395" y="92" class="fig-label">Scaled Dot-Product</text>
+        <text x="395" y="115" class="fig-label">Attention</text>
+        <text x="395" y="137" class="fig-small">core operation inside one head</text>
+
+        <path d="M500 106 L576 106" class="fig-arrow" marker-end="url(#pa1)"></path>
+
+        <rect x="588" y="72" width="130" height="68" rx="3" class="fig-box"></rect>
+        <text x="653" y="98" class="fig-label">Head i</text>
+        <text x="653" y="120" class="fig-small">one head output</text>
+
+        <line x1="48" y1="178" x2="712" y2="178" class="fig-divider"></line>
+        <text x="380" y="205" class="fig-small">Multi-Head Attention = multiple projected heads → Concat → output projection</text>
+      </svg>
+    </div>
+  </div>
+  <figcaption><strong>Figure 1.</strong> Scaled Dot-Product Attention은 head 내부의 핵심 연산이고, Multi-Head Attention은 여러 projected head를 병렬로 결합하는 구조다. Adapted conceptually from Vaswani et al. (2017).</figcaption>
+</figure>
+
 ## 1. 먼저 Q, K, V를 구분하자
 
 <div class="concept-grid">
@@ -76,6 +113,49 @@ source_language: ko
 \frac{QK^T}{\sqrt{d_k}}
 \right)V
 \\]
+
+<!-- paper-figure:scaled-dot-product -->
+<figure class="paper-figure">
+  <div class="paper-figure-frame">
+    <div class="paper-figure-canvas">
+      <svg viewBox="0 0 760 245" role="img" aria-label="Scaled Dot-Product Attention 계산 흐름">
+        <defs>
+          <marker id="pa2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#7d858c"></path>
+          </marker>
+        </defs>
+        <text x="24" y="28" class="fig-kicker">SCALED DOT-PRODUCT ATTENTION</text>
+
+        <rect x="24" y="86" width="116" height="62" rx="3" class="fig-box"></rect>
+        <text x="82" y="108" class="fig-label">QKᵀ</text>
+        <text x="82" y="131" class="fig-small">similarity</text>
+
+        <path d="M140 117 L187 117" class="fig-arrow" marker-end="url(#pa2)"></path>
+
+        <rect x="198" y="86" width="116" height="62" rx="3" class="fig-box"></rect>
+        <text x="256" y="108" class="fig-label">÷ √dₖ</text>
+        <text x="256" y="131" class="fig-small">scale</text>
+
+        <path d="M314 117 L361 117" class="fig-arrow" marker-end="url(#pa2)"></path>
+
+        <rect x="372" y="86" width="116" height="62" rx="3" class="fig-box-accent"></rect>
+        <text x="430" y="108" class="fig-label">Softmax</text>
+        <text x="430" y="131" class="fig-small">weight</text>
+
+        <path d="M488 117 L535 117" class="fig-arrow" marker-end="url(#pa2)"></path>
+
+        <rect x="546" y="86" width="168" height="62" rx="3" class="fig-box"></rect>
+        <text x="630" y="108" class="fig-label">Weight × V</text>
+        <text x="630" y="131" class="fig-small">weighted value</text>
+
+        <text x="82" y="188" class="fig-small">where should I look?</text>
+        <text x="630" y="188" class="fig-small">what information should I take?</text>
+      </svg>
+    </div>
+  </div>
+  <figcaption><strong>Figure 2.</strong> Query-Key similarity를 scaling과 softmax로 attention weight로 바꾸고, 그 weight로 Value를 가중합한다.</figcaption>
+</figure>
+
 
 이 식은 네 단계로 볼 수 있다.
 
@@ -177,6 +257,62 @@ Multi-Head Attention은 이런 head를 여러 개 병렬로 만든다.
 \operatorname{head}_h
 )W^O
 \\]
+
+<!-- paper-figure:multi-head -->
+<figure class="paper-figure">
+  <div class="paper-figure-frame">
+    <div class="paper-figure-canvas">
+      <svg viewBox="0 0 760 370" role="img" aria-label="Multi-Head Attention 구조">
+        <defs>
+          <marker id="pa3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#7d858c"></path>
+          </marker>
+        </defs>
+        <text x="24" y="28" class="fig-kicker">MULTI-HEAD ATTENTION</text>
+
+        <rect x="36" y="145" width="126" height="62" rx="3" class="fig-box"></rect>
+        <text x="99" y="168" class="fig-label">Q / K / V</text>
+        <text x="99" y="191" class="fig-small">input</text>
+
+        <path d="M162 176 L222 88" class="fig-arrow" marker-end="url(#pa3)"></path>
+        <path d="M162 176 L222 153" class="fig-arrow" marker-end="url(#pa3)"></path>
+        <path d="M162 176 L222 218" class="fig-arrow" marker-end="url(#pa3)"></path>
+        <path d="M162 176 L222 283" class="fig-arrow" marker-end="url(#pa3)"></path>
+
+        <rect x="234" y="58" width="176" height="54" rx="3" class="fig-box-accent"></rect>
+        <text x="322" y="79" class="fig-label">Head 1</text>
+        <text x="322" y="99" class="fig-small">projection + attention</text>
+        <rect x="234" y="123" width="176" height="54" rx="3" class="fig-box-accent"></rect>
+        <text x="322" y="144" class="fig-label">Head 2</text>
+        <text x="322" y="164" class="fig-small">projection + attention</text>
+        <rect x="234" y="188" width="176" height="54" rx="3" class="fig-box-accent"></rect>
+        <text x="322" y="209" class="fig-label">Head 3</text>
+        <text x="322" y="229" class="fig-small">projection + attention</text>
+        <rect x="234" y="253" width="176" height="54" rx="3" class="fig-box-accent"></rect>
+        <text x="322" y="274" class="fig-label">Head h</text>
+        <text x="322" y="294" class="fig-small">projection + attention</text>
+
+        <path d="M410 85 L486 156" class="fig-arrow" marker-end="url(#pa3)"></path>
+        <path d="M410 150 L486 168" class="fig-arrow" marker-end="url(#pa3)"></path>
+        <path d="M410 215 L486 180" class="fig-arrow" marker-end="url(#pa3)"></path>
+        <path d="M410 280 L486 192" class="fig-arrow" marker-end="url(#pa3)"></path>
+
+        <rect x="498" y="147" width="102" height="58" rx="3" class="fig-box"></rect>
+        <text x="549" y="176" class="fig-label">Concat</text>
+
+        <path d="M600 176 L635 176" class="fig-arrow" marker-end="url(#pa3)"></path>
+
+        <rect x="646" y="147" width="78" height="58" rx="3" class="fig-box-soft"></rect>
+        <text x="685" y="168" class="fig-label">Wᴼ</text>
+        <text x="685" y="190" class="fig-small">Linear</text>
+
+        <text x="380" y="340" class="fig-small">Different heads learn different representation subspaces.</text>
+      </svg>
+    </div>
+  </div>
+  <figcaption><strong>Figure 3.</strong> 각 head는 서로 다른 Q/K/V projection을 학습하고, 결과를 concatenate한 뒤 output projection으로 결합한다.</figcaption>
+</figure>
+
 
 <div class="flow-diagram">
   <div class="flow-step">Input Q / K / V</div>
