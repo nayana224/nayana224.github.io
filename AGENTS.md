@@ -6,6 +6,17 @@ Personal GitHub Pages site for Inpyo Lee.
 ## Branch policy
 Apply requested website changes directly to `main` unless the user explicitly requests otherwise.
 
+
+## Homepage copy direction
+- Present the profile as a robotics systems / manipulation background that is expanding toward robot learning and multimodal robotics.
+- Lead with demonstrated experience before aspirational research interests.
+- Keep the core progression: Mechatronics → ROS 2 Robotics → System Integration & Manipulation → Learning for Robotics.
+- Group research interests into Robotic Manipulation, Robot Learning, and Multimodal Learning for Robotics instead of listing overlapping VLM/VLA/Embodied AI labels separately.
+- Recent Activity should use concrete ongoing work or study rather than repeat the About section.
+- Keep authored publications and research outputs separate from papers studied in Notes.
+- Homepage Research Feed copy must reflect that the feed automation is already active.
+- Preserve the existing layout and navigation while refining copy unless a later task explicitly asks for a redesign.
+
 ## Research Feed automation contract
 - Research Feed is backed by the Jekyll collection `research_feed`.
 - Automated posts are Markdown files under `_research_feed/`.
@@ -36,3 +47,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Notes document content remains independent of the Notes UI language switch.
 - Preserve the sparse academic layout and existing responsive behavior.
 - Do not overstate the user's VLM/VLA expertise; use studying/exploring/expanding-toward language where relevant.
+- Keep Publications for work the user has authored or directly contributed to; studied papers belong in Notes.
+
+## Site change log
+- 2026-09-20: began homepage copy refinement to foreground proven robotics systems/manipulation experience, clarify the transition toward robot learning and multimodal robotics, remove duplicated interest labels, and align Research Feed/Publications copy with the site's current state.
