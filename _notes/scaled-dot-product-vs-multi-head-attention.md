@@ -68,14 +68,14 @@ source_language: ko
 
 핵심 식은 다음과 같다.
 
-\[
+\\[
 \operatorname{Attention}(Q,K,V)
 =
 \operatorname{softmax}
 \left(
 \frac{QK^T}{\sqrt{d_k}}
 \right)V
-\]
+\\]
 
 이 식은 네 단계로 볼 수 있다.
 
@@ -87,7 +87,7 @@ source_language: ko
   </div>
   <div class="hierarchy-level">
     <span class="hierarchy-label">STEP 2</span>
-    <strong>\(\sqrt{d_k}\)로 scaling</strong>
+    <strong>\\(\sqrt{d_k}\\)로 scaling</strong>
     <p>차원이 커질수록 dot product가 지나치게 커지는 것을 완화한다.</p>
   </div>
   <div class="hierarchy-level">
@@ -122,25 +122,25 @@ source_language: ko
 
 먼저 입력 representation을 서로 다른 learned projection으로 바꾼다.
 
-\[
+\\[
 Q_i = QW_i^Q
-\]
+\\]
 
-\[
+\\[
 K_i = KW_i^K
-\]
+\\]
 
-\[
+\\[
 V_i = VW_i^V
-\]
+\\]
 
-그리고 projection된 \(Q_i, K_i, V_i\)로 Scaled Dot-Product Attention을 수행한다.
+그리고 projection된 \\(Q_i, K_i, V_i\\)로 Scaled Dot-Product Attention을 수행한다.
 
-\[
+\\[
 \operatorname{head}_i
 =
 \operatorname{Attention}(QW_i^Q,KW_i^K,VW_i^V)
-\]
+\\]
 
 <div class="flow-diagram">
   <div class="flow-step">Input Representation</div>
@@ -167,7 +167,7 @@ V_i = VW_i^V
 
 Multi-Head Attention은 이런 head를 여러 개 병렬로 만든다.
 
-\[
+\\[
 \operatorname{MultiHead}(Q,K,V)
 =
 \operatorname{Concat}
@@ -176,7 +176,7 @@ Multi-Head Attention은 이런 head를 여러 개 병렬로 만든다.
 \ldots,
 \operatorname{head}_h
 )W^O
-\]
+\\]
 
 <div class="flow-diagram">
   <div class="flow-step">Input Q / K / V</div>
@@ -205,19 +205,19 @@ Multi-Head Attention은 이런 head를 여러 개 병렬로 만든다.
 
 여기서 projection은 물리적인 투영이 아니라, learned linear transformation으로 representation을 다른 좌표 공간으로 바꾸는 것을 의미한다.
 
-\[
+\\[
 X' = XW
-\]
+\\]
 
-예를 들어 원래 embedding이 \(d_{model}=512\) 차원이고 head가 8개라면, 원 논문에서는 각 head의 차원을 보통 다음처럼 둔다.
+예를 들어 원래 embedding이 \\(d_{model}=512\\) 차원이고 head가 8개라면, 원 논문에서는 각 head의 차원을 보통 다음처럼 둔다.
 
-\[
+\\[
 d_k=d_v=\frac{d_{model}}{h}
 =
 \frac{512}{8}
 =
 64
-\]
+\\]
 
 <div class="compare-grid">
   <div class="compare-card">
@@ -238,13 +238,13 @@ Projection이 있기 때문에 모든 head가 완전히 같은 Q/K/V를 보는 �
 
 ## 6. Head가 많아지면 parameter도 늘어나는가
 
-각 head에는 \(W_i^Q\), \(W_i^K\), \(W_i^V\) 같은 learned weight가 존재한다.
+각 head에는 \\(W_i^Q\\), \\(W_i^K\\), \\(W_i^V\\) 같은 learned weight가 존재한다.
 
 따라서 projection layer 자체에는 학습 parameter가 있다.
 
 하지만 head를 8개 쓴다고 단순히 계산량이 8배가 되는 것은 아니다.
 
-원 논문의 일반적인 설정에서는 각 head의 차원을 \(d_{model}/h\)로 줄여 전체 attention 계산량이 full-dimensional single-head attention과 비슷한 수준이 되도록 구성한다.
+원 논문의 일반적인 설정에서는 각 head의 차원을 \\(d_{model}/h\\)로 줄여 전체 attention 계산량이 full-dimensional single-head attention과 비슷한 수준이 되도록 구성한다.
 
 <div class="note-callout">
   <strong>중요한 직관</strong>
@@ -310,7 +310,7 @@ Multi-Head Attention은 여러 representation subspace에서 동시에 관계를
 | **Projection** | learned linear transformation으로 Q/K/V 표현 공간을 바꿈 |
 | **Head** | 자기 projection된 Q/K/V에 Scaled Dot-Product Attention을 수행하는 단위 |
 | **Multi-Head Attention** | 여러 head를 병렬로 계산하고 concat한 뒤 다시 projection |
-| **\(W^O\)** | 여러 head 결과를 다시 하나의 output representation으로 변환 |
+| **\\(W^O\\)** | 여러 head 결과를 다시 하나의 output representation으로 변환 |
 
 <div class="note-callout note-callout-primary">
   <strong>한 문장으로</strong>
