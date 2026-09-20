@@ -18,6 +18,8 @@ source: Notion
 source_language: ko
 ---
 
+<p class="figure-note"><strong>Original paper:</strong> <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Liang-Chieh_Chen_Encoder-Decoder_with_Atrous_ECCV_2018_paper.html">Chen et al., Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (ECCV 2018)</a></p>
+
 <!-- visual-summary:v1 -->
 <div class="note-callout note-callout-primary">
   <strong>핵심 아이디어</strong>
@@ -41,6 +43,27 @@ source_language: ko
   <div class="pipeline-node">Segmentation</div>
 </div>
 
+
+
+<!-- paper-figure:deeplab-overview -->
+<figure class="paper-figure">
+ <div class="paper-figure-frame"><div class="paper-figure-canvas">
+ <svg viewBox="0 0 760 300" role="img" aria-label="DeepLabV3 Plus overview">
+  <defs><marker id="dlA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+  <text x="24" y="28" class="fig-kicker">DEEPLABV3+ OVERVIEW</text>
+  <rect x="30" y="105" width="120" height="60" rx="3" class="fig-box"/><text x="90" y="135" class="fig-label">Input</text>
+  <path d="M150 135 L210 135" class="fig-arrow" marker-end="url(#dlA)"/>
+  <rect x="222" y="92" width="140" height="86" rx="3" class="fig-box-accent"/><text x="292" y="121" class="fig-label">Backbone</text><text x="292" y="146" class="fig-small">atrous feature extraction</text>
+  <path d="M362 120 L425 82" class="fig-arrow" marker-end="url(#dlA)"/>
+  <rect x="438" y="48" width="130" height="68" rx="3" class="fig-box-accent"/><text x="503" y="72" class="fig-label">ASPP</text><text x="503" y="94" class="fig-small">multi-scale context</text>
+  <path d="M568 82 L626 112" class="fig-arrow" marker-end="url(#dlA)"/>
+  <rect x="618" y="120" width="112" height="62" rx="3" class="fig-box"/><text x="674" y="151" class="fig-label">Decoder</text>
+  <path d="M292 178 C292 240, 600 240, 645 182" class="fig-arrow-accent" marker-end="url(#dlA)"/>
+  <text x="456" y="257" class="fig-small">low-level spatial feature → boundary refinement</text>
+  <text x="504" y="207" class="fig-small">semantic context + spatial detail</text>
+ </svg></div></div>
+ <figcaption><strong>Figure 1.</strong> DeepLabV3+는 ASPP의 multi-scale context와 decoder의 boundary refinement를 결합한다. Adapted from Chen et al. (2018).</figcaption>
+</figure>
 
 ## Summary
   ---
