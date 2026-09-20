@@ -59,7 +59,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Do not publish lab-internal work, unpublished research details, experiment settings/results, internal project architecture, private code/repositories, collaborator information, or other information that could reveal confidential lab activity.
 - When a Notion page mixes general theory with lab/project context, extract only the standalone public-safe concept and rewrite it independently; omit the lab/project context entirely.
 - Treat Notion as a private working notebook and GitHub Pages as a curated public knowledge base. Do not mirror Notion automatically.
-- Use the Notes library type `concept` for public concept/theory articles. Keep Papers for paper reading notes, Implementations for reproducible public implementation notes, and Project Logs only for explicitly approved public project content.
+- Use the Notes library type `concept` for public concept/theory articles. Keep Papers for paper reading notes and Implementations for reproducible public implementation notes. Do not expose a Project Logs category in public Notes.
 - Concept/theory notes should use reusable HTML/CSS visualization blocks when they materially improve comprehension: callouts for key takeaways, comparison cards for contrasts, concept cards for components, flow diagrams for process/agent loops, and hierarchy blocks for layered systems.
 - Keep visualizations semantic, lightweight, responsive, and compatible with the sparse academic Notes design. Prefer HTML/CSS over decorative images for conceptual diagrams, and never expose private lab/project details through diagrams.
 
@@ -88,3 +88,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: Notes navigation was simplified to Papers, Concepts & Theory, and Implementations; Project Logs was removed from the public Notes sidebar. Published the first public-safe concept article, `_notes/llm-agent-model-tools-state-loop.md`, distilled from private study notes with all lab-specific context removed.
 
 - 2026-09-21: approved reusable HTML/CSS concept visualizations in public Notes; the first LLM Agent concept article will be upgraded with callouts, cards, comparisons, and flow diagrams while preserving responsive/mobile readability.
+
+- 2026-09-21: completed the Notes visualization rollout: added reusable callout/card/flow/hierarchy/pipeline CSS, upgraded the LLM Agent article, added a separate Context vs Context Window concept article, and added visual summaries to ResNet, U-Net, DeepLabV3+, and Attention Is All You Need notes.
