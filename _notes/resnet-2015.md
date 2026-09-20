@@ -18,6 +18,8 @@ source: Notion
 source_language: ko
 ---
 
+<p class="figure-note"><strong>Original paper:</strong> <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">He et al., Deep Residual Learning for Image Recognition (CVPR 2016)</a></p>
+
 <!-- visual-summary:v1 -->
 <div class="note-callout note-callout-primary">
   <strong>핵심 아이디어</strong>
@@ -41,6 +43,30 @@ source_language: ko
 
 <p class="note-legend">Degradation problem → residual formulation → identity shortcut이 이 논문의 핵심 흐름이다.</p>
 
+
+
+<!-- paper-figure:residual-block -->
+<figure class="paper-figure">
+  <div class="paper-figure-frame"><div class="paper-figure-canvas">
+  <svg viewBox="0 0 760 300" role="img" aria-label="ResNet residual block">
+    <defs><marker id="resA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+    <text x="24" y="28" class="fig-kicker">RESIDUAL LEARNING</text>
+    <rect x="38" y="119" width="100" height="54" rx="3" class="fig-box"/><text x="88" y="146" class="fig-label">x</text>
+    <path d="M138 146 L218 146" class="fig-arrow" marker-end="url(#resA)"/>
+    <rect x="230" y="75" width="190" height="142" rx="3" class="fig-box-accent"/>
+    <text x="325" y="105" class="fig-label">Residual branch</text>
+    <text x="325" y="135" class="fig-small">Conv → BN/ReLU → Conv</text>
+    <text x="325" y="168" class="fig-label">F(x)</text>
+    <path d="M420 146 L522 146" class="fig-arrow" marker-end="url(#resA)"/>
+    <path d="M88 119 C88 48, 484 48, 484 126" class="fig-arrow-accent" marker-end="url(#resA)"/>
+    <circle cx="540" cy="146" r="20" class="fig-box"/><text x="540" y="146" class="fig-label">+</text>
+    <path d="M560 146 L654 146" class="fig-arrow" marker-end="url(#resA)"/>
+    <rect x="666" y="119" width="58" height="54" rx="3" class="fig-box"/><text x="695" y="146" class="fig-label">y</text>
+    <text x="298" y="58" class="fig-small">identity shortcut: x</text>
+    <text x="380" y="260" class="fig-small">H(x) = F(x) + x</text>
+  </svg></div></div>
+  <figcaption><strong>Figure 1.</strong> Residual block은 입력 x를 identity shortcut으로 직접 전달하고, residual branch는 변화량 F(x)만 학습한다. Adapted from He et al. (2016).</figcaption>
+</figure>
 
 ## 1. Abstract
 1. Problem
