@@ -1,7 +1,7 @@
 ---
 layout: feed_note
 title: "Claude Code Projects가 폴더에서 ‘작업 조정자’로 바뀌고 있습니다"
-date: 2026-09-21 02:50:00 +0900
+date: 2026-09-21 02:55:00 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
 summary: "Claude Code의 새 Projects beta는 하나의 대화가 작업을 여러 cloud thread로 나눠 병렬 실행하고, 프로젝트의 파일·저장소·지침·memory를 공유하는 구조로 바뀌었습니다."
