@@ -1,10 +1,10 @@
 ---
 layout: feed_note
-title: "Coding agent가 이제 작업을 나누고, 엔진의 공식 지식까지 직접 받기 시작했습니다"
-date: 2026-09-21 04:46:00 +0900
+title: "Coding agent가 작업을 나누고, AI 연구 자체도 자동화하기 시작했습니다"
+date: 2026-09-21 20:35:00 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
-summary: "Claude Code Projects는 여러 cloud thread를 조정하는 구조로 바뀌었고, Unity는 Codex에 31개의 first-party engineering skills와 Unity CLI를 제공하기 시작했습니다."
+summary: "Claude Code Projects와 Unity의 공식 Codex skills에 이어, Anthropic은 Claude가 내부 AI R&D의 26%를 주도하고 약 3만 개 research/engineering agent가 동시에 동작한다는 측정치를 공개했습니다."
 ---
 
 **1/ Claude Code Projects가 하나의 대화에서 여러 작업을 병렬로 조정하기 시작했습니다.**
@@ -47,8 +47,19 @@ coding agent의 단위가 “한 채팅에 한 작업”에서 **상위 coordina
 
 오래된 forum·tutorial을 평균내 답하는 대신, engine vendor가 관리하는 instructions와 CLI를 agent에 붙이는 방식입니다. Unity는 앞서 Claude Code용 공식 plugin도 공개했고, 그 버전에는 29개 skills와 live Editor control을 위한 MCP server가 포함되어 있습니다.
 
+**3/ Anthropic은 Claude가 내부 AI R&D의 26%를 이미 ‘lead’한다고 측정했습니다.**
+
+Anthropic이 오늘 공개한 **R&D Automation Index**에 따르면, 2026년 8월 기준 Claude가 내부 AI R&D 업무의 **26%를 AL4(“AI leads”) 수준으로 수행**하고 있습니다. AL3 이상, 즉 AI가 최소한 사람과 협업하며 큰 작업 단위를 처리하는 비율은 **90% 이상**입니다. 아직 AL5의 완전 자율 수행으로 분류된 영역은 없습니다.
+
+규모도 눈에 띕니다. Anthropic의 가장 많이 쓰이는 내부 플랫폼에서는 research·engineering 업무를 수행하는 agent가 **동시에 약 30,000개** 동작하며, 8월 한 달 동안 이 agent들의 **10억 건이 넘는 action decision**을 분석했다고 밝혔습니다.
+
+모든 action은 실행 전 online monitor를 거치며, 약 **0.002% — 47,000건 중 1건꼴 — 가 차단**됐습니다. Anthropic은 이를 단순한 capability benchmark가 아니라 AI가 다음 세대 AI를 만드는 과정에 얼마나 깊이 들어왔는지 추적하는 지표로 제안하고 있습니다.
+
+agent를 실제 조직 규모로 운영할 때 문제는 이제 “agent가 일을 할 수 있는가”만이 아닙니다. **수만 개 agent의 identity, action trace, monitoring, escalation을 어떻게 관측 가능하게 만들 것인가**가 별도의 systems problem으로 커지고 있습니다.
+
 ## Sources
 
 - [Anthropic Help Center — What are projects?](https://support.claude.com/en/articles/9517075-what-are-projects)
 - [Unity — The Official Unity Plugin for Codex](https://unity.com/blog/unity-plugin-codex)
 - [Unity — Official Unity Plugin for Claude Code](https://unity.com/blog/unity-plugin-for-claude-code)
+- [Anthropic — Measurements for understanding the pace of AI development inside frontier labs](https://www.anthropic.com/institute/measuring-pace-of-ai-development)
