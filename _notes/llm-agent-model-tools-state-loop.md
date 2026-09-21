@@ -275,6 +275,13 @@ Anthropic은 이 차이를 **predefined code path를 따르는 workflow**와 **L
   <p><b>LLM은 Agent의 두뇌 역할을 할 수 있지만, Agent는 LLM보다 큰 시스템이다.</b></p>
 </div>
 
+<section class="related-notes" aria-labelledby="related-notes-title">
+  <h2 id="related-notes-title">Related Notes</h2>
+  <div class="related-notes-list">
+    <a class="related-note-link" href="/notes/context-context-window-agent/"><strong>Context와 Context Window는 무엇이 다른가</strong><span>Agent runtime이 state에서 context를 구성하고 갱신하는 과정을 더 자세히 보기.</span></a>
+  </div>
+</section>
+
 ## References
 
 - [Anthropic — Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
