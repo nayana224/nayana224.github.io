@@ -254,23 +254,23 @@ QK^T
 \\]
 이 값은 `Query와 각 Key가 얼마나 잘 맞는가를 나타내는 score`이다.
 예를 들어, `“math”` 라는 token이 다른 token들과 얼마나 관계 있는지를 계산한다고 생각할 수 있다.
-\\]
+\\[
 \text{math query} \cdot \text{I key} \\
 \text{math query} \cdot \text{study key} \\
 \text{math query} \cdot \text{math key} \\
 \text{math query} \cdot \text{hard key}
-\\[
+\\]
 이런 score들이 한꺼번에 나온다.
 
 ### 2) \\(\sqrt{d_k}\\) 로 나눈다.
-\\]
-\frac{QK^T}{\sqrt{d_k}}
 \\[
+\frac{QK^T}{\sqrt{d_k}}
+\\]
 저자들은 \\(d_k\\) 가 커지면 dot product의 크기도 커질 수 있다고 설명한다.
 논문에서는 q와 k의 성분이 평균 0, 분산 1인 독립 확률 변수라고 가정하면,
-\\]
-q \cdot k = \sum_{i=1}^{d_k} q_i k_i
 \\[
+q \cdot k = \sum_{i=1}^{d_k} q_i k_i
+\\]
 의 분산이 \\(d_k\\)가 된다고 설명한다.
 즉, 차원이 커질수록 dot product 값이 커질 가능성이 있다.
 그러면 softmax에 큰 값들이 들어가면서 출력이 지나치게 한쪽으로 몰리고, gradient가 매우 작아질 수 있다. 그래서  \\(\sqrt{d_k}\\) 로 나눠서 scale을 조절한다.
@@ -304,9 +304,9 @@ attention weight를 이용해서 `Value들을 weighted sum`한다.
 Dot-product attention은 계산 효율이 좋다. 특히 matrix multiplication으로 구현할 수 있어 빠르고 메모리 효율이 좋다.
 하지만 \\(d_k\\) 가 커지면 dot product가 커질 수 있어 softmax gradient 문제가 생길 수 있다.
 그래서 Transformer에서는 \\(\frac{QK^T}{\sqrt{d_k}}\\) 를 곱한 것이다.
-\\]
-QK^T \rightarrow Scale \rightarrow Softmax \rightarrow V
 \\[
+QK^T \rightarrow Scale \rightarrow Softmax \rightarrow V
+\\]
 > Query와 Key의 관계를 계산하고 → 값이 너무 커지지 않도록 scale하고 → softmax로 중요도를 만들고 → 그 중요도로 Value들을 합친다.
 
 ## 3.2.2 Multi-Head Attention
@@ -315,13 +315,13 @@ QK^T \rightarrow Scale \rightarrow Softmax \rightarrow V
 
 논문은 하나의 attention만 쓰는 대신, `Query/Key/Value를 여러 번 서로 다른 선형 변환(Linear Block)으로 투영한 뒤 여러 attention head를 병렬로 계산`하는 것이 더 좋다고 설명한다.
 형태는 다음과 같다.
-\\]
+\\[
 \mathrm{MultiHead}(Q,K,V)=\mathrm{Concat}(\mathrm{head}_1,\ldots,\mathrm{head}_h)W^O
-\\[
-각 Head는 다음과 같다.
 \\]
-\mathrm{head}_i=\operatorname{Attention}(QW_i^Q,KW_i^K,VW_i^V)
+각 Head는 다음과 같다.
 \\[
+\mathrm{head}_i=\operatorname{Attention}(QW_i^Q,KW_i^K,VW_i^V)
+\\]
 즉, 다른 입력을 보더라도 각 head는 서로 다른 projection을 거쳐서 서로 다른 관점에서 관계를 본다고 이해하면 된다.
 
 ### 1) 왜 여러 head를 쓰는가
@@ -362,9 +362,9 @@ Ex) 현재 세 번째 token을 예측하는 위치라면, \\(1, 2, 3\\) 위치�
 \\(Q, K, V\\) 는 decoder 내부의 같은 representation에서 나온다.
 다만 causal mask가 추가된다는 점이 다르다.
 **미래 위치에 해당하는 원소들을 전부 \\( -\\infty \\)로 덮어씌운다.**
-\\]
-\text{Attention Matrix}=\begin{bmatrix}S_{11}&-\infty&-\infty&-\infty\\S_{21}&S_{22}&-\infty&-\infty\\S_{31}&S_{32}&S_{33}&-\infty\\S_{41}&S_{42}&S_{43}&S_{44}\end{bmatrix}
 \\[
+\text{Attention Matrix}=\begin{bmatrix}S_{11}&-\infty&-\infty&-\infty\\S_{21}&S_{22}&-\infty&-\infty\\S_{31}&S_{32}&S_{33}&-\infty\\S_{41}&S_{42}&S_{43}&S_{44}\end{bmatrix}
+\\]
 ### 3) Encoder-Decoder Attention
 이게 self-attention과 가장 다른 부분이다.
 여기서는 \\(Q\\) 는 decoder쪽에서 오고, \\(K, V\\) 는 encoder의 최종 출력에서 나온다.
