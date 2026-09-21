@@ -453,6 +453,13 @@ Multi-Head Attention은 여러 representation subspace에서 동시에 관계를
   <p><b>Scaled Dot-Product Attention은 head 내부의 핵심 연산이고, Multi-Head Attention은 서로 다른 projection을 가진 여러 head를 병렬로 묶은 구조다.</b></p>
 </div>
 
+<section class="related-notes" aria-labelledby="related-notes-title">
+  <h2 id="related-notes-title">Related Notes</h2>
+  <div class="related-notes-list">
+    <a class="related-note-link" href="/notes/attention-is-all-you-need-2017/"><strong>Attention Is All You Need (2017)</strong><span>Transformer 전체 encoder-decoder 구조와 attention 적용 위치를 함께 보기.</span></a>
+  </div>
+</section>
+
 ## References
 
 - [Vaswani et al. — Attention Is All You Need](https://arxiv.org/abs/1706.03762)
