@@ -161,3 +161,11 @@ ImageNet에서 random scale/crop/flip 등의 data augmentation을 사용하고, 
   \\(L4,L5:x→x\\) 
   identity mapping을 하도록 만들면 된다.
 - BN (Batch Normalization)
+
+<section class="related-notes" aria-labelledby="related-notes-title">
+  <h2 id="related-notes-title">Related Notes</h2>
+  <div class="related-notes-list">
+    <a class="related-note-link" href="/notes/deeplabv3plus-2018/"><strong>DeepLabV3+ (2018)</strong><span>Residual backbone이 downstream semantic segmentation 시스템에서 어떻게 활용되는지 이어서 보기.</span></a>
+  </div>
+</section>
+
