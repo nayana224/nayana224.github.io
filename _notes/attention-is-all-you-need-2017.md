@@ -249,9 +249,9 @@ Query와 Key의 차원은 \\(d_k\\) 이고, Value의 차원은 \\(d_v\\) 이다.
 
 ### 1) \\(QK^T\\)
 먼저 Query와 모든 Key 사이의 dot product를 계산한다.
-\\]
-QK^T
 \\[
+QK^T
+\\]
 이 값은 `Query와 각 Key가 얼마나 잘 맞는가를 나타내는 score`이다.
 예를 들어, `“math”` 라는 token이 다른 token들과 얼마나 관계 있는지를 계산한다고 생각할 수 있다.
 \\]
@@ -288,15 +288,15 @@ q \cdot k = \sum_{i=1}^{d_k} q_i k_i
 실제 수치는 학습으로 결정된다.
 
 ### 4) 마지막으로 \\(V\\)와 곱한다.
-\\]
-softmax(...)V
 \\[
+\\operatorname{softmax}(\\cdot)V
+\\]
 attention weight를 이용해서 `Value들을 weighted sum`한다.
 - weighted sum : 각 값의 중요도나 관련성에 따라 가중치(Weight)를 각각 곱한 뒤 모두 더하는 연산
 예를 들어 다음과 같은 식이다.
-\\]
-0.1V_1+0.6V_2+0.2V_3+0.1V_4
 \\[
+0.1V_1+0.6V_2+0.2V_3+0.1V_4
+\\]
 그래서 최종적으로 `“math”`의 새로운 representation에는 다른 token들의 정보가 섞여 들어간다.
 
 ### 5) 왜 그냥 dot-product attention이 아니라 “Scaled”인가
@@ -361,7 +361,7 @@ Ex) 현재 세 번째 token을 예측하는 위치라면, \\(1, 2, 3\\) 위치�
 논문에서는 softmax 입력에서 허용되지 않는 연결을 \\(−∞\\) 로 설정하여, softmax 이후 weight가 사실상 0이 되도록 한다.
 \\(Q, K, V\\) 는 decoder 내부의 같은 representation에서 나온다.
 다만 causal mask가 추가된다는 점이 다르다.
-**미래 위치에 해당하는 원소들을 전부 **\\(−∞\\)** (음의 무한대)로 덮어씌운다.**
+**미래 위치에 해당하는 원소들을 전부 \\( -\\infty \\)로 덮어씌운다.**
 \\]
 \text{Attention Matrix}=\begin{bmatrix}S_{11}&-\infty&-\infty&-\infty\\S_{21}&S_{22}&-\infty&-\infty\\S_{31}&S_{32}&S_{33}&-\infty\\S_{41}&S_{42}&S_{43}&S_{44}\end{bmatrix}
 \\[
