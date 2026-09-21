@@ -195,3 +195,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: refined visualization policy to combine explanatory cards with paper-style schematics. Paper/source URLs should be linked directly; original figures are reused only when licensing clearly permits, otherwise redraw with attribution. Research Feed may use one compact source-grounded schematic when it improves understanding.
 
 - 2026-09-21: rolled paper-style figures through the remaining public Notes and existing Research Feed entries: ResNet, U-Net, DeepLabV3+, Transformer, LLM Agent, Context/Context Window, Sep 19 AI/Robotics, and Sep 19 Research Papers. Paper notes now include direct original-paper links and independent redraws; explanatory cards remain where they help definitions/comparisons.
+
+- 2026-09-21: completed mobile-oriented Notes QA and cross-linking. Paper figures keep local horizontal scrolling on small screens with improved touch behavior/caption sizing; Transformer display-math remnants were repaired; related-note links now connect Transformer↔Attention, Agent↔Context, U-Net↔DeepLabV3+, and ResNet↔DeepLabV3+.
