@@ -369,3 +369,12 @@ ASPP / Decoder
   ↓
 Segmentation mask
 ```
+
+<section class="related-notes" aria-labelledby="related-notes-title">
+  <h2 id="related-notes-title">Related Notes</h2>
+  <div class="related-notes-list">
+    <a class="related-note-link" href="/notes/unet-2015/"><strong>U-Net (2015)</strong><span>Encoder-decoder와 skip connection을 중심으로 한 segmentation 구조 비교.</span></a>
+    <a class="related-note-link" href="/notes/resnet-2015/"><strong>ResNet (2015)</strong><span>DeepLab backbone에서도 자주 쓰이는 residual learning의 기본 메커니즘.</span></a>
+  </div>
+</section>
+
