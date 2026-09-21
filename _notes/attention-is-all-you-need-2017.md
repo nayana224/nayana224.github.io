@@ -404,3 +404,11 @@ Q=\text{decoder representation}, \quad K,V=\text{encoder output}
 > Self-attention은 Q/K/V가 같은 sequence에서 오고, cross-attention은 Q와 K/V의 출처가 다르다.
 
 > **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+
+<section class="related-notes" aria-labelledby="related-notes-title">
+  <h2 id="related-notes-title">Related Notes</h2>
+  <div class="related-notes-list">
+    <a class="related-note-link" href="/notes/scaled-dot-product-vs-multi-head-attention/"><strong>Scaled Dot-Product Attention vs Multi-Head Attention</strong><span>Q/K/V projection과 head 내부 연산을 별도로 깊게 정리한 개념 노트.</span></a>
+  </div>
+</section>
+
