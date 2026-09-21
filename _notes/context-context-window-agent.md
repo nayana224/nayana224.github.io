@@ -240,6 +240,13 @@ Context compression의 목적은 모든 과거 정보를 보존하는 것이 아
   <p><b>State → 필요한 정보 선택 → Context → Context Window 안에서 LLM 추론 → Tool 결과로 State/Context 갱신</b></p>
 </div>
 
+<section class="related-notes" aria-labelledby="related-notes-title">
+  <h2 id="related-notes-title">Related Notes</h2>
+  <div class="related-notes-list">
+    <a class="related-note-link" href="/notes/llm-agent-model-tools-state-loop/"><strong>LLM Agent는 그냥 LLM이 아니다</strong><span>Model, Tools, Runtime, State, Loop가 하나의 agent system을 만드는 구조 보기.</span></a>
+  </div>
+</section>
+
 ## References
 
 - [Anthropic — Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
