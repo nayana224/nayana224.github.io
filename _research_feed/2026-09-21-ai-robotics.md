@@ -1,10 +1,10 @@
 ---
 layout: feed_note
-title: "AI 연구는 agent scale로, Physical AI는 실제 freight deployment로 이동하고 있습니다"
+title: "AI 연구는 agent scale로, Physical AI는 full-stack safety로 이동하고 있습니다"
 date: 2026-09-21 23:40:00 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
-summary: "Anthropic의 대규모 AI R&D agent 운영, OpenAI의 automated-research·RSI 측정 기준, 그리고 Einride가 NVIDIA Hyperion을 heavy-duty autonomous freight에 적용하는 새 협업을 묶어 봅니다."
+summary: "Anthropic의 대규모 AI R&D agent 운영, OpenAI의 automated-research·RSI 측정 기준, 그리고 NVIDIA가 공개한 Physical AI full-stack safety architecture를 묶어 봅니다."
 ---
 
 **1/ Anthropic은 Claude가 내부 AI R&D의 26%를 이미 ‘lead’한다고 측정했습니다.**
@@ -27,18 +27,19 @@ OpenAI는 9월 21일 공개한 제안에서 frontier AI의 국제 technical stan
 
 Anthropic이 실제 내부 R&D에서 AI가 맡는 비율을 계량하기 시작한 것과 연결해서 보면 흐름이 선명합니다. **AI가 AI를 만드는 정도를 capability demo가 아니라 운영 지표로 측정하고, 일정 수준을 넘으면 review·incident reporting으로 연결하는 체계**가 하나의 engineering problem으로 부상하고 있습니다.
 
-**3/ Einride는 NVIDIA Hyperion을 heavy-duty autonomous freight에 맞게 확장합니다.**
+**3/ NVIDIA는 Physical AI safety를 robot model 하나가 아니라 전체 stack의 문제로 정의했습니다.**
 
-Einride는 9월 21일 NVIDIA와의 새 협업을 발표했습니다. 핵심은 NVIDIA의 **Hyperion compute·sensor·software·safety architecture를 heavy-duty trucking 요구사항에 맞게 확장**하고, 차세대 **Einride Driver**를 그 위에 구축하는 것입니다.
+NVIDIA가 9월 21일 공개한 **Halos** 설명에서 robotics safety stack을 구체적으로 펼쳤습니다. **IGX Thor + Halos Core**가 compute와 fault detection·monitoring을 맡고, **Holoscan Sensor Bridge**가 sensor data와 safety processing을 연결하며, **Isaac Lab + Omniverse**가 simulation·edge-case validation을 담당합니다. 여기에 외부 camera와 vision AI agent로 작업 공간을 감시하는 **Outside-In Safety Blueprint**도 포함됩니다.
 
-이번 협업은 단순한 autonomous-truck prototype 발표와는 결이 다릅니다. Einride는 이미 실제 고객 freight network를 운영하고 있으며, 9월 15일에는 Lidl과 함께 독일 공공도로의 일상 물류에 **cab-less SAE Level 4 truck**을 투입했다고 밝혔습니다. 새 Hyperion 협업은 이 deployment 경험을 공통 Physical AI platform 위에서 highway·suburban freight로 확장하려는 단계에 가깝습니다.
+핵심 변화는 safety를 policy의 마지막 guardrail로 붙이는 방식이 아니라 **hardware → runtime/software → sensing → simulation/validation → facility-level monitoring**에 걸친 lifecycle 문제로 다룬다는 점입니다. 모델이나 task가 업데이트되면 material change에 맞춰 safety testing도 다시 수행해야 한다는 전제입니다.
 
-연구 관점에서 보면 중요한 변화는 perception이나 policy 하나의 성능보다 **compute + multimodal sensing + autonomy software + safety architecture를 묶은 reference platform이 실제 robot deployment의 scaling unit이 되고 있다는 점**입니다. Physical AI가 demo에서 fleet-level systems engineering으로 넘어갈 때 어떤 interface와 safety layer가 표준화되는지 볼 만한 사례입니다.
+실제 deployment도 이 stack과 연결되고 있습니다. NVIDIA는 Agility Robotics가 **Digit 5**의 safety system에 IGX Thor와 Halos Core를 통합하고 있으며, Einride를 포함한 autonomous-vehicle 업체들은 Hyperion 기반 Level 4-ready platform을 구축하고 있다고 밝혔습니다.
+
+Robot Learning 관점에서는 policy 성능만큼 중요한 질문이 하나 더 생깁니다. **학습된 policy가 실패해도 독립적인 sensing·runtime·facility layer가 안전 경계를 유지할 수 있는가?** Physical AI가 demo에서 실제 deployment로 넘어갈수록 이 separation이 시스템 설계의 핵심이 될 가능성이 큽니다.
 
 ## Sources
 
 - [Anthropic — Measurements for understanding the pace of AI development inside frontier labs](https://www.anthropic.com/institute/measuring-pace-of-ai-development)
 - [OpenAI — Building standards for the next phase of AI](https://openai.com/index/building-standards-next-phase-ai/)
-- [Einride — Strategic collaboration with NVIDIA on Hyperion](https://www.einride.tech/press/einride-enters-strategic-collaboration-with-nvidia-to-advance-its-autonomous-trucking-on-nvidia-hyperion)
-- [NVIDIA — Hyperion platform for level 4-ready autonomy](https://nvidianews.nvidia.com/news/nvidia-drive-hyperion-becomes-the-global-platform-for-a-robotaxi-ready-world)
-- [Einride — Cab-less Level 4 truck in daily operations with Lidl](https://www.einride.tech/press/einride-and-lidl-launch-first-autonomous-cab-less-truck-on-german-public-road)
+- [NVIDIA — Why Deploying Physical AI at Scale Demands Safety at Every Layer](https://blogs.nvidia.com/blog/physical-ai-halos-safety/)
+- [NVIDIA — Halos Outside-In Safety Blueprint](https://github.com/NVIDIA-Holoscan/halos-outside-in-safety)
