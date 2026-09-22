@@ -199,3 +199,5 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-21: rolled paper-style figures through the remaining public Notes and existing Research Feed entries: ResNet, U-Net, DeepLabV3+, Transformer, LLM Agent, Context/Context Window, Sep 19 AI/Robotics, and Sep 19 Research Papers. Paper notes now include direct original-paper links and independent redraws; explanatory cards remain where they help definitions/comparisons.
 
 - 2026-09-21: completed mobile-oriented Notes QA and cross-linking. Paper figures keep local horizontal scrolling on small screens with improved touch behavior/caption sizing; Transformer display-math remnants were repaired; related-note links now connect Transformer↔Attention, Agent↔Context, U-Net↔DeepLabV3+, and ResNet↔DeepLabV3+.
+
+- 2026-09-22: removed every remaining public `Figure placeholder` from paper Notes. Existing redraws are referenced when sufficient; DeepLabV3+ gained additional atrous/depthwise schematics; experiment/architecture images that would be redundant or licensing-sensitive now point directly to the original paper instead of rehosting source figures.
