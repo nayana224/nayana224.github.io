@@ -1,10 +1,10 @@
 ---
 layout: feed_note
 title: "Isaac ROS는 agent-ready로, RoboHarm은 physical safety gap을 드러냈다"
-date: 2026-09-23 02:10:00 +0900
+date: 2026-09-23 08:04:00 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
-summary: "Isaac ROS 5.0이 agent-ready robotics workflow를 확장한 가운데, RoboHarm은 frontier AI가 실제 로봇에서 위험 지시를 얼마나 거부하는지 300회 실기 시험으로 측정했다."
+summary: "Isaac ROS 5.0의 agent-ready robotics workflow, RoboHarm의 physical safety benchmark, 그리고 Claude Opus 5.5의 agentic coding 효율 개선을 함께 본다."
 ---
 
 ## 1/ Isaac ROS 5.0은 AI agent를 ROS 개발 workflow 안으로 넣는다
@@ -27,9 +27,18 @@ Robocurve의 **RoboHarm**은 frontier AI가 실제 robot arm을 제어할 때 �
 
 Robot Learning이나 VLA를 실제 manipulation에 연결할수록 평가 기준도 `task success` 하나로 끝나기 어렵다는 사례다. 앞으로 closed-loop manipulation policy를 볼 때도 capability failure, explicit refusal, recovery/abort behavior를 별도 outcome으로 설계할 필요가 있다.
 
+## 3/ Claude Opus 5.5는 agent 성능보다 ‘작업당 비용’을 크게 낮췄다
+
+Anthropic이 **Claude Opus 5.5**를 공개했다. 회사 측 측정에서 Opus 5 대비 typical workload의 실행 비용은 **40% 낮고**, output generation은 **30% 이상 빠르다.** API 가격도 input/output 각각 **$4/$20 per million tokens**, cache read는 $0.20로 내려갔다.
+
+agentic coding에서는 단순 benchmark 점수보다 efficiency 변화가 눈에 띈다. Anthropic은 Terminal-Bench 4.0에서 66.4%, FrontierCode v1.1에서 54.4%, CursorBench 4.0에서 57.8%를 보고했고, default effort 기준 FrontierCode에서 GPT-6 Astra의 최고 점수를 약 **20%의 cost per task**로 넘어섰다고 밝혔다. 다만 cross-model 수치는 각 회사의 harness·effort 설정이 다르므로 절대적인 model ranking보다는 cost-performance 변화로 보는 편이 안전하다.
+
+또 하나의 변화는 autonomous execution을 전제로 한 safety stack이다. Opus 5.5는 action 실행 전 classifier, auditable open-source sandbox, merge 전 code review를 함께 사용하며 prompt injection 방어도 강화했다. 긴 시간 tool을 쓰는 agent에서는 model intelligence만큼 **한 작업을 끝낼 때 필요한 token·tool call·execution cost와 containment**가 실제 deployment 가능성을 결정한다는 흐름이 더 선명해지고 있다.
+
 ### Sources
 
 - [NVIDIA Blog — Isaac ROS 5.0 Advances Agentic, Open Source Robotics Development](https://blogs.nvidia.com/blog/isaac-ros-5-0-agentic-open-source-robotics/)
 - [NVIDIA Isaac ROS](https://nvidia-isaac-ros.github.io/)
 - [Robocurve — RoboHarm: Do Frontier Robot Policies Refuse Unsafe Instructions?](https://robocurve.org/roboharm/)
 - [GitHub — robocurve/roboharm](https://github.com/robocurve/roboharm)
+- [Anthropic — Introducing Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)
