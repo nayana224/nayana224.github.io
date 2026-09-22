@@ -80,14 +80,14 @@ source_language: ko
 1. Problem
   핵심 문제는 단순히 vanishing gradient가 아니다. vanishing/exploding gradient는 initialization과 normalization으로 상당 부분 완화되었는데도, `network를 더 깊게 만들었더니 training error 자체가 더 높아지는 degradation problem`이 발생했다.
   
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Visual reference:</strong> 위의 <b>Figure 1. Residual block</b>과 원 논문의 degradation discussion을 같이 보면 된다. <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">Original paper</a></p>
 
 2. 저자들의 관찰
   더 깊은 network는 적어도 추가된 layer들이 \\(x→x\\) 만 수행하면 얕은 network와 같은 성능을 낼 수 있어야 한다. 하지만 실제 optimizer가 잘 해결하지 못한다. 따라서 저자들은 이것을 optimization problem으로 본다.
 3. Core idea
   그래서 \\(H(x)\\)를 직접 학습하는 대신, \\(F(x) = H(x) - x\\) 를 학습하게 만들고, \\(H(x) = F(x) + x\\)로 복원한다. 즉 identity를 기준점으로 두고, 그 기준에서 필요한 변화만 학습하자는 발상이다.
   
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Visual reference:</strong> residual formulation은 위 <b>Figure 1</b>의 identity shortcut과 residual branch 관계로 시각화했다. <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">Original paper</a></p>
 
 ## 3.1 Residual Learning
 여러 nonlinear layer를 거친 함수  \\(H(x)=L_n(\cdots L_2(L_1(x)))\\) 는 매우 복잡한 함수들을 표현할 수 있다. 그런데 그 복잡한 parameterization 안에서 의외로 아주 단순한 \\(H(x) = x\\) 라는 identity mapping을 optimizer가 실제 학습을 통해 찾아가는 것이 쉽지 않을 수 있다.
@@ -112,7 +112,7 @@ residual learning을 몇 개의 stacked layer마다 하나의 building block으�
 <details>
 <summary>Figure 3. Example network architectures for ImageNet</summary>
   
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Original Figure 3:</strong> ImageNet용 plain/residual architecture 전체 비교는 원 논문 Figure 3에서 확인할 수 있다. <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html">Open paper</a></p>
 
 </details>
 여러 종류의 plain network와 residual network를 실험했고, 일관된 현상을 관찰했다.
