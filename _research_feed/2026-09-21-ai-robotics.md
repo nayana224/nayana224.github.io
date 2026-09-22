@@ -1,43 +1,13 @@
 ---
 layout: feed_note
-title: "Coding agent는 병렬화되고, AI 연구 자동화에는 RSI 기준이 붙기 시작했습니다"
-date: 2026-09-21 22:20:00 +0900
+title: "AI 연구는 agent scale로, Physical AI는 실제 freight deployment로 이동하고 있습니다"
+date: 2026-09-21 23:40:00 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
-summary: "Claude Code Projects의 parallel cloud threads, Anthropic 내부 AI R&D의 대규모 agent 운영, 그리고 OpenAI가 제안한 automated AI research·RSI 측정 및 incident reporting 기준을 묶어 봅니다."
+summary: "Anthropic의 대규모 AI R&D agent 운영, OpenAI의 automated-research·RSI 측정 기준, 그리고 Einride가 NVIDIA Hyperion을 heavy-duty autonomous freight에 적용하는 새 협업을 묶어 봅니다."
 ---
 
-**1/ Claude Code Projects가 하나의 대화에서 여러 작업을 병렬로 조정하기 시작했습니다.**
-
-새 Projects에서는 상위 대화가 일을 여러 **parallel cloud thread**로 나누고, 사용자가 노트북을 닫아도 thread가 계속 실행됩니다.
-
-각 thread는 프로젝트의 **files, repositories, instructions, memory**를 공유합니다.
-
-<figure class="paper-figure">
-  <div class="paper-figure-frame">
-    <div class="paper-figure-canvas">
-      <svg viewBox="0 0 760 285" role="img" aria-label="Claude Code Projects의 coordinator와 parallel cloud threads 구조">
-        <defs><marker id="cfp1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"></path></marker></defs>
-        <text x="24" y="28" class="fig-kicker">CLAUDE CODE PROJECTS — BETA</text>
-        <rect x="36" y="102" width="150" height="70" rx="3" class="fig-box"></rect><text x="111" y="128" class="fig-label">User request</text><text x="111" y="151" class="fig-small">one top-level conversation</text>
-        <path d="M186 137 L278 137" class="fig-arrow" marker-end="url(#cfp1)"></path>
-        <rect x="290" y="88" width="170" height="98" rx="3" class="fig-box-accent"></rect><text x="375" y="119" class="fig-label">Coordinator</text><text x="375" y="143" class="fig-small">decompose · assign · track</text><text x="375" y="164" class="fig-small">shared project context</text>
-        <path d="M460 118 L535 72" class="fig-arrow" marker-end="url(#cfp1)"></path><path d="M460 137 L535 137" class="fig-arrow" marker-end="url(#cfp1)"></path><path d="M460 156 L535 202" class="fig-arrow" marker-end="url(#cfp1)"></path>
-        <rect x="548" y="45" width="164" height="54" rx="3" class="fig-box"></rect><text x="630" y="67" class="fig-label">Cloud thread 1</text><text x="630" y="86" class="fig-small">parallel task</text>
-        <rect x="548" y="110" width="164" height="54" rx="3" class="fig-box"></rect><text x="630" y="132" class="fig-label">Cloud thread 2</text><text x="630" y="151" class="fig-small">parallel task</text>
-        <rect x="548" y="175" width="164" height="54" rx="3" class="fig-box"></rect><text x="630" y="197" class="fig-label">Cloud thread n</text><text x="630" y="216" class="fig-small">parallel task</text>
-        <text x="376" y="254" class="fig-small">Files · repositories · instructions · memory are shared at the project level.</text>
-      </svg>
-    </div>
-  </div>
-  <figcaption><strong>Figure 1.</strong> 하나의 상위 대화가 여러 cloud thread를 조정하는 구조. Source: <a href="https://support.claude.com/en/articles/9517075-what-are-projects">Anthropic Help Center</a>.</figcaption>
-</figure>
-
-현재 새 Projects는 Claude Code를 사용하는 일부 **Pro·Max 사용자에게 beta**로 먼저 배포되고 있습니다.
-
-coding agent의 단위가 “한 채팅에 한 작업”에서 **상위 coordinator가 여러 장기 작업을 관리하는 구조**로 이동하고 있다는 점이 핵심입니다.
-
-**2/ Anthropic은 Claude가 내부 AI R&D의 26%를 이미 ‘lead’한다고 측정했습니다.**
+**1/ Anthropic은 Claude가 내부 AI R&D의 26%를 이미 ‘lead’한다고 측정했습니다.**
 
 Anthropic의 **R&D Automation Index**에 따르면, 2026년 8월 기준 Claude가 내부 AI R&D 업무의 **26%를 AL4(“AI leads”) 수준으로 수행**하고 있습니다. AL3 이상, 즉 AI가 최소한 사람과 협업하며 큰 작업 단위를 처리하는 비율은 **90% 이상**입니다. 아직 AL5의 완전 자율 수행으로 분류된 영역은 없습니다.
 
@@ -47,7 +17,7 @@ Anthropic의 **R&D Automation Index**에 따르면, 2026년 8월 기준 Claude�
 
 agent를 실제 조직 규모로 운영할 때 문제는 이제 “agent가 일을 할 수 있는가”만이 아닙니다. **수만 개 agent의 identity, action trace, monitoring, escalation을 어떻게 관측 가능하게 만들 것인가**가 별도의 systems problem으로 커지고 있습니다.
 
-**3/ OpenAI는 automated AI research와 RSI를 ‘측정하고 보고해야 할 대상’으로 명시했습니다.**
+**2/ OpenAI는 automated AI research와 RSI를 ‘측정하고 보고해야 할 대상’으로 명시했습니다.**
 
 OpenAI는 9월 21일 공개한 제안에서 frontier AI의 국제 technical standards에 **recursive self-improvement(RSI)**를 포함해야 한다고 밝혔습니다. 여기서 RSI는 AI가 다음 세대 AI 연구의 더 많은 부분을 맡으면서 연구 속도 자체를 끌어올리는 과정입니다.
 
@@ -57,8 +27,18 @@ OpenAI는 9월 21일 공개한 제안에서 frontier AI의 국제 technical stan
 
 Anthropic이 실제 내부 R&D에서 AI가 맡는 비율을 계량하기 시작한 것과 연결해서 보면 흐름이 선명합니다. **AI가 AI를 만드는 정도를 capability demo가 아니라 운영 지표로 측정하고, 일정 수준을 넘으면 review·incident reporting으로 연결하는 체계**가 하나의 engineering problem으로 부상하고 있습니다.
 
+**3/ Einride는 NVIDIA Hyperion을 heavy-duty autonomous freight에 맞게 확장합니다.**
+
+Einride는 9월 21일 NVIDIA와의 새 협업을 발표했습니다. 핵심은 NVIDIA의 **Hyperion compute·sensor·software·safety architecture를 heavy-duty trucking 요구사항에 맞게 확장**하고, 차세대 **Einride Driver**를 그 위에 구축하는 것입니다.
+
+이번 협업은 단순한 autonomous-truck prototype 발표와는 결이 다릅니다. Einride는 이미 실제 고객 freight network를 운영하고 있으며, 9월 15일에는 Lidl과 함께 독일 공공도로의 일상 물류에 **cab-less SAE Level 4 truck**을 투입했다고 밝혔습니다. 새 Hyperion 협업은 이 deployment 경험을 공통 Physical AI platform 위에서 highway·suburban freight로 확장하려는 단계에 가깝습니다.
+
+연구 관점에서 보면 중요한 변화는 perception이나 policy 하나의 성능보다 **compute + multimodal sensing + autonomy software + safety architecture를 묶은 reference platform이 실제 robot deployment의 scaling unit이 되고 있다는 점**입니다. Physical AI가 demo에서 fleet-level systems engineering으로 넘어갈 때 어떤 interface와 safety layer가 표준화되는지 볼 만한 사례입니다.
+
 ## Sources
 
-- [Anthropic Help Center — What are projects?](https://support.claude.com/en/articles/9517075-what-are-projects)
 - [Anthropic — Measurements for understanding the pace of AI development inside frontier labs](https://www.anthropic.com/institute/measuring-pace-of-ai-development)
 - [OpenAI — Building standards for the next phase of AI](https://openai.com/index/building-standards-next-phase-ai/)
+- [Einride — Strategic collaboration with NVIDIA on Hyperion](https://www.einride.tech/press/einride-enters-strategic-collaboration-with-nvidia-to-advance-its-autonomous-trucking-on-nvidia-hyperion)
+- [NVIDIA — Hyperion platform for level 4-ready autonomy](https://nvidianews.nvidia.com/news/nvidia-drive-hyperion-becomes-the-global-platform-for-a-robotaxi-ready-world)
+- [Einride — Cab-less Level 4 truck in daily operations with Lidl](https://www.einride.tech/press/einride-and-lidl-launch-first-autonomous-cab-less-truck-on-german-public-road)
