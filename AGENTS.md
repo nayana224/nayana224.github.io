@@ -158,6 +158,8 @@ Apply requested website changes directly to `main` unless the user explicitly re
   7. front matter matches the Notes category/type contract.
 - For concept-heavy articles, convert suitable structures into reusable HTML/CSS callout, comparison, concept, flow, hierarchy, or pipeline blocks instead of publishing dense raw Notion prose.
 - For paper notes, add a compact visual summary near the top when it improves comprehension, but keep the original technical detail below it.
+- Do not leave public `Figure placeholder` markers in published Notes. Resolve each one before commit by either (a) replacing it with an independent paper-style redraw, (b) pointing back to an existing redraw in the same note when the concept is already visualized, or (c) linking directly to the original paper/section when reproducing another figure would be redundant or licensing is unclear.
+- Avoid duplicate figures: one strong redraw may replace several imported Notion image placeholders when they explain the same mechanism.
 - The preferred import workflow is: Notion source → extract public-safe content → normalize math → restructure prose → add visual blocks → audit math/privacy/links → commit to `_notes/`.
 
 ## Site invariants
