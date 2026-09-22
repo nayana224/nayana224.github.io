@@ -118,7 +118,7 @@ Feature resolution을 높게 유지하면
 → 계산량 / memory ↑
   ```
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Original Figure 1:</strong> Spatial Pyramid Pooling, Encoder-Decoder, 그리고 제안 구조의 차이는 <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Liang-Chieh_Chen_Encoder-Decoder_with_Atrous_ECCV_2018_paper.html">원 논문 Figure 1</a>을 함께 보면 가장 명확하다. 위의 DeepLabV3+ overview는 그 핵심만 redraw한 것이다.</p>
 
 1. (a) Spatial Pyramid Pooling
   장점: multi-scale context 높임
@@ -148,7 +148,7 @@ boundary를 복구
 ## 3. Method
 ## 3.1 Encoder-Decoder with Atrous Convolution
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Visual reference:</strong> encoder → ASPP → decoder와 low-level feature 경로는 위 <b>Figure 1</b>에 redraw했다. 세부 tensor flow는 <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Liang-Chieh_Chen_Encoder-Decoder_with_Atrous_ECCV_2018_paper.html">원 논문 Method section</a>을 참고한다.</p>
 
 ### Atrous convolution
 일반 convolution과 같은 방식으로 feature를 계산하지만, `kernel 내부 sampling 간격을 벌려서 더 넓은 receptive field를 확보`한다.
@@ -156,7 +156,24 @@ boundary를 복구
   - 같은 깊이인데, 더 넓게 볼 수 있다.
   - downsampling으로 spatial size를 너무 줄이면 존재 여부와 같은 semantic 정보는 잘 잡을 수 있지만, 물체의 경계가 몇 픽셀 위치이고 어디까지인지와 같은 세밀한 spatial 정보는 손실되기 쉽다. 
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<figure class="paper-figure">
+  <div class="paper-figure-frame"><div class="paper-figure-canvas">
+  <svg viewBox="0 0 760 245" role="img" aria-label="Atrous convolution sampling pattern">
+    <text x="24" y="28" class="fig-kicker">ATROUS CONVOLUTION</text>
+    <rect x="46" y="68" width="250" height="128" rx="3" class="fig-box"/>
+    <text x="171" y="89" class="fig-label">Standard 3×3</text>
+    <circle cx="111" cy="126" r="6" fill="#668ca7"/><circle cx="171" cy="126" r="6" fill="#668ca7"/><circle cx="231" cy="126" r="6" fill="#668ca7"/>
+    <circle cx="111" cy="156" r="6" fill="#668ca7"/><circle cx="171" cy="156" r="6" fill="#668ca7"/><circle cx="231" cy="156" r="6" fill="#668ca7"/>
+    <circle cx="111" cy="186" r="6" fill="#668ca7"/><circle cx="171" cy="186" r="6" fill="#668ca7"/><circle cx="231" cy="186" r="6" fill="#668ca7"/>
+    <rect x="464" y="68" width="250" height="128" rx="3" class="fig-box-accent"/>
+    <text x="589" y="89" class="fig-label">Atrous 3×3</text>
+    <circle cx="499" cy="116" r="6" fill="#668ca7"/><circle cx="589" cy="116" r="6" fill="#668ca7"/><circle cx="679" cy="116" r="6" fill="#668ca7"/>
+    <circle cx="499" cy="151" r="6" fill="#668ca7"/><circle cx="589" cy="151" r="6" fill="#668ca7"/><circle cx="679" cy="151" r="6" fill="#668ca7"/>
+    <circle cx="499" cy="186" r="6" fill="#668ca7"/><circle cx="589" cy="186" r="6" fill="#668ca7"/><circle cx="679" cy="186" r="6" fill="#668ca7"/>
+    <text x="380" y="144" class="fig-label">→</text>
+  </svg></div></div>
+  <figcaption><strong>Figure 2.</strong> Atrous convolution은 kernel parameter 수를 늘리지 않고 sampling 간격을 벌려 더 넓은 receptive field를 확보한다. Conceptually adapted from Chen et al. (2018).</figcaption>
+</figure>
 
 ### Depthwise separable convolution
 - Depthwise conv: 각 channel 별로 spatial convolution
@@ -172,7 +189,19 @@ boundary를 복구
 channel mixing
 ```
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<figure class="paper-figure">
+  <div class="paper-figure-frame"><div class="paper-figure-canvas">
+  <svg viewBox="0 0 760 250" role="img" aria-label="Depthwise separable convolution">
+    <defs><marker id="dscA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7d858c"/></marker></defs>
+    <text x="24" y="28" class="fig-kicker">DEPTHWISE SEPARABLE CONVOLUTION</text>
+    <rect x="48" y="88" width="150" height="70" rx="3" class="fig-box"/><text x="123" y="114" class="fig-label">Input channels</text><text x="123" y="139" class="fig-small">C feature maps</text>
+    <path d="M198 123 L278 123" class="fig-arrow" marker-end="url(#dscA)"/>
+    <rect x="290" y="76" width="170" height="94" rx="3" class="fig-box-accent"/><text x="375" y="105" class="fig-label">Depthwise 3×3</text><text x="375" y="132" class="fig-small">spatial filtering</text><text x="375" y="151" class="fig-small">per channel</text>
+    <path d="M460 123 L536 123" class="fig-arrow" marker-end="url(#dscA)"/>
+    <rect x="548" y="76" width="164" height="94" rx="3" class="fig-box"/><text x="630" y="105" class="fig-label">Pointwise 1×1</text><text x="630" y="132" class="fig-small">channel mixing</text>
+  </svg></div></div>
+  <figcaption><strong>Figure 3.</strong> Depthwise separable convolution은 spatial filtering과 channel mixing을 분리한다.</figcaption>
+</figure>
 
 ### DeepLabv3 as encoder
 - `output stride` 정의
@@ -189,7 +218,7 @@ Feature: 16 × 16
 "encoder가 입력의 가로/세로를 16배 줄인 feature를 출력한다."
     ```
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Output stride reference:</strong> OS와 atrous rate의 관계는 <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Liang-Chieh_Chen_Encoder-Decoder_with_Atrous_ECCV_2018_paper.html">원 논문 encoder-decoder 설명</a>을 참고한다. 본문 예시처럼 OS가 작을수록 feature resolution은 높고 계산량은 커진다.</p>
 
 - **DCNN/backbone** → feature 추출
 - **Atrous Conv** → downsampling을 덜 하면서 receptive field 확보
@@ -211,7 +240,7 @@ Xception이 ImageNet classification에서 좋은 성능과 빠른 계산을 보�
 - **각 3×3 depthwise convolution 뒤에 BatchNorm과 ReLU를 추가한다**
   학습 안정성과 표현력을 높이기 위한 일반적인 설계이다. (MobileNet 설계와 비슷하다.)
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Xception reference:</strong> Modified Aligned Xception의 상세 entry/middle/exit flow는 <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Liang-Chieh_Chen_Encoder-Decoder_with_Atrous_ECCV_2018_paper.html">원 논문 architecture figure</a>에서 확인한다. 이 노트에서는 segmentation 관점에서 필요한 변경점만 유지한다.</p>
 
 ```python
 Entry flow
@@ -290,7 +319,7 @@ boundary 근처를 따로 평가해도
 decoder 사용 모델이 더 좋았다.
 ```
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Boundary experiment:</strong> decoder가 object boundary를 실제로 개선하는 qualitative/trimap 결과는 <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Liang-Chieh_Chen_Encoder-Decoder_with_Atrous_ECCV_2018_paper.html">원 논문 boundary analysis</a>에서 확인할 수 있다. 여기서는 ablation 결과와 해석을 중심으로 남겼다.</p>
 
 ## Summary
 1. **Problem**<br>semantic segmentation에서 강한 semantic context와 정확한 boundary를 동시에 얻기 어렵다.
