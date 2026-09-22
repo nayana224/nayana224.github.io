@@ -100,7 +100,7 @@ Transformer도 이 encoder-decoder 틀 자체를 유지한다.
 
 ## Figure 1 전체 구조
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Original Figure 1:</strong> Transformer 전체 encoder-decoder 구조는 위의 redraw와 함께 <a href="https://arxiv.org/abs/1706.03762">원 논문 Figure 1</a>을 참고하면 된다.</p>
 
 ### 1) Encoder 쪽
 입력은 다음과 같이 흐른다.
@@ -161,7 +161,7 @@ Figure 1 아래쪽 decoder를 보면 Outputs(shifted right)라고 되어 있다.
 즉 `decoder는 항상 다음 token을 예측`한다.
 > Transformer는 기존 encoder-decoder seq2seq 틀은 유지하되, encoder와 decoder 내부의 recurrent layer를 self-attention과 feed-forward network로 대체한 구조이다.
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Architecture note:</strong> recurrence를 attention block으로 대체한다는 핵심은 위 <b>Transformer overview</b> redraw로 통합했다. 원 논문 전체 구조는 <a href="https://arxiv.org/abs/1706.03762">Figure 1</a>에서 확인한다.</p>
 
 →  **LSTM이 시간축을 따라 순차적으로 처리하던 역할을 Transformer의 attention 기반 block이 대신한다**
 Ex)
@@ -232,7 +232,7 @@ y \rightarrow \text{Masked Self-Attention} \rightarrow \text{Add \& Norm} \right
 
 ## 3.2.1 Scaled Dot-Product Attention
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Scaled Dot-Product Attention:</strong> 이 연산은 별도 Concepts 글의 <a href="/notes/scaled-dot-product-vs-multi-head-attention/">Figure 2</a>에서 단계별로 redraw했다. 원 논문 도식은 <a href="https://arxiv.org/abs/1706.03762">Figure 2</a> 참고.</p>
 
 이 논문이 사용하는 attention은 Scaled Dot-Product Attention이다.
 입력은 다음과 같다. 
@@ -311,7 +311,7 @@ QK^T \rightarrow Scale \rightarrow Softmax \rightarrow V
 
 ## 3.2.2 Multi-Head Attention
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Multi-Head Attention:</strong> projection → parallel heads → concat → output projection 구조는 별도 Concepts 글의 <a href="/notes/scaled-dot-product-vs-multi-head-attention/">Figure 3</a>에서 자세히 볼 수 있다.</p>
 
 논문은 하나의 attention만 쓰는 대신, `Query/Key/Value를 여러 번 서로 다른 선형 변환(Linear Block)으로 투영한 뒤 여러 attention head를 병렬로 계산`하는 것이 더 좋다고 설명한다.
 형태는 다음과 같다.
@@ -403,7 +403,7 @@ Q=\text{decoder representation}, \quad K,V=\text{encoder output}
 </table>
 > Self-attention은 Q/K/V가 같은 sequence에서 오고, cross-attention은 Q와 K/V의 출처가 다르다.
 
-> **Figure placeholder** — Notion의 임시 이미지 URL은 제외했습니다. 필요 시 GitHub asset으로 추가합니다.
+<p class="figure-note"><strong>Attention variants:</strong> Encoder self-attention, masked decoder self-attention, encoder-decoder attention의 Q/K/V 출처 차이는 위 표와 <a href="https://arxiv.org/abs/1706.03762">원 논문의 attention architecture</a>를 함께 참고한다.</p>
 
 <section class="related-notes" aria-labelledby="related-notes-title">
   <h2 id="related-notes-title">Related Notes</h2>
