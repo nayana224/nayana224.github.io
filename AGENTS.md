@@ -40,6 +40,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-22: Re-scanned the post-run window across AI agents, VLA/manipulation, embodied AI, and deployment sources. Fresh search results did not yield a sufficiently new primary-source-verified story beyond the same-day MCP/TensorRT items, so no feed post was changed.
 - 2026-09-22: Added JetBrains Air's expansion from a standalone agentic workspace toward an open multi-agent development system after cross-checking current JetBrains product/docs sources; same-day AI & Robotics feed remains capped at three items.
 - 2026-09-23: Added NVIDIA Isaac ROS 5.0 as a high-priority Robotics/Physical AI update: agent-ready setup/manipulation skills, ROS Lyrical GPU data-path work, accelerated FoundationPose, and RealSense/Jetson integration connect agentic development directly to the ROS perception-to-manipulation stack.
+- 2026-09-23: Added RoboHarm after tracing the CHOI discovery graph back to Robocurve's primary benchmark and reproducible repository. The key editorial signal is physical-AI safety evaluation that separates explicit refusal from capability failure rather than treating task failure as safety.
 
 ## Public notes / privacy policy
 - Public Notes may contain general concepts, theory, paper study, and broadly reusable technical explanations.
