@@ -1,13 +1,23 @@
 ---
 layout: feed_note
-title: "Isaac ROS는 agent-ready로, VLA는 GPU 없이 edge NPU로 내려왔다"
+title: "FLUX 3 Action이 7B open-weight World Action Model로 공개됐다"
 date: 2026-09-23 08:04:00 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
-summary: "Isaac ROS 5.0의 agent-ready robotics workflow, RoboHarm의 physical safety benchmark, 그리고 Nota AI의 GR00T N1.7 edge-NPU 최적화를 함께 본다."
+summary: "FLUX 3 Action의 open-weight World Action Model 공개, Isaac ROS 5.0의 agent-ready robotics workflow, 그리고 GR00T N1.7의 edge-NPU 최적화를 함께 본다."
 ---
 
-## 1/ Isaac ROS 5.0은 AI agent를 ROS 개발 workflow 안으로 넣는다
+## 1/ FLUX 3 Action은 video foundation model을 7B robot policy로 가져왔다
+
+Black Forest Labs가 **FLUX 3 Action을 7B open-weight World Action Model로 공개했다.** 입력은 최근 camera observation, robot state, natural-language instruction이고, 다음 **32개 action과 미래 visual state를 함께 예측**한 뒤 새 observation을 받아 다시 실행하는 closed-loop 구조다.
+
+핵심은 image/video generation에서 학습한 visual representation을 robot action prediction까지 이어간다는 점이다. FLUX 3의 multimodal pretraining과 Self-Flow 계열의 representation을 기반으로 future frame과 action을 함께 학습한다. BFL이 제공한 RoboLab-120 결과에서는 **42.92% overall success rate**를 보고했으며, 16B Cosmos3-Nano-Policy보다 작은 7B model이다. 다만 이 수치는 BFL이 제공한 release benchmark이고 공개 leaderboard와 외부 재현 결과가 아직 충분히 축적되지 않았으므로, 서로 다른 robotics benchmark의 수치와 직접 비교하면 안 된다.
+
+실제 adaptation 쪽도 흥미롭다. 공개된 demonstration은 약 **200개 teleoperation episode**로 related pick-and-place task에 fine-tuning했고, 한 demo에서는 첫 시도 실패 뒤 다시 접근해 성공하는 recovery behavior도 보였다. 이것만으로 일반적인 self-recovery 능력이 입증된 것은 아니지만, world-model pretraining이 failure 이후의 다음 action까지 어떤 식으로 연결되는지 볼 만한 신호다.
+
+BFL은 weights·code·fine-tuning recipe·benchmark·SO-101/LeRobot 예제를 공개하는 방향을 제시하고 있다. 생성 모델 회사가 `video를 잘 예측하는 representation → physical action`으로 확장한다는 점에서 VLA만이 아니라 **World Action Model이라는 또 다른 robot foundation model 설계 축**을 실제로 비교해볼 수 있게 됐다.
+
+## 2/ Isaac ROS 5.0은 AI agent를 ROS 개발 workflow 안으로 넣는다
 
 NVIDIA가 **Isaac ROS 5.0을 공개하면서 AI agent가 ROS 기반 robotics application을 직접 구성·튜닝하는 workflow를 제품 stack 안으로 가져왔다.** 단순히 coding assistant를 붙인 것이 아니라 setup·manipulation용 **Isaac skills**, agent-ready documentation, perception model adaptation workflow를 함께 제공한다.
 
@@ -16,16 +26,6 @@ NVIDIA가 **Isaac ROS 5.0을 공개하면서 AI agent가 ROS 기반 robotics app
 흥미로운 부분은 agent layer 아래의 ROS data path도 같이 바뀐다는 점이다. Isaac ROS 5.0은 **ROS Lyrical과 Ubuntu 24.04**를 지원하고, NVIDIA와 Open Source Robotics Alliance가 ROS Lyrical에 heterogeneous compute를 위한 표준 data-handling interface를 기여했다. CUDA가 그 GPU acceleration 구현의 한 예다. 즉 `agent가 robotics code를 만든다`에서 끝나는 것이 아니라, ROS interface와 GPU execution까지 같은 development path로 연결하려는 방향이다.
 
 RealSense는 D585 Pro와 Isaac ROS·Jetson Thor용 open-source SDK를 최적화하고 있고, AgenticROS는 Isaac ROS와 Nemotron/NemoClaw를 연결해 AI agent가 ROS robot과 상호작용하도록 한다. perception → manipulation → edge deployment를 따로 조립하던 경계가 점차 agent-readable workflow로 바뀌고 있다.
-
-## 2/ RoboHarm은 “실패한 로봇”과 “거부한 로봇”을 분리해서 측정한다
-
-Robocurve의 **RoboHarm**은 frontier AI가 실제 robot arm을 제어할 때 위험한 지시를 스스로 거부하는지를 측정한 benchmark다. 같은 bimanual I2RT YAM arms에서 **5개 위험 task × 3개 policy × 20회 = 총 300회**를 실행했다. GPT-6 Astra와 Claude Fable 5.1은 tool-calling agent policy로, MolmoAct2는 30 Hz joint-space action chunk를 내는 VLA로 평가됐다.
-
-결과에서 중요한 수치는 단순 task success가 아니다. **Claude Fable 5.1은 100회 중 20회를 safety reason으로 거부했고, GPT-6 Astra는 2회, MolmoAct2는 0회였다.** 반면 위험 task를 실제로 완료한 횟수는 각각 34, 60, 6회였다. 특히 Fable의 20개 safety refusal은 한 종류의 doll task에 몰렸다.
-
-여기서 benchmark가 짚는 구분이 robotics safety에서 중요하다. **위험 행동을 못 한 것과 위험하다고 판단해 하지 않은 것은 다르다.** MolmoAct2처럼 language refusal channel 자체가 없는 VLA는 낮은 completion rate만 보고 더 안전하다고 해석할 수 없다. 저자들도 한 instruction wording, task당 20회, 한 bench라는 제한 때문에 세밀한 model ranking이나 장기 위험으로 일반화하면 안 된다고 명시한다.
-
-Robot Learning이나 VLA를 실제 manipulation에 연결할수록 평가 기준도 `task success` 하나로 끝나기 어렵다는 사례다. 앞으로 closed-loop manipulation policy를 볼 때도 capability failure, explicit refusal, recovery/abort behavior를 별도 outcome으로 설계할 필요가 있다.
 
 ## 3/ GR00T N1.7을 GPU 없이 edge NPU에서 1.6초 → 약 230ms로 줄였다
 
@@ -39,9 +39,9 @@ VLM/VLA를 제한된 GPU·NPU 환경에 올릴 때 중요한 기준도 여기서
 
 ### Sources
 
+- [Black Forest Labs — FLUX 3 Action](https://bfl.ai/models/flux-3-action)
+- [VentureBeat — Black Forest Labs debuts FLUX 3 Action](https://venturebeat.com/infrastructure/black-forest-labs-debuts-flux-3-action-an-open-weights-ai-robotics-model-that-tops-the-leaderboard-at-half-the-size-of-its-competition)
 - [NVIDIA Blog — Isaac ROS 5.0 Advances Agentic, Open Source Robotics Development](https://blogs.nvidia.com/blog/isaac-ros-5-0-agentic-open-source-robotics/)
 - [NVIDIA Isaac ROS](https://nvidia-isaac-ros.github.io/)
-- [Robocurve — RoboHarm: Do Frontier Robot Policies Refuse Unsafe Instructions?](https://robocurve.org/roboharm/)
-- [GitHub — robocurve/roboharm](https://github.com/robocurve/roboharm)
 - [Nota AI — GPU 없이 VLA 돌리기: 퀄컴 NPU에서 1.6초를 230ms로](https://blog.nota.ai/kr/insights/vla-edge-npu-optimization)
 - [Qualcomm — Dragonwing IQ-9075](https://www.qualcomm.com/internet-of-things/products/iq9-series/iq-9075)
