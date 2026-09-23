@@ -1,10 +1,10 @@
 ---
 layout: feed_note
-title: "Contact-rich VLA에서 edge inference까지, robot policy의 실행 계층이 바뀌고 있다"
-date: 2026-09-23 12:10:00 +0900
+title: "Tactile residual부터 visual force grounding까지, VLA가 contact를 다루는 법"
+date: 2026-09-23 17:40:00 +0900
 channel: research-papers
 channel_label: Research Papers
-summary: "VT-Bridge와 Opt2VLA는 contact-rich manipulation의 feedback·force interface를 확장하고, rMuscle은 반복 robot execution의 내부 유사성을 cache해 VLA inference 자체를 가속한다."
+summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정하고, VisForce는 fingertip 위치에 force를 시각적으로 grounding한다. rMuscle은 반복 robot execution의 내부 유사성을 cache해 VLA inference를 가속한다."
 ---
 
 ## 1/ VT-Bridge: pretrained VLA 위에 tactile residual correction을 얹는다
@@ -15,15 +15,15 @@ summary: "VT-Bridge와 Opt2VLA는 contact-rich manipulation의 feedback·force i
 
 다만 62.9%는 저자들이 선택한 세 backbone과 네 task에서 얻은 평균이며 모든 tactile manipulation으로 일반화할 수 있는 수치는 아니다. 그럼에도 **pretrained generalist policy + 빠른 feedback correction**이라는 분리는 closed-loop manipulation에서 직접 비교할 만한 architecture pattern이다.
 
-## 2/ Opt2VLA: VLA가 trajectory뿐 아니라 contact force까지 명시적으로 출력한다
+## 2/ VisForce: force를 숫자로만 주지 않고 fingertip 위치에 시각적으로 grounding한다
 
-**Opt2VLA는 humanoid contact-rich manipulation에서 VLA의 action interface 자체를 확장해 geometric motion goal과 continuous contact-force reference를 함께 예측한다.** 기존 humanoid VLA가 주로 geometric target을 만들고 whole-body controller가 motion tracking을 담당했다면, 여기서는 task context에 따라 필요한 interaction force도 high-level policy의 명시적 output이 된다.
+**VisForce는 dexterous manipulation에서 current force와 desired force를 해당 fingertip 위치의 visual cue로 렌더링하고, 이를 wrist image와 goal image에 직접 grounding한다.** 별도의 force vector를 policy에 넣는 대신 `어디에 얼마만큼의 힘이 걸리고, 어디에 어느 정도의 힘이 필요한가`를 visual representation 안에서 정렬한 뒤 goal-conditioned cross-attention으로 force-aware action을 생성한다.
 
-예측된 motion·force reference는 task-specific RL whole-body controller가 추종한다. 학습 supervision은 explicit force reference를 포함한 whole-body trajectory optimization으로 생성해 dynamically feasible하고 contact-consistent한 trajectory를 만들며, 저자들은 세 contact-rich humanoid task에서 motion-only control보다 force regulation이 더 정확하고 일관됐다고 보고한다. Closed-loop evaluation에서는 simulation뿐 아니라 humanoid hardware에서도 **language-conditioned force modulation**을 보였다.
+저자들은 UR10 + RH56F1 dexterous hand 실험에서 desired force가 커질수록 grip force가 일관되게 증가하는 것을 확인했다. Egg와 toothpaste tube의 grasp-and-lift는 각각 **70%, 80%**, multi-stage task의 최종 성공률은 cup insertion/bottle pouring **70%**, tong-assisted bread transfer **55%**, slip-modulated peg-in-hole **40%**였다.
 
-VT-Bridge와 나란히 보면 차이가 선명하다. VT-Bridge가 `기존 VLA action + tactile residual correction`으로 실행 단계의 feedback을 보강한다면, Opt2VLA는 `VLA → motion + force reference → whole-body controller`처럼 **force를 policy-control interface의 일부로 올린다.** 접촉 이후 상태를 어떻게 피드백할지뿐 아니라, 상위 policy가 애초에 힘을 어느 수준까지 의도해야 하는지도 contact-rich manipulation의 중요한 설계 축이라는 신호다.
+이 접근에서 흥미로운 지점은 force sensing 자체보다 **force와 visual location 사이의 correspondence를 representation 문제로 다룬다**는 것이다. 특히 bread처럼 변형되기 쉽거나 grasp force가 중요한 물체에서는 `현재 접촉 상태 → 목표 접촉 상태 → action correction`을 어떤 representation으로 연결할지가 핵심인데, VisForce는 이를 visual grounding으로 푼 사례다.
 
-Opt2VLA의 결과 역시 세 task에 대한 저자 평가이므로 general-purpose force-aware VLA로 일반화해서 해석하면 안 된다. 특히 task-specific controller와 trajectory-optimization supervision에 얼마나 의존하는지는 더 넓은 object/task generalization에서 확인할 부분이다.
+다만 실험은 단일 UR10/dexterous-hand setup과 제한된 task에 대한 결과다. 다양한 물체·gripper·camera configuration에서도 fingertip-aligned cue가 유지되는지, 그리고 force cue rendering이 실제 sensor noise와 occlusion에 얼마나 강한지는 추가 검증이 필요하다.
 
 ## 3/ rMuscle: 반복되는 robot execution을 VLA의 'muscle memory'로 cache한다
 
@@ -39,6 +39,5 @@ Opt2VLA의 결과 역시 세 task에 대한 저자 평가이므로 general-purpo
 
 - [arXiv — VT-Bridge: Bridging Pretrained Foundation VLAs to VTLAs via Lightweight Residual Adaptation](https://arxiv.org/abs/2609.22606)
 - [VT-Bridge Project Page](https://hoxnocha.github.io/vt-bridge-web/)
-- [arXiv — Opt2VLA: Force-Aware Vision-Language-Action for Contact-Rich Humanoid Whole-Body Manipulation](https://arxiv.org/abs/2609.23968)
-- [Fukang Liu — Opt2VLA research overview](https://fukangl.github.io/)
+- [arXiv — VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation](https://arxiv.org/abs/2609.25785)
 - [arXiv — rMuscle: Robotic Muscle Memory for Efficient Vision-Language-Action Model Inference](https://arxiv.org/abs/2609.19104)
