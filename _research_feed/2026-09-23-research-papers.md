@@ -1,10 +1,10 @@
 ---
 layout: feed_note
-title: "Contact-rich VLA가 tactile correction과 explicit force prediction으로 갈라지고 있다"
-date: 2026-09-23 09:10:00 +0900
+title: "Contact-rich VLA와 실행 가능한 paper agent, 연구 interface가 바뀌고 있다"
+date: 2026-09-23 10:30:00 +0900
 channel: research-papers
 channel_label: Research Papers
-summary: "VT-Bridge는 pretrained VLA에 lightweight tactile residual correction을 더하고, Opt2VLA는 VLA가 motion goal과 continuous contact-force reference를 함께 예측한다. contact-rich manipulation에서 feedback과 force를 policy interface에 넣는 두 접근이다."
+summary: "VT-Bridge와 Opt2VLA는 contact-rich manipulation의 feedback·force interface를 확장하고, Paper2Agent는 논문·코드·데이터를 검증된 MCP tool로 바꿔 연구 결과 자체를 agent-callable interface로 만든다."
 ---
 
 ## 1/ VT-Bridge: pretrained VLA 위에 tactile residual correction을 얹는다
@@ -25,9 +25,21 @@ VT-Bridge와 나란히 보면 차이가 선명하다. VT-Bridge가 `기존 VLA a
 
 Opt2VLA의 결과 역시 세 task에 대한 저자 평가이므로 general-purpose force-aware VLA로 일반화해서 해석하면 안 된다. 특히 task-specific controller와 trajectory-optimization supervision에 얼마나 의존하는지는 더 넓은 object/task generalization에서 확인할 부분이다.
 
+## 3/ Paper2Agent: 논문을 읽는 agent가 아니라, 논문의 방법을 호출하는 agent를 만든다
+
+**Nature에 공개된 Paper2Agent는 paper·supplement·code·dataset·workflow를 분석해 자동으로 MCP server를 만들고, 원 코드의 결과와 대조하는 test까지 통과한 tool만 agent에게 노출한다.** 즉 PDF를 RAG로 검색하는 데서 멈추지 않고 논문의 방법 자체를 `tools + resources + prompts` 형태의 실행 가능한 interface로 바꾼다.
+
+구성도 꽤 구체적이다. environment agent가 실행 환경을 만들고 extraction agent가 핵심 method를 tool로 변환한 뒤 testing agent가 expected file, numerical tolerance, figure reference 등을 검사한다. 반복 검증에 실패하는 tool은 최종 MCP에서 제외된다. 논문에 따르면 AlphaGenome 사례에서는 **22개 MCP tool을 약 45분, 약 $14의 비용으로 생성했고 전부 automated validation을 통과**했다.
+
+이 구조에서 MCP는 단순 connector가 아니라 **연구 방법의 machine-callable boundary**가 된다. 여러 paper MCP를 하나의 chat agent에 동시에 연결할 수도 있기 때문에, 향후 scientific agent의 중요한 구성요소가 `논문을 얼마나 잘 요약하는가`보다 `어떤 검증된 method를 어떤 provenance와 함께 호출할 수 있는가`로 이동할 가능성을 보여준다.
+
+다만 현재 주요 case study는 AlphaGenome·Scanpy·TISSUE 같은 computational biology 중심이다. robotics paper처럼 simulator, robot hardware, calibration, sensor state가 필요한 연구를 같은 수준으로 agentify할 수 있는지는 별도 문제다. 오히려 이 차이가 robotics에서 reproducible tool interface를 설계할 때 무엇을 추가로 표현해야 하는지 보여주는 좋은 기준점이다.
+
 ### Sources
 
 - [arXiv — VT-Bridge: Bridging Pretrained Foundation VLAs to VTLAs via Lightweight Residual Adaptation](https://arxiv.org/abs/2609.22606)
 - [VT-Bridge Project Page](https://hoxnocha.github.io/vt-bridge-web/)
 - [arXiv — Opt2VLA: Force-Aware Vision-Language-Action for Contact-Rich Humanoid Whole-Body Manipulation](https://arxiv.org/abs/2609.23968)
 - [Fukang Liu — Opt2VLA research overview](https://fukangl.github.io/)
+- [Nature — Reimagining research papers as interactive and reliable AI agents](https://www.nature.com/articles/s41586-026-11044-y)
+- [GitHub — jmiao24/Paper2Agent](https://github.com/jmiao24/Paper2Agent)
