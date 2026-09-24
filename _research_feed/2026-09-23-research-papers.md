@@ -7,7 +7,7 @@ channel_label: Research Papers
 summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정하고, VisForce는 force를 fingertip 위치에 visual grounding한다. Real-Time EXPO-FT는 느린 VLA proposal과 빠른 reactive edit policy를 분리해 dynamic manipulation의 latency 문제를 RL로 다룬다."
 ---
 
-## 1/ VT-Bridge: pretrained VLA 위에 tactile residual correction을 얹는다
+## VT-Bridge: pretrained VLA 위에 tactile residual correction을 얹는다
 
 **VT-Bridge는 π₀, π₀.₅, SmolVLA 같은 pretrained VLA의 backbone architecture를 바꾸지 않고, 0.98M-parameter residual adapter로 tactile feedback을 action에 반영한다.** 논문에서 task당 필요한 vision-tactile demonstration은 최대 50개였고, 네 가지 contact-rich manipulation task에서 task-level VLA fine-tuning만 사용했을 때 평균 completion rate 11.7%가 VT-Bridge 적용 후 **62.9%**로 올라갔다.
 
@@ -15,7 +15,7 @@ summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정�
 
 다만 62.9%는 저자들이 선택한 세 backbone과 네 task에서 얻은 평균이며 모든 tactile manipulation으로 일반화할 수 있는 수치는 아니다. 그럼에도 **pretrained generalist policy + 빠른 feedback correction**이라는 분리는 closed-loop manipulation에서 직접 비교할 만한 architecture pattern이다.
 
-## 2/ VisForce: force를 숫자로만 주지 않고 fingertip 위치에 시각적으로 grounding한다
+## VisForce: force를 숫자로만 주지 않고 fingertip 위치에 시각적으로 grounding한다
 
 **VisForce는 dexterous manipulation에서 current force와 desired force를 해당 fingertip 위치의 visual cue로 렌더링하고, 이를 wrist image와 goal image에 직접 grounding한다.** 별도의 force vector를 policy에 넣는 대신 `어디에 얼마만큼의 힘이 걸리고, 어디에 어느 정도의 힘이 필요한가`를 visual representation 안에서 정렬한 뒤 goal-conditioned cross-attention으로 force-aware action을 생성한다.
 
@@ -25,7 +25,7 @@ summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정�
 
 다만 실험은 단일 UR10/dexterous-hand setup과 제한된 task에 대한 결과다. 다양한 물체·gripper·camera configuration에서도 fingertip-aligned cue가 유지되는지, 그리고 force cue rendering이 실제 sensor noise와 occlusion에 얼마나 강한지는 추가 검증이 필요하다.
 
-## 3/ Real-Time EXPO-FT: 느린 VLA는 제안하고, 빠른 policy가 마지막 순간에 고친다
+## Real-Time EXPO-FT: 느린 VLA는 제안하고, 빠른 policy가 마지막 순간에 고친다
 
 **Real-Time EXPO-FT는 큰 pretrained VLA의 느린 action generation과 최신 observation에 반응하는 lightweight edit policy를 서로 다른 시간축으로 분리한다.** VLA는 asynchronous하게 action chunk 후보를 만들고, 실행 직전의 fast edit policy가 현재 state를 보고 후보를 수정한다. Q-function은 수정된 후보 중 실행할 action chunk를 선택한다.
 
@@ -37,8 +37,7 @@ Kinetix에서는 delayed/non-delayed method를 포함한 비교에서 10개 envi
 
 다만 결과는 저자들의 dynamic-task setup과 online RL 조건에 한정된다. Sparse reward를 안정적으로 정의하기 어려운 manipulation이나 long-horizon task에서도 10분 수준의 adaptation이 유지되는지는 별도 검증이 필요하다.
 
-### Sources
-
+## Sources
 - [arXiv — VT-Bridge: Bridging Pretrained Foundation VLAs to VTLAs via Lightweight Residual Adaptation](https://arxiv.org/abs/2609.22606)
 - [VT-Bridge Project Page](https://hoxnocha.github.io/vt-bridge-web/)
 - [arXiv — VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation](https://arxiv.org/abs/2609.25785)
