@@ -29,7 +29,7 @@ summary: "최근 VLA 연구에서 반복해서 보이는 data quality, latency-a
  <figcaption><strong>Figure 1.</strong> 최근 VLA 연구를 Training → Serving → Deployment의 full-stack 문제로 보면 세 논문의 공통점이 더 명확해진다. Source papers are linked below.</figcaption>
 </figure>
 
-## 1/ Offline metric이 좋아도 robot은 실패할 수 있습니다
+## Offline metric이 좋아도 robot은 실패할 수 있습니다
 
 REAL-I Challenge 분석에서는 fixed demonstration budget 안에서도 data curation, staged adaptation, checkpoint selection, action-space design에 따라 실제 성공률이 크게 달라졌습니다.
 
@@ -37,7 +37,7 @@ REAL-I Challenge 분석에서는 fixed demonstration budget 안에서도 data cu
 
 Loss만 보고 deployment 성능을 판단하기 어렵다는 뜻입니다.
 
-## 2/ VLA도 실제 현장에 들어가면 serving system이 됩니다
+## VLA도 실제 현장에 들어가면 serving system이 됩니다
 
 Robion은 여러 robot과 여러 VLA model을 하나의 GPU server에서 동시에 serve하는 문제를 다룹니다.
 
@@ -45,7 +45,7 @@ Robion은 여러 robot과 여러 VLA model을 하나의 GPU server에서 동시�
 
 VLA가 factory나 lab에 들어가는 순간 ML model 하나가 아니라 real-time robotics infrastructure가 되는 셈입니다.
 
-## 3/ Real-world VLA는 결국 full stack 문제입니다
+## Real-world VLA는 결국 full stack 문제입니다
 
 Hy-Embodied-0.5-VLA는 data collection부터 pre-training, SFT, RL post-training, real-world deployment까지 전체 pipeline을 하나의 stack으로 봅니다.
 
@@ -54,7 +54,6 @@ Camera, action representation, policy, control interface, deployment environment
 그래서 앞으로 VLA 논문을 볼 때는 **Training / Serving / Deployment** 세 축을 같이 보는 편이 훨씬 유용합니다.
 
 ## Sources
-
 - [How to Better Train VLAs: Lessons Learned From the REAL-I Challenge at ICRA 2026](https://arxiv.org/abs/2609.13679)
 - [Efficient Vision-Language-Action Management and Serving for Robot Factories](https://arxiv.org/abs/2609.12075)
 - [Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack](https://arxiv.org/abs/2606.14409)
