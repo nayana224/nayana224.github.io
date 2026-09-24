@@ -29,13 +29,13 @@ AI가 연구 workflow 안으로 깊게 들어갈수록, evaluation도 같은 속
  <figcaption><strong>Figure 1.</strong> 9월 19일 업데이트의 공통점은 AI capability 자체보다 연구·평가·배포 loop 안으로 AI가 더 깊이 들어간다는 점이다. Sources are linked below.</figcaption>
 </figure>
 
-## 1/ Claude가 AI를 만드는 과정에 직접 들어오고 있습니다
+## Claude가 AI를 만드는 과정에 직접 들어오고 있습니다
 
 Anthropic 내부 측정에서 Claude는 AI R&D의 **26%에서 lead**, 90%가 넘는 작업에서 collaborator로 참여했습니다.
 
 Coding assistant를 넘어 다음 세대 model을 만드는 연구 과정 자체에 AI가 들어오고 있다는 신호입니다.
 
-## 2/ Frontier model 평가도 외부 검사에서 embedded evaluation으로 갑니다
+## Frontier model 평가도 외부 검사에서 embedded evaluation으로 갑니다
 
 Anthropic과 Accenture는 향후 5년 동안 **각각 최소 10억 달러**를 투입해 embedded evaluation 역량을 구축하기로 했습니다.
 
@@ -43,7 +43,7 @@ Evaluator가 Anthropic 내부에서 model evaluation, red-teaming, alignment ass
 
 강한 model을 만든 뒤 밖에서 시험하는 것보다, **개발 중간부터 평가를 붙이는 구조**로 옮겨가는 변화입니다.
 
-## 3/ Physical AI는 edge compute와 real-world data를 같이 밀고 있습니다
+## Physical AI는 edge compute와 real-world data를 같이 밀고 있습니다
 
 NVIDIA Jetson Orin Nano 2는 **78 TOPS, 8GB memory**와 이전 세대 대비 2배 inference performance를 제시했습니다.
 
@@ -52,7 +52,6 @@ Spirit AI는 약 1,000명의 contractor가 수집하는 real-world robot data를
 Robot Learning에서는 결국 model 크기만큼 **어디서 inference하고 어떤 data로 반복 학습하는지**가 중요해지고 있습니다.
 
 ## Sources
-
 - [Anthropic — Measurements for understanding the pace of AI development inside frontier labs](https://www.anthropic.com/institute/measuring-pace-of-ai-development)
 - [Anthropic — Partnering with Accenture on embedded evaluation](https://www.anthropic.com/news/accenture-embedded-evaluation)
 - [NVIDIA Jetson Orin Nano 2 — product details reported September 18](https://roboticsandautomationnews.com/2026/09/18/nvidia-unveils-jetson-orin-nano-2-for-robotics-and-edge-ai/104918/)
