@@ -1,11 +1,13 @@
 ---
 layout: feed_note
-title: "Coding agent가 robot task를 풀고, 그 해법을 VLA 데이터로 바꾼다"
-date: 2026-09-24 17:57:00 +0900
+title: "Robot learning의 두 경로: agent가 데이터를 만들고, human correction은 constraint가 된다"
+date: 2026-09-24 19:07:00 +0900
 channel: research-papers
 channel_label: Research Papers
-summary: "EmbodiedSWE는 coding agent가 long-horizon dexterous robotics task를 직접 해결하고, 검증된 solution을 대규모 trajectory로 확장해 VLA supervision으로 재사용하는 pipeline을 제안한다."
+summary: "EmbodiedSWE는 coding agent의 verified solution을 VLA supervision으로 확장하고, BEE는 human correction의 일관성을 action-dimension별 constraint로 바꿔 frozen VLA를 real-world RL로 개선한다."
 ---
+
+## 1/ Coding agent가 robot task를 풀고, 그 해법을 VLA 데이터로 바꾼다
 
 **EmbodiedSWE는 coding agent를 단순 robot planner가 아니라 `task solver → verified demonstration generator → VLA teacher`로 사용한다.** 새 EMBODIEDSWE-BENCH는 assembly, deformable object, liquid, cutting, loco-manipulation을 포함한 **6 suites·28 tasks·17 robot embodiments**를 제공하며, 일부 task는 약 **30분 horizon**까지 이어진다.
 
@@ -17,7 +19,18 @@ summary: "EmbodiedSWE는 coding agent가 long-horizon dexterous robotics task를
 
 다만 benchmark 결과를 곧바로 real-world autonomy 성능으로 해석하면 안 된다. 주된 agent evaluation과 data generation은 simulation에서 이뤄지며, coding-agent solve에는 상당한 iterative interaction과 시간이 필요하다. 프로젝트는 coding-agent-generated simulation demonstration만으로 fine-tune한 VLA의 real-robot long-horizon transfer 사례도 제시하지만, 이것만으로 광범위한 sim-to-real generalization이 검증됐다고 보기는 이르다.
 
+## 2/ Human correction을 그대로 따라 하지 않고, `어디까지 믿을지` 학습한다
+
+**BEE는 real-world VLA reinforcement learning에서 human correction을 정답 action으로 복제하지 않는다. 대신 correction이 action dimension별로 얼마나 일관적인지를 추정해 policy update의 constraint로 사용한다.** 세 real-world manipulation task와 LIBERO-Pro에서 저자 보고 평균 success rate는 **91.2%**, 비교한 RLT는 **57.5%**, DSRL은 **42.1%**였다.
+
+출발점은 실제 correction이 균일하게 신뢰할 수 있는 supervision이 아니라는 관찰이다. 어떤 dimension에서는 사람이 반복해서 거의 같은 방향으로 고치지만, 다른 dimension에서는 correction이 크게 달라질 수 있다. BEE의 Correction Model은 frozen VLA가 제안한 action에 대해 사람이 어떻게 개입할지와 그 일관성을 예측한다. **일관성이 높은 dimension은 human correction 가까이에 policy를 묶고, 변동성이 큰 dimension은 constraint를 느슨하게 만들어 RL이 expert보다 더 나은 action을 탐색할 여지를 남긴다.**
+
+이 점에서 intervention을 단순 DAgger-style demonstration accumulation으로 보는 것과 차이가 있다. 사람은 실패 직전의 precision-critical phase를 알려주는 안전장치이면서 동시에 `이 action component는 얼마나 강하게 고정해야 하는가`를 알려주는 signal이 된다. 저자 실험에서는 모든 real-world task에서 비교 방법보다 human intervention rate도 낮았다.
+
+closed-loop manipulation 관점에서는 꽤 직접적인 아이디어다. 실패 후 다시 demonstration을 모아 전체 policy를 재학습하는 대신, **실행 중 발생하는 correction을 policy improvement의 구조화된 feedback으로 바꾸는 방법**이기 때문이다. 다만 현재 결과는 세 real-world task와 하나의 simulation benchmark에 한정되어 있어, 더 다양한 embodiment와 contact-rich/deformable task에서도 같은 intervention efficiency가 유지되는지는 추가 검증이 필요하다.
+
 ### Sources
 
 - [EmbodiedSWE — project page](https://embodiedswe.github.io/)
 - [arXiv — EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics](https://arxiv.org/abs/2609.27308)
+- [arXiv — BEE: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models](https://arxiv.org/abs/2609.27450)
