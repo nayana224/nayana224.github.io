@@ -32,6 +32,7 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - If no candidate clears the threshold, do not modify feed files.
 
 ## Research Feed run log
+- 2026-09-24: Added a focused Research Papers note on high-DoF dexterous VLA post-training. The paper uses a temporal hand-action codec to bridge π₀.₅ to a 54-dimensional bimanual arm-hand interface, then combines SFT, buffered DAgger, and latent residual RL; the feed explicitly preserves the paper's single-platform, short-horizon evaluation limits.
 - 2026-09-23: Added GPT-6 Sol/Luna after primary-source verification. The release halves GPT-5.6 promotional API pricing while improving agent workflow, coding, and computer-use cost efficiency; this broad AI delta displaced the narrower same-day GR00T edge-NPU story to keep the AI/Robotics feed capped at three strongest items.
 
 ## Public notes / privacy policy
