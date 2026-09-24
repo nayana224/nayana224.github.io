@@ -11,6 +11,7 @@ topic: "Computer Vision"
 topic_ko: "컴퓨터 비전"
 topic_en: "Computer Vision"
 library_type: papers
+blog_category: "Paper Study"
 summary: "Atrous convolution, ASPP, encoder-decoder, depthwise separable convolution을 중심으로 DeepLabV3+를 정리한 노트."
 summary_ko: "Atrous convolution, ASPP, encoder-decoder, depthwise separable convolution을 중심으로 DeepLabV3+를 정리한 노트."
 summary_en: "Notes on atrous convolution, ASPP, encoder-decoder design, and depthwise separable convolution in DeepLabV3+."
