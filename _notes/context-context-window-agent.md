@@ -3,6 +3,7 @@ layout: note
 title: "Context와 Context Window는 무엇이 다른가 — Coding Agent를 예로 이해하기"
 date: 2026-09-21
 library_type: concept
+blog_category: "Research"
 category: Concepts & Theory
 category_ko: 개념 & 이론
 category_en: Concepts & Theory
