@@ -1,0 +1,141 @@
+---
+layout: null
+title: Inpyo's Blog
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Inpyo's Blog | Inpyo Lee</title>
+  <meta name="description" content="Inpyo Lee's personal blog on robotics, AI, papers, engineering, projects, and research notes.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260925-3' | relative_url }}">
+</head>
+<body class="notes-page blog-page" data-notes-lang="en">
+  <div class="notes-shell blog-shell">
+    <header class="notes-topbar">
+      <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
+      <div class="notes-actions">
+        <a href="/research-feed/">Research Feed</a>
+        <a href="{{ '/' | relative_url }}">
+          <span class="ui-en">Home</span><span class="ui-ko">홈으로</span>
+        </a>
+        <div class="notes-language-switcher" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
+          <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="notes-hero blog-hero">
+      <p class="notes-eyebrow">INPYO'S BLOG</p>
+      <h1>Inpyo's Blog</h1>
+      <p class="notes-lead">
+        <span class="ui-en">Research, engineering, papers, projects, and things I learn along the way.</span>
+        <span class="ui-ko">연구, 엔지니어링, 논문, 프로젝트를 공부하고 만들며 배운 것을 기록합니다.</span>
+      </p>
+    </section>
+
+    <nav class="blog-category-nav" aria-label="Blog categories">
+      <button class="blog-category active" type="button" data-blog-filter="all">All</button>
+      <button class="blog-category" type="button" data-blog-filter="Research">Research</button>
+      <button class="blog-category" type="button" data-blog-filter="Paper Study">Paper Study</button>
+      <button class="blog-category" type="button" data-blog-filter="Engineering">Engineering</button>
+      <button class="blog-category" type="button" data-blog-filter="Projects">Projects</button>
+      <button class="blog-category" type="button" data-blog-filter="Thoughts">Thoughts</button>
+    </nav>
+
+    <main class="blog-main">
+      <div class="blog-list" id="blog-list">
+        {% assign sorted_notes = site.notes | sort: "date" | reverse %}
+        {% for note in sorted_notes %}
+          {% assign blog_category = note.blog_category %}
+          {% unless blog_category %}
+            {% case note.library_type %}
+              {% when 'papers' %}{% assign blog_category = 'Paper Study' %}
+              {% when 'concept' %}{% assign blog_category = 'Research' %}
+              {% when 'implementation' %}{% assign blog_category = 'Engineering' %}
+              {% when 'meta' %}{% assign blog_category = 'Thoughts' %}
+              {% else %}{% assign blog_category = 'Research' %}
+            {% endcase %}
+          {% endunless %}
+        <article class="blog-entry" data-blog-category="{{ blog_category }}">
+          <div class="blog-entry-meta">
+            {% if note.date %}<time>{{ note.date | date: "%Y.%m.%d" }}</time>{% endif %}
+            <span>{{ blog_category }}</span>
+          </div>
+          <h2><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h2>
+          {% if note.summary %}<p>{{ note.summary }}</p>{% endif %}
+          <a class="blog-read" href="{{ note.url | relative_url }}">
+            <span class="ui-en">Read article →</span><span class="ui-ko">글 읽기 →</span>
+          </a>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="empty-state" id="blog-empty" hidden>
+        <p class="empty-icon">＋</p>
+        <strong>
+          <span class="ui-en">No posts in this category yet.</span>
+          <span class="ui-ko">아직 이 카테고리에 글이 없습니다.</span>
+        </strong>
+      </div>
+    </main>
+
+    <footer class="notes-footer"><span>Inpyo Lee · Robotics & AI</span></footer>
+  </div>
+
+  <script>
+    (function () {
+      var lang = localStorage.getItem('notes-ui-lang') || 'en';
+      var langButtons = document.querySelectorAll('.notes-language-switcher button');
+      var categoryButtons = document.querySelectorAll('.blog-category');
+      var entries = Array.prototype.slice.call(document.querySelectorAll('.blog-entry'));
+      var empty = document.getElementById('blog-empty');
+
+      function applyLanguage(nextLang) {
+        lang = nextLang;
+        localStorage.setItem('notes-ui-lang', lang);
+        document.body.setAttribute('data-notes-lang', lang);
+        document.documentElement.lang = lang;
+        langButtons.forEach(function (button) {
+          var active = button.getAttribute('data-lang') === lang;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+      }
+
+      function applyFilter(filter) {
+        var count = 0;
+        entries.forEach(function (entry) {
+          var show = filter === 'all' || entry.getAttribute('data-blog-category') === filter;
+          entry.hidden = !show;
+          if (show) count += 1;
+        });
+        categoryButtons.forEach(function (button) {
+          button.classList.toggle('active', button.getAttribute('data-blog-filter') === filter);
+        });
+        empty.hidden = count !== 0;
+      }
+
+      langButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyLanguage(button.getAttribute('data-lang'));
+        });
+      });
+
+      categoryButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyFilter(button.getAttribute('data-blog-filter'));
+        });
+      });
+
+      applyLanguage(lang);
+      applyFilter('all');
+    })();
+  </script>
+</body>
+</html>
