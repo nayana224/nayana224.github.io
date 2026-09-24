@@ -1508,3 +1508,153 @@ body[data-notes-lang="en"] .ui-en {
     padding:13px 14px 14px;
   }
 }
+
+
+/* Personal blog */
+.blog-shell {
+  width:min(100% - 40px,920px);
+}
+
+.blog-hero {
+  padding:72px 0 34px;
+}
+
+.blog-hero h1 {
+  max-width:700px;
+}
+
+.blog-category-nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:0 0 24px;
+  border-bottom:1px solid var(--line);
+}
+
+.blog-category {
+  min-height:31px;
+  padding:5px 11px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:transparent;
+  color:var(--muted);
+  font:inherit;
+  font-size:12px;
+  cursor:pointer;
+  transition:background .14s ease,color .14s ease,border-color .14s ease;
+}
+
+.blog-category:hover {
+  color:var(--ink);
+  border-color:var(--accent-strong);
+}
+
+.blog-category.active {
+  border-color:var(--accent-strong);
+  background:var(--surface-strong);
+  color:var(--ink);
+}
+
+.blog-main {
+  width:min(100%,760px);
+}
+
+.blog-list {
+  margin:0;
+}
+
+.blog-entry {
+  padding:31px 0 34px;
+  border-bottom:1px solid var(--line);
+}
+
+.blog-entry[hidden] {
+  display:none;
+}
+
+.blog-entry-meta {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+  color:var(--faint);
+  font-size:11px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.blog-entry-meta span::before {
+  content:"";
+  display:inline-block;
+  width:3px;
+  height:3px;
+  margin:0 9px 2px 0;
+  border-radius:50%;
+  background:var(--accent-strong);
+}
+
+.blog-entry h2 {
+  margin:0 0 10px;
+  font-size:clamp(22px,3vw,28px);
+  line-height:1.28;
+  letter-spacing:-.025em;
+}
+
+.blog-entry h2 a {
+  color:var(--ink);
+}
+
+.blog-entry h2 a:hover {
+  color:var(--hover);
+}
+
+.blog-entry > p {
+  max-width:690px;
+  margin:0 0 14px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.72;
+}
+
+.blog-read {
+  color:var(--accent);
+  font-size:12px;
+  font-weight:650;
+}
+
+.blog-read:hover {
+  color:var(--hover);
+}
+
+.blog-page .notes-footer {
+  margin-top:20px;
+}
+
+@media(max-width:620px) {
+  .blog-shell {
+    width:min(100% - 28px,920px);
+  }
+
+  .blog-hero {
+    padding:52px 0 28px;
+  }
+
+  .blog-category-nav {
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:18px;
+  }
+
+  .blog-category-nav::-webkit-scrollbar {
+    display:none;
+  }
+
+  .blog-category {
+    flex:0 0 auto;
+  }
+
+  .blog-entry {
+    padding:25px 0 28px;
+  }
+}
