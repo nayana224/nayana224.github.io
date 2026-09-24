@@ -1365,3 +1365,146 @@ body[data-notes-lang="en"] .ui-en {
     margin-top:30px;
   }
 }
+
+
+/* Research Feed reading rhythm */
+.feed-note-page .note-article {
+  width:min(100%,700px);
+  margin-top:62px;
+}
+
+.feed-note-page .note-meta {
+  margin-bottom:12px;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+}
+
+.feed-note-page .note-article > h1 {
+  max-width:680px;
+  font-size:clamp(30px,4.4vw,40px);
+  line-height:1.22;
+  letter-spacing:-.03em;
+}
+
+.feed-summary {
+  margin:22px 0 0;
+  padding:15px 17px 16px;
+  border-left:3px solid var(--accent-strong);
+  border-radius:0 8px 8px 0;
+  background:var(--surface);
+}
+
+.feed-summary-label {
+  display:block;
+  margin-bottom:6px;
+  color:var(--accent-strong);
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.feed-summary .note-summary {
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.feed-note-page .note-divider {
+  margin:30px 0 34px;
+}
+
+.feed-note-page .note-content {
+  font-size:16px;
+  line-height:1.78;
+}
+
+.feed-note-page .note-content p {
+  margin:0 0 1.55em;
+}
+
+.feed-note-page .note-content h2 {
+  margin:44px 0 16px;
+  padding-top:2px;
+  font-size:21px;
+  line-height:1.4;
+  letter-spacing:-.018em;
+}
+
+.feed-note-page .note-content h2:first-child {
+  margin-top:0;
+}
+
+.feed-note-page .note-content strong {
+  font-weight:680;
+}
+
+.feed-note-page .note-content code {
+  padding:.1em .32em;
+  border:1px solid var(--line);
+  border-radius:4px;
+  background:var(--code);
+  color:#f1fa8c;
+  font-size:.88em;
+}
+
+.concept-tag {
+  color:var(--accent-strong);
+  font-weight:650;
+}
+
+.feed-result,
+.feed-caveat {
+  margin:24px 0 28px;
+  padding:15px 17px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--surface);
+}
+
+.feed-result {
+  border-left:3px solid var(--green);
+}
+
+.feed-caveat {
+  border-left:3px solid var(--accent-strong);
+}
+
+.feed-result-label,
+.feed-caveat-label {
+  display:block;
+  margin-bottom:7px;
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.feed-result-label {
+  color:var(--green);
+}
+
+.feed-caveat-label {
+  color:var(--accent-strong);
+}
+
+.feed-note-page .note-content h2#sources,
+.feed-note-page .note-content h2:last-of-type {
+  margin-top:48px;
+}
+
+@media(max-width:620px) {
+  .feed-note-page .note-article {
+    margin-top:44px;
+  }
+
+  .feed-note-page .note-content {
+    font-size:15px;
+    line-height:1.74;
+  }
+
+  .feed-summary {
+    padding:13px 14px 14px;
+  }
+}
