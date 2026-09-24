@@ -3,6 +3,7 @@ layout: note
 title: "Scaled Dot-Product Attention과 Multi-Head Attention은 무엇이 다른가"
 date: 2026-09-21
 library_type: concept
+blog_category: "Research"
 category: Concepts & Theory
 category_ko: 개념 & 이론
 category_en: Concepts & Theory
