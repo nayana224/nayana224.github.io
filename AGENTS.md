@@ -6,6 +6,15 @@ Personal GitHub Pages site for Inpyo Lee.
 ## Branch policy
 Apply requested website changes directly to `main` unless the user explicitly requests otherwise.
 
+
+## Visual theme contract
+- Use a restrained Dracula-inspired palette as the default visual direction across Homepage, Notes, Publications, and Research Feed.
+- Preserve the sparse academic layout, compact hierarchy, responsive breakpoints, and existing EN/KO behavior; theme changes should not become layout rewrites.
+- Core colors: page background #282a36, primary text #f8f8f2, borders/strong surfaces #44475a, cyan links #8be9fd, purple structural accents #bd93f9, pink hover/focus accents #ff79c6, and green #50fa7b only for restrained technical emphasis.
+- Avoid rainbow-like use of Dracula colors. Keep most content neutral and reserve accents for hierarchy, links, focus, and small technical cues.
+- Prefer shared CSS variables over new hard-coded colors so Homepage and Notes/Feed remain visually coherent.
+- Maintain readable contrast for body text, code blocks, figures, tables, chips, and mobile controls on the dark background.
+
 ## Homepage copy direction
 - Present the profile as a robotics systems / manipulation background that is expanding toward robot learning and multimodal robotics.
 - Lead with demonstrated experience before aspirational research interests.
