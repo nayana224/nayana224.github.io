@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>{{ page.title }} | Research Feed | Inpyo Lee</title>
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260924-1' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260925-2' | relative_url }}">
 </head>
 <body class="note-page feed-note-page" data-notes-lang="ko">
   <div class="note-shell">
@@ -23,7 +23,12 @@
       </div>
 
       <h1>{{ page.title }}</h1>
-      {% if page.summary %}<p class="note-summary">{{ page.summary }}</p>{% endif %}
+      {% if page.summary %}
+      <div class="feed-summary">
+        <span class="feed-summary-label">Summary</span>
+        <p class="note-summary">{{ page.summary }}</p>
+      </div>
+      {% endif %}
 
       <div class="note-divider"></div>
       <div class="note-content">
