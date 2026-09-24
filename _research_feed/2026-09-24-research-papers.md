@@ -7,7 +7,7 @@ channel_label: Research Papers
 summary: "EmbodiedSWE는 coding agent의 verified solution을 VLA supervision으로 확장하고, BEE는 human correction의 일관성을 action-dimension별 constraint로 바꿔 frozen VLA를 real-world RL로 개선한다."
 ---
 
-## 1/ Coding agent가 robot task를 풀고, 그 해법을 VLA 데이터로 바꾼다
+## Coding agent가 robot task를 풀고, 그 해법을 VLA 데이터로 바꾼다
 
 **EmbodiedSWE는 coding agent를 단순 robot planner가 아니라 `task solver → verified demonstration generator → VLA teacher`로 사용한다.** 새 EMBODIEDSWE-BENCH는 assembly, deformable object, liquid, cutting, loco-manipulation을 포함한 **6 suites·28 tasks·17 robot embodiments**를 제공하며, 일부 task는 약 **30분 horizon**까지 이어진다.
 
@@ -19,7 +19,7 @@ summary: "EmbodiedSWE는 coding agent의 verified solution을 VLA supervision으
 
 다만 benchmark 결과를 곧바로 real-world autonomy 성능으로 해석하면 안 된다. 주된 agent evaluation과 data generation은 simulation에서 이뤄지며, coding-agent solve에는 상당한 iterative interaction과 시간이 필요하다. 프로젝트는 coding-agent-generated simulation demonstration만으로 fine-tune한 VLA의 real-robot long-horizon transfer 사례도 제시하지만, 이것만으로 광범위한 sim-to-real generalization이 검증됐다고 보기는 이르다.
 
-## 2/ Human correction을 그대로 따라 하지 않고, `어디까지 믿을지` 학습한다
+## Human correction을 그대로 따라 하지 않고, `어디까지 믿을지` 학습한다
 
 **BEE는 real-world VLA reinforcement learning에서 human correction을 정답 action으로 복제하지 않는다. 대신 correction이 action dimension별로 얼마나 일관적인지를 추정해 policy update의 constraint로 사용한다.** 세 real-world manipulation task와 LIBERO-Pro에서 저자 보고 평균 success rate는 **91.2%**, 비교한 RLT는 **57.5%**, DSRL은 **42.1%**였다.
 
@@ -29,8 +29,7 @@ summary: "EmbodiedSWE는 coding agent의 verified solution을 VLA supervision으
 
 closed-loop manipulation 관점에서는 꽤 직접적인 아이디어다. 실패 후 다시 demonstration을 모아 전체 policy를 재학습하는 대신, **실행 중 발생하는 correction을 policy improvement의 구조화된 feedback으로 바꾸는 방법**이기 때문이다. 다만 현재 결과는 세 real-world task와 하나의 simulation benchmark에 한정되어 있어, 더 다양한 embodiment와 contact-rich/deformable task에서도 같은 intervention efficiency가 유지되는지는 추가 검증이 필요하다.
 
-### Sources
-
+## Sources
 - [EmbodiedSWE — project page](https://embodiedswe.github.io/)
 - [arXiv — EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics](https://arxiv.org/abs/2609.27308)
 - [arXiv — BEE: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models](https://arxiv.org/abs/2609.27450)
