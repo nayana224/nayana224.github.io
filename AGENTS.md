@@ -33,13 +33,23 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Select candidates on novelty, concreteness, technical relevance, practical usefulness, and source quality. Broad AI relevance and user-specific research relevance are independent positive signals. Never create filler.
 - Before publishing, inspect recent `_research_feed/` files for duplicate products, papers, features, and core claims. Publish follow-ups only when the new delta is explicit.
 - Writing rhythm: concrete hook in first 1–3 sentences → exact change/number/capability → concise practical/research implication. Keep paragraphs short and avoid report-like exposition.
-- Prefer one focused story when one item is strong; use `1/`, `2/`, `3/` only for genuinely related items. Do not force a fixed synthesis section.
+- Prefer one focused story when one item is strong. Do not use Threads-style `1/`, `2/`, `3/` slash numbering in titles or section headings. When multiple related items share one post, give each a descriptive unnumbered `##` heading. Do not force a fixed synthesis section.
 - Titles should state the change, not use generic roundup labels. English technical terms may remain natural in Korean prose. Avoid sensationalism.
 - Put clickable Markdown primary-source links in the final `Sources` section; never publish bare URLs.
 - At most one compact explanatory schematic per focused story, only when materially useful. Independently redraw from verified facts in restrained paper/seminar block-arrow style, with `Figure N.` caption and source. Do not reuse third-party graphics without clear permission.
 - Do not create a Research Papers post unless genuinely notable fresh papers exist.
 - Hourly runs must avoid duplicate stories and update the same date/channel file instead of creating multiple same-day files.
 - If no candidate clears the threshold, do not modify feed files.
+
+## Research Feed readability contract
+- Research Feed should read like a compact research notebook, not a social-media thread.
+- Use the visual hierarchy: metadata → title → concise summary → article body → sources.
+- Keep article prose relatively narrow and scannable. Prefer short paragraphs; avoid dense walls of text.
+- Use bold sparingly: normally one key emphasis per paragraph, and prefer moving important quantitative results into a dedicated result block when the story has several numbers.
+- Distinguish code from concepts. Backticks are for literal identifiers, commands, APIs, symbols, or exact technical strings; use normal prose or a concept-label style for conceptual terms such as LLM agent, VLA teacher, or verified demonstration.
+- Optional semantic sections such as `Key result`, `Why it matters`, and `Caveat` may be used when they materially improve scanning, but they are not mandatory boilerplate.
+- Keep caveats adjacent to the claim they qualify, especially for simulation-only, single-platform, benchmark-limited, or vendor-reported results.
+- Sources remain a final `## Sources` section with clickable primary-source links.
 
 ## Research Feed run log
 - 2026-09-24 23:17 KST: Added OX Security's primary-source MCP infrastructure study after checking 15,465 published servers / 5,095 unique hostnames. The feed records 15.6% resolving outside the US, 2.3% failing to resolve including six re-registerable domains, and 0.45% associated with home networks/consumer tunneling. It also scopes OX's Claude Code prompt-injection result to the tested Haiku 3.5 configuration and notes that the same attack did not succeed against Opus 4.6/4.7. The story frames MCP security as infrastructure/permission governance rather than a universal protocol exploit and displaces the older Opus 5.5 item to keep the same-day AI & Robotics note at three stories.
