@@ -15,6 +15,5 @@ Humanoid loco-manipulation에서는 **자연스럽게 걷는 것**과 **정확�
 
 TianGong Omni 실제 하드웨어에서도 foothold와 end-effector를 함께 추적하는 multi-gait loco-manipulation을 시연했다. Robot Learning 관점에서는 여러 primitive를 high-level에서 선택하는 것뿐 아니라, **서로 다른 low-level skill의 내부 representation까지 어떻게 한 policy에 통합할 것인가**라는 문제를 보여주는 사례다.
 
-### Sources
-
+## Sources
 - [arXiv — STRIDER: Stepping-Enabled Multi-Gait Hierarchical 3D Loco-Manipulation Framework for Humanoid Robots](https://arxiv.org/abs/2609.23483)
