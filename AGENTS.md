@@ -7,11 +7,11 @@ Personal GitHub Pages site for Inpyo Lee.
 Apply requested website changes directly to `main` unless the user explicitly requests otherwise.
 
 ## Visual theme contract
-- Use a restrained Dracula-inspired palette as the default visual direction across Homepage, Notes, Publications, and Research Feed.
+- Use a restrained Dracula-inspired palette as the default visual direction across Homepage, Blog, Publications, and Research Feed.
 - Preserve the sparse academic layout, compact hierarchy, responsive breakpoints, and existing EN/KO behavior; theme changes should not become layout rewrites.
 - Core colors: page background #282a36, primary text #f8f8f2, borders/strong surfaces #44475a, cyan links #8be9fd, purple structural accents #bd93f9, pink hover/focus accents #ff79c6, and green #50fa7b only for restrained technical emphasis.
 - Avoid rainbow-like use of Dracula colors. Keep most content neutral and reserve accents for hierarchy, links, focus, and small technical cues.
-- Prefer shared CSS variables over new hard-coded colors so Homepage and Notes/Feed remain visually coherent.
+- Prefer shared CSS variables over new hard-coded colors so Homepage and Blog/Feed remain visually coherent.
 - Maintain readable contrast for body text, code blocks, figures, tables, chips, and mobile controls on the dark background.
 
 ## Homepage copy direction
@@ -20,6 +20,15 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - Keep the core progression: Mechatronics → ROS 2 Robotics → System Integration & Manipulation → Learning for Robotics.
 - Group research interests into Robotic Manipulation, Robot Learning, and Multimodal Learning for Robotics instead of listing overlapping VLM/VLA/Embodied AI labels separately.
 - Preserve the sparse academic layout and compact information hierarchy.
+
+## Blog information architecture
+- The public-facing name is `Blog`; the landing page title is `Inpyo's Blog`.
+- Public URLs use `/blog/` and `/blog/:name/`. The internal Jekyll collection may remain named `notes` / `_notes` for compatibility.
+- Treat `/notes/` as a legacy route only; keep redirects so existing links do not break.
+- Blog is a chronological personal writing space, not a folder-style knowledge-base UI.
+- Primary categories are `Research`, `Paper Study`, `Engineering`, `Projects`, and `Thoughts`. New posts should set `blog_category` explicitly.
+- The Blog landing page should use category filters plus a chronological article list; avoid notebook folder trees and filesystem-like navigation.
+- Research Feed remains separate: it curates fresh external updates, while Blog contains the user's own longer-form study, engineering, project, and reflective writing.
 
 ## Research Feed automation contract
 - Research Feed is the Jekyll `research_feed` collection; automated posts live under `_research_feed/`.
@@ -65,14 +74,14 @@ Apply requested website changes directly to `main` unless the user explicitly re
 - 2026-09-24: Added a focused Research Papers note on high-DoF dexterous VLA post-training. The paper uses a temporal hand-action codec to bridge π₀.₅ to a 54-dimensional bimanual arm-hand interface, then combines SFT, buffered DAgger, and latent residual RL; the feed explicitly preserves the paper's single-platform, short-horizon evaluation limits.
 - 2026-09-23: Added GPT-6 Sol/Luna after primary-source verification. The release halves GPT-5.6 promotional API pricing while improving agent workflow, coding, and computer-use cost efficiency; this broad AI delta displaced the narrower same-day GR00T edge-NPU story to keep the AI/Robotics feed capped at three strongest items.
 
-## Public notes / privacy policy
-- Public Notes may contain general concepts, theory, paper study, and broadly reusable technical explanations.
+## Public blog / privacy policy
+- Public Blog posts may contain general concepts, theory, paper study, engineering notes, project write-ups, and broadly reusable technical explanations.
 - Do not publish lab-internal work, unpublished research details, experiment settings/results, internal project architecture, private code/repositories, collaborator information, or confidential lab activity.
 - Treat Notion as private working material and GitHub Pages as a curated public knowledge base; do not mirror Notion automatically.
-- Keep authored publications separate from papers studied in Notes.
+- Keep authored publications separate from papers studied in Blog.
 - Prefer semantic, lightweight, responsive HTML/CSS diagrams or independently redrawn paper-like schematics; never expose private lab/project details through visuals.
 
-## Notes authoring / Notion import rules
+## Blog authoring / Notion import rules
 - Treat Notion as source material, not publish-ready Markdown.
-- Public Notes math rendering uses MathJax in `_layouts/note.html`.
+- Public Blog math rendering uses MathJax in `_layouts/note.html`.
 - Preserve existing tested escaping conventions in `_notes/*.md`; verify rendered math rather than changing escaping globally during unrelated work.
