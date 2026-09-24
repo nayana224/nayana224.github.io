@@ -3,6 +3,7 @@ layout: note
 title: "LLM Agent는 그냥 LLM이 아니다 — Model, Tools, State, Loop로 이해하기"
 date: 2026-09-21
 library_type: concept
+blog_category: "Research"
 category: Concepts & Theory
 category_ko: 개념 & 이론
 category_en: Concepts & Theory
