@@ -1,10 +1,10 @@
 ---
 layout: feed_note
-title: "Tactile residual부터 visual force grounding까지, VLA가 contact를 다루는 법"
-date: 2026-09-23 17:40:00 +0900
+title: "VLA에 느린 brain과 빠른 reflex를 분리한다"
+date: 2026-09-23 18:05:00 +0900
 channel: research-papers
 channel_label: Research Papers
-summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정하고, VisForce는 fingertip 위치에 force를 시각적으로 grounding한다. rMuscle은 반복 robot execution의 내부 유사성을 cache해 VLA inference를 가속한다."
+summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정하고, VisForce는 force를 fingertip 위치에 visual grounding한다. Real-Time EXPO-FT는 느린 VLA proposal과 빠른 reactive edit policy를 분리해 dynamic manipulation의 latency 문제를 RL로 다룬다."
 ---
 
 ## 1/ VT-Bridge: pretrained VLA 위에 tactile residual correction을 얹는다
@@ -25,19 +25,22 @@ summary: "VT-Bridge는 tactile residual feedback으로 pretrained VLA를 보정�
 
 다만 실험은 단일 UR10/dexterous-hand setup과 제한된 task에 대한 결과다. 다양한 물체·gripper·camera configuration에서도 fingertip-aligned cue가 유지되는지, 그리고 force cue rendering이 실제 sensor noise와 occlusion에 얼마나 강한지는 추가 검증이 필요하다.
 
-## 3/ rMuscle: 반복되는 robot execution을 VLA의 'muscle memory'로 cache한다
+## 3/ Real-Time EXPO-FT: 느린 VLA는 제안하고, 빠른 policy가 마지막 순간에 고친다
 
-**rMuscle은 VLA inference에서 반복 robot execution 사이의 유사성을 이용해 visual-token output과 neuron activation pattern을 재사용하는 dual-phase cache를 제안한다.** Context Cache는 visual-token computation을 줄이고, Action Cache는 denoising 과정에서 반복되는 activation pattern을 이용해 weight access를 줄인다.
+**Real-Time EXPO-FT는 큰 pretrained VLA의 느린 action generation과 최신 observation에 반응하는 lightweight edit policy를 서로 다른 시간축으로 분리한다.** VLA는 asynchronous하게 action chunk 후보를 만들고, 실행 직전의 fast edit policy가 현재 state를 보고 후보를 수정한다. Q-function은 수정된 후보 중 실행할 action chunk를 선택한다.
 
-중요한 점은 단순 KV cache를 더 크게 두는 접근이 아니라 **robot workload 자체의 반복성**을 inference optimization 대상으로 삼았다는 것이다. 저자들은 LIBERO, RoboTwin과 physical manipulation task에서 RTX 4090과 Jetson Thor를 평가했고, 기존 success rate를 유지하면서 **1.29–1.42× speedup**을 보고한다. Cache overhead를 줄이기 위해 online cache recomputation, sliding-window retrieval, consecutive denoising step 사이의 mask sharing도 사용한다.
+이 구조가 겨냥하는 문제는 단순 inference speed가 아니라 **stale observation**이다. VLA가 observation을 보고 계산하는 동안 실제 robot과 object는 이미 움직였기 때문에, 계산이 끝났을 때 action이 과거 state에 대한 답이 될 수 있다. 저자들은 이 delay 자체를 RL fine-tuning 과정에 포함해 reactive correction을 학습한다.
 
-이 결과는 VLA deployment에서 model compression만 볼 필요가 없다는 신호다. 공장·랩 자동화처럼 비슷한 scene과 task가 반복되는 환경이라면 `현재 observation → 매번 전체 VLA 계산` 대신 **이전 execution의 내부 state를 어디까지 안전하게 재사용할 수 있는가**가 별도의 system-design 축이 된다. 특히 edge robot에서는 model latency뿐 아니라 cache memory footprint와 stale-state failure를 함께 봐야 한다.
+Kinetix에서는 delayed/non-delayed method를 포함한 비교에서 10개 environment 모두 최고 성능을 기록했고, 네 가지 dynamic real-world task에서는 task당 online robot data를 최대 **10분**으로 제한한 상태에서 평균 policy performance가 **42% → 97%**로 향상됐다. 평가 task는 robot object passing, ball balancing, table-soccer kicking, dynamic object picking이며 online training 중 human correction은 사용하지 않았다.
 
-수치는 저자들이 평가한 model·hardware·task 조합에 한정된다. 반복성이 낮은 open-world manipulation에서도 같은 cache hit와 speedup이 유지되는지는 추가 검증이 필요하다.
+이 결과가 흥미로운 이유는 큰 VLA를 무조건 더 빠르게 만드는 대신 **semantic·behavior prior를 담당하는 slow policy와 control-frequency correction을 담당하는 fast policy를 분리**했다는 점이다. Closed-loop manipulation에서 perception/model latency를 없앨 수 없다면, `느린 high-level prediction을 유지하면서 최신 observation으로 어디까지 residual correction할 것인가`라는 별도의 설계 축이 생긴다.
+
+다만 결과는 저자들의 dynamic-task setup과 online RL 조건에 한정된다. Sparse reward를 안정적으로 정의하기 어려운 manipulation이나 long-horizon task에서도 10분 수준의 adaptation이 유지되는지는 별도 검증이 필요하다.
 
 ### Sources
 
 - [arXiv — VT-Bridge: Bridging Pretrained Foundation VLAs to VTLAs via Lightweight Residual Adaptation](https://arxiv.org/abs/2609.22606)
 - [VT-Bridge Project Page](https://hoxnocha.github.io/vt-bridge-web/)
 - [arXiv — VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation](https://arxiv.org/abs/2609.25785)
-- [arXiv — rMuscle: Robotic Muscle Memory for Efficient Vision-Language-Action Model Inference](https://arxiv.org/abs/2609.19104)
+- [arXiv — Reinforcement Learning for Real-Time Vision-Language-Action Policies](https://arxiv.org/abs/2609.18207)
+- [Real-Time EXPO-FT Project Page](https://pd-perry.github.io/real-time-expo-ft/)
