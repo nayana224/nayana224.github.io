@@ -1,10 +1,10 @@
 ---
 layout: feed_note
-title: "VLA를 더 견고하게 만드는 두 방법: camera viewpoint와 selective demonstration"
-date: 2026-09-25 03:18:00 +0900
+title: "VLA를 더 견고하게 만드는 세 방법: viewpoint, selective demonstration, real-time reaction"
+date: 2026-09-25 06:09:00 +0900
 channel: research-papers
 channel_label: Research Papers
-summary: "InfiNoVA는 3D Gaussian 기반 novel-view augmentation으로 unseen camera viewpoint robustness를 높이고, TANDEM은 TAMP와 selective teleoperation을 결합해 long-horizon VLA demonstration 수집 비용을 줄인다."
+summary: "InfiNoVA는 novel-view augmentation, TANDEM은 selective teleoperation, Real-Time EXPO-FT는 최신 관측 기반 fast action editing으로 VLA의 deployment 병목을 각각 다룬다."
 ---
 
 ## 카메라를 옮겨도 버티는 VLA를, 새 demonstration 없이 만든다
@@ -31,6 +31,20 @@ robot learning 관점에서는 사람이 모든 trajectory를 처음부터 끝�
 
 다만 논문은 현재 under review이며 평가는 다섯 long-horizon manipulation task에 한정된다. planner의 domain coverage와 perception error가 달라질 때 human-efficiency gain이 얼마나 유지되는지는 더 넓은 평가가 필요하다.
 
+## 느린 VLA는 그대로 두고, 실행 직전 action만 빠르게 고친다
+
+**Real-Time EXPO-FT는 큰 VLA의 느린 inference를 없애려 하지 않고, 최신 observation을 보는 lightweight edit policy를 별도로 둔다.** base VLA가 expressive action chunk를 천천히 생성하는 동안 fast policy가 실행 시점의 state를 보고 그 action을 수정하며, Q-function이 candidate chunk를 선택한다.
+
+문제는 단순 throughput이 아니다. VLA inference에 시간이 걸리면 action을 계산할 때 본 observation과 실제 실행 시점의 state가 달라지는 **stale-observation distribution shift**가 생긴다. 이 연구는 slow deliberation과 fast reaction을 두 timescale로 분리해 latency 자체를 policy training 문제로 다룬다.
+
+Kinetix에서는 delayed policy가 delayed/non-delayed 비교를 포함한 **10개 환경 모두에서 최고 성능**을 기록했다. 네 dynamic real-world task—object passing, ball balancing, table-soccer kicking, dynamic object picking—에서는 online robot data를 task당 최대 10분만 사용해 평균 performance를 **42%에서 97%**로 높였다고 보고한다. human intervention 없이 RL로 adaptation한다.
+
+이 구조는 VLA deployment에서 model latency를 단순히 더 빠른 GPU로 해결해야 하는 비용 문제로만 보지 않게 한다. **느린 high-level action prior + 최신 state를 반영하는 fast residual/edit layer**라는 분리는 움직이는 물체나 contact 변화처럼 execution 중 state가 계속 바뀌는 closed-loop manipulation에 특히 직접적인 설계 선택지다.
+
+다만 실세계 평가는 네 dynamic task이고 online RL을 요구한다. fast edit policy가 base VLA의 잘못된 semantic plan이나 irreversible contact failure까지 복구한다고 볼 수는 없다.
+
 ## Sources
 - [arXiv — InfiNoVA: Infinite Novel View Augmentation for Viewpoint Invariant Robot Policies](https://arxiv.org/abs/2609.27734)
 - [arXiv — TANDEM: Task and Motion Planning with As-Needed Demonstrations for Efficient Vision-Language-Action Model Fine-tuning](https://arxiv.org/abs/2609.28314)
+- [arXiv — Reinforcement Learning for Real-Time Vision-Language-Action Policies](https://arxiv.org/abs/2609.18207)
+- [Project page — Real-Time EXPO-FT](https://pd-perry.github.io/real-time-expo-ft/)
