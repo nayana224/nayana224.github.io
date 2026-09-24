@@ -1,10 +1,18 @@
 ---
 layout: feed_note
-title: "950개 Claude agent가 21시간 genome mining으로 새 enzyme system을 찾았다"
-date: 2026-09-24 22:26:12 +0900
+title: "15,465개 MCP server를 조사했더니 agent의 trust boundary가 protocol 밖에 있었다"
+date: 2026-09-24 23:17:23 +0900
 channel: ai-robotics
 channel_label: AI & Robotics
-summary: "Anthropic은 약 950개 Claude agent가 21시간 동안 2억1천만 token을 사용해 genome database를 탐색하고, 기존에 정의되지 않았던 array-associated reverse transcriptase(ART) system을 찾아냈다고 공개했다. Claude Opus 5.5의 cost-per-task 변화와 ROS 2 GPU-resident transport까지 함께 보면 agent와 robotics 모두 단일 모델 점수보다 orchestration·실행 비용·data path가 중요한 system problem으로 이동하고 있다."
+summary: "OX Security가 공개 MCP server 15,465개와 5,095개 hostname을 조사해 data residency, abandoned domain, consumer-network exposure를 확인했다. Claude Code 실험에서는 일부 구형 모델 구성에서 한 번의 Always-Allow가 이후 prompt injection의 privileged file access로 이어질 수 있었다. Anthropic의 parallel-agent science workflow와 ROS 2 GPU-resident transport까지 함께 보면 agent/robotics system은 모델 성능뿐 아니라 trust boundary와 data path를 함께 설계해야 한다."
+---
+
+**OX Security가 공개 MCP server 15,465개를 분석했더니, agent가 연결하는 tool infrastructure 자체가 새로운 trust boundary로 떠올랐다.** 조사 대상 5,095개 unique hostname 중 **15.6%는 미국 밖의 infrastructure로 resolve**됐고, **2.3%는 resolve되지 않았으며 그중 6개 domain은 다시 등록 가능한 상태**였다. 또 0.45%는 home network나 consumer tunneling tool과 연관돼 있었다.
+
+핵심은 MCP protocol 자체의 결함 하나라기보다 **agent에게 tool permission을 주는 순간 그 뒤의 server·domain·hosting lifecycle까지 신뢰하게 된다는 점**이다. OX의 Claude Code 실험에서는 Haiku 3.5를 사용했을 때 한 번 `Always-Allow`를 허용한 뒤 malicious MCP server의 prompt injection이 추가 확인 없이 privileged file access로 이어졌다. 같은 공격은 OX가 시험한 Opus 4.6·4.7에서는 성공하지 않았으므로, 이를 모든 Claude/MCP client에 일반화해서는 안 된다.
+
+MCP를 실제 agent architecture에 넣을 때는 `tool schema가 안전한가`만 보는 것으로 부족하다. **server identity, domain ownership, network/data residency, permission persistence, model/client별 prompt-injection resistance**까지 함께 관리해야 한다. MCP가 plugin layer처럼 넓어질수록 tool registry와 permission policy도 dependency governance에 가까운 system component가 된다.
+
 ---
 
 **약 950개의 Claude agent가 21시간 동안 2억1천만 token을 사용해 DNA sequence를 탐색하고, 기존에 정의되지 않았던 enzyme system 후보를 찾아냈다.** Anthropic의 새 life sciences 연구팀은 이 과정에서 Claude가 20만 개가 넘는 reverse transcriptase(RT)를 모으고, 3,500개 candidate system을 추린 뒤 20개까지 좁혔다고 공개했다.
@@ -15,21 +23,13 @@ summary: "Anthropic은 약 950개 Claude agent가 21시간 동안 2억1천만 to
 
 ---
 
-**Claude Opus 5.5는 Opus 5보다 input/output token 가격을 각각 $5→$4, $25→$20 per 1M tokens로 낮추면서, Anthropic 기준 실제 task당 비용은 약 40% 줄였다.** 동시에 Terminal-Bench 4.0은 **66.4%**, OSWorld 2.0은 **81.8%**, AutomationBench는 **40.0%**를 기록했다.
-
-단순히 benchmark 점수가 오른 release라기보다 agent가 긴 작업을 수행할 때 필요한 **token·tool call·step 수를 줄이는 방향**이 더 눈에 띈다. Anthropic은 Opus 5.5가 Opus 5보다 기본 출력 속도가 30% 이상 빠르고, 별도 fast mode에서는 최대 2.5× 속도를 제공한다고 설명한다. 다만 benchmark 수치는 Anthropic 및 각 평가 주체의 특정 harness·effort 설정에서 측정된 결과이므로 서로 다른 agent runtime의 실제 latency나 비용으로 그대로 일반화하면 안 된다.
-
-Coding agent나 high-level robot agent처럼 모델을 한 번 호출하고 끝나는 것이 아니라 observation → reasoning → tool/action → verification을 반복하는 시스템에서는 **single-call intelligence보다 `성공한 task 하나를 끝내는 데 드는 총 inference cost와 step 수`가 더 직접적인 system metric**이 된다. 모델 선택에서도 benchmark accuracy와 함께 cost-per-task, wall-clock time, tool-call count를 같이 측정할 이유가 커졌다.
-
----
-
 **같은 날 robotics stack 쪽에서는 ROS 2 Lyrical의 `rosidl::Buffer`와 NVIDIA CUDA buffer backend가 GPU-resident data를 표준 ROS message 안에서 직접 전달하는 경로를 열었다.** 같은 host·CUDA device·Linux user와 지원 RMW 조건을 만족하면 co-located node 사이 payload를 host copy·serialization 없이 넘기고, 조건이 맞지 않으면 기존 CPU path로 fallback한다.
 
 Isaac ROS 5.0도 이 upstream mechanism으로 이동하면서 기존 NITROS transport API를 deprecated하고 있다. perception-to-action pipeline에서는 model inference 시간뿐 아니라 **sensor → preprocessing → model → control 사이에서 data가 어떤 memory path로 이동하는지**까지 end-to-end latency에 포함해 봐야 한다는 변화다.
 
 ### Sources
+- [OX Security Research — 15,465 MCP Servers. 0 Governance.](https://www.ox.security/ebooks/15465-mcp-servers-0-governance/)
 - [Anthropic — Claude discovers a novel enzyme system with CRISPR-like repeats](https://www.anthropic.com/news/claude-discovers-novel-enzyme-system)
-- [Anthropic — Introducing Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)
 - [NVIDIA Technical Blog — Accelerating a ROS 2 Node with an AI Agent and NVIDIA Isaac ROS](https://developer.nvidia.com/blog/accelerating-a-ros-2-node-with-an-ai-agent-and-nvidia-isaac-ros)
 - [Isaac ROS — rosidl::Buffer and Buffer Backends](https://nvidia-isaac-ros.github.io/concepts/rosidl_buffer/index.html)
 - [Isaac ROS 5.0 — From NITROS to rosidl::Buffer](https://nvidia-isaac-ros.github.io/v/release-5.0/concepts/rosidl_buffer/nitros_migration.html)
