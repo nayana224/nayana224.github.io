@@ -38,7 +38,9 @@
     <article class="note-article">
       <div class="note-meta">
         {% if page.date %}<time>{{ page.date | date: "%Y.%m.%d" }}</time>{% endif %}
-        {% if page.category %}
+        {% if page.blog_category %}
+        <span>{{ page.blog_category }}</span>
+        {% elsif page.category %}
         <span>
           <span class="ui-ko">{{ page.category_ko | default: page.category }}</span>
           <span class="ui-en">{{ page.category_en | default: page.category }}</span>
