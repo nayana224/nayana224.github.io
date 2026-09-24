@@ -29,7 +29,19 @@ summary: "EmbodiedSWE는 coding agent의 verified solution을 VLA supervision으
 
 closed-loop manipulation 관점에서는 꽤 직접적인 아이디어다. 실패 후 다시 demonstration을 모아 전체 policy를 재학습하는 대신, **실행 중 발생하는 correction을 policy improvement의 구조화된 feedback으로 바꾸는 방법**이기 때문이다. 다만 현재 결과는 세 real-world task와 하나의 simulation benchmark에 한정되어 있어, 더 다양한 embodiment와 contact-rich/deformable task에서도 같은 intervention efficiency가 유지되는지는 추가 검증이 필요하다.
 
+## VLA가 위험해지기 전에 checkpoint를 남기고 rollback한다
+
+**SafeLoop는 VLA 자체를 다시 학습하지 않고, vision·proprioception 기반 risk predictor와 rollback controller를 바깥에 붙여 long-horizon manipulation의 실패를 줄인다.** predictor는 body collision과 object failure 각각에 대해 hazard probability와 time-to-hazard를 예측하고, controller는 위험도에 따라 `noop → record → rollback` 중 하나를 선택한다.
+
+핵심은 실패를 감지한 뒤 멈추는 것이 아니라 **아직 안전할 때 waypoint를 checkpoint로 저장하고, hazard가 임박하면 그 지점으로 joint-space retreat한 뒤 base policy를 다시 query한다는 것**이다. learned policy가 매 순간 완벽한 action을 내도록 강제하기보다, 실행 중 잘못된 trajectory에서 빠져나와 다른 continuation을 시도할 수 있는 recovery layer를 둔다.
+
+저자 실험은 **LIBERO 24 tasks × 16 seeds**와 **real-robot 3 tasks × 25 rollouts**에서 진행됐고, SafeLoop는 base-policy control rate와 task success를 유지하면서 hazard case를 약 **70% 감소**시켰다고 보고한다. collision뿐 아니라 object drop 같은 object-level failure까지 별도 risk로 예측한다.
+
+closed-loop manipulation 관점에서는 policy architecture보다 **execution-time verification과 recovery**를 분리해 설계한다는 점이 중요하다. VLA를 교체하거나 fine-tune하지 않고 외부 wrapper로 붙일 수 있어, generalist policy 위에 task-independent safety/recovery layer를 추가하는 방향으로 볼 수 있다. 다만 real-robot 평가는 세 task에 한정되어 있고 rollback 가능한 safe waypoint가 존재한다는 전제가 있으므로, irreversible contact나 deformable/entangled object manipulation에서도 같은 효과가 유지되는지는 아직 검증이 필요하다.
+
 ## Sources
 - [EmbodiedSWE — project page](https://embodiedswe.github.io/)
 - [arXiv — EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics](https://arxiv.org/abs/2609.27308)
 - [arXiv — BEE: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models](https://arxiv.org/abs/2609.27450)
+- [arXiv — SafeLoop: Risk-Aware Rollback for Vision-Language-Action Manipulation](https://arxiv.org/abs/2609.26313)
+- [GitHub — SafeLoop implementation](https://github.com/Loule0-0/SafeLoop/tree/release/safeloop)
