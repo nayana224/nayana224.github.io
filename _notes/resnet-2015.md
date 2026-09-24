@@ -11,6 +11,7 @@ topic: "Computer Vision"
 topic_ko: "컴퓨터 비전"
 topic_en: "Computer Vision"
 library_type: papers
+blog_category: "Paper Study"
 summary: "Degradation problem, residual learning, identity shortcut을 중심으로 ResNet의 핵심 아이디어를 정리한 노트."
 summary_ko: "Degradation problem, residual learning, identity shortcut을 중심으로 ResNet의 핵심 아이디어를 정리한 노트."
 summary_en: "Notes on the degradation problem, residual learning, and identity shortcuts in ResNet."
