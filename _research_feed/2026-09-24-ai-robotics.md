@@ -27,7 +27,7 @@ MCP를 실제 agent architecture에 넣을 때는 `tool schema가 안전한가`�
 
 Isaac ROS 5.0도 이 upstream mechanism으로 이동하면서 기존 NITROS transport API를 deprecated하고 있다. perception-to-action pipeline에서는 model inference 시간뿐 아니라 **sensor → preprocessing → model → control 사이에서 data가 어떤 memory path로 이동하는지**까지 end-to-end latency에 포함해 봐야 한다는 변화다.
 
-### Sources
+## Sources
 - [OX Security Research — 15,465 MCP Servers. 0 Governance.](https://www.ox.security/ebooks/15465-mcp-servers-0-governance/)
 - [Anthropic — Claude discovers a novel enzyme system with CRISPR-like repeats](https://www.anthropic.com/news/claude-discovers-novel-enzyme-system)
 - [NVIDIA Technical Blog — Accelerating a ROS 2 Node with an AI Agent and NVIDIA Isaac ROS](https://developer.nvidia.com/blog/accelerating-a-ros-2-node-with-an-ai-agent-and-nvidia-isaac-ros)
