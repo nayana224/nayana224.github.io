@@ -11,6 +11,7 @@ topic: "Transformer"
 topic_ko: "Transformer"
 topic_en: "Transformer"
 library_type: papers
+blog_category: "Paper Study"
 summary: "Transformer encoder-decoder, Scaled Dot-Product Attention, Multi-Head Attention과 Q/K/V 구조를 중심으로 정리한 노트."
 summary_ko: "Transformer encoder-decoder, Scaled Dot-Product Attention, Multi-Head Attention과 Q/K/V 구조를 중심으로 정리한 노트."
 summary_en: "Notes on the Transformer encoder-decoder, scaled dot-product attention, multi-head attention, and Q/K/V."
