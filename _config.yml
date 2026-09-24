@@ -1,12 +1,12 @@
 title: Inpyo Lee
-description: Robotics & AI notes
+description: Inpyo Lee's personal blog on robotics, AI, papers, and engineering
 markdown: kramdown
 timezone: Asia/Seoul
 
 collections:
   notes:
     output: true
-    permalink: /notes/:name/
+    permalink: /blog/:name/
   research_feed:
     output: true
     permalink: /research-feed/:name/
