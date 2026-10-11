@@ -1,0 +1,17 @@
+---
+layout: feed_note
+title: "생성 AI 텍스트에 워터마크: 무엇을 증명하고 무엇을 못 하나"
+date: 2026-10-05 19:00:00 +0900
+channel: ai-robotics
+channel_label: "AI & Robotics"
+summary: "OpenAI가 textGrain 텍스트 워터마킹 접근과 EU 적용 계획을 공개했다."
+---
+
+*당일 발표*
+
+OpenAI는 10월 5일 **textGrain**을 이용한 텍스트 워터마킹과 탐지기 접근 계획을 설명했다. API 이용자에게는 일부 모델의 워터마킹을 opt-in으로 제공하고, EU의 적격 ChatGPT·Codex 출력에는 단계적으로 적용할 계획이라고 밝혔다.
+
+워터마크는 통계적 신호이며 사용자의 신원, 문장의 정확성, 저작권 소유관계를 증명하지 않는다. 짧거나 편집·번역된 텍스트에서는 false positive/negative 문제가 남는다. AI agent의 로그·평가 보고서를 다룰 때 **provenance와 factual verification을 분리**해야 하는 이유다.
+
+## Sources
+- [OpenAI 공식 발표](https://openai.com/index/eu-text-provenance/)
