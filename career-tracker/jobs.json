@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "last_updated": "2026-10-16 09:10 KST",
+  "description": "Public job posting snapshot, not application tracking or verified live availability.",
+  "jobs": [
+    {
+      "company": "로보티즈",
+      "position": "휴머노이드 모방학습 엔지니어",
+      "location": "서울 강서구 마곡",
+      "degree_required": "미기재",
+      "experience_required": "경력 무관",
+      "employment": "정규직",
+      "required_skills": [
+        "PyTorch/TensorFlow",
+        "Imitation Learning/Behavior Cloning",
+        "Transformer/Diffusion",
+        "컴퓨터 비전 및 로봇 제어 프로젝트"
+      ],
+      "preferred": [
+        "LeRobot/OpenVLA/ACT/OpenPi/GR00T",
+        "ROS 2 Manipulation",
+        "AI/Robotics/CS 석사 이상"
+      ],
+      "status": "open_until_filled",
+      "deadline": null,
+      "source_type": "company_official",
+      "url": "https://robotisrecruiter.ninehire.site/job_posting/FN7uwLe8",
+      "priority": "high",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "",
+      "change_type": "baseline"
+    },
+    {
+      "company": "로보티즈",
+      "position": "Physical AI 로봇 인식·제어 엔지니어",
+      "location": "서울 강서구 마곡",
+      "degree_required": "학사 이상 또는 동등 역량",
+      "experience_required": "경력 무관(관련 연구·실무 경험 요구)",
+      "employment": "정규직",
+      "required_skills": [
+        "Python 또는 C++",
+        "Linux",
+        "3D Vision/Pose Estimation 또는 Motion Planning/Force Control",
+        "실제 로봇·센서 정량 평가 경험"
+      ],
+      "preferred": [
+        "VLA/로봇 파운데이션 모델",
+        "ROS 2/MoveIt 2",
+        "PyTorch/ONNX/TensorRT",
+        "Grasp Pose/Visual Servoing"
+      ],
+      "status": "open_until_filled",
+      "deadline": null,
+      "source_type": "company_official",
+      "url": "https://robotisrecruiter.ninehire.site/job_posting/6ZZDD5Dl",
+      "priority": "high",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "",
+      "change_type": "baseline"
+    },
+    {
+      "company": "로보티즈",
+      "position": "휴머노이드 핸드 제어 엔지니어",
+      "location": "서울 강서구 마곡",
+      "degree_required": "미기재",
+      "experience_required": "신입·경력",
+      "employment": "정규직",
+      "required_skills": [
+        "Python/C++",
+        "Kinematics/Dynamics/Jacobian",
+        "ROS 2/ros2_control",
+        "모터·센서 기반 로봇 제어"
+      ],
+      "preferred": [
+        "Dexterous Manipulation",
+        "Grasp Planning",
+        "Closed-loop force control",
+        "Isaac Sim/MuJoCo"
+      ],
+      "status": "open_until_filled",
+      "deadline": null,
+      "source_type": "company_official",
+      "url": "https://robotisrecruiter.ninehire.site/job_posting/qkOQnLZi",
+      "priority": "high",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "",
+      "change_type": "baseline"
+    },
+    {
+      "company": "로보티즈",
+      "position": "휴머노이드 강화학습 엔지니어",
+      "location": "서울 강서구 마곡",
+      "degree_required": "학사 이상",
+      "experience_required": "경력 무관",
+      "employment": "정규직",
+      "required_skills": [
+        "강화학습 제어 구현",
+        "Kinematics/Dynamics",
+        "C/C++/Python",
+        "시뮬레이터"
+      ],
+      "preferred": [
+        "PPO/SAC",
+        "Isaac Sim/Lab",
+        "ROS 2",
+        "Sim-to-Real",
+        "석사 이상"
+      ],
+      "status": "open_until_filled",
+      "deadline": null,
+      "source_type": "company_official",
+      "url": "https://robotisrecruiter.ninehire.site/job_posting/lI5g655G",
+      "priority": "medium",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "",
+      "change_type": "baseline"
+    },
+    {
+      "company": "로보티즈",
+      "position": "인턴 상시모집 (Physical AI 기능개발·학습 및 추론)",
+      "location": "서울 강서구 마곡",
+      "degree_required": "미기재",
+      "experience_required": "경력 무관",
+      "employment": "인턴",
+      "required_skills": [
+        "ROS 2",
+        "Python/C++",
+        "Linux",
+        "모방학습/강화학습 기초"
+      ],
+      "preferred": [
+        "Isaac Sim",
+        "VLA",
+        "로봇 데이터셋"
+      ],
+      "status": "open_permanent",
+      "deadline": null,
+      "source_type": "company_official",
+      "url": "https://robotisrecruiter.ninehire.site/job_posting/iuFSE1yT",
+      "priority": "medium",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "",
+      "change_type": "baseline"
+    },
+    {
+      "company": "원오토메이션",
+      "position": "Physical AI 연구 개발 엔지니어",
+      "location": "경남 창원시 마산회원구",
+      "degree_required": "학력 무관",
+      "experience_required": "신입·경력",
+      "employment": "정규직",
+      "required_skills": [
+        "세부 기술 스택은 상세공고에서 미확인"
+      ],
+      "preferred": [
+        "석사/박사",
+        "로봇·메카트로닉스·컴퓨터SW 전공",
+        "유관 업무 경험"
+      ],
+      "status": "open",
+      "deadline": "2026-10-22",
+      "source_type": "employer_posted_job_platform",
+      "url": "https://m.jobkorea.co.kr/Recruit/GI_Read/50036242",
+      "priority": "medium",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "마감일은 10/22 확인, 마감 시각은 표시가 달라 미확인",
+      "change_type": "baseline"
+    },
+    {
+      "company": "씨메스로보틱스",
+      "position": "Physical AI 엔지니어",
+      "location": "서울 강남구",
+      "degree_required": "관련 전공 석사 이상",
+      "experience_required": "공고 본문 경력 무관·신입 가능; 일부 목록은 경력 요구 표기",
+      "employment": "계약직 수습 3개월 후 평가 정규직 전환",
+      "required_skills": [
+        "Python/PyTorch/JAX",
+        "IL/RL/Diffusion Policy/Transformer",
+        "Robot Manipulation",
+        "Sim-to-Real"
+      ],
+      "preferred": [
+        "VLA/Robot Foundation Model",
+        "Isaac Sim/MuJoCo",
+        "RGB-D/Grasp Planning"
+      ],
+      "status": "unverified_conflicting_sources",
+      "deadline": "2026-10-31 (집계사이트 기준)",
+      "source_type": "third_party_conflicting",
+      "url": "https://searchjob.co.kr/job/greeting-cmesairobotics-215882/",
+      "priority": "high_if_open",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "2026-10-31 집계 공고와 원티드/점핏의 마감된 유사 공고가 혼재. 동일 채용인지 공식 원문 재검증 필요",
+      "change_type": "baseline"
+    },
+    {
+      "company": "씨메스로보틱스",
+      "position": "Physical AI 플랫폼 개발",
+      "location": "서울 강남구",
+      "degree_required": "관련 전공 석사 이상",
+      "experience_required": "공고 본문 경력 무관·신입 가능; 목록은 1~10년 표기",
+      "employment": "정규직(집계 정보)",
+      "required_skills": [
+        "Python/C++",
+        "PyTorch",
+        "Linux/ROS 2",
+        "로봇 데이터 수집·관리·추론 플랫폼"
+      ],
+      "preferred": [
+        "Teleoperation/Retargeting",
+        "VLA/Imitation Learning",
+        "Robot Manipulation",
+        "Isaac Sim/MuJoCo"
+      ],
+      "status": "unverified_official",
+      "deadline": "2026-10-31 (집계사이트 기준)",
+      "source_type": "third_party",
+      "url": "https://zighang.com/recruitment/11c2359c-1bee-46fd-a6f0-b1387d45cdff",
+      "priority": "high_if_open",
+      "verified_at": "2026-10-16 09:10 KST",
+      "snapshot_date": "2026-10-16",
+      "note": "공식 기업 원문 직접 확인 미완료",
+      "change_type": "baseline"
+    }
+  ]
+}
