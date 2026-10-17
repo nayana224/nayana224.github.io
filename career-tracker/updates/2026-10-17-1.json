@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-17",
+  "jobs": [
+    {
+      "company": "로브로스",
+      "position": "로봇 데이터 솔루션 엔지니어",
+      "location": "서울 성동구",
+      "degree_required": "학력 무관(채용 플랫폼 표시)",
+      "experience_required": "경력 무관",
+      "employment": "정규직",
+      "required_skills": [
+        "로봇 데이터 솔루션(직무명 기준)"
+      ],
+      "preferred": [],
+      "status": "open",
+      "deadline": "2026-11-30",
+      "source_type": "employer_posted_job_platform",
+      "url": "https://m.jobkorea.co.kr/Recruit/GI_Read/50091359",
+      "priority": "medium",
+      "verified_at": "2026-10-17 09:10:27 KST",
+      "change_type": "discovered",
+      "first_seen_at": "2026-10-17",
+      "note": "세부 기술·우대사항 미확인. 잡코리아 등록정보 기준이며 공식 기업 원문 미확인."
+    },
+    {
+      "company": "로브로스",
+      "position": "휴머노이드 솔루션 엔지니어",
+      "location": "서울 성동구",
+      "degree_required": "학력 무관(채용 플랫폼 표시)",
+      "experience_required": "경력 무관",
+      "employment": "정규직",
+      "required_skills": [
+        "휴머노이드 솔루션(직무명 기준)"
+      ],
+      "preferred": [],
+      "status": "open",
+      "deadline": "2026-11-30",
+      "source_type": "employer_posted_job_platform",
+      "url": "https://m.jobkorea.co.kr/Recruit/GI_Read/50091425",
+      "priority": "medium",
+      "verified_at": "2026-10-17 09:10:27 KST",
+      "change_type": "discovered",
+      "first_seen_at": "2026-10-17",
+      "note": "세부 직무 기술 및 우대사항 미확인. 잡코리아 등록정보 기준."
+    }
+  ]
+}
