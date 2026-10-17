@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-17",
+  "jobs": [
+    {
+      "company": "모빌에이트",
+      "position": "AI 로봇 개발 (ROS 2) 소프트웨어 팀원",
+      "location": "충남 아산시",
+      "degree_required": "대졸 이상(졸업예정자 가능)",
+      "experience_required": "신입·경력",
+      "employment": "정규직",
+      "required_skills": [
+        "ROS 2",
+        "실외 자율주행 로봇 SW 개발"
+      ],
+      "preferred": [
+        "관련 학과 전공",
+        "자율주행 로봇 프로젝트",
+        "운전 가능"
+      ],
+      "status": "open_permanent",
+      "deadline": null,
+      "source_type": "employer_posted_job_platform",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50062516",
+      "priority": "medium",
+      "verified_at": "2026-10-17 09:10:27 KST",
+      "change_type": "discovered",
+      "first_seen_at": "2026-10-17",
+      "note": "잡코리아 2026-09-28 등록·상시채용 표시. VLA보다는 ROS 2 모바일 로봇 분야."
+    },
+    {
+      "company": "두산로보틱스",
+      "position": "Physical AI Engineer",
+      "location": "경기 성남시 분당구",
+      "degree_required": "석사 이상",
+      "experience_required": "경력 3년 이상 필수",
+      "employment": "정규직",
+      "required_skills": [
+        "Physical AI (세부 기술 요구사항 미확인)"
+      ],
+      "preferred": [],
+      "status": "open",
+      "deadline": "2026-12-07",
+      "source_type": "employer_posted_job_platform",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50130481",
+      "priority": "low_experience_required",
+      "verified_at": "2026-10-17 09:10:27 KST",
+      "change_type": "discovered",
+      "first_seen_at": "2026-10-17",
+      "note": "경력 3년 이상 필수로 석사 신입 우선 대상에서는 제외. 공식 기업 채용 원문 미확인."
+    }
+  ]
+}
