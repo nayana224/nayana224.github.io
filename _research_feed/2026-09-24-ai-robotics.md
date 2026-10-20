@@ -27,6 +27,12 @@ MCP를 실제 agent architecture에 넣을 때는 `tool schema가 안전한가`�
 
 Isaac ROS 5.0도 이 upstream mechanism으로 이동하면서 기존 NITROS transport API를 deprecated하고 있다. perception-to-action pipeline에서는 model inference 시간뿐 아니라 **sensor → preprocessing → model → control 사이에서 data가 어떤 memory path로 이동하는지**까지 end-to-end latency에 포함해 봐야 한다는 변화다.
 
+## 세 사례에서 지켜야 할 경계는 각기 다르다
+
+MCP 인프라 조사에서 필요한 것은 server·도메인·권한의 관리이고, ART 사례에서는 계산 탐색 결과를 실험실 검증과 구별하는 것이며, ROS 2 GPU buffer에서는 호환 조건과 fallback 경로를 확인하는 것이다. 모두 ‘AI가 잘한다’는 주장보다 실행 경계를 명시해야 하는 사례다.
+
+실제 배포 전에는 tool server의 소유권과 권한을 점검하고, 과학적 발견은 독립된 실험으로 재현하며, GPU payload 전달은 대상 RMW·device·사용자 조합에서 복사 여부와 지연을 직접 측정해야 한다. 어느 한 결과도 다른 두 분야의 안전성이나 성능을 대신 증명하지 않는다.
+
 ## Sources
 - [OX Security Research — 15,465 MCP Servers. 0 Governance.](https://www.ox.security/ebooks/15465-mcp-servers-0-governance/)
 - [Anthropic — Claude discovers a novel enzyme system with CRISPR-like repeats](https://www.anthropic.com/news/claude-discovers-novel-enzyme-system)
