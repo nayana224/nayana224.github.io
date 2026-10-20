@@ -33,6 +33,12 @@ manipulation 관점에서는 둘을 같이 볼 만합니다. VLA의 generalizati
 
 논문은 simulation benchmark와 real-world manipulation에서 baseline을 앞섰다고 보고하지만, 현재 arXiv abstract만으로는 모든 실험 조건과 generalization 범위를 판단하기 어렵습니다. 수치 자체보다 subtask-focused geometry distillation과 implicit world modeling이라는 설계 선택을 우선해서 볼 가치가 있습니다.
 
+## 두 방법의 inductive bias는 서로 다른 실패를 겨냥한다
+
+SAVLA는 회전 변환에 대한 관계를 policy의 action head에 보존하려 하고, FOCAL-VLA는 현재 subtask에 필요한 geometry와 시간에 따른 상호작용 단서를 선택적으로 전달한다. 전자는 기하 변환에 대한 equivariance, 후자는 관련 정보의 선택·정렬이라는 다른 가정을 둔다.
+
+회전된 카메라에서의 성공률만으로 접촉 후 물체 dynamics를 이해했다고 볼 수 없고, task-focused geometry 개선만으로 임의의 pose 변화에 일반화한다고 볼 수도 없다. 평가에서는 카메라 회전, 물체 pose 변화, 접촉 순서 변화를 분리해 어느 inductive bias가 각 shift에 기여하는지 확인해야 한다.
+
 ## Sources
 - [arXiv — SAVLA: Symmetry-Aware Vision-Language-Action Models for Robotic Manipulation](https://arxiv.org/abs/2609.16641)
 - [arXiv — FOCAL-VLA: Subtask-Guided Geometry Distillation and Implicit World Modeling for Vision-Language-Action Models](https://arxiv.org/abs/2609.21228)
