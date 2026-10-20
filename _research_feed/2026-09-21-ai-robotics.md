@@ -34,6 +34,12 @@ NVIDIA가 9월 21일 공개한 **Halos** 설명에서 robotics safety stack을 �
 
 Robot Learning 관점에서는 policy 성능만큼 중요한 질문이 하나 더 생깁니다. **학습된 policy가 실패해도 독립적인 sensing·runtime·facility layer가 안전 경계를 유지할 수 있는가?** Physical AI가 demo에서 실제 deployment로 넘어갈수록 이 separation이 시스템 설계의 핵심이 될 가능성이 큽니다.
 
+## 세 발표를 같은 ‘자율성’ 수치로 읽지 않기
+
+Anthropic의 AL 분류는 내부 R&D 작업 단위, OpenAI의 문서는 측정·보고 기준 제안, NVIDIA Halos는 제품과 안전 구성요소를 엮은 architecture 설명이다. 30,000개 동시 agent는 운영 규모의 지표이지 그 자체로 연구 품질이나 안전성을 증명하지 않는다.
+
+로봇 조직에서 이를 적용하려면 정책 성공률과 별도로 agent identity, 허용된 action, monitor 차단·미탐, 사람 escalation, 안전 기능의 독립성을 기록해야 한다. vendor가 제시한 stack은 실제 hazard analysis와 검증된 safety case를 대체하지 않는다.
+
 ## Sources
 - [Anthropic — Measurements for understanding the pace of AI development inside frontier labs](https://www.anthropic.com/institute/measuring-pace-of-ai-development)
 - [OpenAI — Building standards for the next phase of AI](https://openai.com/index/building-standards-next-phase-ai/)
