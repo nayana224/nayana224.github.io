@@ -27,6 +27,12 @@ summary: "EmbodiedSWE와 AdaHVLA는 long-horizon robotics에서 느린 agent rea
 
 두 연구를 같이 보면 최근 long-horizon robotics에서 중요한 질문이 조금 달라지고 있다. **더 큰 VLA 하나를 만드는 것뿐 아니라, VLA가 실패했을 때 무엇이 기억하고 판단하고 수정하며 그 경험을 다음 실행에 어떻게 재사용할 것인가**가 별도의 시스템 설계 문제가 되고 있다.
 
+## 비슷한 ‘경험 재사용’도 저장하는 것이 다르다
+
+EmbodiedSWE는 검증된 해법을 다양화해 새로운 학습 trajectory로 만든다. AdaHVLA는 실행 증거와 수정 가설을 harness의 상태로 남기고 다음 실행 구조를 바꾼다. 전자는 policy가 배울 데이터의 개선, 후자는 policy 주변 orchestration의 반복 개선이다.
+
+실험을 재현할 때는 추가 trajectory 양과 scene 다양성, harness revision 횟수와 revision당 성능 변화를 분리해야 한다. simulation success가 오른 사실만으로 real robot의 안전성·장기 신뢰성이 개선됐다고 결론 내릴 수는 없다.
+
 ## Sources
 
 - [EmbodiedSWE — arXiv](https://arxiv.org/abs/2609.27308)
