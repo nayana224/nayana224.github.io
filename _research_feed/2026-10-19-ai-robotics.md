@@ -17,6 +17,12 @@ summary: "Hao AI Lab의 ORA는 오픈웨이트 LLM에 관측, 파지, 이동 도
 
 실험 대부분은 시뮬레이션이며, 에피소드 중간값은 14~25분이다. 시뮬레이터는 모델 추론 중 멈추므로 실시간 제어 성능을 입증하지 않는다. 실제 로봇 시연은 두 건이며 매 동작에 작업자 승인이 필요했다. 연구진은 공식 성공 판정과 실제 지시 이행이 다를 수 있다고도 명시했다. 따라서 발표된 수치를 현장 자율조작 성공률로 일반화할 수 없다.
 
+## 공식 benchmark 성공과 현장 자율성을 나눠 읽기
+
+RoboTwin C2R의 173/250과 LIBERO-Pro의 651/800은 각 benchmark protocol이 성공으로 판정한 횟수다. 도구를 호출하는 일반 LLM 시스템과 전용 VLA를 비교하려면 동일한 관측·제어 지연, tool access, reset 조건을 맞춰야 한다.
+
+실제 두 시연은 작업자 승인으로 실행됐으므로 unattended autonomy의 근거가 아니다. ORA의 가치는 VLA를 대체한다는 결론보다, 범용 reasoning과 기하·파지·계획 도구를 조합한 시스템을 어떤 비용·지연·사람 감독 조건에서 쓸지 평가하게 만든다는 데 있다.
+
 ## Sources
 - [ORA 공식 기술 발표](https://haoailab.com/blogs/ora/)
 - [ORA 공식 GitHub 코드 및 실행 방법](https://github.com/hao-ai-lab/ORA)
