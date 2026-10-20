@@ -21,6 +21,12 @@ VLA가 긴 action chunk를 실행하면 모델 호출 사이의 대기 시간은
 
 두 연구는 각각 **행동 전환 시점**과 **행동 표현의 강건성**을 다룬다. closed-loop manipulation에서 지연과 복구를 평가할 때 구분할 만한 문제다.
 
+## 두 성능 수치의 분모를 확인하기
+
+RACE의 약 5배 감소는 stop-and-go idle time에 대한 보고이며, task 완료 시간 전체의 5배 단축으로 바꿔 말할 수 없다. ProAct의 성공률 향상도 각 benchmark와 학습·평가 설정에 종속된다. 두 수치는 분모와 baseline을 확인해야 의미가 보존된다.
+
+VLA deployment에서 chunk를 늘리는 실험은 idle time뿐 아니라 실패 후 재관측까지의 최대 시간, 접촉 이벤트 직후의 대응, jerk와 성공률을 함께 기록하는 편이 유용하다. tokenizer 비교는 재구성 오차 외에 closed-loop action 결과를 봐야 한다.
+
 ## Sources
 - [RACE 논문 (2026-10-05)](https://arxiv.org/abs/2610.05719)
 - [RACE 실제 로봇 시연](https://github.com/Seonghoon-Yu/RACE-VLA)
