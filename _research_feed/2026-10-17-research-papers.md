@@ -15,6 +15,12 @@ summary: "LIBERO-Pro2.0은 1,648개 분포 이동 과제 인스턴스로 장면�
 
 로봇 정책을 비교할 때 nominal task 성공률과 함께 카메라·제어 주기·로봇 상태 설정·언어 지시가 바뀐 조건을 따로 보고해야 한다는 점을 구체적인 테스트 항목으로 만든 연구다.
 
+## 벤치마크에서 분리해 볼 shift
+
+정적 perturbation은 시작 전 조건을 바꾸고, runtime intervention은 실행 도중 조건을 바꾼다. 두 종류는 같은 distribution shift가 아니다. 평균 26.5%p 하락은 runtime shift 아래 취약성을 드러내지만, 어떤 정책이 어느 intervention에서 실패했는지를 분해해야 원인을 찾을 수 있다.
+
+실제 로봇 검증에서는 camera viewpoint, 제어 주기, 관절 초기 상태, 언어 paraphrase를 하나씩 바꾸고 조합 변화도 추가해야 한다. LIBERO-Pro2.0은 이런 시험을 표준화하는 benchmark이며, 공장 환경의 위험률이나 실제 하드웨어의 모든 변화 범위를 직접 추정하는 자료는 아니다.
+
 ## Sources
 - [LIBERO-Pro2.0 논문](https://arxiv.org/abs/2610.24587)
 - [논문 HTML과 벤치마크 구성](https://arxiv.org/html/2610.24587v1)
