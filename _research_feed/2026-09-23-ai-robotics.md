@@ -35,6 +35,12 @@ Microsoft Research가 **physical AI inference를 robot onboard GPU에 고정해�
 
 Microsoft는 이를 Physical AI Toolchain의 기능으로 구현해 robotics workload를 containerize하고 Kubernetes로 robot·edge·cloud에 배치하도록 했다. ROS 2와 LeRobot integration을 제공하며 SO-101, UR10e 예제도 포함한다. VLA deployment에서도 model FLOPs나 single-call latency가 아니라 **observation → inference → action 전체 loop와 실제 task success를 기준으로 compute architecture를 결정해야 한다**는 시스템 관점이 중요해지고 있다.
 
+## 서로 다른 병목을 겨냥한 세 결과
+
+GPT-6 가격·평가 수치는 범용 모델 API의 비용과 업무 성능, FLUX 3 Action은 video foundation model을 action policy로 옮기는 학습 설계, edge/cloud 분산 inference 결과는 로봇 시스템의 계산 배치 문제를 다룬다. 이들을 하나의 ‘모델이 좋아졌다’는 이야기로 묶기보다 병목별로 읽는 편이 정확하다.
+
+로봇 실험에서는 token당 가격 대신 성공한 task당 총비용, FLUX 계열에는 새로운 trajectory·embodiment에 대한 일반화, offload에는 네트워크 지연과 통신 단절을 포함한 closed-loop 성공을 측정해야 한다. 특히 클라우드에서 성공률이 높아도 안전 관련 저수준 제어가 네트워크에 의존해도 된다는 결론은 나오지 않는다.
+
 ## Sources
 - [OpenAI — Introducing GPT-6 Sol and Luna](https://openai.com/index/introducing-gpt-6-sol-and-luna/)
 - [Black Forest Labs — FLUX 3 Action](https://bfl.ai/models/flux-3-action)
