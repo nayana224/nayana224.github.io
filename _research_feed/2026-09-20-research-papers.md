@@ -23,6 +23,12 @@ VLA가 같은 장면을 보더라도, 조작 단계가 바뀌면 다음 행동�
 
 이 연구의 질문은 “중간 표현을 추가하면 좋은가?”보다 구체적이다. **action 학습이 task 단계·상호작용 변화·공간 관계를 실제로 사용하도록 학습 경로를 설계할 수 있는가?** 논문은 factor별 개입 실험도 제시해, 구조화된 상태가 최종 정책에 계속 기여하는지 살핀다. 다만 높은 LIBERO 점수는 포화에 가까우므로, 이 설계의 차이를 읽을 때는 분포 이동·장기 과제와 실제 로봇 결과를 함께 보는 편이 낫다.
 
+## 무엇을 분리했는지 확인하는 ablation
+
+SCULPT-VLA의 주장은 세 latent factor가 이름만 붙은 보조 feature가 아니라 action 학습에 실제로 쓰인다는 것이다. 따라서 전체 성공률보다 task progression, scene dynamics, spatial grounding을 하나씩 제거했을 때 어느 과제·분포 이동에서 손실이 커지는지가 설계 근거를 가르는 결과다.
+
+재현을 검토한다면 고정 backbone 비교와 별도로 teacher 표현의 생성 비용, factor별 제거 실험, 학습 시점과 배포 시점의 입력 차이를 확인해야 한다. 특히 teacher가 추론 때 빠진다는 점은 배포 단순화의 장점이지만, teacher 표현 오류가 학습 데이터에 남는 문제까지 없애지는 않는다.
+
 ## Sources
 - [SCULPT-VLA 논문과 전체 평가 표](https://arxiv.org/abs/2609.23275)
 - [SCULPT-VLA 논문 HTML](https://arxiv.org/html/2609.23275v1)
