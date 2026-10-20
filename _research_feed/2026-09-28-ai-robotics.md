@@ -23,6 +23,12 @@ IROS 2026의 9월 28일 프로그램에는 **OG-VLA: Orthographic Image Generati
 
 같은 날 프로그램에는 language-enabled heterogeneous multi-robot task planning, object-centric imitation-learning representation, whole-body control 등도 함께 배치됐다. VLA를 포함한 learned policy가 커지는 동시에, 실제 robot system에서는 spatial grounding·planning·control representation을 어떻게 결합할지가 여전히 독립적인 핵심 문제라는 점을 보여준다.
 
+## 구조화된 tool interface도 권한 설계를 대신하지 않는다
+
+WebMCP는 페이지가 기능과 입력 schema를 명시해 GUI의 시각적 탐색 오류를 줄이려는 방향이다. 다만 checkout 제출처럼 외부 상태를 바꾸는 호출에는 사용자의 승인, 중복 요청 방지, 취소·실패 처리와 서버 측 권한 확인이 여전히 필요하다.
+
+이날 IROS 프로그램의 3D-aware VLA 발표는 실제 benchmark 결과가 아니라 일정·연구 주제 신호로 읽어야 한다. tool 호출과 3D grounding은 모두 명시적 interface를 강조하지만 서로 직접 결합된 기술은 아니다.
+
 ## Sources
 - [Shopify Developer Changelog — September 2026](https://shopify.dev/changelog)
 - [Shopify — WebMCP tools](https://shopify.dev/docs/api/web-mcp)
