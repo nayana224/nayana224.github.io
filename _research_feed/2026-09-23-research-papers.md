@@ -37,6 +37,12 @@ Kinetix에서는 delayed/non-delayed method를 포함한 비교에서 10개 envi
 
 다만 결과는 저자들의 dynamic-task setup과 online RL 조건에 한정된다. Sparse reward를 안정적으로 정의하기 어려운 manipulation이나 long-horizon task에서도 10분 수준의 adaptation이 유지되는지는 별도 검증이 필요하다.
 
+## 세 방법은 action loop의 서로 다른 시점을 보완한다
+
+VT-Bridge는 촉각 residual을 이용해 이미 학습된 시각 정책을 실행 중 보정하고, VisForce는 목표 힘을 손가락 위치에 grounding하며, Real-Time EXPO-FT는 느린 VLA 제안과 빠른 실행 시점 수정을 분리한다. 각각 sensing, force representation, latency compensation에 초점이 있다.
+
+실제 조작 stack에서는 tactile frame과 robot state의 시간 동기화, 목표 wrench와 접촉 위치의 단위·좌표계, fast policy가 수정할 수 있는 action 범위를 따로 검증해야 한다. 세 논문의 점수를 단순 비교할 수는 없으며, 이 요약만으로 단일 시스템에 결합 가능하다고 주장하지 않는다.
+
 ## Sources
 - [arXiv — VT-Bridge: Bridging Pretrained Foundation VLAs to VTLAs via Lightweight Residual Adaptation](https://arxiv.org/abs/2609.22606)
 - [VT-Bridge Project Page](https://hoxnocha.github.io/vt-bridge-web/)
