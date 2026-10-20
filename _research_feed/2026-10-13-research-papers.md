@@ -15,6 +15,12 @@ summary: "ACCRUE는 로봇 foundation model의 순차적 off-policy RL에 actor�
 
 실제 시스템에 적용할 때는 신규 과제의 학습 속도만 보지 말고, 이전 과제 성능·로봇 상호작용 시간·저장한 재생 데이터의 양을 함께 추적해야 한다.
 
+## 순차 학습 실험에서 반드시 남길 세 축
+
+후속 과제의 학습 시간이 줄었다는 결과와 이전 과제의 성능 보존은 서로 다른 평가다. 새 task 성공률, 이전 task의 retention, actor·critic 재사용으로 줄어든 실제 robot interaction을 별도 기록해야 한다. replay에 쓰인 에피소드 수와 저장 비용도 데이터 효율 해석에 필요하다.
+
+ACCRUE의 결과는 논문이 정한 접촉 조립 과제 순서에 관한 것이다. 다른 과제 순서나 task 간 충돌이 큰 경우에도 같은 이득이 나는지, 재생 데이터가 늘 때 보존 효과와 저장 비용이 어떻게 바뀌는지는 후속 검증 대상이다.
+
 ## Sources
 - [ACCRUE 논문](https://arxiv.org/abs/2610.18596)
 - [ACCRUE 논문 HTML](https://arxiv.org/html/2610.18596v1)
