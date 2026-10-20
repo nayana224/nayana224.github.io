@@ -15,6 +15,12 @@ summary: "ActiveAlign은 active perception 종료 시점의 관측·로봇 상�
 
 핵심은 카메라 동작 자체보다 **그 동작이 끝난 뒤의 관측·상태 분포까지 정책 학습에 맞추는 것**이다. 실제 RGB-D 조작 파이프라인에서도 시점 변경 전후의 카메라-로봇 정합과 시작 상태를 별도 검증할 이유가 있다.
 
+## viewpoint module과 조작 정책의 연결부
+
+카메라 이동은 관측 영상만 바꾸지 않는다. 외부 파라미터, robot pose, 가림 구조와 경우에 따라 grasp 접근 경로도 함께 바뀐다. ActiveAlign의 학습은 카메라 궤적 종료 상태에서 demonstration으로 재정렬하므로, viewpoint module이 만든 상태가 학습 분포에 포함되는지가 핵심이다.
+
+실제 RGB-D 시스템에서는 카메라 extrinsic 변화, depth 품질, robot-camera timestamp, 종료 pose 편차를 기록해야 한다. 논문 수치의 가림 설정을 넘어서 임의의 카메라 장착·캘리브레이션 오차까지 해결했다고 볼 수는 없다.
+
 ## Sources
 - [ActiveAlign 논문](https://arxiv.org/abs/2610.23378)
 - [ActiveAlign 논문 HTML과 평가 설정](https://arxiv.org/html/2610.23378v1)
