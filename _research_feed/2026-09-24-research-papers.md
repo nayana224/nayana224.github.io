@@ -39,6 +39,12 @@ closed-loop manipulation 관점에서는 꽤 직접적인 아이디어다. 실�
 
 closed-loop manipulation 관점에서는 policy architecture보다 **execution-time verification과 recovery**를 분리해 설계한다는 점이 중요하다. VLA를 교체하거나 fine-tune하지 않고 외부 wrapper로 붙일 수 있어, generalist policy 위에 task-independent safety/recovery layer를 추가하는 방향으로 볼 수 있다. 다만 real-robot 평가는 세 task에 한정되어 있고 rollback 가능한 safe waypoint가 존재한다는 전제가 있으므로, irreversible contact나 deformable/entangled object manipulation에서도 같은 효과가 유지되는지는 아직 검증이 필요하다.
 
+## 세 논문을 한 closed-loop 관점으로 나란히 읽기
+
+EmbodiedSWE는 새 task solution과 학습 데이터를 만드는 느린 개발 loop, BEE는 사람의 수정이 정책 갱신에 미치는 신뢰도를 정하는 학습 loop, SafeLoop는 배포 중 위험을 감지하고 이전 상태로 돌아가는 runtime loop를 다룬다. 서로 대체하는 방법이 아니라 VLA lifecycle의 다른 구간을 담당한다.
+
+실험 설계도 나눠야 한다. 데이터 생성에서는 검증 trajectory의 비용과 다양성을, BEE에서는 task당 intervention 수와 성공률을, SafeLoop에서는 hazard 감지율·불필요 rollback·회복 후 task 완료를 측정할 수 있다. 특히 rollback은 상태를 되돌릴 수 있는 작업에서만 유효하므로 접촉 직전의 모든 위험을 해결하는 safety guarantee는 아니다.
+
 ## Sources
 - [EmbodiedSWE — project page](https://embodiedswe.github.io/)
 - [arXiv — EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics](https://arxiv.org/abs/2609.27308)
