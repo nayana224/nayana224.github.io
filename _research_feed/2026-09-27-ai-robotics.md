@@ -17,6 +17,12 @@ Full-Shift Robot Co-Workers workshop은 질문을 더 직접적으로 바꾼다.
 
 이 흐름은 robot agent를 설계할 때 planner나 VLA 하나의 정확도만 보는 것이 부족하다는 점을 보여준다. 실제 closed-loop system에서는 observation freshness, execution prerequisite, outcome verification, recovery condition을 별도의 runtime concern으로 두는 구조가 중요해지고 있다.
 
+## 워크숍 주제는 합의된 benchmark 결과가 아니다
+
+여러 워크숍의 agenda에서 verification, recovery, human-aware autonomy가 반복된다는 관찰은 연구 커뮤니티의 관심 지형을 보여준다. 그러나 참가자·조직자가 구성한 프로그램이며, 공통 데이터셋에서 여러 방법이 경쟁해 얻은 실험 결론은 아니다.
+
+연구 방향을 정할 때는 이를 가설 생성에 쓰고, 실제로는 명시적 outcome verification, sensing 불확실성, recovery 성공률, 사람과의 안전한 handoff를 과제별로 시험해야 한다. ‘8시간 자율 운영’은 워크숍이 던진 문제의식이지 검증된 성능 수치가 아니다.
+
 ## Sources
 - [IROS 2026 — Embodied Neuro-Symbolic AI for Reliable and Safe Robotics](https://embodied-nesy.github.io/)
 - [IROS 2026 — Human-aware Embodied AI](https://heai-iros26-workshop.github.io/)
