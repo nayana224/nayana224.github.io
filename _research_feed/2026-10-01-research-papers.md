@@ -1,19 +1,37 @@
 ---
 layout: feed_note
-title: "VLA 성공률만으로는 로봇 행동의 안정성을 설명할 수 없다"
+title: "VLA 두 모델, 성공률은 비슷해도 카메라 교란에 다른 동작을 보였다"
 date: 2026-10-01 19:00:00 +0900
 channel: research-papers
 channel_label: "Research Papers"
-summary: "LIBERO 기반 VLA 평가에서 같은 성공률이라도 perturbation 이후 움직임과 gripper 동작이 달라질 수 있다는 연구가 나왔다."
+summary: "LIBERO 카메라 시점 교란에서 π₀.₅와 VLANeXt의 성공률은 비슷했지만, 성공 궤적의 시간·저크·그리퍼 움직임은 크게 달랐다."
 ---
 
-## Task Success Rate 뒤에 숨은 행동 차이
+## 성공 여부만 같다고 실행 품질도 같은 것은 아니다
 
-10월 1일 공개된 *Is Success All You Need?*는 VLA 평가에서 **성공했는가**뿐 아니라 **어떻게 성공했는가**를 측정해야 한다고 제안한다.
+VLA 평가에서 성공률이 유지되어도 로봇이 더 오래 걸리거나, 급격히 움직이거나, 물체를 놓친 뒤 다시 집을 수 있다. Higham et al.은 이 차이를 보기 위해 성공한 rollout의 궤적 자체를 분석하는 행동 강건성 평가를 제안했다.
 
-연구진은 LIBERO와 LIBERO-Plus 평가를 확장해 VLA 모델 3개, LIBERO task suite 4개, perturbation 조건 7개를 비교했다. Task Success Rate(TSR)가 비슷하게 유지되어도 성공한 trajectory의 **motion smoothness, efficiency, gripper behavior와 변동성**이 달라지는 사례를 관찰했다.
+연구진은 LIBERO와 LIBERO-Plus에서 3개 VLA, 4개 task suite(Spatial·Goal·Long·Object), 7종의 입력 교란을 평가했다. 교란은 배경, 카메라 시점, 언어 지시, 조명, 물체, 로봇 초기 상태, 센서 노이즈를 포함한다. 분석 지표는 시뮬레이터 시간 기준 완료 시간, Cartesian·joint path length와 jerk, 누적 그리퍼 이동량이다. 평균 행동 변화뿐 아니라 성공 궤적 사이의 변동성도 median absolute deviation으로 비교했다.
 
-Closed-loop manipulation이나 정량 파지 연구에서 이 구분은 특히 중요하다. 목표 수량을 맞춘 성공 여부와 별개로, 재파지 횟수·불필요한 움직임·힘 조절·실패 후 복구 행동을 평가할 필요가 있기 때문이다. 다만 실험 결과는 논문에서 사용한 VLA·LIBERO 설정에 해당하며 실제 얽힌 식품의 파지 성능까지 입증하지는 않는다.
+### 대표 결과: 카메라 시점 교란
+
+LIBERO-Spatial에서 카메라 교란을 받았을 때 π₀.₅의 성공률은 69.7%, VLANeXt는 68.0%로 비슷했다. 하지만 원본 조건 대비 성공 궤적의 중앙 변화량은 달랐다.
+
+| 지표 | π₀.₅ | VLANeXt |
+|---|---:|---:|
+| 완료 시간 | +22.5% | +4.2% |
+| 평균 Cartesian jerk | +24.1% | +3.2% |
+| 누적 그리퍼 이동량 | +37.8% | +2.5% |
+
+즉 이 조건에서는 성공률만 비교하면 두 정책이 비슷해 보이지만, π₀.₅는 성공한 시도에서도 더 느리고 급격한 움직임과 더 많은 그리퍼 동작을 보였다. 이는 “성공”이라는 이진 결과가 실행 과정의 변화를 가릴 수 있다는 논문의 핵심 사례다. 논문은 카메라 교란에서 세 지표 모두 π₀.₅의 변화가 여러 task에 걸쳐 더 자주 유의하게 나타났다고 보고한다.
+
+### 이 결과를 읽을 때의 경계
+
+저자들은 성공한 궤적만 분석했다. 실패한 시도의 동작은 이 분석에 들어가지 않으며, 높은 성공 표본을 확보할 수 있는 모델을 중심으로 전체 평가를 수행했다. OpenVLA-OFT는 모든 suite에서 평가된 것이 아니라 Spatial suite에 한정됐다. 실험은 LIBERO 계열 시뮬레이션이므로 실제 로봇 배치에서 같은 차이가 나타나는지는 별도 검증이 필요하다.
+
+또 그리퍼 이동량 증가는 재파지나 물체를 떨어뜨렸다 다시 잡는 행동의 단서가 될 수 있지만, 그 지표만으로 특정 실패 원인을 판정하지는 못한다. 따라서 이 방법은 TSR을 대체하기보다, 성공 궤적의 품질과 일관성을 함께 보고 모델의 행동 강건성을 더 세밀하게 비교하는 보완 지표로 보는 편이 정확하다.
 
 ## Sources
+
 - [Higham et al. — Is Success All You Need? (arXiv:2610.01351)](https://arxiv.org/abs/2610.01351)
+- [저자 공개 구현 — vla-reliability](https://github.com/esgi-research-group/vla-reliability)
