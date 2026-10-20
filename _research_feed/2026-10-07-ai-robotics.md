@@ -17,6 +17,12 @@ Multi-connector insertion은 다른 난제였다. 케이블 파지는 SAM3 segme
 
 Anthropic은 같은 날 Claude Haiku 5.5를 발표했다. 회사에 따르면 Haiku 4.5보다 평균 실행 비용이 약 75% 낮으며, 분류·요약·subagent·빠른 browser use 같은 고빈도 작업을 겨냥한다. Robot agent에서도 모든 판단을 큰 모델에 맡기는 대신 빠른 경량 모델과 느린 planner를 분리하는 비용·latency 설계의 참고 사례다. 로봇 제어 성능을 직접 보증하는 발표는 아니다.
 
+## 무엇을 재현해야 조립 성과를 비교할 수 있나
+
+보고된 95% 이상은 busbar 조립 공정의 성공률이고 160초는 해당 pipeline의 cycle time이다. 이 값은 multi-connector insertion과 같지 않으며 전체 공장 처리량도 아니다. 반복 횟수, 부품 공차, 실패 후 재시도 여부가 함께 공개돼야 운영 성능을 판단할 수 있다.
+
+Haiku 5.5의 비용·속도 발표는 별도 범용 모델의 주장이다. 조립 사례의 perception이나 impedance control을 Haiku가 수행했다는 근거는 없다. 로봇 시스템에서는 high-level planner를 경량화할 수 있는지와 저수준 제어가 실제 주기·안전 요구를 만족하는지를 각각 측정해야 한다.
+
 ## Sources
 - [NVIDIA — The Machines that Make the Machines](https://developer.nvidia.com/blog/the-machines-that-make-the-machines/)
 - [Anthropic — Claude Haiku 5.5](https://www.anthropic.com/claude-haiku-5-5)
