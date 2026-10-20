@@ -19,6 +19,12 @@ Sampling-based motion planner가 제한 시간 안에 경로를 찾지 못하면
 
 MoveIt 2 같은 planning stack에서 이 접근이 겨냥하는 곳은 일반적인 “planner를 더 빨리 돌리기”가 아니다. **계획 실패를 명시적으로 설명하고, scene 수정이나 목표 재설정에 쓸 진단 정보를 제공하는 단계**다. 다만 현재 결과는 저자 구현·제한된 로봇 차원과 simulation scene에 해당하며, 실제 MoveIt planning pipeline에 바로 적용되는 플러그인이나 범용 실시간 infeasibility certificate로 읽어서는 안 된다.
 
+## MoveIt 사용자에게 주는 현실적인 질문
+
+이 방법을 기존 planning pipeline과 비교할 때 핵심은 경로를 찾는 속도만이 아니라 판정의 세 가지 상태를 구분하는 것이다: 유효 경로를 찾음, 제한 시간 내 미발견, 기하 검사로 infeasible 후보를 식별함. 두 번째 상태를 세 번째 상태로 자동 승격하면 false infeasibility가 생길 수 있다.
+
+MoveIt 2에 적용하려면 planning scene의 collision geometry와 연구 구현의 거리 함수가 일치하는지, 동적 장애물·불확실한 perception을 어떻게 다루는지, 계산 timeout 동안 기존 안전 동작을 어떻게 유지하는지부터 확인해야 한다. 이 논문은 이러한 통합이나 실제 하드웨어 안전 검증을 보고하지 않는다.
+
 ## Sources
 - [논문 원문 — Towards Kinematic Actionable Infeasibility Detection in Motion Planning](https://arxiv.org/abs/2609.32806)
 - [논문 HTML과 평가·한계](https://arxiv.org/html/2609.32806v1)
