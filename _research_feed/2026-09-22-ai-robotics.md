@@ -31,6 +31,12 @@ TensorRT graph 안에서 NCCL-backed distributed collective를 처리하기 때�
 
 큰 VLM·world model처럼 단일 GPU memory나 latency가 병목이 되는 workload에서는 `model optimization`과 `distributed serving`의 경계가 조금 더 얇아지는 변화다. Robotics에서도 대형 perception/world-model component를 server-side로 운용할 때 살펴볼 만하다.
 
+## 세 제품 업데이트의 공통점과 다른 점
+
+Google Home의 MCP는 외부 agent가 호출할 수 있는 제품 기능의 경계, JetBrains Air는 개발 작업을 수행하는 agent workflow, TensorRT 11은 GPU inference 실행·배포 계층의 변화다. 셋은 모두 도구 생태계와 연결되지만 같은 종류의 기술 진전이나 성능 지표는 아니다.
+
+로봇에 MCP형 도구를 붙일 때는 읽기 전용 질의와 물리적 side effect를 내는 명령을 권한 수준에서 분리해야 한다. 개발 agent에는 재현 가능한 build·test 권한을 주되 실제 하드웨어 command ownership은 별도 runtime gate가 맡아야 한다. 제품 발표만으로 latency나 안전성이 개선됐다고 추론할 수는 없다.
+
 ## Sources
 - [Google Home Developers — Google Home APIs](https://developers.home.google.com/)
 - [The Verge — Google will now let any AI agent run your smart home](https://www.theverge.com/tech/996310/google-home-mcp-integration-agentic-ai-smart-home-price-release-date)
