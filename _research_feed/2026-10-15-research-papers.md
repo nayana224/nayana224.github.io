@@ -23,6 +23,12 @@ Verifier의 GPU 계산 비용은 action generation 시간의 **0.45–1.24%**였
 
 이 연구는 미래 예측을 world model의 action generator로 쓰지 않고, 이미 만들어진 행동의 **실행 가능 길이를 판정하는 verifier**로 쓴다. action chunking을 평가할 때 평균 query 수만 비교하지 말고, 성공률·재관측 비용·실패 시 되돌릴 수 있는지까지 함께 봐야 한다.
 
+## Verifier의 신뢰도와 회복 가능성
+
+PAV는 제안된 action prefix의 성공적 후속 가능성을 추정하지만, 그 점수가 실제 물리적 안전이나 충돌 부재를 보증하지는 않는다. verifier가 낙관적으로 평가하면 긴 prefix를 잘못 허용할 수 있고, 보수적으로 평가하면 재관측과 policy 호출이 늘어난다.
+
+실기 적용에서는 score calibration, false-safe 비율, rollback 가능 여부, 센서 지연을 포함한 end-to-end 반응 시간을 별도로 측정해야 한다. 작업 완료 성공률과 query 절감은 유용한 효율 지표지만 안전 인증과는 다른 주장이다.
+
 ## Sources
 - [PAV 논문과 전체 비교 결과](https://arxiv.org/abs/2610.21434)
 - [PAV 논문 HTML — 방법·ablation·실제 로봇 결과](https://arxiv.org/html/2610.21434v1)
