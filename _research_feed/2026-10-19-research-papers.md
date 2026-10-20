@@ -23,6 +23,12 @@ REKI는 공개 데이터로 학습한 2.4B VLA로, flow-matching action expert�
 
 두 접근은 서로 대체재가 아니다. 하나는 큰 모델의 반복 호출을 줄이고, 다른 하나는 짧은 관측 이력의 손실을 줄인다. Closed-loop manipulation에서는 **latency와 행동 안정성을 분리해서 평가**할 필요가 있다.
 
+## 기억을 평가할 때 빠지기 쉬운 비용
+
+Fast-VLA의 task memory는 episode 시작 뒤 바뀌지 않는 지시·초기 장면을 압축해 재사용하고, REKI의 register cache는 최근 관측에서 action expert가 참고할 이력을 남긴다. 한쪽은 중복 VLM 계산을, 다른 쪽은 시간 정보를 잃는 문제를 겨냥한다.
+
+비교 실험에서는 model inference latency만이 아니라 memory 갱신 필요 시점, 장면 변화 후 stale memory, cache 사용량, chunk 경계의 jerk와 task 성공을 같이 기록해야 한다. 추론 속도 향상이 실제 cycle time이나 안전한 반응성 향상으로 이어지는지는 실기 end-to-end 측정이 필요하다.
+
 ## Sources
 - [Fast-VLA 논문](https://arxiv.org/abs/2610.21389)
 - [Fast-VLA 프로젝트 및 데모](https://garfield-kh.github.io/FastVLA/)
