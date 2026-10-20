@@ -45,6 +45,12 @@ Kinetix에서는 delayed policy가 delayed/non-delayed 비교를 포함한 **10�
 
 다만 실세계 평가는 네 dynamic task이고 online RL을 요구한다. fast edit policy가 base VLA의 잘못된 semantic plan이나 irreversible contact failure까지 복구한다고 볼 수는 없다.
 
+## 세 연구를 실행 시간축으로 구분하기
+
+RAPID는 demonstration으로부터 재사용 가능한 program과 검증 환경을 구성하는 개발 단계, TANDEM은 데이터 수집 중 자동 계획과 human intervention을 나누는 단계, EXPO-FT는 배포 중 stale observation에 맞춰 action을 빠르게 수정하는 단계다. 모두 agent와 robot policy를 결합하지만 입력, 책임, 성공 기준이 다르다.
+
+실제 시스템 비교라면 RAPID는 scene 변화에 대한 재사용성, TANDEM은 사람의 개입 시간당 성공 trajectory 수, EXPO-FT는 제어 주기·지연·복구 성능을 기록해야 한다. planner가 막힐 때 사람을 호출하는 조건과 robot의 저수준 비상정지 조건은 별개로 설계해야 한다.
+
 ## Sources
 - [arXiv — RAPID: Robot Agentic Programming from Demonstrations](https://arxiv.org/abs/2609.30249)
 - [Project page — RAPID](https://yuyaoliu.me/projects/rapid)
