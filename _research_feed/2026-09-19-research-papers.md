@@ -53,6 +53,12 @@ Camera, action representation, policy, control interface, deployment environment
 
 그래서 앞으로 VLA 논문을 볼 때는 **Training / Serving / Deployment** 세 축을 같이 보는 편이 훨씬 유용합니다.
 
+## 세 논문의 숫자를 한 순위표로 읽지 말아야 하는 이유
+
+REAL-I는 데이터와 학습 절차를 바꾼 여러 제출의 비교이고, Robion은 동시 요청을 처리하는 serving 시스템이며, Hy-Embodied는 데이터 수집부터 배포까지의 전체 학습 pipeline을 제시한다. 평가 대상과 성능 단위가 서로 달라 하나의 VLA 우열로 환원할 수 없다.
+
+실제 로봇을 고를 때는 REAL-I식 고정 데이터 예산 비교, Robion식 동시 부하의 p50/p99 지연, Hy-Embodied식 실제 하드웨어의 성공률·실패 복구를 별도 표로 기록해야 한다. 이 분리는 모델 개선과 시스템 병목을 구분하는 데 도움이 된다.
+
 ## Sources
 - [How to Better Train VLAs: Lessons Learned From the REAL-I Challenge at ICRA 2026](https://arxiv.org/abs/2609.13679)
 - [Efficient Vision-Language-Action Management and Serving for Robot Factories](https://arxiv.org/abs/2609.12075)
