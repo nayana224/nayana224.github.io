@@ -15,6 +15,12 @@ Underdog은 자체 평가에서 BFCL v4 기반 120개 도구 호출 과제 중 S
 
 로컬 추론을 검토할 때는 **가중치 용량, 실제 peak memory, 도구 호출 형식 안정성, 작업별 품질**을 분리해 측정해야 한다.
 
+## 로컬 배포에서 메모리 예산을 다시 계산하기
+
+7.89GB 파일은 모델 가중치의 저장 크기다. 실행 중에는 runtime buffer와 context에 따른 KV cache, batch concurrency가 추가되며, GPU offload 설정에 따라 host RAM과 VRAM의 분배도 달라진다. 실제 배포 적합성은 목표 context length와 동시 요청 수에서 peak memory를 측정해야 한다.
+
+도구 호출 모델로 평가할 때는 구문상 JSON을 내는지뿐 아니라 schema 준수, 잘못된 인자 회복, 여러 도구를 잇는 성공률을 함께 시험해야 한다. 제작사 BFCL 차이는 공개된 120문항의 제한된 실험이며 독립 재현 전에는 후보 탐색 신호로 보는 편이 맞다.
+
 ## Sources
 - [Underdog Saluki 27B 공식 모델 카드와 벤치마크 조건](https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0)
 - [Underdog Saluki 공개 발표](https://underdog.ai/saluki)
