@@ -51,6 +51,12 @@ Spirit AI는 약 1,000명의 contractor가 수집하는 real-world robot data를
 
 Robot Learning에서는 결국 model 크기만큼 **어디서 inference하고 어떤 data로 반복 학습하는지**가 중요해지고 있습니다.
 
+## 이 세 소식은 같은 종류의 성과가 아니다
+
+Anthropic의 26%는 내부 업무 분류에 따른 자체 측정이고, Jetson의 TOPS는 제품 사양이며, Spirit AI의 데이터 수집 규모는 회사 측 설명이다. 이 숫자들을 한 줄의 ‘Physical AI 진전’으로 합산하면 증거의 성격 차이가 사라진다.
+
+로봇 연구에 가져올 수 있는 공통 질문은 따로 있다. 학습 loop에 들어가는 인력·데이터, inference가 실행되는 장치, 성능을 검증하는 독립 절차를 각각 측정해야 한다. 특히 TOPS만으로 실제 camera-to-action 지연이나 열·전력 제약을 예측할 수 없으므로, 배포 판단에는 해당 로봇에서의 end-to-end 측정이 필요하다.
+
 ## Sources
 - [Anthropic — Measurements for understanding the pace of AI development inside frontier labs](https://www.anthropic.com/institute/measuring-pace-of-ai-development)
 - [Anthropic — Partnering with Accenture on embedded evaluation](https://www.anthropic.com/news/accenture-embedded-evaluation)
