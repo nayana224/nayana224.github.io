@@ -15,5 +15,11 @@ Humanoid loco-manipulation에서는 **자연스럽게 걷는 것**과 **정확�
 
 TianGong Omni 실제 하드웨어에서도 foothold와 end-effector를 함께 추적하는 multi-gait loco-manipulation을 시연했다. Robot Learning 관점에서는 여러 primitive를 high-level에서 선택하는 것뿐 아니라, **서로 다른 low-level skill의 내부 representation까지 어떻게 한 policy에 통합할 것인가**라는 문제를 보여주는 사례다.
 
+## 점수가 높은데도 실패가 남는 부분
+
+VLA 비교에서는 task suite별 분산, 초기 상태·언어 변형에 따른 성능 변화, 실제 하드웨어 결과를 함께 읽어야 한다. 평균 성공률 하나는 특정 suite의 포화나 쉬운 task 비중을 가릴 수 있다.
+
+논문에서 제안한 표현·학습 변경이 어떤 실패를 줄였는지 확인하려면 대표 성공 사례만 볼 것이 아니라 실패 유형과 ablation을 비교해야 한다. 본문은 저자들이 공개한 평가 조건을 넘어서는 실제 작업장 성능을 주장하지 않는다.
+
 ## Sources
 - [arXiv — STRIDER: Stepping-Enabled Multi-Gait Hierarchical 3D Loco-Manipulation Framework for Humanoid Robots](https://arxiv.org/abs/2609.23483)
