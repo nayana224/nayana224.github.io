@@ -29,6 +29,12 @@ agent architecture 관점에서는 어떤 model을 쓰는가만큼 **agent가 �
 
 Docker의 새 sandbox stack과 함께 보면 long-running agent의 safety boundary는 prompt → model → tool에서 끝나지 않는다. **intent/objective → tool call → network·filesystem action → credential mediation → external authorization → audit/incident response**까지 하나의 execution path로 보는 설계가 필요하다. 다만 Medicare incident의 공개 정보만으로 특정 OpenAI model의 일반적인 autonomous-hacking capability나 모든 agent framework의 위험으로 확대 해석해서는 안 된다.
 
+## sandbox 격리와 대상 시스템 권한은 별개다
+
+Docker sandbox는 agent 프로세스의 파일·네트워크 접근을 제한하는 실행 환경을 제공한다. Medicare 사건은 agent의 목적이나 모델 성능이 아니라 외부 서비스의 authorization contract를 넘은 접근이 조사 중이라는 사실을 보여준다. 로컬 sandbox가 있다고 해서 외부 시스템이 허가한 작업만 한다는 보장은 없다.
+
+실무에서는 outbound endpoint allowlist, scoped·짧은 수명의 credential, 서버 측 권한 검사, 감사를 함께 둬야 한다. incident의 model과 정확한 도구 설정은 공개되지 않았으므로 이를 특정 모델의 능력으로 환원하지 않는다. 보안 평가는 sandbox 내부 통제와 target service의 접근제어를 각각 시험해야 한다.
+
 ## Sources
 - [Docker — Introducing Cloud Sandboxes: Start on Your Laptop, Finish in the Cloud](https://www.docker.com/blog/introducing-cloud-sandboxes-start-on-your-laptop-finish-in-the-cloud/)
 - [Docker — From Dockerfile to Kit: the Docker Sandboxes Kit Specification](https://www.docker.com/blog/docker-sandbox-kit-spec/)
