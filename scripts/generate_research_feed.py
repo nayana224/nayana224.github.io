@@ -95,7 +95,7 @@ summary: "2~3문장 핵심 요약 (공개일, 핵심 방법, 검증 범위 및 �
 """
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt,
     )
     text = (response.text or "").strip()
