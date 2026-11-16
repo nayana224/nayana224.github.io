@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -28,9 +29,22 @@ def fetch_arxiv_papers(max_results: int = 10) -> list[dict]:
             "sortBy": "submittedDate",
             "sortOrder": "descending",
         })
-        url = f"http://export.arxiv.org/api/query?{params}"
-        with urllib.request.urlopen(url, timeout=20) as resp:
-            xml_data = resp.read()
+        url = f"https://export.arxiv.org/api/query?{params}"
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "nayana224-research-feed/1.0"},
+        )
+        xml_data = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=45) as resp:
+                    xml_data = resp.read()
+                break
+            except Exception as exc:
+                if attempt == 2:
+                    raise
+                print(f"arXiv fetch failed (attempt {attempt + 1}/3): {exc}. Retrying...")
+                time.sleep(5 * (attempt + 1))
         root = ET.fromstring(xml_data)
         ns = {"atom": "http://www.w3.org/2005/Atom"}
         for entry in root.findall("atom:entry", ns):
