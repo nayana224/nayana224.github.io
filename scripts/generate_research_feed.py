@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from google import genai
+from google.genai import types
 
 KST = timezone(timedelta(hours=9))
 NOW_KST = datetime.now(KST)
@@ -84,19 +85,26 @@ channel_label: "Research Papers"
 summary: "2~3문장 핵심 요약 (공개일, 핵심 방법, 검증 범위 및 한계 포함)"
 ---
 
-본문 구성 (한국어, 과장 없이 초록에 근거한 사실만 작성):
-1. 도입 문단 (논문 제목, arXiv 링크, 핵심 문제의식)
-2. `## 핵심 방법론` (데이터 흐름 및 구조 설명)
-3. `## 실험 및 검증` (보고된 실험 환경과 한계)
-4. `## 엔지니어링 관점의 시사점` (실제 로봇/3D 비전 시스템 적용 시 고려사항)
+본문 구성 (한국어, 과장 없이 초록에 근거한 사실만 작성, 문단은 2~3문장 이내로 짧게 유지):
+1. 도입 문단: 논문 제목(arXiv 링크 포함), 기존 방식의 한계, 이 논문이 해결하려는 핵심 문제를 2~3문장으로 명쾌하게 제시
+2. `## 핵심 방법론`:
+   - 먼저 `[입력] -> [핵심 모듈] -> [출력]` 형태의 한 줄 텍스트 파이프라인으로 전체 흐름을 요약
+   - 이어서 3~4개의 짧은 불릿으로 각 단계의 역할을 직관적으로 설명
+3. `## 실험 및 검증`:
+   - 주요 비교 수치(베이스라인 대비 성능, 성공률 등)는 가능한 **마크다운 표(Table)**로 정리
+   - 시뮬레이션 한정, 단일 플랫폼 등 **한계점(Caveat)**을 결과 바로 아래에 명확히 병기
+4. `## 엔지니어링 관점의 시사점`: 실제 로봇/3D 비전 시스템 설계 시 바로 참고할 수 있는 실무 포인트 2~3개
 
 후보 논문 목록:
 {papers_json}
 """
 
     response = client.models.generate_content(
-        model="gemini-3.8-flash",
+        model="gemini-4-hydrogen",
         contents=prompt,
+        config=types.GenerateContentConfig(
+            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+        ),
     )
     text = (response.text or "").strip()
     if text.startswith("```"):
