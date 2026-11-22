@@ -9,8 +9,12 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from google import genai
-from google.genai import types
+try:
+    from google import genai
+    from google.genai import types
+except ImportError:
+    genai = None
+    types = None
 
 try:
     import fitz  # PyMuPDF
@@ -23,6 +27,7 @@ OUT_DIR = Path("_research_feed")
 IMG_DIR = Path("images/research-feed")
 
 MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-4-hydrogen")
+FALLBACK_MODELS = [MODEL_NAME, "gemini-2.5-flash", "gemini-2.0-flash"]
 
 ARXIV_QUERIES = [
     'cat:cs.RO AND (manipulation OR grasping OR deformable OR "point cloud" OR "physical AI" OR "world model" OR VLA OR VLM)',
@@ -33,7 +38,7 @@ AI_ROBOTICS_RSS_FEEDS = [
     ("IEEE Spectrum Robotics", "https://spectrum.ieee.org/feeds/topic/robotics.rss"),
     ("MIT News Robotics", "https://news.mit.edu/topic/mitrobotics-rss.xml"),
     ("Hugging Face Blog", "https://huggingface.co/blog/feed.xml"),
-    ("Google DeepMind Blog", "https://deepmind.google/blog/rss.xml"),
+    ("BAIR Blog", "https://bair.berkeley.edu/blog/feed.xml"),
     ("NVIDIA Blog", "https://blogs.nvidia.com/feed/"),
 ]
 
@@ -291,47 +296,57 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
 def call_gemini(contents, thinking_level: str = "MEDIUM") -> str:
     api_key = os.environ["GEMINI_API_KEY"]
     client = genai.Client(api_key=api_key)
-    for attempt in range(3):
-        try:
-            response = client.models.generate_content(
-                model=MODEL_NAME,
-                contents=contents,
-                config=types.GenerateContentConfig(
-                    thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
-                ),
-            )
-            text = (response.text or "").strip()
-            if text.startswith("```"):
-                lines = text.splitlines()
-                if lines and lines[0].startswith("```"):
-                    lines = lines[1:]
-                if lines and lines[-1].startswith("```"):
-                    lines = lines[:-1]
-                text = "\n".join(lines).strip()
-            return text
-        except Exception as exc:
-            if attempt == 2:
-                raise
-            print(f"Gemini call failed (attempt {attempt + 1}/3): {exc}")
-            time.sleep(5 * (attempt + 1))
-    raise RuntimeError("Gemini generation failed.")
+    last_exc: Exception | None = None
+    for model_id in FALLBACK_MODELS:
+        for attempt in range(2):
+            try:
+                cfg = types.GenerateContentConfig()
+                if "gemini-4" in model_id or "gemini-2.5" in model_id:
+                    cfg = types.GenerateContentConfig(
+                        thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
+                    )
+                response = client.models.generate_content(
+                    model=model_id,
+                    contents=contents,
+                    config=cfg,
+                )
+                text = (response.text or "").strip()
+                if text.startswith("```"):
+                    lines = text.splitlines()
+                    if lines and lines[0].startswith("```"):
+                        lines = lines[1:]
+                    if lines and lines[-1].startswith("```"):
+                        lines = lines[:-1]
+                    text = "\n".join(lines).strip()
+                return text
+            except Exception as exc:
+                last_exc = exc
+                err_str = str(exc)
+                print(f"Gemini call failed ({model_id}, attempt {attempt + 1}/2): {exc}")
+                # If daily quota exceeded (429PerDay) or model not found, switch to next fallback model immediately
+                if "GenerateRequestsPerDay" in err_str or "404" in err_str or "NOT_FOUND" in err_str:
+                    break
+                time.sleep(5 * (attempt + 1))
+    raise RuntimeError(f"Gemini generation failed across all models: {last_exc}")
 
 
 def select_best_paper(papers: list[dict], date_str: str) -> dict:
-    brief = [
-        {"index": i, "title": p["title"], "arxiv_id": p["arxiv_id"], "summary": p["summary"][:400]}
-        for i, p in enumerate(papers[:12])
+    """Deterministically rank candidate papers by Physical AI / Manipulation / VLA keywords (saves 1 API request/day)."""
+    priority_terms = [
+        ("vla", 4), ("vision-language-action", 4), ("manipulation", 3), ("grasping", 3),
+        ("dexterous", 3), ("bimanual", 3), ("world model", 3), ("physical ai", 3),
+        ("point cloud", 2), ("rgb-d", 2), ("3d", 2), ("sim-to-real", 2), ("isaac", 2),
+        ("policy", 2), ("teleoperation", 2), ("embodied", 2),
     ]
-    prompt = f"""오늘({date_str}) 피지컬 AI·로봇 매니퓰레이션·3D Vision·World Model 연구자에게 가장 가치 있는 논문 1편의 index 숫자만 JSON으로 출력하세요.
-출력 형식: {{"index": 0}}
-후보 목록:
-{json.dumps(brief, ensure_ascii=False)}"""
-    raw = call_gemini(prompt, thinking_level="LOW")
-    m = re.search(r'"index"\s*:\s*(\d+)', raw)
-    idx = int(m.group(1)) if m else 0
-    if 0 <= idx < len(papers):
-        return papers[idx]
-    return papers[0]
+    best_paper = papers[0]
+    best_score = -1
+    for idx, p in enumerate(papers[:12]):
+        blob = (p["title"] + " " + p["summary"]).lower()
+        score = sum(w for term, w in priority_terms if term in blob) - (idx * 0.15)
+        if score > best_score:
+            best_score = score
+            best_paper = p
+    return best_paper
 
 
 def generate_research_paper_post(papers: list[dict], date_str: str, date_header: str) -> tuple[str, str]:
