@@ -2,9 +2,14 @@ name: Daily Research Feed
 
 on:
   schedule:
-    # 매일 오전 07:30 KST (UTC 22:30)
-    - cron: '30 22 * * *'
+    # GitHub Actions 지연 감안해 06:17 KST (UTC 21:17) 트리거 -> 07:30 전후 게시
+    - cron: '17 21 * * *'
   workflow_dispatch:
+    inputs:
+      backfill_from:
+        description: 'Backfill start date (YYYY-MM-DD, leave empty for today only)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -22,21 +27,22 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install google-genai
+        run: pip install google-genai pymupdf
 
-      - name: Generate daily research feed post
+      - name: Generate daily research feed posts
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BACKFILL_FROM: ${{ github.event.inputs.backfill_from }}
         run: python scripts/generate_research_feed.py
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add _research_feed/
+          git add _research_feed/ images/research-feed/ 2>/dev/null || git add _research_feed/
           if git diff --staged --quiet; then
             echo "No new research feed post to commit."
           else
-            git commit -m "chore: add daily research feed post"
+            git commit -m "chore: add daily research feed posts"
             git push
           fi
