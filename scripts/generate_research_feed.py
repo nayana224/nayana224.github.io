@@ -359,8 +359,10 @@ title: "논문의 핵심 메커니즘이나 수치가 드러나는 구체적인 
 date: {date_header}
 channel: research-papers
 channel_label: "Research Papers"
+tags: ["Manipulation", "VLA / VLM"]
 summary: "2~3문장 핵심 요약 (공개일, 핵심 방법, 검증 범위 및 한계 포함)"
 ---
+(참고: `tags`는 반드시 `["Manipulation", "VLA / VLM", "World Model", "3D Vision", "Humanoid & Locomotion", "Sim & Systems"]` 중에서 가장 알맞은 1~2개만 골라 배열로 작성하세요.)
 {fig_instructions}
 작성 원칙 (매우 중요):
 - **사실 엄수**: 논문 초록·본문·첨부 Figure에 없는 수치·실험 조건을 절대 지어내지 마세요.
@@ -388,6 +390,11 @@ PDF 도입부 발췌:
     text = call_gemini(contents, thinking_level="MEDIUM")
     if not text.startswith("---"):
         raise ValueError("Generated research-papers output missing YAML frontmatter.")
+    # Inject source_url and primary image into YAML frontmatter
+    extra_fm = f'source_url: "{paper["link"]}"\n'
+    if figs:
+        extra_fm += f'image: "{figs[0][0]}"\n'
+    text = re.sub(r"^---\n", "---\n" + extra_fm, text, count=1)
     # Guarantee cropped figures are embedded even if the model omitted them
     for idx, (rel_path, _) in enumerate(figs, start=1):
         if rel_path not in text:
@@ -457,8 +464,11 @@ title: "핵심 변화나 구체적 포인트를 담은 한국어 제목"
 date: {date_header}
 channel: ai-robotics
 channel_label: "AI & Robotics"
+tags: ["Humanoid & Locomotion", "Sim & Systems"]
 summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 시 주의할 한계 포함)"
 ---
+
+(참고: `tags`는 반드시 `["Manipulation", "VLA / VLM", "World Model", "3D Vision", "Humanoid & Locomotion", "Sim & Systems"]` 중에서 가장 알맞은 1~2개만 골라 배열로 작성하세요.)
 
 작성 원칙 (매우 중요):
 - **사실 엄수**: 제공된 요약과 출처에 없는 수치나 세부 사항을 추측해서 쓰지 마세요. 발표 내용만으로 확인되지 않는 부분은 한계로 명확히 짚어주세요.
@@ -479,6 +489,13 @@ summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 
     m = re.search(r"https?://[^\s\)\"'>]+", text)
     used_url = m.group(0).rstrip(".,;:") if m else ""
     hero_path = fetch_og_image(used_url, date_str)
+    extra_fm = ""
+    if used_url:
+        extra_fm += f'source_url: "{used_url}"\n'
+    if hero_path:
+        extra_fm += f'image: "{hero_path}"\n'
+    if extra_fm:
+        text = re.sub(r"^---\n", "---\n" + extra_fm, text, count=1)
     if hero_path and hero_path not in text:
         m_h2 = re.search(r"(^## .+$)", text, flags=re.MULTILINE)
         img_md = f"\n![기사 대표 이미지]({hero_path})\n"
@@ -555,7 +572,9 @@ def main() -> None:
         dates = [today_str]
 
     all_errors: list[str] = []
-    for d in dates:
+    for idx, d in enumerate(dates):
+        if idx > 0:
+            time.sleep(12)
         all_errors.extend(run_for_date(d, args.force, seen_refs))
 
     if len(dates) == 1 and len(all_errors) == 2:

@@ -11,18 +11,19 @@ title: Inpyo's Blog
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Inpyo's Blog | Inpyo Lee</title>
-  <meta name="description" content="Inpyo Lee's personal blog on robotics, AI, papers, engineering, projects, and research notes.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260925-3' | relative_url }}">
+  <meta name="description" content="Inpyo Lee's personal deep-dive blog on robotics, AI, paper implementations, and engineering logs.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20261122-1' | relative_url }}">
 </head>
 <body class="notes-page blog-page" data-notes-lang="en">
   <div class="notes-shell blog-shell">
     <header class="notes-topbar">
       <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
       <div class="notes-actions">
-        <a href="/research-feed/">Research Feed</a>
         <a href="{{ '/' | relative_url }}">
-          <span class="ui-en">Home</span><span class="ui-ko">홈으로</span>
+          <span class="ui-en">Home</span><span class="ui-ko">홈</span>
         </a>
+        <a href="/research-feed/">Research Feed</a>
+        <a href="/blog/" class="active-nav">Blog</a>
         <div class="notes-language-switcher" role="group" aria-label="Language">
           <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
           <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
@@ -31,37 +32,46 @@ title: Inpyo's Blog
     </header>
 
     <section class="notes-hero blog-hero">
-      <p class="notes-eyebrow">INPYO'S BLOG</p>
+      <p class="notes-eyebrow">DEEP-DIVE ARCHIVE</p>
       <h1>Inpyo's Blog</h1>
       <p class="notes-lead">
-        <span class="ui-en">Research, engineering, papers, projects, and things I learn along the way.</span>
-        <span class="ui-ko">연구, 엔지니어링, 논문, 프로젝트를 공부하고 만들며 배운 것을 기록합니다.</span>
+        <span class="ui-en">Long-form paper deep-dives, mathematical derivations, and robotics engineering notes written by hand. For daily automated paper &amp; industry briefings, see <a href="/research-feed/" style="color:var(--accent);text-decoration:underline;">Research Feed</a>.</span>
+        <span class="ui-ko">직접 정독·구현하며 작성한 논문 심층 리뷰, 수학적 유도, 로보틱스 엔지니어링 기록입니다. 매일 자동 수집되는 최신 논문·동향은 <a href="/research-feed/" style="color:var(--accent);text-decoration:underline;">Research Feed</a>에서 볼 수 있습니다.</span>
       </p>
     </section>
 
     <nav class="blog-category-nav" aria-label="Blog categories">
-      <button class="blog-category active" type="button" data-blog-filter="all">All</button>
-      <button class="blog-category" type="button" data-blog-filter="Research">Research</button>
-      <button class="blog-category" type="button" data-blog-filter="Paper Study">Paper Study</button>
-      <button class="blog-category" type="button" data-blog-filter="Engineering">Engineering</button>
-      <button class="blog-category" type="button" data-blog-filter="Projects">Projects</button>
-      <button class="blog-category" type="button" data-blog-filter="Thoughts">Thoughts</button>
+      <button class="blog-category active" type="button" data-blog-filter="all">
+        <span class="ui-en">All</span><span class="ui-ko">전체</span>
+      </button>
+      <button class="blog-category" type="button" data-blog-filter="Paper Study">
+        <span class="ui-en">Paper Deep-Dive</span><span class="ui-ko">논문 심층 리뷰</span>
+      </button>
+      <button class="blog-category" type="button" data-blog-filter="Research">
+        <span class="ui-en">Concepts &amp; Theory</span><span class="ui-ko">개념 &amp; 이론</span>
+      </button>
+      <button class="blog-category" type="button" data-blog-filter="Engineering & Logs">
+        <span class="ui-en">Engineering &amp; Thoughts</span><span class="ui-ko">엔지니어링 &amp; 단상</span>
+      </button>
     </nav>
 
     <main class="blog-main">
       <div class="blog-list" id="blog-list">
         {% assign sorted_notes = site.notes | sort: "date" | reverse %}
         {% for note in sorted_notes %}
-          {% assign blog_category = note.blog_category %}
-          {% unless blog_category %}
+          {% assign raw_cat = note.blog_category %}
+          {% unless raw_cat %}
             {% case note.library_type %}
-              {% when 'papers' %}{% assign blog_category = 'Paper Study' %}
-              {% when 'concept' %}{% assign blog_category = 'Research' %}
-              {% when 'implementation' %}{% assign blog_category = 'Engineering' %}
-              {% when 'meta' %}{% assign blog_category = 'Thoughts' %}
-              {% else %}{% assign blog_category = 'Research' %}
+              {% when 'papers' %}{% assign raw_cat = 'Paper Study' %}
+              {% when 'concept' %}{% assign raw_cat = 'Research' %}
+              {% else %}{% assign raw_cat = 'Engineering & Logs' %}
             {% endcase %}
           {% endunless %}
+          {% if raw_cat == 'Engineering' or raw_cat == 'Projects' or raw_cat == 'Thoughts' %}
+            {% assign blog_category = 'Engineering & Logs' %}
+          {% else %}
+            {% assign blog_category = raw_cat %}
+          {% endif %}
         <article class="blog-entry" data-blog-category="{{ blog_category }}">
           <div class="blog-entry-meta">
             {% if note.date %}<time>{{ note.date | date: "%Y.%m.%d" }}</time>{% endif %}
@@ -85,7 +95,7 @@ title: Inpyo's Blog
       </div>
     </main>
 
-    <footer class="notes-footer"><span>Inpyo Lee · Robotics & AI</span></footer>
+    <footer class="notes-footer"><span>Inpyo Lee · Robotics &amp; AI</span></footer>
   </div>
 
   <script>

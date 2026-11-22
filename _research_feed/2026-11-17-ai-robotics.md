@@ -1,4 +1,7 @@
 ---
+tags: ["Humanoid & Locomotion", "Manipulation"]
+image: "/images/research-feed/2026-11-17-ai-robotics-hero.jpg"
+source_url: "https://spectrum.ieee.org/agility-robotics-digit-5-redesign"
 layout: feed_note
 title: "Agility Robotics, 23kg 적재·9분 급속 충전 지원하는 상용 휴머노이드 'Digit 5' 공개"
 date: 2026-11-17 07:30:00 +0900

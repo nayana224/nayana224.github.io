@@ -1,4 +1,7 @@
 ---
+tags: ["Sim & Systems"]
+image: "/images/research-feed/2026-11-13-ai-robotics-hero.png"
+source_url: "https://spectrum.ieee.org/video-friday-moon-rover-promise"
 layout: feed_note
 title: "아틀라스 바퀴형 주행 제어부터 NASA 달 로버·궤도 조립까지: 11월 둘째 주 로보틱스 하드웨어·제어 동향"
 date: 2026-11-13 07:30:00 +0900

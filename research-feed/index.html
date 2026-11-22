@@ -9,18 +9,19 @@ title: Research Feed
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Research Feed | Inpyo Lee</title>
-  <meta name="description" content="Curated AI, robotics, and research-paper updates for Inpyo Lee.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20260925-3' | relative_url }}">
+  <meta name="description" content="AlphaXiv-style visual research radar on Physical AI, robotics, and papers.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20261122-1' | relative_url }}">
 </head>
 <body class="notes-page feed-page" data-notes-lang="en">
-  <div class="notes-shell">
+  <div class="notes-shell feed-shell">
     <header class="notes-topbar">
       <a class="notes-brand" href="{{ '/' | relative_url }}">Inpyo Lee</a>
       <div class="notes-actions">
-        <a href="/blog/">Blog</a>
         <a href="{{ '/' | relative_url }}">
-          <span class="ui-ko">홈으로</span><span class="ui-en">Home</span>
+          <span class="ui-en">Home</span><span class="ui-ko">홈</span>
         </a>
+        <a href="/research-feed/" class="active-nav">Research Feed</a>
+        <a href="/blog/">Blog</a>
         <div class="notes-language-switcher" role="group" aria-label="Language">
           <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
           <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
@@ -29,88 +30,125 @@ title: Research Feed
     </header>
 
     <section class="notes-hero feed-hero">
-      <p class="notes-eyebrow">CURATED RESEARCH UPDATES</p>
+      <p class="notes-eyebrow">DAILY AUTOMATED RESEARCH RADAR</p>
       <h1>Research Feed</h1>
       <p class="notes-lead">
-        <span class="ui-en">Short, source-backed updates on AI, robotics, and research papers.</span>
-        <span class="ui-ko">AI, Robotics, 주요 논문 소식을 출처와 함께 짧게 정리합니다.</span>
+        <span class="ui-en">Visual, concept-first daily radar of arXiv papers (with key figures) and AI &amp; Robotics breakthroughs. Deep-dive implementations live in <a href="/blog/" style="color:var(--accent);text-decoration:underline;">Blog</a>.</span>
+        <span class="ui-ko">핵심 Figure와 Method 컨셉 중심으로 매일 자동 요약되는 논문·로보틱스 레이더입니다. 직접 구현하고 깊이 파고든 기록은 <a href="/blog/" style="color:var(--accent);text-decoration:underline;">Blog</a>에 정리합니다.</span>
       </p>
     </section>
 
-    <div class="notebook-workspace feed-workspace">
-      <aside class="notebook-sidebar" aria-label="Research Feed channels">
-        <div class="sidebar-group">
-          <p class="sidebar-heading">RESEARCH FEED</p>
-          <button class="folder-item active" type="button" data-feed="ai-robotics">
-            <span class="folder-label"><span class="folder-glyph">›</span>AI & Robotics</span>
-            <span class="folder-count" data-count="ai-robotics"></span>
-          </button>
-          <button class="folder-item" type="button" data-feed="research-papers">
-            <span class="folder-label"><span class="folder-glyph">›</span>Research Papers</span>
-            <span class="folder-count" data-count="research-papers"></span>
-          </button>
-        </div>
-      </aside>
+    <!-- Layer 1: Channel Tabs -->
+    <div class="alphaxiv-controls">
+      <div class="channel-tabs" role="tablist" aria-label="Feed Channels">
+        <button class="channel-tab active" type="button" data-channel-filter="all">
+          <span class="ui-en">All Updates</span><span class="ui-ko">전체</span>
+          <span class="tab-badge" data-count="all">0</span>
+        </button>
+        <button class="channel-tab" type="button" data-channel-filter="research-papers">
+          <span class="ui-en">Research Papers</span><span class="ui-ko">논문 (arXiv)</span>
+          <span class="tab-badge" data-count="research-papers">0</span>
+        </button>
+        <button class="channel-tab" type="button" data-channel-filter="ai-robotics">
+          <span class="ui-en">AI &amp; Robotics News</span><span class="ui-ko">AI &amp; 로보틱스 동향</span>
+          <span class="tab-badge" data-count="ai-robotics">0</span>
+        </button>
+      </div>
 
-      <main class="notebook-content">
-        <div class="content-heading">
-          <div>
-            <p class="content-kicker">RESEARCH FEED</p>
-            <h2 id="feed-title">AI & Robotics</h2>
-          </div>
-          <span class="content-count" id="feed-count">0</span>
-        </div>
+      <!-- Layer 2: Domain Tag Pills (alphaXiv style) -->
+      <div class="topic-pills" role="group" aria-label="Domain Topics">
+        <button class="topic-pill active" type="button" data-topic-filter="all">All Topics</button>
+        <button class="topic-pill" type="button" data-topic-filter="Manipulation">Manipulation</button>
+        <button class="topic-pill" type="button" data-topic-filter="VLA / VLM">VLA / VLM</button>
+        <button class="topic-pill" type="button" data-topic-filter="World Model">World Model</button>
+        <button class="topic-pill" type="button" data-topic-filter="3D Vision">3D Vision</button>
+        <button class="topic-pill" type="button" data-topic-filter="Humanoid & Locomotion">Humanoid &amp; Locomotion</button>
+        <button class="topic-pill" type="button" data-topic-filter="Sim & Systems">Sim &amp; Systems</button>
+      </div>
+    </div>
 
-        <div class="feed-list" id="feed-list">
-          {% assign sorted_feed = site.research_feed | sort: "date" | reverse %}
-          {% for item in sorted_feed %}
-          <article class="feed-entry" data-channel="{{ item.channel | default: 'ai-robotics' }}">
+    <main class="alphaxiv-feed-main">
+      <div class="feed-list alphaxiv-grid" id="feed-list">
+        {% assign sorted_feed = site.research_feed | sort: "date" | reverse %}
+        {% for item in sorted_feed %}
+          {% assign item_tags = item.tags | join: "|" %}
+          {% assign thumb = item.image %}
+          {% unless thumb %}
+            {% if item.content contains '/images/research-feed/' %}
+              {% assign parts = item.content | split: '/images/research-feed/' %}
+              {% assign after_part = parts[1] | split: ')' | first | split: '"' | first | split: ' ' | first %}
+              {% assign thumb = '/images/research-feed/' | append: after_part %}
+            {% endif %}
+          {% endunless %}
+        <article class="feed-card" data-channel="{{ item.channel | default: 'ai-robotics' }}" data-tags="{{ item_tags }}">
+          <div class="feed-card-body">
             <div class="notes-entry-meta">
               {% if item.date %}<time>{{ item.date | date: "%Y.%m.%d" }}</time>{% endif %}
-              <span class="notes-path">{{ item.channel_label | default: item.channel }}</span>
+              <span class="channel-pill" data-ch="{{ item.channel }}">{{ item.channel_label | default: item.channel }}</span>
+              {% if item.tags %}
+                {% for t in item.tags %}
+                  <span class="tag-chip">{{ t }}</span>
+                {% endfor %}
+              {% endif %}
             </div>
             <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
             {% if item.summary %}<p class="notes-summary">{{ item.summary }}</p>{% endif %}
-            <a class="notes-read" href="{{ item.url | relative_url }}">
-              <span class="ui-en">Read update →</span><span class="ui-ko">업데이트 읽기 →</span>
-            </a>
-          </article>
-          {% endfor %}
-        </div>
+            <div class="feed-card-actions">
+              <a class="notes-read" href="{{ item.url | relative_url }}">
+                <span class="ui-en">Read concept &amp; figures →</span><span class="ui-ko">컨셉 &amp; Figure 보기 →</span>
+              </a>
+              {% if item.source_url %}
+              <a class="source-ext-link" href="{{ item.source_url }}" target="_blank" rel="noreferrer">
+                <span class="ui-en">Source ↗</span><span class="ui-ko">원문 ↗</span>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          {% if thumb %}
+          <a class="feed-card-thumb" href="{{ item.url | relative_url }}" aria-label="{{ item.title }}">
+            <img src="{{ thumb }}" alt="{{ item.title }}" loading="lazy">
+          </a>
+          {% endif %}
+        </article>
+        {% endfor %}
+      </div>
 
-        <div class="empty-state feed-empty" id="feed-empty" hidden>
-          <p class="empty-icon">＋</p>
-          <strong>
-            <span class="ui-en">No updates in this channel yet.</span>
-            <span class="ui-ko">아직 이 채널에 업데이트가 없습니다.</span>
-          </strong>
-          <p>
-            <span class="ui-en">Scheduled automation will publish source-backed updates here.</span>
-            <span class="ui-ko">예약 자동화가 출처를 확인한 업데이트를 이곳에 게시합니다.</span>
-          </p>
-        </div>
-      </main>
-    </div>
+      <div class="empty-state feed-empty" id="feed-empty" hidden>
+        <p class="empty-icon">＋</p>
+        <strong>
+          <span class="ui-en">No updates matching this filter yet.</span>
+          <span class="ui-ko">선택한 필터에 해당하는 업데이트가 아직 없습니다.</span>
+        </strong>
+        <p>
+          <span class="ui-en">Daily automation publishes figure-backed paper &amp; robotics briefings at 07:30 KST.</span>
+          <span class="ui-ko">매일 오전 7시 30분 자동화 파이프라인이 주요 Figure와 함께 새 브리핑을 게시합니다.</span>
+        </p>
+      </div>
+    </main>
 
-    <footer class="notes-footer"><span>Inpyo Lee · Robotics & AI</span></footer>
+    <footer class="notes-footer">
+      <span>Inpyo Lee · Robotics &amp; AI</span>
+      <span style="margin-left:16px;"><a href="/career-tracker/" style="color:var(--faint);">Career Tracker →</a></span>
+    </footer>
   </div>
 
   <script>
     (function () {
       var lang = localStorage.getItem('notes-ui-lang') || 'en';
       var langButtons = document.querySelectorAll('.notes-language-switcher button');
-      var feedButtons = document.querySelectorAll('.folder-item[data-feed]');
-      var entries = Array.prototype.slice.call(document.querySelectorAll('.feed-entry'));
-      var feedTitle = document.getElementById('feed-title');
-      var feedCount = document.getElementById('feed-count');
+      var channelTabs = document.querySelectorAll('.channel-tab[data-channel-filter]');
+      var topicPills = document.querySelectorAll('.topic-pill[data-topic-filter]');
+      var entries = Array.prototype.slice.call(document.querySelectorAll('.feed-card'));
       var feedEmpty = document.getElementById('feed-empty');
+
+      var activeChannel = 'all';
+      var activeTopic = 'all';
 
       function applyLanguage(nextLang) {
         lang = nextLang;
         localStorage.setItem('notes-ui-lang', lang);
         document.body.setAttribute('data-notes-lang', lang);
         document.documentElement.lang = lang;
-
         langButtons.forEach(function (button) {
           var active = button.getAttribute('data-lang') === lang;
           button.classList.toggle('active', active);
@@ -118,30 +156,38 @@ title: Research Feed
         });
       }
 
-      function selectChannel(channel) {
+      function updateCounts() {
+        var total = entries.length;
+        var papers = entries.filter(function (e) { return e.getAttribute('data-channel') === 'research-papers'; }).length;
+        var news = entries.filter(function (e) { return e.getAttribute('data-channel') === 'ai-robotics'; }).length;
+        var cAll = document.querySelector('[data-count="all"]');
+        var cPapers = document.querySelector('[data-count="research-papers"]');
+        var cNews = document.querySelector('[data-count="ai-robotics"]');
+        if (cAll) cAll.textContent = String(total);
+        if (cPapers) cPapers.textContent = String(papers);
+        if (cNews) cNews.textContent = String(news);
+      }
+
+      function applyFilters() {
         var count = 0;
         entries.forEach(function (entry) {
-          var show = entry.getAttribute('data-channel') === channel;
+          var ch = entry.getAttribute('data-channel');
+          var tags = (entry.getAttribute('data-tags') || '').split('|');
+          var matchCh = (activeChannel === 'all') || (ch === activeChannel);
+          var matchTopic = (activeTopic === 'all') || (tags.indexOf(activeTopic) !== -1);
+          var show = matchCh && matchTopic;
           entry.hidden = !show;
           if (show) count += 1;
         });
 
-        feedButtons.forEach(function (button) {
-          button.classList.toggle('active', button.getAttribute('data-feed') === channel);
+        channelTabs.forEach(function (tab) {
+          tab.classList.toggle('active', tab.getAttribute('data-channel-filter') === activeChannel);
         });
-
-        feedTitle.textContent = channel === 'research-papers' ? 'Research Papers' : 'AI & Robotics';
-        feedCount.textContent = String(count);
+        topicPills.forEach(function (pill) {
+          pill.classList.toggle('active', pill.getAttribute('data-topic-filter') === activeTopic);
+        });
         feedEmpty.hidden = count !== 0;
       }
-
-      ['ai-robotics','research-papers'].forEach(function (channel) {
-        var count = entries.filter(function (entry) {
-          return entry.getAttribute('data-channel') === channel;
-        }).length;
-        var counter = document.querySelector('[data-count="' + channel + '"]');
-        if (counter) counter.textContent = String(count);
-      });
 
       langButtons.forEach(function (button) {
         button.addEventListener('click', function () {
@@ -149,14 +195,23 @@ title: Research Feed
         });
       });
 
-      feedButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          selectChannel(button.getAttribute('data-feed'));
+      channelTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activeChannel = tab.getAttribute('data-channel-filter');
+          applyFilters();
         });
       });
 
+      topicPills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          activeTopic = pill.getAttribute('data-topic-filter');
+          applyFilters();
+        });
+      });
+
+      updateCounts();
       applyLanguage(lang);
-      selectChannel('ai-robotics');
+      applyFilters();
     })();
   </script>
 </body>
