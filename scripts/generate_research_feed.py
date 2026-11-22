@@ -211,30 +211,57 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
         for p_idx in range(min(3, len(doc))):
             extracted_text_parts.append(doc[p_idx].get_text("text"))
 
-        # Find candidate figure bounding boxes on pages 1-4 (preferring wide/large overview figures)
-        candidates: list[tuple[float, int, fitz.Rect]] = []
-        for p_idx in range(min(4, len(doc))):
-            page = doc[p_idx]
-            page_rect = page.rect
-            for img_info in page.get_image_info(xrefs=True):
-                bbox = fitz.Rect(img_info["bbox"]) & page_rect
-                w, h = bbox.width, bbox.height
-                if w < 180 or h < 90:
-                    continue
-                area = w * h
-                # Slight boost for page 1-2 overview figures
-                score = area * (1.25 if p_idx < 2 else 1.0)
-                candidates.append((score, p_idx, bbox))
-
-        # Sort by score descending and deduplicate overlapping rects on the same page
-        candidates.sort(key=lambda x: x[0], reverse=True)
+        # Strategy 1: Caption-based crop (captures both vector TikZ/PDF diagrams and raster figures)
         chosen: list[tuple[int, fitz.Rect]] = []
-        for _, p_idx, rect in candidates:
-            if any(cp == p_idx and (cr & rect).get_area() > 0.3 * rect.get_area() for cp, cr in chosen):
-                continue
-            chosen.append((p_idx, rect))
+        caption_patterns = ["Figure 1", "Fig. 1", "Figure 2", "Fig. 2"]
+        for pat in caption_patterns:
             if len(chosen) >= max_figs:
                 break
+            found = False
+            for p_idx in range(min(4, len(doc))):
+                page = doc[p_idx]
+                hits = page.search_for(pat)
+                if not hits:
+                    continue
+                cap_rect = hits[0]
+                page_rect = page.rect
+                # Crop region above the caption (up to ~42% of page height) + caption line
+                top_y = max(page_rect.y0 + 36, cap_rect.y0 - page_rect.height * 0.40)
+                bot_y = min(page_rect.y1 - 30, cap_rect.y1 + 26)
+                if bot_y - top_y < 110:
+                    continue
+                # Use full content width (with small horizontal margins)
+                margin_x = page_rect.width * 0.06
+                fig_rect = fitz.Rect(margin_x, top_y, page_rect.width - margin_x, bot_y)
+                if any(cp == p_idx and (cr & fig_rect).get_area() > 0.3 * fig_rect.get_area() for cp, cr in chosen):
+                    continue
+                chosen.append((p_idx, fig_rect))
+                found = True
+                break
+            if found and len(chosen) >= max_figs:
+                break
+
+        # Strategy 2: Fallback to largest raster image bboxes if caption search found fewer than max_figs
+        if len(chosen) < max_figs:
+            candidates: list[tuple[float, int, fitz.Rect]] = []
+            for p_idx in range(min(4, len(doc))):
+                page = doc[p_idx]
+                page_rect = page.rect
+                for img_info in page.get_image_info(xrefs=True):
+                    bbox = fitz.Rect(img_info["bbox"]) & page_rect
+                    w, h = bbox.width, bbox.height
+                    if w < 180 or h < 90:
+                        continue
+                    score = (w * h) * (1.25 if p_idx < 2 else 1.0)
+                    candidates.append((score, p_idx, bbox))
+
+            candidates.sort(key=lambda x: x[0], reverse=True)
+            for _, p_idx, rect in candidates:
+                if any(cp == p_idx and (cr & rect).get_area() > 0.3 * rect.get_area() for cp, cr in chosen):
+                    continue
+                chosen.append((p_idx, rect))
+                if len(chosen) >= max_figs:
+                    break
 
         # Render and crop chosen figures cleanly at 2x resolution
         for idx, (p_idx, rect) in enumerate(chosen, start=1):
@@ -361,7 +388,56 @@ PDF 도입부 발췌:
     text = call_gemini(contents, thinking_level="MEDIUM")
     if not text.startswith("---"):
         raise ValueError("Generated research-papers output missing YAML frontmatter.")
+    # Guarantee cropped figures are embedded even if the model omitted them
+    for idx, (rel_path, _) in enumerate(figs, start=1):
+        if rel_path not in text:
+            img_md = f"\n![논문 주요 Figure {idx}]({rel_path})\n"
+            m_h2 = re.search(r"(^## .+$)", text, flags=re.MULTILINE)
+            if m_h2:
+                pos = m_h2.end()
+                text = text[:pos] + "\n" + img_md + text[pos:]
+            else:
+                text = text + "\n" + img_md
     return text + "\n", paper["arxiv_id"]
+
+
+def fetch_og_image(article_url: str, date_str: str) -> str:
+    """Download og:image / twitter:image from a news article into images/research-feed/."""
+    if not article_url:
+        return ""
+    try:
+        html = http_get(article_url, timeout=20, retries=2).decode("utf-8", errors="ignore")
+        m = re.search(
+            r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\'][^>]+content=["\']([^"\']+)["\']',
+            html,
+            flags=re.IGNORECASE,
+        )
+        if not m:
+            m = re.search(
+                r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\']',
+                html,
+                flags=re.IGNORECASE,
+            )
+        if not m:
+            return ""
+        img_url = urllib.parse.urljoin(article_url, m.group(1).strip())
+        img_bytes = http_get(img_url, timeout=20, retries=2)
+        if len(img_bytes) < 5000:
+            return ""
+        ext = ".jpg"
+        lower_url = img_url.lower()
+        if ".png" in lower_url:
+            ext = ".png"
+        elif ".webp" in lower_url:
+            ext = ".webp"
+        IMG_DIR.mkdir(parents=True, exist_ok=True)
+        fname = f"{date_str}-ai-robotics-hero{ext}"
+        (IMG_DIR / fname).write_bytes(img_bytes)
+        print(f"Saved article hero image: {IMG_DIR / fname}")
+        return f"/images/research-feed/{fname}"
+    except Exception as exc:
+        print(f"og:image fetch skipped ({article_url}): {exc}")
+        return ""
 
 
 def generate_ai_robotics_post(news_items: list[dict], date_str: str, date_header: str) -> tuple[str, str]:
@@ -399,9 +475,18 @@ summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 
     text = call_gemini(prompt, thinking_level="MEDIUM")
     if not text.startswith("---"):
         raise ValueError("Generated ai-robotics output missing YAML frontmatter.")
-    # Extract first URL in output for dedup tracking across backfill runs
+    # Extract first URL in output for dedup tracking and hero image
     m = re.search(r"https?://[^\s\)\"'>]+", text)
     used_url = m.group(0).rstrip(".,;:") if m else ""
+    hero_path = fetch_og_image(used_url, date_str)
+    if hero_path and hero_path not in text:
+        m_h2 = re.search(r"(^## .+$)", text, flags=re.MULTILINE)
+        img_md = f"\n![기사 대표 이미지]({hero_path})\n"
+        if m_h2:
+            pos = m_h2.start()
+            text = text[:pos] + img_md + "\n" + text[pos:]
+        else:
+            text = text + "\n" + img_md
     return text + "\n", used_url
 
 
