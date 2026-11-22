@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import re
@@ -11,11 +12,15 @@ from pathlib import Path
 from google import genai
 from google.genai import types
 
+try:
+    import fitz  # PyMuPDF
+except ImportError:
+    fitz = None
+
 KST = timezone(timedelta(hours=9))
 NOW_KST = datetime.now(KST)
-TODAY_STR = NOW_KST.strftime("%Y-%m-%d")
-DATE_HEADER = NOW_KST.strftime("%Y-%m-%d %H:%M:%S +0900")
 OUT_DIR = Path("_research_feed")
+IMG_DIR = Path("images/research-feed")
 
 MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-4-hydrogen")
 
@@ -36,7 +41,7 @@ AI_ROBOTICS_RSS_FEEDS = [
 def http_get(url: str, timeout: int = 30, retries: int = 3) -> bytes:
     req = urllib.request.Request(
         url,
-        headers={"User-Agent": "nayana224-research-feed/2.0 (+https://nayana224.github.io/)"},
+        headers={"User-Agent": "nayana224-research-feed/2.1 (+https://nayana224.github.io/)"},
     )
     for attempt in range(retries):
         try:
@@ -79,7 +84,7 @@ def strip_html(text: str) -> str:
     return re.sub(r"\s+", " ", cleaned).strip()
 
 
-def fetch_arxiv_papers(seen_refs: set[str], per_query: int = 8) -> list[dict]:
+def fetch_arxiv_papers(seen_refs: set[str], per_query: int = 15) -> list[dict]:
     papers: list[dict] = []
     seen_ids: set[str] = set()
     for query in ARXIV_QUERIES:
@@ -110,18 +115,19 @@ def fetch_arxiv_papers(seen_refs: set[str], per_query: int = 8) -> list[dict]:
             summary = re.sub(r"\s+", " ", entry.findtext("atom:summary", "", ns) or "").strip()
             published = (entry.findtext("atom:published", "", ns) or "").strip()
             papers.append({
+                "arxiv_id": aid,
                 "title": title,
                 "summary": summary,
                 "link": link,
                 "published": published,
             })
             query_count += 1
-            if query_count >= 6:
+            if query_count >= 10:
                 break
     return papers
 
 
-def fetch_ai_robotics_news(seen_refs: set[str], per_feed: int = 4) -> list[dict]:
+def fetch_ai_robotics_news(seen_refs: set[str], per_feed: int = 8) -> list[dict]:
     items: list[dict] = []
     seen_links: set[str] = set()
     for source_name, feed_url in AI_ROBOTICS_RSS_FEEDS:
@@ -132,7 +138,6 @@ def fetch_ai_robotics_news(seen_refs: set[str], per_feed: int = 4) -> list[dict]
             print(f"RSS fetch failed ({source_name}): {exc}")
             continue
 
-        # Support both RSS 2.0 (<item>) and Atom (<entry>)
         entries = root.findall(".//item")
         is_atom = False
         if not entries:
@@ -179,16 +184,93 @@ def fetch_ai_robotics_news(seen_refs: set[str], per_feed: int = 4) -> list[dict]
     return items
 
 
-def call_gemini(prompt: str) -> str:
+def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2) -> tuple[list[tuple[str, bytes]], str]:
+    """Download arXiv PDF, crop up to `max_figs` key figures from pages 1-4, and extract intro text."""
+    if not fitz or not arxiv_id:
+        return [], ""
+
+    pdf_url = f"https://arxiv.org/pdf/{arxiv_id}.pdf"
+    try:
+        pdf_bytes = http_get(pdf_url, timeout=45, retries=2)
+    except Exception as exc:
+        print(f"PDF download failed ({pdf_url}): {exc}")
+        return [], ""
+
+    IMG_DIR.mkdir(parents=True, exist_ok=True)
+    saved_figs: list[tuple[str, bytes]] = []
+    extracted_text_parts: list[str] = []
+
+    try:
+        doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+    except Exception as exc:
+        print(f"PDF open failed ({arxiv_id}): {exc}")
+        return [], ""
+
+    try:
+        # Extract text from first 3 pages for richer context
+        for p_idx in range(min(3, len(doc))):
+            extracted_text_parts.append(doc[p_idx].get_text("text"))
+
+        # Find candidate figure bounding boxes on pages 1-4 (preferring wide/large overview figures)
+        candidates: list[tuple[float, int, fitz.Rect]] = []
+        for p_idx in range(min(4, len(doc))):
+            page = doc[p_idx]
+            page_rect = page.rect
+            for img_info in page.get_image_info(xrefs=True):
+                bbox = fitz.Rect(img_info["bbox"]) & page_rect
+                w, h = bbox.width, bbox.height
+                if w < 180 or h < 90:
+                    continue
+                area = w * h
+                # Slight boost for page 1-2 overview figures
+                score = area * (1.25 if p_idx < 2 else 1.0)
+                candidates.append((score, p_idx, bbox))
+
+        # Sort by score descending and deduplicate overlapping rects on the same page
+        candidates.sort(key=lambda x: x[0], reverse=True)
+        chosen: list[tuple[int, fitz.Rect]] = []
+        for _, p_idx, rect in candidates:
+            if any(cp == p_idx and (cr & rect).get_area() > 0.3 * rect.get_area() for cp, cr in chosen):
+                continue
+            chosen.append((p_idx, rect))
+            if len(chosen) >= max_figs:
+                break
+
+        # Render and crop chosen figures cleanly at 2x resolution
+        for idx, (p_idx, rect) in enumerate(chosen, start=1):
+            page = doc[p_idx]
+            pad = 6
+            clip = fitz.Rect(
+                max(page.rect.x0, rect.x0 - pad),
+                max(page.rect.y0, rect.y0 - pad),
+                min(page.rect.x1, rect.x1 + pad),
+                min(page.rect.y1, rect.y1 + pad),
+            )
+            pix = page.get_pixmap(clip=clip, matrix=fitz.Matrix(2, 2), alpha=False)
+            png_bytes = pix.tobytes("png")
+            safe_id = arxiv_id.replace(".", "_")
+            rel_path = f"/images/research-feed/{date_str}-{safe_id}-fig{idx}.png"
+            out_path = IMG_DIR / f"{date_str}-{safe_id}-fig{idx}.png"
+            out_path.write_bytes(png_bytes)
+            saved_figs.append((rel_path, png_bytes))
+            print(f"Cropped figure: {out_path}")
+    finally:
+        doc.close()
+
+    intro_text = re.sub(r"\s+", " ", " ".join(extracted_text_parts))[:6000]
+    return saved_figs, intro_text
+
+
+def call_gemini(contents, thinking_level: str = "MEDIUM") -> str:
     api_key = os.environ["GEMINI_API_KEY"]
     client = genai.Client(api_key=api_key)
     for attempt in range(3):
         try:
             response = client.models.generate_content(
                 model=MODEL_NAME,
-                contents=prompt,
+                contents=contents,
                 config=types.GenerateContentConfig(
-                    thinking_config=types.ThinkingConfig(thinking_level="MEDIUM"),
+                    thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
                 ),
             )
             text = (response.text or "").strip()
@@ -199,9 +281,7 @@ def call_gemini(prompt: str) -> str:
                 if lines and lines[-1].startswith("```"):
                     lines = lines[:-1]
                 text = "\n".join(lines).strip()
-            if not text.startswith("---"):
-                raise ValueError("Generated output missing YAML frontmatter.")
-            return text + "\n"
+            return text
         except Exception as exc:
             if attempt == 2:
                 raise
@@ -210,47 +290,85 @@ def call_gemini(prompt: str) -> str:
     raise RuntimeError("Gemini generation failed.")
 
 
-def generate_research_paper_post(papers: list[dict]) -> str:
-    papers_json = json.dumps(papers[:12], ensure_ascii=False, indent=2)
+def select_best_paper(papers: list[dict], date_str: str) -> dict:
+    brief = [
+        {"index": i, "title": p["title"], "arxiv_id": p["arxiv_id"], "summary": p["summary"][:400]}
+        for i, p in enumerate(papers[:12])
+    ]
+    prompt = f"""오늘({date_str}) 피지컬 AI·로봇 매니퓰레이션·3D Vision·World Model 연구자에게 가장 가치 있는 논문 1편의 index 숫자만 JSON으로 출력하세요.
+출력 형식: {{"index": 0}}
+후보 목록:
+{json.dumps(brief, ensure_ascii=False)}"""
+    raw = call_gemini(prompt, thinking_level="LOW")
+    m = re.search(r'"index"\s*:\s*(\d+)', raw)
+    idx = int(m.group(1)) if m else 0
+    if 0 <= idx < len(papers):
+        return papers[idx]
+    return papers[0]
+
+
+def generate_research_paper_post(papers: list[dict], date_str: str, date_header: str) -> tuple[str, str]:
+    paper = select_best_paper(papers, date_str)
+    figs, pdf_text = extract_pdf_figures_and_text(paper["arxiv_id"], date_str, max_figs=2)
+
+    fig_instructions = ""
+    if figs:
+        fig_paths = "\n".join(f"- Figure {i}: `{path}`" for i, (path, _) in enumerate(figs, start=1))
+        fig_instructions = f"""
+첨부된 논문 PDF에서 추출한 주요 Figure 이미지 경로:
+{fig_paths}
+- 본문에서 이 논문의 **핵심 Method 컨셉을 설명하는 위치**에 반드시 위 이미지를 마크다운(`![직관적인 한국어 캡션](경로)`)으로 삽입하고, 그림 속 구조/흐름을 짚어주며 독자가 Method의 컨셉을 한눈에 이해할 수 있도록 설명하세요.
+"""
+
     prompt = f"""당신은 피지컬 AI(Physical AI), 로봇 매니퓰레이션, 3D Vision, World Model 분야를 연구하는 엔지니어를 위한 리서치 피드 에디터입니다.
 
-아래 arXiv 최신 논문 목록에서 오늘({TODAY_STR}) 가장 엔지니어링·연구 가치가 높은 논문 1편을 선정해, Jekyll `_research_feed` 포스트 마크다운 전체를 작성하세요.
-선정 우선순위:
-1. Robot Manipulation / VLA / VLM / Robot Learning / 비정형·정밀 파지
-2. 3D Vision / Point Cloud / RGB-D 인식 및 제어 결합
-3. World Model / Physical AI
+아래 선정된 arXiv 논문 1편에 대해 Jekyll `_research_feed` 포스트 마크다운 전체를 작성하세요.
+독자가 **논문이 주장하는 Method의 핵심 컨셉을 빠르고 직관적으로 이해**할 수 있게 쓰는 것이 최우선 목표입니다.
 
 출력 형식 (반드시 아래 YAML frontmatter로 시작하고, 코드블록(```)으로 감싸지 마세요):
 ---
 layout: feed_note
 title: "논문의 핵심 메커니즘이나 수치가 드러나는 구체적인 한국어 제목"
-date: {DATE_HEADER}
+date: {date_header}
 channel: research-papers
 channel_label: "Research Papers"
 summary: "2~3문장 핵심 요약 (공개일, 핵심 방법, 검증 범위 및 한계 포함)"
 ---
-
+{fig_instructions}
 작성 원칙 (매우 중요):
-- **사실 엄수**: 초록에 없는 수치·실험 조건·성능을 절대 지어내지 마세요. 초록에 정량 수치가 없으면 억지로 표를 만들지 말고, 확인된 내용과 초록만으로 확인되지 않는 한계를 명확히 구분해 서술하세요.
+- **사실 엄수**: 논문 초록·본문·첨부 Figure에 없는 수치·실험 조건을 절대 지어내지 마세요.
 - **제목 & 소제목 품질**: `## 핵심 방법론`, `## 실험 및 검증` 같은 기계적인 소제목 대신, 이 논문의 핵심 통찰이 드러나는 자연스러운 서술형 소제목 3개를 사용하세요.
-- **문체**: 도입부는 엔지니어가 공감할 구체적인 문제 제기(질문 또는 현장의 병목)로 시작하고, 논문 원제목과 arXiv 링크를 자연스럽게 포함하세요.
 - **구성**:
-  1. 도입 문단 (2~3문장): 문제 제기 + 논문 소개(공개일, arXiv 링크)
-  2. 소제목 1: 기존 접근의 병목과 이 논문이 바꾼 핵심 아이디어 (데이터/처리 흐름을 한 줄 `A → B → C` 형태로 포함)
-  3. 소제목 2: 초록에서 확인된 검증 범위·수치와 확인되지 않은 한계(Caveat)
-  4. 소제목 3: 로봇·AI 시스템 엔지니어 관점의 실무 시사점 (2~3개 불릿)
+  1. 도입 문단 (2~3문장): 엔지니어가 공감할 구체적인 문제 제기 + 논문 원제목·공개일·arXiv 링크(`{paper['link']}`)
+  2. 소제목 1 (핵심 컨셉 & Figure 해설): 기존 방식의 병목과 이 논문이 제안한 핵심 아이디어를 직관적으로 설명. 첨부 Figure가 있다면 여기에 삽입하고 그림의 흐름(`입력 → 핵심 모듈 → 출력`)을 쉽게 풀어쓰세요.
+  3. 소제목 2 (검증 범위와 한계): 확인된 실험 결과·수치와 함께, 아직 검증되지 않은 한계(Caveat)를 명확히 구분해 서술.
+  4. 소제목 3 (엔지니어링 시사점): 실제 로봇·AI 시스템 설계 시 참고할 실무 포인트 2~3개 불릿.
 
-후보 논문 목록:
-{papers_json}
+논문 메타데이터:
+- Title: {paper['title']}
+- Published: {paper['published']}
+- Link: {paper['link']}
+- Abstract: {paper['summary']}
+
+PDF 도입부 발췌:
+{pdf_text[:3500]}
 """
-    return call_gemini(prompt)
+
+    contents: list = [prompt]
+    for _, png_bytes in figs:
+        contents.append(types.Part.from_bytes(data=png_bytes, mime_type="image/png"))
+
+    text = call_gemini(contents, thinking_level="MEDIUM")
+    if not text.startswith("---"):
+        raise ValueError("Generated research-papers output missing YAML frontmatter.")
+    return text + "\n", paper["arxiv_id"]
 
 
-def generate_ai_robotics_post(news_items: list[dict]) -> str:
+def generate_ai_robotics_post(news_items: list[dict], date_str: str, date_header: str) -> tuple[str, str]:
     news_json = json.dumps(news_items[:15], ensure_ascii=False, indent=2)
     prompt = f"""당신은 피지컬 AI(Physical AI), 로보틱스, 멀티모달 AI 분야의 최신 동향을 정리하는 리서치 피드 에디터입니다.
 
-아래 최신 로보틱스·AI 소식 목록에서 오늘({TODAY_STR}) 로보틱스·AI 연구자에게 가장 의미 있는 소식 1건을 선정해, Jekyll `_research_feed` 포스트 마크다운 전체를 작성하세요.
+아래 최신 로보틱스·AI 소식 목록에서 오늘({date_str}) 로보틱스·AI 연구자에게 가장 의미 있는 소식 1건을 선정해, Jekyll `_research_feed` 포스트 마크다운 전체를 작성하세요.
 선정 우선순위:
 1. 로봇 하드웨어/파운데이션 모델/시뮬레이션(Isaac, VLA, World Model, 휴머노이드, 매니퓰레이션) 발표
 2. 오픈소스 모델·데이터셋·프레임워크 릴리스
@@ -260,14 +378,14 @@ def generate_ai_robotics_post(news_items: list[dict]) -> str:
 ---
 layout: feed_note
 title: "핵심 변화나 구체적 포인트를 담은 한국어 제목"
-date: {DATE_HEADER}
+date: {date_header}
 channel: ai-robotics
 channel_label: "AI & Robotics"
 summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 시 주의할 한계 포함)"
 ---
 
 작성 원칙 (매우 중요):
-- **사실 엄수**: 제공된 요약과 출처에 없는 수치나 세부 사항을 추측해서 쓰지 마세요. 발표 내용만으로 확인되지 않는 부분(예: 실물 일반화, 재현성, 비용)은 한계로 명확히 짚어주세요.
+- **사실 엄수**: 제공된 요약과 출처에 없는 수치나 세부 사항을 추측해서 쓰지 마세요. 발표 내용만으로 확인되지 않는 부분은 한계로 명확히 짚어주세요.
 - **소제목 품질**: 글의 내용에 맞는 구체적이고 읽기 쉬운 소제목 3개를 사용하세요.
 - **구성**:
   1. 도입 문단 (2~3문장): 왜 주목할 만한지 문제 제기 + 출처(기관/매체, 원문 링크) 명시
@@ -278,50 +396,85 @@ summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 
 후보 소식 목록:
 {news_json}
 """
-    return call_gemini(prompt)
+    text = call_gemini(prompt, thinking_level="MEDIUM")
+    if not text.startswith("---"):
+        raise ValueError("Generated ai-robotics output missing YAML frontmatter.")
+    # Extract first URL in output for dedup tracking across backfill runs
+    m = re.search(r"https?://[^\s\)\"'>]+", text)
+    used_url = m.group(0).rstrip(".,;:") if m else ""
+    return text + "\n", used_url
 
 
-def main() -> None:
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    seen_refs = load_existing_references()
+def run_for_date(date_str: str, force: bool, seen_refs: set[str]) -> list[str]:
+    date_header = f"{date_str} 07:30:00 +0900"
     errors: list[str] = []
 
-    # 1. Research Papers channel
-    papers_file = OUT_DIR / f"{TODAY_STR}-research-papers.md"
-    if papers_file.exists():
+    papers_file = OUT_DIR / f"{date_str}-research-papers.md"
+    if papers_file.exists() and not force:
         print(f"Already exists: {papers_file}")
     else:
         try:
             papers = fetch_arxiv_papers(seen_refs)
             if not papers:
                 raise RuntimeError("No new papers fetched from arXiv.")
-            content = generate_research_paper_post(papers)
+            content, used_aid = generate_research_paper_post(papers, date_str, date_header)
             papers_file.write_text(content, encoding="utf-8")
+            if used_aid:
+                seen_refs.add(used_aid)
             print(f"Generated: {papers_file}")
         except Exception as exc:
-            msg = f"research-papers failed: {exc}"
+            msg = f"{date_str} research-papers failed: {exc}"
             print(msg)
             errors.append(msg)
 
-    # 2. AI & Robotics channel
-    news_file = OUT_DIR / f"{TODAY_STR}-ai-robotics.md"
-    if news_file.exists():
+    news_file = OUT_DIR / f"{date_str}-ai-robotics.md"
+    if news_file.exists() and not force:
         print(f"Already exists: {news_file}")
     else:
         try:
             news_items = fetch_ai_robotics_news(seen_refs)
             if not news_items:
                 raise RuntimeError("No new AI & Robotics items fetched from RSS feeds.")
-            content = generate_ai_robotics_post(news_items)
+            content, used_url = generate_ai_robotics_post(news_items, date_str, date_header)
             news_file.write_text(content, encoding="utf-8")
+            if used_url:
+                seen_refs.add(used_url)
             print(f"Generated: {news_file}")
         except Exception as exc:
-            msg = f"ai-robotics failed: {exc}"
+            msg = f"{date_str} ai-robotics failed: {exc}"
             print(msg)
             errors.append(msg)
 
-    if len(errors) == 2:
-        raise RuntimeError("Both channels failed: " + " | ".join(errors))
+    return errors
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--backfill-from", default=os.environ.get("BACKFILL_FROM", ""), help="Start date YYYY-MM-DD to backfill up to today")
+    parser.add_argument("--force", action="store_true", help="Overwrite existing posts for target date(s)")
+    args = parser.parse_args()
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    seen_refs = load_existing_references()
+
+    today_str = NOW_KST.strftime("%Y-%m-%d")
+    if args.backfill_from:
+        start_dt = datetime.strptime(args.backfill_from, "%Y-%m-%d").date()
+        end_dt = NOW_KST.date()
+        dates = []
+        cur = start_dt
+        while cur <= end_dt:
+            dates.append(cur.strftime("%Y-%m-%d"))
+            cur += timedelta(days=1)
+    else:
+        dates = [today_str]
+
+    all_errors: list[str] = []
+    for d in dates:
+        all_errors.extend(run_for_date(d, args.force, seen_refs))
+
+    if len(dates) == 1 and len(all_errors) == 2:
+        raise RuntimeError("Both channels failed: " + " | ".join(all_errors))
 
 
 if __name__ == "__main__":
