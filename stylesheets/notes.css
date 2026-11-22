@@ -1881,3 +1881,106 @@ body[data-notes-lang="en"] .ui-en {
     height:180px;
   }
 }
+
+
+/* Foundations Track Rows, Step Badges & Bottom PDF Download Box */
+.control-row {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px 14px;
+}
+
+.control-row-label {
+  min-width:96px;
+  color:var(--faint);
+  font-size:10.5px;
+  font-weight:750;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.foundations-label {
+  color:var(--accent-strong);
+}
+
+.foundation-tab.active {
+  border-color:var(--accent-strong);
+}
+
+.step-badge {
+  display:inline-flex;
+  align-items:center;
+  padding:2px 8px;
+  border-radius:6px;
+  background:var(--accent-strong);
+  color:var(--paper);
+  font-size:10.5px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+.step-badge::before {
+  display:none !important;
+}
+
+.pdf-pill {
+  border-color:var(--green);
+  color:var(--green);
+}
+
+.pdf-pill:hover {
+  background:var(--green);
+  color:var(--paper);
+}
+
+.pdf-download-box {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  margin:44px 0 18px;
+  padding:18px 20px;
+  border:1px solid var(--line);
+  border-left:3px solid var(--green);
+  border-radius:10px;
+  background:var(--surface);
+}
+
+.pdf-download-info {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.pdf-download-eyebrow {
+  color:var(--green);
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.12em;
+}
+
+.pdf-download-actions {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.pdf-download-btn {
+  display:inline-flex;
+  align-items:center;
+  padding:8px 15px;
+  border-radius:8px;
+  background:var(--green);
+  color:var(--paper) !important;
+  font-size:13px;
+  font-weight:700;
+  transition:opacity .15s ease;
+}
+
+.pdf-download-btn:hover {
+  opacity:.88;
+  color:var(--paper) !important;
+}

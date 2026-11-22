@@ -423,8 +423,11 @@ PDF 도입부 발췌:
     text = call_gemini(contents, thinking_level="MEDIUM")
     if not text.startswith("---"):
         raise ValueError("Generated research-papers output missing YAML frontmatter.")
-    # Inject source_url and primary image into YAML frontmatter
+    # Inject source_url, pdf_url, and primary image into YAML frontmatter
+    pdf_url = f"https://arxiv.org/pdf/{paper['arxiv_id']}.pdf" if paper.get("arxiv_id") else ""
     extra_fm = f'source_url: "{paper["link"]}"\n'
+    if pdf_url:
+        extra_fm += f'pdf_url: "{pdf_url}"\n'
     if figs:
         extra_fm += f'image: "{figs[0][0]}"\n'
     text = re.sub(r"^---\n", "---\n" + extra_fm, text, count=1)

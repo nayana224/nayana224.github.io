@@ -9,8 +9,8 @@ title: Research Feed
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Research Feed | Inpyo Lee</title>
-  <meta name="description" content="AlphaXiv-style visual research radar on Physical AI, robotics, and papers.">
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20261122-1' | relative_url }}">
+  <meta name="description" content="AlphaXiv-style visual research radar & domain-by-domain foundational paper roadmaps.">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20261122-2' | relative_url }}">
 </head>
 <body class="notes-page feed-page" data-notes-lang="en">
   <div class="notes-shell feed-shell">
@@ -30,38 +30,66 @@ title: Research Feed
     </header>
 
     <section class="notes-hero feed-hero">
-      <p class="notes-eyebrow">DAILY AUTOMATED RESEARCH RADAR</p>
+      <p class="notes-eyebrow">VISUAL RESEARCH RADAR &amp; FOUNDATIONS</p>
       <h1>Research Feed</h1>
       <p class="notes-lead">
-        <span class="ui-en">Visual, concept-first daily radar of arXiv papers (with key figures) and AI &amp; Robotics breakthroughs. Deep-dive implementations live in <a href="/blog/" style="color:var(--accent);text-decoration:underline;">Blog</a>.</span>
-        <span class="ui-ko">핵심 Figure와 Method 컨셉 중심으로 매일 자동 요약되는 논문·로보틱스 레이더입니다. 직접 구현하고 깊이 파고든 기록은 <a href="/blog/" style="color:var(--accent);text-decoration:underline;">Blog</a>에 정리합니다.</span>
+        <span class="ui-en">Daily automated paper &amp; robotics briefings + domain-by-domain foundational paper reviews with clean zoomed figures and direct PDF downloads.</span>
+        <span class="ui-ko">매일 자동 업데이트되는 최신 논문·로보틱스 브리핑과, 4대 핵심 분야(딥러닝·강화학습·VLA·World Model)의 필수 기초 논문 개별 리뷰를 핵심 Figure 크롭과 PDF 링크로 정리합니다.</span>
       </p>
     </section>
 
-    <!-- Layer 1: Channel Tabs -->
     <div class="alphaxiv-controls">
-      <div class="channel-tabs" role="tablist" aria-label="Feed Channels">
-        <button class="channel-tab active" type="button" data-channel-filter="all">
-          <span class="ui-en">All Updates</span><span class="ui-ko">전체</span>
-          <span class="tab-badge" data-count="all">0</span>
-        </button>
-        <button class="channel-tab" type="button" data-channel-filter="foundations">
-          <span class="ui-en">Foundations (Must-Read Papers)</span><span class="ui-ko">분야별 필수 기초 논문 로드맵</span>
-          <span class="tab-badge" data-count="foundations">0</span>
-        </button>
-        <button class="channel-tab" type="button" data-channel-filter="research-papers">
-          <span class="ui-en">Daily Papers (arXiv)</span><span class="ui-ko">최신 논문 (arXiv)</span>
-          <span class="tab-badge" data-count="research-papers">0</span>
-        </button>
-        <button class="channel-tab" type="button" data-channel-filter="ai-robotics">
-          <span class="ui-en">AI &amp; Robotics News</span><span class="ui-ko">AI &amp; 로보틱스 동향</span>
-          <span class="tab-badge" data-count="ai-robotics">0</span>
-        </button>
+      <!-- Row 1: Daily Feed Channels -->
+      <div class="control-row">
+        <span class="control-row-label">
+          <span class="ui-en">DAILY RADAR</span><span class="ui-ko">데일리 피드</span>
+        </span>
+        <div class="channel-tabs" role="tablist" aria-label="Daily Channels">
+          <button class="channel-tab active" type="button" data-channel-filter="all">
+            <span class="ui-en">All</span><span class="ui-ko">전체</span>
+            <span class="tab-badge" data-count="all">0</span>
+          </button>
+          <button class="channel-tab" type="button" data-channel-filter="research-papers">
+            <span class="ui-en">Daily Papers (arXiv)</span><span class="ui-ko">최신 논문 (arXiv)</span>
+            <span class="tab-badge" data-count="research-papers">0</span>
+          </button>
+          <button class="channel-tab" type="button" data-channel-filter="ai-robotics">
+            <span class="ui-en">AI &amp; Robotics News</span><span class="ui-ko">AI &amp; 로보틱스 동향</span>
+            <span class="tab-badge" data-count="ai-robotics">0</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Layer 2: Domain Tag Pills (alphaXiv style) -->
+      <!-- Row 2: Foundations Roadmap Tabs by Domain -->
+      <div class="control-row">
+        <span class="control-row-label foundations-label">
+          <span class="ui-en">FOUNDATIONS</span><span class="ui-ko">필수 기초 로드맵</span>
+        </span>
+        <div class="channel-tabs" role="tablist" aria-label="Foundational Paper Tracks">
+          <button class="channel-tab foundation-tab" type="button" data-channel-filter="foundations-dl">
+            <span class="ui-en">Deep Learning</span><span class="ui-ko">딥러닝</span>
+            <span class="tab-badge" data-count="foundations-dl">0</span>
+          </button>
+          <button class="channel-tab foundation-tab" type="button" data-channel-filter="foundations-rl">
+            <span class="ui-en">Reinforcement Learning</span><span class="ui-ko">강화학습 (RL)</span>
+            <span class="tab-badge" data-count="foundations-rl">0</span>
+          </button>
+          <button class="channel-tab foundation-tab" type="button" data-channel-filter="foundations-vla">
+            <span class="ui-en">VLA / VLM</span><span class="ui-ko">VLA (VLM)</span>
+            <span class="tab-badge" data-count="foundations-vla">0</span>
+          </button>
+          <button class="channel-tab foundation-tab" type="button" data-channel-filter="foundations-wm">
+            <span class="ui-en">World Model</span><span class="ui-ko">World Model</span>
+            <span class="tab-badge" data-count="foundations-wm">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 3: Topic Tag Filter -->
       <div class="topic-pills" role="group" aria-label="Domain Topics">
         <button class="topic-pill active" type="button" data-topic-filter="all">All Topics</button>
+        <button class="topic-pill" type="button" data-topic-filter="Deep Learning">Deep Learning</button>
+        <button class="topic-pill" type="button" data-topic-filter="RL">RL</button>
         <button class="topic-pill" type="button" data-topic-filter="Manipulation">Manipulation</button>
         <button class="topic-pill" type="button" data-topic-filter="VLA / VLM">VLA / VLM</button>
         <button class="topic-pill" type="button" data-topic-filter="World Model">World Model</button>
@@ -84,9 +112,16 @@ title: Research Feed
               {% assign thumb = '/images/research-feed/' | append: after_part %}
             {% endif %}
           {% endunless %}
-        <article class="feed-card" data-channel="{{ item.channel | default: 'ai-robotics' }}" data-tags="{{ item_tags }}">
+          {% assign item_pdf = item.pdf_url %}
+          {% unless item_pdf %}
+            {% if item.source_url contains 'arxiv.org/abs/' %}
+              {% assign item_pdf = item.source_url | replace: 'arxiv.org/abs/', 'arxiv.org/pdf/' | append: '.pdf' %}
+            {% endif %}
+          {% endunless %}
+        <article class="feed-card" data-channel="{{ item.channel | default: 'ai-robotics' }}" data-tags="{{ item_tags }}" data-order="{{ item.order | default: 99 }}">
           <div class="feed-card-body">
             <div class="notes-entry-meta">
+              {% if item.step %}<span class="step-badge">{{ item.step }}</span>{% endif %}
               {% if item.date %}<time>{{ item.date | date: "%Y.%m.%d" }}</time>{% endif %}
               <span class="channel-pill" data-ch="{{ item.channel }}">{{ item.channel_label | default: item.channel }}</span>
               {% if item.tags %}
@@ -101,7 +136,11 @@ title: Research Feed
               <a class="notes-read" href="{{ item.url | relative_url }}">
                 <span class="ui-en">Read concept &amp; figures →</span><span class="ui-ko">컨셉 &amp; Figure 보기 →</span>
               </a>
-              {% if item.source_url %}
+              {% if item_pdf %}
+              <a class="source-ext-link pdf-pill" href="{{ item_pdf }}" target="_blank" rel="noreferrer">
+                <span>PDF ↘</span>
+              </a>
+              {% elsif item.source_url %}
               <a class="source-ext-link" href="{{ item.source_url }}" target="_blank" rel="noreferrer">
                 <span class="ui-en">Source ↗</span><span class="ui-ko">원문 ↗</span>
               </a>
@@ -121,12 +160,8 @@ title: Research Feed
         <p class="empty-icon">＋</p>
         <strong>
           <span class="ui-en">No updates matching this filter yet.</span>
-          <span class="ui-ko">선택한 필터에 해당하는 업데이트가 아직 없습니다.</span>
+          <span class="ui-ko">선택한 필터에 해당하는 글이 아직 없습니다.</span>
         </strong>
-        <p>
-          <span class="ui-en">Daily automation publishes figure-backed paper &amp; robotics briefings at 07:30 KST.</span>
-          <span class="ui-ko">매일 오전 7시 30분 자동화 파이프라인이 주요 Figure와 함께 새 브리핑을 게시합니다.</span>
-        </p>
       </div>
     </main>
 
@@ -142,6 +177,7 @@ title: Research Feed
       var langButtons = document.querySelectorAll('.notes-language-switcher button');
       var channelTabs = document.querySelectorAll('.channel-tab[data-channel-filter]');
       var topicPills = document.querySelectorAll('.topic-pill[data-topic-filter]');
+      var feedList = document.getElementById('feed-list');
       var entries = Array.prototype.slice.call(document.querySelectorAll('.feed-card'));
       var feedEmpty = document.getElementById('feed-empty');
 
@@ -161,23 +197,26 @@ title: Research Feed
       }
 
       function updateCounts() {
-        var total = entries.length;
-        var found = entries.filter(function (e) { return e.getAttribute('data-channel') === 'foundations'; }).length;
-        var papers = entries.filter(function (e) { return e.getAttribute('data-channel') === 'research-papers'; }).length;
-        var news = entries.filter(function (e) { return e.getAttribute('data-channel') === 'ai-robotics'; }).length;
-        var cAll = document.querySelector('[data-count="all"]');
-        var cFound = document.querySelector('[data-count="foundations"]');
-        var cPapers = document.querySelector('[data-count="research-papers"]');
-        var cNews = document.querySelector('[data-count="ai-robotics"]');
-        if (cAll) cAll.textContent = String(total);
-        if (cFound) cFound.textContent = String(found);
-        if (cPapers) cPapers.textContent = String(papers);
-        if (cNews) cNews.textContent = String(news);
+        var channels = ['all', 'research-papers', 'ai-robotics', 'foundations-dl', 'foundations-rl', 'foundations-vla', 'foundations-wm'];
+        channels.forEach(function (ch) {
+          var el = document.querySelector('[data-count="' + ch + '"]');
+          if (!el) return;
+          var n = ch === 'all' ? entries.length : entries.filter(function (e) { return e.getAttribute('data-channel') === ch; }).length;
+          el.textContent = String(n);
+        });
       }
 
       function applyFilters() {
         var count = 0;
-        entries.forEach(function (entry) {
+        var isFoundation = activeChannel.indexOf('foundations-') === 0;
+        var ordered = entries.slice();
+        if (isFoundation) {
+          ordered.sort(function (a, b) {
+            return Number(a.getAttribute('data-order') || 99) - Number(b.getAttribute('data-order') || 99);
+          });
+        }
+        ordered.forEach(function (entry) {
+          feedList.appendChild(entry);
           var ch = entry.getAttribute('data-channel');
           var tags = (entry.getAttribute('data-tags') || '').split('|');
           var matchCh = (activeChannel === 'all') || (ch === activeChannel);
@@ -205,6 +244,7 @@ title: Research Feed
       channelTabs.forEach(function (tab) {
         tab.addEventListener('click', function () {
           activeChannel = tab.getAttribute('data-channel-filter');
+          activeTopic = 'all';
           applyFilters();
         });
       });

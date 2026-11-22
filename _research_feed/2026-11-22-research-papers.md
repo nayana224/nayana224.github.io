@@ -7,6 +7,7 @@ channel_label: "Research Papers"
 tags: ["Manipulation", "VLA / VLM", "World Model"]
 image: "/images/research-feed/2026-11-22-2611_26444-fig1-block1.png"
 source_url: "https://arxiv.org/abs/2611.26444"
+pdf_url: "https://arxiv.org/pdf/2611.26444.pdf"
 summary: "로봇이 작업에 실패했을 때 '머리가 나쁜 걸까(Mind), 손이 서툰 걸까(Act), 아니면 눈으로 결과를 보며 머리와 손을 함께 쓰는 능력(Mind2Act)이 부족한 걸까?'를 분리 진단하는 벤치마크입니다. 전체 Figure 1과 블록별 확대 그림으로 핵심 컨셉을 쉽게 풀어봅니다."
 ---
 

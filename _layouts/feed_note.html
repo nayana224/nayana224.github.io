@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>{{ page.title }} | Research Feed | Inpyo Lee</title>
-  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20261122-1' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/stylesheets/notes.css?v=20261122-2' | relative_url }}">
 </head>
 <body class="note-page feed-note-page" data-notes-lang="ko">
   <div class="note-shell">
@@ -19,6 +19,7 @@
 
     <article class="note-article">
       <div class="note-meta">
+        {% if page.step %}<span class="step-badge">{{ page.step }}</span>{% endif %}
         {% if page.date %}<time>{{ page.date | date: "%Y.%m.%d" }}</time>{% endif %}
         {% if page.channel_label %}<span class="channel-pill" data-ch="{{ page.channel }}">{{ page.channel_label }}</span>{% endif %}
         {% if page.tags %}
@@ -27,7 +28,7 @@
           {% endfor %}
         {% endif %}
         {% if page.source_url %}
-          <a class="source-ext-link" href="{{ page.source_url }}" target="_blank" rel="noreferrer" style="margin-left:auto;">원문 보기 (Source) ↗</a>
+          <a class="source-ext-link" href="{{ page.source_url }}" target="_blank" rel="noreferrer" style="margin-left:auto;">원문 보기 ↗</a>
         {% endif %}
       </div>
 
@@ -43,6 +44,30 @@
       <div class="note-content">
         {{ content }}
       </div>
+
+      {% assign resolved_pdf = page.pdf_url %}
+      {% unless resolved_pdf %}
+        {% if page.source_url contains 'arxiv.org/abs/' %}
+          {% assign resolved_pdf = page.source_url | replace: 'arxiv.org/abs/', 'arxiv.org/pdf/' | append: '.pdf' %}
+        {% endif %}
+      {% endunless %}
+
+      {% if resolved_pdf or page.source_url %}
+      <div class="pdf-download-box">
+        <div class="pdf-download-info">
+          <span class="pdf-download-eyebrow">ORIGINAL PAPER &amp; PDF</span>
+          <strong>원문 논문 바로 보기 및 PDF 다운로드</strong>
+        </div>
+        <div class="pdf-download-actions">
+          {% if resolved_pdf %}
+          <a class="pdf-download-btn" href="{{ resolved_pdf }}" target="_blank" rel="noreferrer">📄 논문 PDF 다운로드 ↘</a>
+          {% endif %}
+          {% if page.source_url %}
+          <a class="source-ext-link" href="{{ page.source_url }}" target="_blank" rel="noreferrer">arXiv / 원문 페이지 ↗</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
 
       <nav class="note-bottom-nav">
         <a href="/research-feed/">← Research Feed 목록으로</a>
