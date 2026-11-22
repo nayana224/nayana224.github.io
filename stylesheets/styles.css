@@ -170,6 +170,15 @@ section {
   letter-spacing:.01em;
 }
 
+.email-text a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.email-text a:hover {
+  color:var(--link);
+}
+
 .profile nav h2 {
   margin:clamp(4px,.65vh,7px) 0;
   font-size:clamp(15px,1.15vw,17px);
@@ -207,11 +216,15 @@ section {
 }
 
 .kitech-logo {
-  width:26px;
-  height:26px;
-  max-width:26px;
-  max-height:26px;
+  width:24px;
+  height:24px;
+  max-width:24px;
+  max-height:24px;
   object-fit:contain;
+  border-radius:6px;
+  padding:2px;
+  background:#ffffff;
+  box-sizing:border-box;
 }
 
 .tuk-logo {
