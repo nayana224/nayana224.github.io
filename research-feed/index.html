@@ -45,8 +45,12 @@ title: Research Feed
           <span class="ui-en">All Updates</span><span class="ui-ko">전체</span>
           <span class="tab-badge" data-count="all">0</span>
         </button>
+        <button class="channel-tab" type="button" data-channel-filter="foundations">
+          <span class="ui-en">Foundations (Must-Read Papers)</span><span class="ui-ko">분야별 필수 기초 논문 로드맵</span>
+          <span class="tab-badge" data-count="foundations">0</span>
+        </button>
         <button class="channel-tab" type="button" data-channel-filter="research-papers">
-          <span class="ui-en">Research Papers</span><span class="ui-ko">논문 (arXiv)</span>
+          <span class="ui-en">Daily Papers (arXiv)</span><span class="ui-ko">최신 논문 (arXiv)</span>
           <span class="tab-badge" data-count="research-papers">0</span>
         </button>
         <button class="channel-tab" type="button" data-channel-filter="ai-robotics">
@@ -158,12 +162,15 @@ title: Research Feed
 
       function updateCounts() {
         var total = entries.length;
+        var found = entries.filter(function (e) { return e.getAttribute('data-channel') === 'foundations'; }).length;
         var papers = entries.filter(function (e) { return e.getAttribute('data-channel') === 'research-papers'; }).length;
         var news = entries.filter(function (e) { return e.getAttribute('data-channel') === 'ai-robotics'; }).length;
         var cAll = document.querySelector('[data-count="all"]');
+        var cFound = document.querySelector('[data-count="foundations"]');
         var cPapers = document.querySelector('[data-count="research-papers"]');
         var cNews = document.querySelector('[data-count="ai-robotics"]');
         if (cAll) cAll.textContent = String(total);
+        if (cFound) cFound.textContent = String(found);
         if (cPapers) cPapers.textContent = String(papers);
         if (cNews) cNews.textContent = String(news);
       }

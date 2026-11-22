@@ -268,17 +268,19 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
                 if len(chosen) >= max_figs:
                     break
 
-        # Render and crop chosen figures cleanly at 2x resolution
+        # Render and crop chosen figures cleanly at 3x resolution, plus zoomed sub-blocks for the primary figure
         for idx, (p_idx, rect) in enumerate(chosen, start=1):
             page = doc[p_idx]
-            pad = 6
-            clip = fitz.Rect(
-                max(page.rect.x0, rect.x0 - pad),
-                max(page.rect.y0, rect.y0 - pad),
-                min(page.rect.x1, rect.x1 + pad),
-                min(page.rect.y1, rect.y1 + pad),
-            )
-            pix = page.get_pixmap(clip=clip, matrix=fitz.Matrix(2, 2), alpha=False)
+            # Exclude left arXiv watermark margin (at least 11% from left edge) and stop just above caption text
+            left_x = max(page.rect.width * 0.11, rect.x0)
+            right_x = min(page.rect.width * 0.89, rect.x1)
+            top_y = max(page.rect.y0 + 36, rect.y0)
+            bot_y = min(page.rect.y1 - 30, rect.y1 - 24)
+            if bot_y - top_y < 90:
+                bot_y = rect.y1
+            clip = fitz.Rect(left_x, top_y, right_x, bot_y)
+            mat = fitz.Matrix(3, 3)
+            pix = page.get_pixmap(clip=clip, matrix=mat, alpha=False)
             png_bytes = pix.tobytes("png")
             safe_id = arxiv_id.replace(".", "_")
             rel_path = f"/images/research-feed/{date_str}-{safe_id}-fig{idx}.png"
@@ -286,6 +288,21 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
             out_path.write_bytes(png_bytes)
             saved_figs.append((rel_path, png_bytes))
             print(f"Cropped figure: {out_path}")
+
+            # If primary figure is tall enough, also create 2 zoomed sub-block crops (Block 1: top half, Block 2: bottom half)
+            fig_h = clip.height
+            if idx == 1 and fig_h >= 160:
+                mid_y = top_y + fig_h * 0.52
+                b1_clip = fitz.Rect(left_x, top_y, right_x, mid_y)
+                b2_clip = fitz.Rect(left_x, top_y + fig_h * 0.48, right_x, bot_y)
+                for b_idx, b_rect in enumerate([b1_clip, b2_clip], start=1):
+                    b_pix = page.get_pixmap(clip=b_rect, matrix=mat, alpha=False)
+                    b_bytes = b_pix.tobytes("png")
+                    b_rel = f"/images/research-feed/{date_str}-{safe_id}-fig1-block{b_idx}.png"
+                    b_out = IMG_DIR / f"{date_str}-{safe_id}-fig1-block{b_idx}.png"
+                    b_out.write_bytes(b_bytes)
+                    saved_figs.append((b_rel, b_bytes))
+                    print(f"Cropped zoomed block: {b_out}")
     finally:
         doc.close()
 
@@ -380,13 +397,14 @@ summary: "2~3문장 핵심 요약 (공개일, 핵심 방법, 검증 범위 및 �
 (참고: `tags`는 반드시 `["Manipulation", "VLA / VLM", "World Model", "3D Vision", "Humanoid & Locomotion", "Sim & Systems"]` 중에서 가장 알맞은 1~2개만 골라 배열로 작성하세요.)
 {fig_instructions}
 작성 원칙 (매우 중요):
+- **고등학생도 단번에 이해하는 직관적 설명**: 전문 용어를 나열하기 전에 일상적인 쉬운 비유로 핵심 문제를 먼저 짚어주고, 수식이나 모듈이 '왜 필요한지' 직관적으로 풀어쓰세요.
+- **전체 Figure → 블록별 확대 Figure 단계적 해설**: 먼저 전체 Figure(`fig1.png`)를 보여준 뒤, 확대 크롭된 세부 블록 이미지(`fig1-block1.png`, `fig1-block2.png` 등)를 각각의 소제목 아래에 하나씩 배치해 그림 속 화살표와 블록이 무슨 뜻인지 친절하게 짚어주세요.
 - **사실 엄수**: 논문 초록·본문·첨부 Figure에 없는 수치·실험 조건을 절대 지어내지 마세요.
-- **제목 & 소제목 품질**: `## 핵심 방법론`, `## 실험 및 검증` 같은 기계적인 소제목 대신, 이 논문의 핵심 통찰이 드러나는 자연스러운 서술형 소제목 3개를 사용하세요.
 - **구성**:
-  1. 도입 문단 (2~3문장): 엔지니어가 공감할 구체적인 문제 제기 + 논문 원제목·공개일·arXiv 링크(`{paper['link']}`)
-  2. 소제목 1 (핵심 컨셉 & Figure 해설): 기존 방식의 병목과 이 논문이 제안한 핵심 아이디어를 직관적으로 설명. 첨부 Figure가 있다면 여기에 삽입하고 그림의 흐름(`입력 → 핵심 모듈 → 출력`)을 쉽게 풀어쓰세요.
-  3. 소제목 2 (검증 범위와 한계): 확인된 실험 결과·수치와 함께, 아직 검증되지 않은 한계(Caveat)를 명확히 구분해 서술.
-  4. 소제목 3 (엔지니어링 시사점): 실제 로봇·AI 시스템 설계 시 참고할 실무 포인트 2~3개 불릿.
+  1. 도입 문단: 쉬운 비유로 시작하는 문제 제기 + 논문 원제목·공개일·arXiv 링크(`{paper['link']}`) + 전체 Figure 1 삽입
+  2. `## 블록 ① 핵심 컨셉`: `fig1-block1.png`를 삽입하고 기존 방식의 병목과 이 논문이 제안한 Method의 핵심 아이디어를 그림의 흐름(`입력 → 핵심 모듈 → 출력`)을 따라 쉽게 해설
+  3. `## 블록 ② 세부 구조 및 실험 결과`: `fig1-block2.png`를 삽입하고 확인된 정량 수치/결과와 함께, 아직 검증되지 않은 한계(Caveat)를 명확히 구분해 서술
+  4. `## 내 로봇 시스템에 적용할 포인트`: 실제 로봇·AI 시스템 설계 시 참고할 실무 포인트 2~3개 불릿.
 
 논문 메타데이터:
 - Title: {paper['title']}
