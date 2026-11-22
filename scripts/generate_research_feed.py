@@ -231,8 +231,8 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
                 cap_rect = hits[0]
                 page_rect = page.rect
                 # Crop region above the caption (up to ~42% of page height) + caption line
-                top_y = max(page_rect.y0 + 36, cap_rect.y0 - page_rect.height * 0.40)
-                bot_y = min(page_rect.y1 - 30, cap_rect.y1 + 26)
+                top_y = max(page_rect.y0 + 36, cap_rect.y0 - page_rect.height * 0.46)
+                bot_y = min(page_rect.y1 - 30, cap_rect.y1 + 36)
                 if bot_y - top_y < 110:
                     continue
                 # Use full content width (with small horizontal margins)
