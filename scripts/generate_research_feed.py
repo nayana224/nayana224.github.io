@@ -189,8 +189,62 @@ def fetch_ai_robotics_news(seen_refs: set[str], per_feed: int = 8) -> list[dict]
     return items
 
 
-def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2) -> tuple[list[tuple[str, bytes]], str]:
-    """Download arXiv PDF, crop up to `max_figs` key figures from pages 1-4, and extract intro text."""
+def find_caption_hits(page, patterns: list[str]) -> list:
+    """Find true figure captions (with trailing period/colon, e.g. 'Figure 1.', 'Fig. 1:') rather than in-text citations."""
+    hits = []
+    for pat in patterns:
+        for sep in [".", ":"]:
+            found = page.search_for(pat + sep)
+            for r in found:
+                # True captions start near left margin or column start
+                if r.x0 < page.rect.width * 0.60:
+                    hits.append(r)
+            if hits:
+                return hits
+    return hits
+
+
+def tight_visual_bbox(page, top_min: float, bot_max: float) -> fitz.Rect | None:
+    """Compute tight union bounding box of actual images and vector drawings above a caption (excludes prose/authors)."""
+    w, h = page.rect.width, page.rect.height
+    # Exclude arXiv vertical watermark on far left (x < 38)
+    region = fitz.Rect(38, top_min, w - 24, bot_max)
+    rects: list[fitz.Rect] = []
+    for im in page.get_image_info():
+        r = fitz.Rect(im["bbox"])
+        if r.intersects(region) and r.width > 18 and r.height > 18:
+            rects.append(r & region)
+    for d in page.get_drawings():
+        r = fitz.Rect(d["rect"])
+        if not r.intersects(region):
+            continue
+        # Ignore full-page frames or tiny hairlines/underlines in author/header blocks
+        if r.width > w * 0.94 or r.height > h * 0.85:
+            continue
+        if r.width < 8 and r.height < 8:
+            continue
+        if r.y0 >= top_min - 5 and r.y1 <= bot_max + 5:
+            rects.append(r & region)
+
+    if not rects:
+        return None
+    union = rects[0]
+    for r in rects[1:]:
+        union |= r
+    # Reject tiny non-figure artifacts (e.g. text-only regions)
+    if union.width < 160 or union.height < 85:
+        return None
+    # Include short diagram title/label text sitting immediately above or inside the figure (within 22pt)
+    return fitz.Rect(
+        max(36, union.x0 - 10),
+        max(top_min, union.y0 - 20),
+        min(w - 20, union.x1 + 10),
+        min(bot_max, union.y1 + 6),
+    )
+
+
+def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 1) -> tuple[list[tuple[str, bytes]], str]:
+    """Download arXiv PDF, tightly crop the primary Figure 1 (+ smart zoomed sub-blocks), and extract intro text."""
     if not fitz or not arxiv_id:
         return [], ""
 
@@ -212,73 +266,53 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
         return [], ""
 
     try:
-        # Extract text from first 3 pages for richer context
         for p_idx in range(min(3, len(doc))):
             extracted_text_parts.append(doc[p_idx].get_text("text"))
 
-        # Strategy 1: Caption-based crop (captures both vector TikZ/PDF diagrams and raster figures)
+        # Strategy 1: True caption ('Figure 1.' / 'Fig. 1:') + tight visual bbox (excludes authors & prose!)
         chosen: list[tuple[int, fitz.Rect]] = []
-        caption_patterns = ["Figure 1", "Fig. 1", "Figure 2", "Fig. 2"]
-        for pat in caption_patterns:
+        caption_groups = [["Figure 1", "Fig. 1"], ["Figure 2", "Fig. 2"]]
+        for pats in caption_groups:
             if len(chosen) >= max_figs:
                 break
-            found = False
             for p_idx in range(min(4, len(doc))):
                 page = doc[p_idx]
-                hits = page.search_for(pat)
+                hits = find_caption_hits(page, pats)
                 if not hits:
                     continue
                 cap_rect = hits[0]
-                page_rect = page.rect
-                # Crop region above the caption (up to ~42% of page height) + caption line
-                top_y = max(page_rect.y0 + 36, cap_rect.y0 - page_rect.height * 0.46)
-                bot_y = min(page_rect.y1 - 30, cap_rect.y1 + 36)
-                if bot_y - top_y < 110:
+                top_min = max(36.0, cap_rect.y0 - page.rect.height * 0.58)
+                bot_max = cap_rect.y0 - 4.0
+                if bot_max - top_min < 90:
                     continue
-                # Use full content width (with small horizontal margins)
-                margin_x = page_rect.width * 0.06
-                fig_rect = fitz.Rect(margin_x, top_y, page_rect.width - margin_x, bot_y)
-                if any(cp == p_idx and (cr & fig_rect).get_area() > 0.3 * fig_rect.get_area() for cp, cr in chosen):
+                bbox = tight_visual_bbox(page, top_min, bot_max)
+                if bbox is None:
                     continue
-                chosen.append((p_idx, fig_rect))
-                found = True
-                break
-            if found and len(chosen) >= max_figs:
+                if any(cp == p_idx and (cr & bbox).get_area() > 0.3 * bbox.get_area() for cp, cr in chosen):
+                    continue
+                chosen.append((p_idx, bbox))
                 break
 
-        # Strategy 2: Fallback to largest raster image bboxes if caption search found fewer than max_figs
-        if len(chosen) < max_figs:
+        # Strategy 2: Fallback to largest raster image bbox if no caption-backed visual figure found
+        if not chosen:
             candidates: list[tuple[float, int, fitz.Rect]] = []
             for p_idx in range(min(4, len(doc))):
                 page = doc[p_idx]
                 page_rect = page.rect
                 for img_info in page.get_image_info(xrefs=True):
                     bbox = fitz.Rect(img_info["bbox"]) & page_rect
-                    w, h = bbox.width, bbox.height
-                    if w < 180 or h < 90:
+                    if bbox.width < 180 or bbox.height < 90 or bbox.x0 < 36:
                         continue
-                    score = (w * h) * (1.25 if p_idx < 2 else 1.0)
+                    score = (bbox.width * bbox.height) * (1.25 if p_idx < 2 else 1.0)
                     candidates.append((score, p_idx, bbox))
-
             candidates.sort(key=lambda x: x[0], reverse=True)
-            for _, p_idx, rect in candidates:
-                if any(cp == p_idx and (cr & rect).get_area() > 0.3 * rect.get_area() for cp, cr in chosen):
-                    continue
+            if candidates:
+                _, p_idx, rect = candidates[0]
                 chosen.append((p_idx, rect))
-                if len(chosen) >= max_figs:
-                    break
 
-        # Render and crop chosen figures cleanly at 3x resolution, plus zoomed sub-blocks for the primary figure
-        for idx, (p_idx, rect) in enumerate(chosen, start=1):
+        # Render full figure at 3x DPI + smart zoomed sub-blocks (horizontal split for wide figures, vertical for tall)
+        for idx, (p_idx, clip) in enumerate(chosen, start=1):
             page = doc[p_idx]
-            # Exclude left arXiv watermark margin (at least 11% from left edge) and stop just above caption text
-            left_x = max(page.rect.width * 0.11, rect.x0)
-            right_x = min(page.rect.width * 0.89, rect.x1)
-            top_y = max(page.rect.y0 + 36, rect.y0)
-            bot_y = min(page.rect.y1 - 30, rect.y1 - 24)
-            if bot_y - top_y < 90:
-                bot_y = rect.y1
-            clip = fitz.Rect(left_x, top_y, right_x, bot_y)
             mat = fitz.Matrix(3, 3)
             pix = page.get_pixmap(clip=clip, matrix=mat, alpha=False)
             png_bytes = pix.tobytes("png")
@@ -287,14 +321,50 @@ def extract_pdf_figures_and_text(arxiv_id: str, date_str: str, max_figs: int = 2
             out_path = IMG_DIR / f"{date_str}-{safe_id}-fig{idx}.png"
             out_path.write_bytes(png_bytes)
             saved_figs.append((rel_path, png_bytes))
-            print(f"Cropped figure: {out_path}")
+            print(f"Cropped tight figure: {out_path} ({clip.width:.0f}x{clip.height:.0f})")
 
-            # If primary figure is tall enough, also create 2 zoomed sub-block crops (Block 1: top half, Block 2: bottom half)
-            fig_h = clip.height
-            if idx == 1 and fig_h >= 160:
-                mid_y = top_y + fig_h * 0.52
-                b1_clip = fitz.Rect(left_x, top_y, right_x, mid_y)
-                b2_clip = fitz.Rect(left_x, top_y + fig_h * 0.48, right_x, bot_y)
+            # Smart sub-block crops for primary figure (snap cut line to cleanest white gutter so panels aren't sliced in half!)
+            if idx == 1 and clip.width >= 280 and clip.height >= 140:
+                aspect = clip.width / clip.height
+                if aspect >= 1.65:
+                    # Find cleanest vertical white gutter between 35% and 68% of width
+                    w_px, h_px, n_ch = pix.width, pix.height, pix.n
+                    samples = pix.samples
+                    lo_x, hi_x = int(w_px * 0.35), int(w_px * 0.68)
+                    best_x = w_px // 2
+                    best_ink = float("inf")
+                    for x in range(lo_x, hi_x, 2):
+                        ink = 0
+                        for y in range(0, h_px, 4):
+                            off = (y * w_px + x) * n_ch
+                            if samples[off] < 245 or samples[off + 1] < 245 or samples[off + 2] < 245:
+                                ink += 1
+                        if ink < best_ink:
+                            best_ink = ink
+                            best_x = x
+                    split_x = clip.x0 + (best_x / w_px) * clip.width
+                    b1_clip = fitz.Rect(clip.x0, clip.y0, split_x, clip.y1)
+                    b2_clip = fitz.Rect(split_x, clip.y0, clip.x1, clip.y1)
+                else:
+                    # Find cleanest horizontal white gutter between 35% and 68% of height
+                    w_px, h_px, n_ch = pix.width, pix.height, pix.n
+                    samples = pix.samples
+                    lo_y, hi_y = int(h_px * 0.35), int(h_px * 0.68)
+                    best_y = h_px // 2
+                    best_ink = float("inf")
+                    for y in range(lo_y, hi_y, 2):
+                        ink = 0
+                        row_off = y * w_px * n_ch
+                        for x in range(0, w_px, 4):
+                            off = row_off + x * n_ch
+                            if samples[off] < 245 or samples[off + 1] < 245 or samples[off + 2] < 245:
+                                ink += 1
+                        if ink < best_ink:
+                            best_ink = ink
+                            best_y = y
+                    split_y = clip.y0 + (best_y / h_px) * clip.height
+                    b1_clip = fitz.Rect(clip.x0, clip.y0, clip.x1, split_y)
+                    b2_clip = fitz.Rect(clip.x0, split_y, clip.x1, clip.y1)
                 for b_idx, b_rect in enumerate([b1_clip, b2_clip], start=1):
                     b_pix = page.get_pixmap(clip=b_rect, matrix=mat, alpha=False)
                     b_bytes = b_pix.tobytes("png")
@@ -368,7 +438,7 @@ def select_best_paper(papers: list[dict], date_str: str) -> dict:
 
 def generate_research_paper_post(papers: list[dict], date_str: str, date_header: str) -> tuple[str, str]:
     paper = select_best_paper(papers, date_str)
-    figs, pdf_text = extract_pdf_figures_and_text(paper["arxiv_id"], date_str, max_figs=2)
+    figs, pdf_text = extract_pdf_figures_and_text(paper["arxiv_id"], date_str, max_figs=1)
 
     fig_instructions = ""
     if figs:
@@ -533,7 +603,7 @@ summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 
     if extra_fm:
         text = re.sub(r"^---\n", "---\n" + extra_fm, text, count=1)
     if hero_path and hero_path not in text:
-        m_h2 = re.search(r"(^## .+$)", text, flags=re.MULTILINE)
+        m_h2 = re.search(r"(^#{2,3} .+$)", text, flags=re.MULTILINE)
         img_md = f"\n![기사 대표 이미지]({hero_path})\n"
         if m_h2:
             pos = m_h2.start()
