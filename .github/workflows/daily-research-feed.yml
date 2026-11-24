@@ -2,8 +2,10 @@ name: Daily Research Feed
 
 on:
   schedule:
-    # GitHub Actions 지연 감안해 06:17 KST (UTC 21:17) 트리거 -> 07:30 전후 게시
-    - cron: '17 21 * * *'
+    # 1차: 03:17 KST (UTC 18:17) 트리거 -> GitHub Actions 4~5시간 지연 감안해 07:30~08:30 KST 게시
+    - cron: '17 18 * * *'
+    # 2차(백업): 08:47 KST (UTC 23:47) 트리거 -> 1차 누락/부분 실패 시 자동 보충 (이미 있으면 스킵)
+    - cron: '47 23 * * *'
   workflow_dispatch:
     inputs:
       backfill_from:
@@ -13,6 +15,10 @@ on:
 
 permissions:
   contents: write
+
+concurrency:
+  group: daily-research-feed
+  cancel-in-progress: false
 
 jobs:
   update-feed:
@@ -44,5 +50,6 @@ jobs:
             echo "No new research feed post to commit."
           else
             git commit -m "chore: add daily research feed posts"
+            git pull --rebase origin main
             git push
           fi

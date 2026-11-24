@@ -27,7 +27,7 @@ OUT_DIR = Path("_research_feed")
 IMG_DIR = Path("images/research-feed")
 
 MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-4-hydrogen")
-FALLBACK_MODELS = [MODEL_NAME, "gemini-2.5-flash", "gemini-2.0-flash"]
+FALLBACK_MODELS = [MODEL_NAME, "gemini-3.8-flash"]
 
 ARXIV_QUERIES = [
     'cat:cs.RO AND (manipulation OR grasping OR deformable OR "point cloud" OR "physical AI" OR "world model" OR VLA OR VLM)',
@@ -388,7 +388,7 @@ def call_gemini(contents, thinking_level: str = "MEDIUM") -> str:
         for attempt in range(2):
             try:
                 cfg = types.GenerateContentConfig()
-                if "gemini-4" in model_id or "gemini-2.5" in model_id:
+                if "gemini-4" in model_id:
                     cfg = types.GenerateContentConfig(
                         thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
                     )
