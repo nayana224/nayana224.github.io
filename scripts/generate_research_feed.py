@@ -190,14 +190,17 @@ def fetch_ai_robotics_news(seen_refs: set[str], per_feed: int = 8) -> list[dict]
 
 
 def find_caption_hits(page, patterns: list[str]) -> list:
-    """Find true figure captions (with trailing period/colon, e.g. 'Figure 1.', 'Fig. 1:') rather than in-text citations."""
+    """Find true figure captions (e.g. 'Figure 1.', 'Fig. 1:', or left-aligned 'Figure 1 ') rather than mid-sentence citations."""
     hits = []
     for pat in patterns:
-        for sep in [".", ":"]:
+        for sep in [".", ":", " "]:
             found = page.search_for(pat + sep)
             for r in found:
-                # True captions start near left margin or column start
-                if r.x0 < page.rect.width * 0.60:
+                if sep == " ":
+                    # Only accept space-separated match if it starts right near left column margin
+                    if r.x0 < page.rect.width * 0.18:
+                        hits.append(r)
+                elif r.x0 < page.rect.width * 0.60:
                     hits.append(r)
             if hits:
                 return hits
@@ -544,9 +547,28 @@ def fetch_og_image(article_url: str, date_str: str) -> str:
         elif ".webp" in lower_url:
             ext = ".webp"
         IMG_DIR.mkdir(parents=True, exist_ok=True)
+        # Compress oversized hero images (>400KB) via PyMuPDF to keep Git repo fast and lightweight
+        if fitz and len(img_bytes) > 400_000:
+            try:
+                pix = fitz.Pixmap(img_bytes)
+                if pix.n - pix.alpha > 3:
+                    pix = fitz.Pixmap(fitz.csRGB, pix)
+                if pix.alpha:
+                    pix = fitz.Pixmap(pix, 0)
+                if pix.width > 1200:
+                    scale = 1200 / pix.width
+                    doc_tmp = fitz.open()
+                    p_tmp = doc_tmp.new_page(width=pix.width * scale, height=pix.height * scale)
+                    p_tmp.insert_image(p_tmp.rect, pixmap=pix)
+                    pix = p_tmp.get_pixmap(alpha=False)
+                    doc_tmp.close()
+                img_bytes = pix.tobytes("jpeg", jpg_quality=82)
+                ext = ".jpg"
+            except Exception as comp_exc:
+                print(f"Hero image compression skipped: {comp_exc}")
         fname = f"{date_str}-ai-robotics-hero{ext}"
         (IMG_DIR / fname).write_bytes(img_bytes)
-        print(f"Saved article hero image: {IMG_DIR / fname}")
+        print(f"Saved article hero image: {IMG_DIR / fname} ({len(img_bytes)} bytes)")
         return f"/images/research-feed/{fname}"
     except Exception as exc:
         print(f"og:image fetch skipped ({article_url}): {exc}")
@@ -613,12 +635,29 @@ summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 
     return text + "\n", used_url
 
 
+def sanitize_frontmatter(md_text: str) -> str:
+    """Escape unescaped interior double quotes in title/summary YAML lines so Jekyll never fails to build."""
+    parts = md_text.split("---", 2)
+    if len(parts) < 3:
+        return md_text
+    fixed_lines = []
+    for line in parts[1].splitlines():
+        m = re.match(r'^(title|summary):\s*"(.*)"\s*$', line)
+        if m:
+            key, val = m.group(1), m.group(2)
+            safe_val = val.replace('\\"', '"').replace('"', "'")
+            fixed_lines.append(f'{key}: "{safe_val}"')
+        else:
+            fixed_lines.append(line)
+    return "---\n" + "\n".join(fixed_lines).strip() + "\n---" + parts[2]
+
+
 def run_for_date(date_str: str, force: bool, seen_refs: set[str]) -> list[str]:
     today_str = NOW_KST.strftime("%Y-%m-%d")
     if date_str == today_str:
         date_header = NOW_KST.strftime("%Y-%m-%d %H:%M:%S +0900")
     else:
-        date_header = f"{date_str} 07:30:00 +0900"
+        date_header = f"{date_str} 07:00:00 +0900"
     errors: list[str] = []
 
     papers_file = OUT_DIR / f"{date_str}-research-papers.md"
@@ -630,7 +669,7 @@ def run_for_date(date_str: str, force: bool, seen_refs: set[str]) -> list[str]:
             if not papers:
                 raise RuntimeError("No new papers fetched from arXiv.")
             content, used_aid = generate_research_paper_post(papers, date_str, date_header)
-            papers_file.write_text(content, encoding="utf-8")
+            papers_file.write_text(sanitize_frontmatter(content), encoding="utf-8")
             if used_aid:
                 seen_refs.add(used_aid)
             print(f"Generated: {papers_file}")
@@ -648,7 +687,7 @@ def run_for_date(date_str: str, force: bool, seen_refs: set[str]) -> list[str]:
             if not news_items:
                 raise RuntimeError("No new AI & Robotics items fetched from RSS feeds.")
             content, used_url = generate_ai_robotics_post(news_items, date_str, date_header)
-            news_file.write_text(content, encoding="utf-8")
+            news_file.write_text(sanitize_frontmatter(content), encoding="utf-8")
             if used_url:
                 seen_refs.add(used_url)
             print(f"Generated: {news_file}")
