@@ -26,8 +26,8 @@ NOW_KST = datetime.now(KST)
 OUT_DIR = Path("_research_feed")
 IMG_DIR = Path("images/research-feed")
 
-MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-4-hydrogen")
-FALLBACK_MODELS = [MODEL_NAME, "gemini-3.8-flash"]
+MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-4-neon")
+FALLBACK_MODELS = [MODEL_NAME, "gemini-4-hydrogen", "gemini-3.8-flash"]
 
 ARXIV_QUERIES = [
     'cat:cs.RO AND (manipulation OR grasping OR deformable OR "point cloud" OR "physical AI" OR "world model" OR VLA OR VLM)',
