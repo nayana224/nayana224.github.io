@@ -391,7 +391,11 @@ def call_gemini(contents, thinking_level: str = "MEDIUM") -> str:
         for attempt in range(2):
             try:
                 cfg = types.GenerateContentConfig()
-                if "gemini-4" in model_id:
+                if "gemini-4-hydrogen" in model_id:
+                    cfg = types.GenerateContentConfig(
+                        thinking_config=types.ThinkingConfig(thinking_level="HIGH"),
+                    )
+                elif "gemini-4" in model_id:
                     cfg = types.GenerateContentConfig(
                         thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
                     )
