@@ -2,6 +2,7 @@ title: Inpyo Lee
 description: Inpyo Lee's personal blog on robotics, AI, papers, and engineering
 markdown: kramdown
 timezone: Asia/Seoul
+future: true
 
 collections:
   notes:

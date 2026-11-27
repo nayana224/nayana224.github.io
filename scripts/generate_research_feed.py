@@ -614,7 +614,11 @@ summary: "2~3문장 핵심 요약 (발표 주체·시점, 핵심 내용, 해석 
 
 
 def run_for_date(date_str: str, force: bool, seen_refs: set[str]) -> list[str]:
-    date_header = f"{date_str} 07:30:00 +0900"
+    today_str = NOW_KST.strftime("%Y-%m-%d")
+    if date_str == today_str:
+        date_header = NOW_KST.strftime("%Y-%m-%d %H:%M:%S +0900")
+    else:
+        date_header = f"{date_str} 07:30:00 +0900"
     errors: list[str] = []
 
     papers_file = OUT_DIR / f"{date_str}-research-papers.md"
